@@ -27,10 +27,10 @@ function Solution() {
       <Banner text={text} image={image} />
       <Brands />
       {/* What we can do */}
-      <section className=" ">
+      <section className="mb-5 ">
         <Container fluid className="  what_we_do_container ">
           <div className="row mx-xl-5 solution_what_we_do mt-5">
-            <div className="col-lg-5 col-md-12 col-12  d-flex flex-column justify-content-around pt-lg-5 pb-lg-5 pt-3">
+            <div className="col-lg-6 col-xl-5  col-md-12 col-12  d-flex flex-column gap-4  ">
               <div className="d-flex flex-column justify-content-between">
                 {" "}
                 <p className="font-size-24 font_weight_300">What We Do ?</p>
@@ -40,7 +40,7 @@ function Solution() {
                   Improving Effeciency.
                 </p>
               </div>
-              <p className="font-size-37 font_weight_300 line_height_40 font_color_light_grey text-justify  ">
+              <p className="font-size-37 font_weight_300 font_color_light_grey text-justify  ">
                 Codeship offers tailored software solutions designed to meet
                 your unique business needs. We create custom applications that
                 streamline operations, enhance efficiency, and support your
@@ -48,34 +48,31 @@ function Solution() {
                 your business.
               </p>
             </div>
-            <div className="col-lg-7 col-md-12 col-12 d-flex flex-column justify-content-center pb-5">
-              <div className="d-flex justify-content-center">
-                {" "}
+            <div className="col-lg-6 col-xl-7 col-md-12 col-12 d-flex flex-column justify-content-center ">
                 <img
                   src={what_we_do}
                   alt=""
-                  className="img-fluid ms-xl-5 mx-md-5 Banner_img "
+                  className="img-fluid  Banner_img "
                 />
-              </div>
             </div>
           </div>
         </Container>
       </section>
       <section>
         <Container className="my_container ">
-          <p className="text-center font-size-50 font_weight_500 pb-3">
+          <p className="text-center font-size-50 font_weight_500 pb-3 pt-5">
             Smart Solutions For Your Business
             <br className="d-none d-lg-block" /> By Codeship.
           </p>
           {Solution_Data.map((item) => (
             <div
               key={item.id}
-              className="row solution_desk parallax-section pt-lg-5 pb-lg-5 px-lg-5 mt-5"
+              className="row solution_desk  pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
               style={{ backgroundColor: item.bgColor }}
             >
-              <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around pb-lg-5 pb-5">
-                <div className="d-flex flex-column justify-content-between">
-                  <p className="font-size-24 font_weight_300">{item.heading}</p>
+              <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around  pb-lg-5 pb-5">
+                <div className="d-flex flex-column justify-content-between gap-5">
+                  <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">{item.heading}</p>
                   <p className="font-size-40 font_weight_600">
                     {item.title.split("<br>").map((line, idx) => (
                       <React.Fragment key={idx}>
@@ -102,7 +99,7 @@ function Solution() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6 col-md-12 col-12 pb-5 pt-lg-5 pb-lg-5 pt-3">
+              <div className="col-lg-6 col-md-12 col-12 pb-5 pt-lg-5 pb-lg-5 ">
                 <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
                   <img
                     src={item.image}
