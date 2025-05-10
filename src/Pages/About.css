@@ -1,0 +1,144 @@
+.about_core_icon{
+    max-width: 114px;
+}
+.about_core_text{
+    max-width: 350px;
+}
+.About_core_card_size{
+    max-width: 400px;
+}
+.Contact_card{
+  width: 514px;
+}
+.About_core_card{
+    padding-top: 100px;
+   
+}
+.About_core_card_down{
+    margin-top: -7%;
+}
+
+.member-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .member-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+  
+  .member_info {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .member-card:hover::before {
+    opacity: 1;
+  }
+  
+  .member-card:hover .member_info {
+    opacity: 1;
+    background: linear-gradient(0deg, #19191B 27.08%, rgba(25, 25, 27, 0.49) 72.4%, rgba(25, 25, 27, 0) 100%);
+  }
+  
+.About_office{
+  padding-top: 3%;
+}
+.work_together_card {
+  width: 100%;
+  max-width: 1620px;
+  height: auto;
+  border-radius: 60px;
+  overflow: hidden;
+}
+.work_togther_text{
+  margin-top: -5%;
+}
+.background-color_blue_1 {
+  background: linear-gradient(147.75deg, #2B3391 -46.16%, #353B95 -3.75%, #514FA0 67.67%, #7E6FB2 159.17%, #8776B6 177.02%) !important;
+  z-index: 1;
+  width: 650px;
+  height: 500px;
+  right: -50%;
+  top: 10%;
+  filter: blur(230px);
+}
+
+.map-container {
+  max-width: 1460px; 
+}
+
+.accordion-button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+}
+.workflow_icon{
+  max-width: 240px;
+}
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #5A496E; /* Your custom blue color */
+  opacity: 0.5;
+  margin: 0 4px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+
+
+
+@media (max-width: 576px) {
+    .about_core_icon{
+        max-width: 54px;
+    }
+    .Team_img{
+      max-width: 230px;
+    }
+    .Contact_card_container{
+      flex-wrap: wrap;
+    }
+    .workflow_icon{
+      max-width: 60px;
+    }
+  }
+  
+  
+  @media (min-width: 577px) and (max-width: 991px) {
+    .Contact_card{
+      width: 314px;
+    }
+    .Contact_card_container{
+      flex-wrap: nowrap;
+    }
+    .workflow_icon{
+      max-width: 100px;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width:1200px) {
+    .Contact_card{
+      width: 474px;
+    }
+    .workflow_icon{
+      max-width: 100px;
+    }
+  }
+  
+  

@@ -1,0 +1,249 @@
+.font-size-9 {
+  font-size: clamp(4px, 1.5vw, 9px);
+}
+.font-size-16 {
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+.font-size-18 {
+  font-size: clamp(12px, 1.2vw, 18px);
+}
+.font-size-20 {
+  font-size: clamp(13px, 1.8vw, 20px);
+}
+.font-size-24 {
+  font-size: clamp(16px, 2vw, 24px);
+}
+.font-size-25 {
+  font-size: clamp(19px, 2.2vw, 25px);
+}
+.font-size-28 {
+  font-size: clamp(20px, 2.5vw, 28px);
+}
+.font-size-30 {
+  font-size: clamp(15px, 2.8vw, 30px);
+}
+.font-size-37 {
+  font-size: clamp(18px, 3.4vw, 37px);
+}
+.font-size-40 {
+  font-size: clamp(14px, 3.6vw, 40px);
+}
+.font-size-46 {
+  font-size: clamp(10px, 4vw, 46px);
+}
+.font-size-50 {
+  font-size: clamp(22px, 4.2vw, 50px);
+}
+.font-size-54 {
+  font-size: clamp(20px, 2.5vw, 54px);
+}
+.font-size-58 {
+  font-size: clamp(18px, 4.8vw, 58px);
+}
+.font-size-62 {
+  font-size: clamp(22px, 5vw, 62px);
+}
+.font-size-65 {
+  font-size: clamp(30px, 2.2vw, 65px);
+}
+.font-size-80 {
+  font-size: clamp(28px, 6vw, 80px);
+}
+
+
+/* font_weight */
+.font_weight_300 {
+  font-weight: 300;
+}
+.font_weight_400 {
+  font-weight: 400;
+}
+.font_weight_500 {
+  font-weight: 500;
+}
+.font_weight_600 {
+  font-weight: 600;
+}
+.font_weight_700 {
+  font-weight: 700;
+}
+.font_weight_800 {
+  font-weight: 800;
+}
+/* font_color */
+.font_color_black {
+  color: #282828
+}
+.font_color_grey {
+  color: #d7d7d7;
+}
+.font_color_light_grey {
+  color: #737373;
+}
+.font_color_red {
+  color: #dd2c00;
+}
+.font_color_dark_red {
+  color: #951800;
+}
+.font_color_light_blue{
+  color: #504CA0;
+}
+
+.font_color_blue {
+  color: #052659;
+}
+.font_color_dark_blue {
+  color: #00093d;
+}
+
+/* Linear Gradients */
+.blue_gradient{
+  background: linear-gradient(147.75deg, #2B3391 -46.16%, #353B95 -3.75%, #514FA0 67.67%, #7E6FB2 159.17%, #8776B6 177.02%);
+}
+.bg_gradient_blue{
+  background: linear-gradient(to top, #664ece, #504ca0) !important;
+  
+}
+
+/* background_color */
+.background_color_grey {
+  background-color: #9ca3af;
+}
+.background_color_light_blue {
+  background-color: #c2e8ff;
+}
+.background_color_testimonial_light_blue {
+  background-color: #d5e6ff;
+}
+.background_color_blue{
+  background-color: #4f4d9f !important;
+}
+
+/* line height */
+.line_height_10 {
+  line-height: clamp(9px, 1.9vw, 10px);
+}
+.line_height_12 {
+  line-height: clamp(12px, 2vw, 12px);
+}
+.line_height_14 {
+  line-height: clamp(14px, 2vw, 14px);
+}
+.line_height_15 {
+  line-height: clamp(13px, 2vw, 15px);
+}
+.line_height_16 {
+  line-height: clamp(16px, 2vw, 16px);
+}
+.line_height_18 {
+  line-height: clamp(18px, 2vw, 18px);
+}
+.line_height_19 {
+  line-height: clamp(19px, 2vw, 19px);
+}
+.line_height_20 {
+  line-height: clamp(20px, 2vw, 20px);
+}
+.line_height_24 {
+  line-height: clamp(22px, 2vw, 24px);
+}
+.line_height_25 {
+  line-height: clamp(25px, 2vw, 25px);
+}
+.line_height_27 {
+  line-height: clamp(27px, 2vw, 27px);
+}
+.line_height_28 {
+  line-height: clamp(25px, 2vw, 28px);
+}
+.line_height_30 {
+  line-height: clamp(25px, 2.8vw, 30px);
+}
+.line_height_35 {
+  line-height: clamp(35px, 2.8vw, 35px);
+}
+.line_height_38 {
+  line-height: clamp(38px, 2.8vw, 38px);
+}
+.line_height_40 {
+  line-height: clamp(40px, 3.5vw, 40px);
+}
+.line_height_46 {
+  line-height: clamp(46px, 3.5vw, 46px);
+}
+.line_height_50 {
+  line-height: clamp(50px, 3.5vw, 50px);
+}
+.line_height_54 {
+  line-height: clamp(54px, 3.5vw, 54px);
+}
+.line_height_60 {
+  line-height: clamp(28px, 5.5vw, 60px);
+}
+.line_height_65 {
+  line-height: clamp(35px, 5.5vw, 65px);
+}
+.line_height_70 {
+  line-height: clamp(38px, 5.5vw, 55px);
+}
+
+/* border radius */
+.border_radius_25 {
+  border-radius: 25px;
+}
+
+/* default_section_padding */
+.default_section_padding {
+  padding: 100px 12px;
+}
+/* object-fit */
+.object_contain {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.object_cover {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.outline_none {
+  outline: none;
+}
+/* Border radius utility classes */
+.border-radius-25 {
+  border-radius: 25px;
+}
+
+.border-radius-30 {
+  border-radius: 30px;
+}
+
+.border-radius-35 {
+  border-radius: 35px;
+}
+
+.border-radius-40 {
+  border-radius: 40px;
+}
+
+.border-radius-45 {
+  border-radius: 45px;
+}
+
+.border-radius-50 {
+  border-radius: 50px;
+}
+.border_shadow{
+  box-shadow: -3px 2px 16.4px 0px #0000001a;
+}
+.text-justify {
+  text-align: justify;
+}
+.font-weight-600{
+  font-weight:48px
+}
+

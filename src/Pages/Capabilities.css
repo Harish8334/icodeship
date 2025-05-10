@@ -1,0 +1,62 @@
+.capable_p_text{
+    max-width: 653px;
+    color: #282828;
+}
+.capable_shape1{
+    top: 20%;
+    z-index: -1;
+}
+  
+.capable_service_data {
+    padding-top: 10%;
+  }
+.capable_services_container{
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+.work_togehter_shape{
+    bottom: -10%;
+    left: 40%;
+}
+.why_choose_us_text{
+    max-width: 725px;
+    color: #888888;
+}
+
+.capable_service_dev_card_left {
+    left: 10%;
+}
+.capable_service_dev_card_right {
+    right: 20%; 
+    top: 40%;
+}
+.capable_service_dev_card_text{
+    max-width: 408px;
+}
+.capable_service_dev_card_left2{
+    left: 10%; 
+    top: 70%;
+}
+.capable_service_dev_card_center{
+   top: 100%;
+} 
+.software_container{
+    margin-bottom: 21%;
+}
+
+@media (max-width:576px){
+    .Capable_service_icon1{
+        max-width: 60px;
+    }
+    .capable_service_dev_card_text{
+        max-width: 260px;
+    }
+ 
+}
+@media (max-width:768px){
+  
+}
+@media (max-width:992px){
+ 
+}
