@@ -33,7 +33,7 @@ function Capabilities() {
                     href="/capable_service"
                     onClick={(e) => {
                       e.preventDefault();
-                      navigate('/capable_service');
+                       navigate('/capable_service', { state: { name: service.name } });
                     }}
                     className="text-black d-flex gap-2 text-decoration-none"
                   >
