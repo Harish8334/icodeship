@@ -20,7 +20,6 @@
     left: 40%;
 }
 .why_choose_us_text{
-    max-width: 725px;
     color: #888888;
 }
 
@@ -44,18 +43,23 @@
 .software_container{
     margin-bottom: 21%;
 }
+.capable_service_card{
+    height:350px
+}
 
-@media (max-width:576px){
+@media (max-width:576px) {
     .Capable_service_icon1{
         max-width: 60px;
     }
-    .capable_service_dev_card_text{
-        max-width: 260px;
-    }
- 
+   
+    .capable_service_card{
+    height:210px
+}
 }
 @media (max-width:768px){
-  
+  .capable_service_card{
+    height:250px
+}
 }
 @media (min-width:992px) and (max-width:1550px){
  .why_choose_us{

@@ -1,35 +1,85 @@
 import Testimonial from "../Components/Testimonial";
 import WorkTogther from "./WorkTogther";
-import { Container} from "react-bootstrap";
+import Brands from "./Brands";
+import { Container,Button} from "react-bootstrap";
 import Frequent_Ask from "./Frequent_Ask";
-import Capable_service_web from "../assets/images/Capable_service/capable_service_web.png";
 import Capable_service_path from "../assets/images/Capable_service/capable_service_path.png";
 import Service_with_us from  "../assets/images/Capable_service/capable_service_with_us.png";
 import "../Pages/Capabilities.css";
-import cardData from "../Data/Capability_Service_Data"
 import { Swiper, SwiperSlide } from "swiper/react";
-import Web from "../Service_Data/Web_development"
+import serviceData from "../Service_Data/Service_Page_Data"
+import { useParams } from 'react-router-dom';
+import  { useState } from 'react';
+import {  Accordion } from "react-bootstrap";
+
+
 
 const Capable_service = () => {
-  const cardData = Web[0].cardData; 
+  const { href } = useParams();
+  const service = serviceData[href];
+ const workWithUsDetail = serviceData?.work_with_us_detail;
+ 
+//  Accordion
+ const { left, right } = serviceData[href].accordionData;
+
+  const [activeLeft, setActiveLeft] = useState(null);
+  const [activeRight, setActiveRight] = useState(null);
+
+  const handleLeftToggle = (key) => {
+    setActiveLeft(activeLeft === key ? null : key);
+  };
+
+  const handleRightToggle = (key) => {
+    setActiveRight(activeRight === key ? null : key);
+  };
+  
+  
+
+  if (!service) {
+    return <div className="text-danger">Service not found!</div>;
+  }
   return (
     <div className="capable_services_container">
+      {/* Banner */}
+    <section className=" d-flex justify-content-center mt-5 ">
+      <Container className="my_container mt-5">
+        <div className="row flex-column-reverse flex-lg-row mt-5">
+          <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+            <div>
+              <p className="font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 mx-sm-3 mx-md-3 mx-lg-3 mx-3">
+              {service.banner.title}
+              </p>
+              <div className="d-flex justify-content-center justify-content-lg-start justify-content-md-center">
+                <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25">
+                  Let's Talk
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-6 col-md-12 col-sm-12">
+<div className="d-flex justify-content-center">            <img src={service.banner.icon} alt="Banner Visual" className="img-fluid Banner_img" /></div>
+          </div>
+        </div>
+      </Container>
+    </section>
+    <Brands />
        {/* Why choose us */}
       <section>
        
         <Container className="my_container">
           <div className="row">
             <div className="col-lg-6 col-md-12 col-12">
-              <p className="font-size-25  font_weight_300">What Choose Us ?</p>
+              <p className="font-size-25  font_weight_300 mt-lg-5">What Choose Us ?</p>
               <p className="font-size-58 font_weight_600">
-               <h1>{Web[0].banner.title}</h1>
+               {service.sub_banner.title}
               </p>
-              <p className="font-size-30 font_weight_300 why_choose_us_text">
-              {Web[0].banner.description}
+              <p className="font-size-30 font_weight_300 why_choose_us_text text-justify">
+              {service.sub_banner.description}
               </p>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
-            <div className="d-flex justify-content-center">  <img src={Web[0].banner.icon} alt="" className="img-fluid Capable_service_web" /></div>
+            <div className="d-flex justify-content-center">  <img src={service.sub_banner.icon} alt="" className="img-fluid Banner_img" /></div>
             </div>
           </div>
         </Container>
@@ -38,8 +88,7 @@ const Capable_service = () => {
       <section className="d-none d-md-block d-lg-block d-xl-block pb-5 ">
   <Container className="my_container position-relative software_container">
     <p className="font-size-62 text-center font_weight_600">
-      Your one stop to all your software <br className="d-none d-lg-block" />
-      development needs
+      {service.software_need}
     </p>
     <div className="d-flex justify-content-center mt-5">
       <img
@@ -47,10 +96,11 @@ const Capable_service = () => {
         alt=""
         className="img-fluid mt-5"
       />
-      {cardData.map((item, index) => (
-        <div key={index} className={`position-absolute ${item.className}`}>
-          <div className="card d-flex flex-column rounded-4">
-            <div className="ms-4 pt-4 pb-4">
+     {
+      service.cardData.map((item,index)=>(
+<div key={index} className={`position-absolute ${item.className}`}>
+          <div className="card d-flex  flex-column rounded-4">
+            <div className="ms-4 pt-4 pb-4 pe-2">
               <div>
                 <img
                   src={item.icon}
@@ -61,13 +111,15 @@ const Capable_service = () => {
               <p className="font-size-30 font_weight_700 font_color_light_blue pt-3">
                 {item.title}
               </p>
-              <p className="capable_service_dev_card_text font-size-20 line_height_30 font_weight_300">
+              <p className="capable_service_dev_card_text font-size-20 line_height_30 font_weight_300 pe-2">
                 {item.desc}
               </p>
             </div>
           </div>
         </div>
-      ))}
+      ))
+     }
+     
     </div>
   </Container>
 </section>
@@ -75,10 +127,9 @@ const Capable_service = () => {
       <section className="d-lg-none d-md-none d-block ">
         <Container>
         <p className="font-size-62 text-center font_weight_600">
-      Your one stop to all your software <br className="d-none d-lg-block" />
-      development needs
+     {service.software_need}
     </p>
-        {cardData.map((item) => (
+        {service.cardData.map((item) => (
     <div key={item.id} className={` ${item.className}`}>
       <div className="card d-flex flex-column rounded-4 mt-3">
         <div className="pt-3 pb-2">
@@ -111,34 +162,29 @@ const Capable_service = () => {
                 Working<br className="d-none d-lg-block " /> With Us
               </p>
               <p className="font-size-30 font_weight_300 why_choose_us_text text-justify">
-              Our dedicated professionals provide customized web solutions, ensuring timely delivery and ongoing support. We optimize websites for better visibility at competitive prices. With clear communication and regular updates, we offer innovative ideas and creative solutions to enhance your online presence.
+             {service.work_with_us}
               </p>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
-                <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0"><img src={Service_with_us} alt="" className=" Capable_service_web img-fluid " /></div>
+                <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0"><img src={Service_with_us} alt="" className=" Banner_img img-fluid " /></div>
             </div>
           </div>
           <Swiper
            slidesPerView="auto"
               spaceBetween={30}
-              loop={true}
               grabCursor={true}
               breakpoints={{
                 320: {
                   slidesPerView: 1,
                   spaceBetween: 20,
                 },
-                576: {
+                560: {
                   slidesPerView: 1,
-                  spaceBetween: 15,
+                  spaceBetween: 30,
                 },
                 768: {
                   slidesPerView: 2,
                   spaceBetween: 30,
-                },
-                992: {
-                  slidesPerView: 2,
-                  spaceBetween: 35,
                 },
                 1200: {
                   slidesPerView: 3,
@@ -149,29 +195,80 @@ const Capable_service = () => {
                   spaceBetween: 40,
                 },
               }}>
-            <SwiperSlide className="my-3">
-              <div className="card py-3 rounded-5 border_shadow">
-                <div className="d-flex justify-content-between px-5 "><p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">Time-saving</p> <p className=" font-size-62 font_color_light_blue font_weight_700">01</p></div>
-                <p className="text-justify px-5 font-size-18 font_weight_300  ">With extensive experience in various website creation services, Codeship Pvt Ltd is your best choice for saving both time and money. Every moment you invest in our services is time well spent, allowing you to focus on growing your business. Our web development team will give you a competitive edge in the marketplace.</p>
-              </div>
-            </SwiperSlide>
-             <SwiperSlide className="my-3">
-              <div className="card py-3 rounded-5 border_shadow">
-                <div className="d-flex justify-content-between px-5 "><p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">Advanced <br className="d-none" /> Technology</p> <p className=" font-size-62 font_color_light_blue font_weight_700">02</p></div>
-                <p className="text-justify px-5 font-size-18 font_weight_300  ">Our development team guarantees the functionality and security of your website for visitors through regular updates during business hours. Our website maintenance services cover all your needs. Whether you want to delete page content, add new graphics, or change a link, we’re always here to assist you!</p>
-              </div>
-            </SwiperSlide>
-          <SwiperSlide className="my-3">
-              <div className="card py-3 rounded-5 border_shadow">
-                <div className="d-flex justify-content-between px-5 "><p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">More reliable</p> <p className=" font-size-62 font_color_light_blue font_weight_700">03</p></div>
-                <p className="text-justify px-5 font-size-18 font_weight_300  ">Partnering with a trusted firm ensures a reliable website. Without a web development specialist, you may overlook potential issues. Achieving quality website development requires significant effort, time, and investment, along with a skilled team. Our experts are ready to design and deliver an outstanding website for you.</p>
-              </div>
-            </SwiperSlide>
+{service.work_with_us_detail &&
+  Object.values(service.work_with_us_detail).map((item, index) => (
+    <SwiperSlide key={index}>
+      <div className="card py-3 rounded-5 border_shadow mb-3">
+        <div className="d-flex justify-content-between px-5">
+          <p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">
+            {item.title}
+          </p>
+          <p className="font-size-62 font_color_light_blue font_weight_700">
+            {item.series}
+          </p>
+        </div>
+        <p className="text-justify px-5 font-size-18 font_weight_300">
+          {item.description}
+        </p>
+      </div>
+    </SwiperSlide>
+  ))}
           </Swiper>
         </Container>
       </section>
       <Testimonial />
-      <Frequent_Ask />
+     <section>
+      <Container className='my_container'>
+        <p className='font-size-40 font_weight_600 text-center mt-5'>Frequently Asked Questions</p>
+        <div className="row mt-5">
+          {/* Left Column */}
+          <div className="col-md-6">
+            <Accordion activeKey={activeLeft}>
+              {left.map((item, index) => (
+                <Accordion.Item
+                  key={index}
+                  eventKey={index.toString()}
+                  className='border_shadow rounded-4 mb-lg-4 mb-3'
+                  onClick={() => handleLeftToggle(index.toString())}
+                >
+                  <Accordion.Header>
+                    <p className='font-size-20 font_weight_500 line_height_30 Frequent_ask_height w-75 p-0 m-0'>
+                      {item.title}
+                    </p>
+                  </Accordion.Header>
+                  <Accordion.Body className='font-size-16 font_weight_500'>
+                    {item.content}
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+          </div>
+
+          {/* Right Column */}
+          <div className="col-md-6">
+            <Accordion activeKey={activeRight}>
+              {right.map((item, index) => (
+                <Accordion.Item
+                  key={index}
+                  eventKey={index.toString()}
+                  className='border_shadow rounded-4 mb-lg-4 mb-3'
+                  onClick={() => handleRightToggle(index.toString())}
+                >
+                  <Accordion.Header>
+                    <p className='font-size-20 font_weight_500 line_height_30 Frequent_ask_height w-75 p-0 m-0'>
+                      {item.title}
+                    </p>
+                  </Accordion.Header>
+                  <Accordion.Body className='font-size-16 font_weight_500'>
+                    {item.content}
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </Container>
+    </section>
       <WorkTogther />
     </div>
   );

@@ -1,7 +1,9 @@
 import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
+import useLetsTalk from "./Contact_page_link"; 
 
 const Banner = ({ text, image }) => {
+  const letsTalk = useLetsTalk();
   return (
     <section className=" d-flex justify-content-center mt-5 ">
       <Container className="my_container mt-5">
@@ -12,7 +14,7 @@ const Banner = ({ text, image }) => {
                 {text}
               </p>
               <div className="d-flex justify-content-center justify-content-lg-start justify-content-md-center">
-                <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25">
+                <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25" onClick={letsTalk}>
                   Let's Talk
                 </Button>
               </div>

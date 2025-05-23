@@ -20,10 +20,11 @@ import Why_us from "../assets/images/About/about_why_us.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "../Pages/About.css";
+import useLetsTalk from "../Components/Contact_page_link.jsx";
 
 function About() {
   const { text, image } = Banner_Data.about;
-  
+  const letsTalk = useLetsTalk();
   return (
     <>
       <Header />
@@ -42,7 +43,7 @@ function About() {
                 We offer a comprehensive range of software development services
                 tailored to meet the unique needs of your business.
               </p>
-              <Button className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient border-radius-25 mx-2 mx-lg-0 mx-xl-0">
+              <Button className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient border-radius-25 mx-2 mx-lg-0 mx-xl-0" onClick={letsTalk}>
                 Let's Talk
               </Button>
             </div>

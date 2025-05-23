@@ -4,19 +4,18 @@ import Services from "../Data/Service_Data";
 import Banner_Data from "../Data/Banner_Data";
 import projects from "../Data/Project_Data";
 import Animation from "../Animation/TechStackAnimation";
-import { motion } from "framer-motion";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import Contact from "../Components/Contact";
 import Testimonial from "../Components/Testimonial";
+import "../Components/Contact_page_link"
 // React Bootstrap
 import { Container, Button, Card } from "react-bootstrap";
 // Fontawsome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { ChevronRight } from 'lucide-react';
 // Swiper
 import "swiper/css";
@@ -25,7 +24,6 @@ import "swiper/css/scrollbar";
 
 // import required modules
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper/modules";
 // images
 import Amazon from "../assets/images/Home/amazon.png";
 import UBER from "../assets/images/Home/UBER.png";
@@ -277,7 +275,7 @@ function Home() {
             <ChevronRight strokeWidth={2} size={34} className="pb-2 mt-lg-2 font-size-24" />      </a>       
         </div>
       ))}
-      <div className="service_card d-none d-lg-block">d </div>
+     <div className="d-lg-block d-none">d</div>
             </div>
            </div>
             </Container> 
@@ -652,11 +650,11 @@ function Home() {
                         <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
                           {project.title}
                         </p>
-                        <div className="d-flex gap-3 ms-4 ms-lg-0 flex-nowrap">
+                        <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2  ms-4 ms-lg-0 flex-nowrap">
                           {project.tags.map((tag, tagIndex) => (
                             <button
                               key={tagIndex}
-                              className="btn text-dark font-size-16 rounded-pill bg-light "
+                              className="btn text-dark font-size-16 rounded-pill bg-light text-nowrap "
                             >
                               {tag}
                             </button>
