@@ -29,38 +29,35 @@ function Solution() {
       {/* What we can do */}
       <section className="mb-5 ">
         <Container fluid className="  what_we_do_container ">
-          <div className="row mx-xl-5 solution_what_we_do mt-5">
-            <div className="col-lg-6 col-xl-5  col-md-12 col-12  d-flex flex-column gap-4  ">
-              <div className="d-flex flex-column justify-content-between">
-                {" "}
-                <p className="font-size-24 font_weight_300">What We Do ?</p>
-                <p className="font-size-62 font_weight_600">
-                  Accelerating <br className="d-none d-lg-block" /> Performance.{" "}
-                  <br className="d-none d-lg-block" />
-                  Improving Effeciency.
-                </p>
-              </div>
-              <p className="font-size-37 font_weight_300 font_color_light_grey text-justify  ">
-                Codeship offers tailored software solutions designed to meet
-                your unique business needs. We create custom applications that
-                streamline operations, enhance efficiency, and support your
-                growth, ensuring your technology is as dynamic and adaptable as
-                your business.
+          <div className="row mt-5 mb-5 mt-lg-0">
+            <div className="col-lg-6 col-md-12 col-12">
+              <p className="font-size-25  font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
+                What We Do ?
+              </p>
+              <p className="font-size-58 font_weight_600  ">
+                Accelerating <br className="d-none d-lg-block " /> Performance.{" "}
+                <br className="d-none d-lg-block " />
+                Improving Effeciency.
+              </p>
+              <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0">
+      Codeship offers tailored software solutions designed to meet your unique business needs. We create custom applications that streamline operations, enhance efficiency, and support your growth, ensuring your technology is as dynamic and adaptable as your business.
               </p>
             </div>
-            <div className="col-lg-6 col-xl-7 col-md-12 col-12 d-flex flex-column justify-content-center ">
+            <div className="col-lg-6 col-md-12 col-12">
+              <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0">
                 <img
                   src={what_we_do}
                   alt=""
-                  className="img-fluid  Banner_img "
+                  className=" Banner_img img-fluid "
                 />
+              </div>
             </div>
           </div>
         </Container>
       </section>
       <section>
-        <Container className="my_container ">
-          <p className="text-center font-size-50 font_weight_500 pb-3 pt-5">
+        <Container className="my_container pt-md-5 ">
+          <p className="text-center font-size-50 font_weight_500 pb-3 mt-md-5 pt-md-5">
             Smart Solutions For Your Business
             <br className="d-none d-lg-block" /> By Codeship.
           </p>
@@ -72,7 +69,9 @@ function Solution() {
             >
               <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around  pb-lg-5 pb-5">
                 <div className="d-flex flex-column justify-content-between gap-5">
-                  <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">{item.heading}</p>
+                  <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+                    {item.heading}
+                  </p>
                   <p className="font-size-40 font_weight_600">
                     {item.title.split("<br>").map((line, idx) => (
                       <React.Fragment key={idx}>
@@ -128,22 +127,68 @@ function Solution() {
         <Container fluid className="my_container mt-lg-5 ">
           <div className="row">
             <div className="col-xl-5 col-lg-6 col-12">
-              <p className="text-md-center text-lg-start font-size-58 font_weight_600">Works well with your<br className="d-none d-lg-block" />
-              existing workflow</p>
-              <p className="text-md-center text-lg-start  font-size-24  ">Codeship integrates with tools you already use for <br className="d-none d-lg-block" /> customer service, project management, and more.</p>
-              <div className="d-flex justify-content-center justify-content-lg-start"><Button className="px-lg-4 py-2 mt-lg-5 mt-md-4 font-size-18 font_weight_600 blue_gradient rounded-pill">
-              See all integrations
-                    </Button></div>
+              <p className="text-md-center text-lg-start font-size-58 font_weight_600">
+                Works well with your
+                <br className="d-none d-lg-block" />
+                existing workflow
+              </p>
+              <p className="text-md-center text-lg-start  font-size-24  ">
+                Codeship integrates with tools you already use for{" "}
+                <br className="d-none d-lg-block" /> customer service, project
+                management, and more.
+              </p>
+              <div className="d-flex justify-content-center justify-content-lg-start">
+                <Button className="px-lg-4 py-2 mt-lg-5 mt-md-4 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                  See all integrations
+                </Button>
+              </div>
             </div>
             <div className="col-xl-7 col-lg-6  col-12 mt-5  mt-lg-0">
-              <div className="d-flex flex-wrap justify-content-evenly mb-5"><img src={Solution_workflow1} alt="" className="img-fluid workflow_icon"/><img src={Solution_workflow2} alt="" className="img-fluid workflow_icon"/><img src={Solution_workflow3} alt="" className="img-fluid workflow_icon"/><img src={Solution_workflow4} alt="" className="img-fluid workflow_icon"/></div>
-              <div className="d-flex flex-wrap justify-content-evenly"><img src={Solution_workflow5} alt="" className="img-fluid workflow_icon"/><img src={Solution_workflow6} alt="" className="img-fluid workflow_icon"/><img src={Solution_workflow7} alt="" className="img-fluid workflow_icon"/></div>
+              <div className="d-flex flex-wrap justify-content-evenly mb-5">
+                <img
+                  src={Solution_workflow1}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+                <img
+                  src={Solution_workflow2}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+                <img
+                  src={Solution_workflow3}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+                <img
+                  src={Solution_workflow4}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+              </div>
+              <div className="d-flex flex-wrap justify-content-evenly">
+                <img
+                  src={Solution_workflow5}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+                <img
+                  src={Solution_workflow6}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+                <img
+                  src={Solution_workflow7}
+                  alt=""
+                  className="img-fluid workflow_icon"
+                />
+              </div>
             </div>
           </div>
         </Container>
       </section>
       <WorkTogther />
-      <Footer />  
+      <Footer />
     </>
   );
 }

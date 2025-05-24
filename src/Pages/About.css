@@ -105,7 +105,8 @@
   
   @media (min-width: 577px) and (max-width: 991px) {
     .Contact_card{
-      width: 314px;
+      width:100%;
+      max-width: 614px;
     }
     .Contact_card_container{
       flex-wrap: nowrap;
@@ -117,7 +118,8 @@
 
   @media (min-width: 992px) and (max-width:1200px) {
     .Contact_card{
-      width: 474px;
+       width:100%;
+      max-width: 614px;
     }
     .workflow_icon{
       max-width: 100px;

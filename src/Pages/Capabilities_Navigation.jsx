@@ -9,15 +9,19 @@ import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import Banner_Data from "../Data/Banner_Data";
 
+
+
 function Capabilities() {
   const { text, image } = Banner_Data.capable;
   const navigate = useNavigate();
+
+
   return (
     <div className="capable_services_container">
       <Banner text={text} image={image} />
       <Brands />
-      <section className="position-relative pt-0">
-        <Container className="my_container  ">
+      <section className="position-relative pt-0 mb-5 ">
+        <Container className="my_container   ">
           {Services_Data.map((service, idx) => (
             <div
               key={idx}
@@ -77,15 +81,10 @@ function Capabilities() {
             </div>
           ))}
         </Container>
-        <img
-          src={Shape_4}
-          alt=""
-          className="img-fluid  position-absolute work_togehter_shape mt-5 "
-        />
+      
       </section>
-      <div className="">
+      
         <WorkTogther />
-      </div>
     </div>
   );
 }

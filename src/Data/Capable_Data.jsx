@@ -39,6 +39,7 @@ export const Services_Data = [
     description:
       "Combining creativity with technical expertise, we design digital experiences that meet today's user needs while anticipating tomorrow's challenges. Our forward-thinking approach ensures adaptable, future-ready solutions that evolve with the digital landscape.",
     image: WebDesign,
+     imageOdd: Shape_2,
     points: [
       { text: "Website Design", href: "web-design" },
       { text: "Website Redesign", href: "web-redesign" },
@@ -54,7 +55,6 @@ export const Services_Data = [
     description:
       "We create powerful and scalable e-commerce platforms that help you sell more and manage your business better. From product pages to payment systems, we’ve got it all.",
     image: EcommerceImg,
-    imageOdd: Shape_2,
     points: [
       { text: "Ecommerce Website Development", href: "ecom-web-dev" },
       { text: "Ecommerce Update & Maintenance", href: "ecom-update" },
@@ -67,6 +67,7 @@ export const Services_Data = [
     description:
       "We provide specialized support for the procurement, setup, and maintenance of servers, ensuring the continuous, smooth operation of your online applications 24/7, allowing you to focus on growth while we handle the technical complexities.",
     image: DomainImg,
+     imageOdd: Shape_3,
     points: [
       { text: "Domain Registration", href: "domain-register" },
       { text: "Web Hosting", href: "web-host" },

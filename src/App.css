@@ -1,6 +1,22 @@
 .my_container {
   max-width: 1600px !important;
 }
+/* .Banner-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Force height to 725px on large screens and prevent cropping */
+@media (min-width: 1024px) {
+  .Banner-img {
+    height: 725px;
+    object-fit: contain; /* Show full image, no crop */
+  }
+} */
+
+
 /* Navbar */
 .navbar_toggle_icon {
   border-radius: 50%;
@@ -10,20 +26,7 @@
   font-weight: bold;
 }
 
-/* Navbar hover effect */
-.custom-dropdown {
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  left: -250%;
-  width: 100vw;
-  max-width: 1100px;
-}
-.dropdown-parent:hover .custom-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+
 /* Brands */
 .brand-track {
   width: max-content;
@@ -185,6 +188,7 @@
   }
   .Banner_img {
     max-width: 500px;
+   
   }
 }
 
@@ -206,6 +210,7 @@
   }
   .Banner_img {
     max-width: 600px;
+     height:725px !important;
   }
   .project_button_size {
     width: 155px;
@@ -224,3 +229,35 @@
     transform: rotate(360deg);
   }
 }
+.custom-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  left: -250%;
+  width: 100vw;
+  max-width: 1100px;
+  transform: translateY(-10px);
+
+}
+
+.custom-dropdown.show-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+/* Navbar hover effect */
+/* .custom-dropdown {
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  left: -250%;
+  width: 100vw;
+  max-width: 1100px;
+}
+.dropdown-parent:hover .custom-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+} */

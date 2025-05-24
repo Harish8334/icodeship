@@ -167,7 +167,7 @@ const Capable_service = () => {
                 Working
                 <br className="d-none d-lg-block " /> With Us
               </p>
-              <p className="font-size-30 font_weight_300 why_choose_us_text text-justify">
+              <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0">
                 {service.work_with_us}
               </p>
             </div>

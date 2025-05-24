@@ -69,8 +69,8 @@ function Contact_page() {
      <>
      <Header />
      <Banner text={text} image={image} />
-   <section >
-      <Container className="my_container" >
+     <section >
+      <Container className="my_container pt-5 pb-5">
         <p className="font-size-62 font_weight_600">
           Have an innovative thought?
         </p>
@@ -121,7 +121,7 @@ function Contact_page() {
                         <Field
                           type="email"
                           name="email"
-                          className="contact_input mt-4"
+                          className="contact_input   mt-4"
                         />
                         <ErrorMessage
                           name="email"
@@ -182,7 +182,7 @@ function Contact_page() {
                                 : [...values.interests, interest];
                               setFieldValue("interests", selected);
                             }}
-                            className={`btn btn-outline-dark border border-3 py-2 mx-2 font-size-16 font_weight_400 rounded-pill contact_button my-4 ${
+                            className={`btn btn-outline-dark  border-black text-nowrap  py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 my-4 ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
@@ -207,7 +207,7 @@ function Contact_page() {
                                 : [...values.interests, interest];
                               setFieldValue("interests", selected);
                             }}
-                            className={`btn btn-outline-dark border border-3 py-2 mx-2 font-size-16 font_weight_400 rounded-pill contact_button my-4 ${
+                            className={`btn btn-outline-dark border border-1 py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 border-black text-nowrap  my-4 ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
@@ -233,7 +233,7 @@ function Contact_page() {
                     <Field
                       type="text"
                       name="about"
-                      className="contact_about_more"
+                      className="contact_about_more w-100 bg-transparent shadow-none"
                     />
                     <ErrorMessage
                       name="about"
@@ -289,8 +289,8 @@ function Contact_page() {
      {/* Locate us */}
        <section>
            <Container fluid>
-            <div className='ms-3'>            <p className=' font-size-37 font_weight_600 ms-5'>Locate Us :</p></div>
-            <div className="d-flex  gap-3 Contact_card_container justify-content-center">
+                      <p className=' font-size-37 font_weight_600 '>Locate Us :</p>
+            <div className="d-flex flex-sm-wrap flex-md-nowrap  gap-3 Contact_card_container justify-content-center">
   <div className="card border_shadow p-3 Contact_card rounded-5">
     <div className='ms-2 mt-2'>
       <div className='mb-5'>
@@ -333,7 +333,7 @@ function Contact_page() {
       {/* Map */}
        <section>
         <Container fluid>
-        <div className="map-container d-flex justify-content-center w-100 m-auto m-0">
+        <div className="map-container d-flex justify-content-center w-100 m-auto mt-5  m-0">
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7773.890565645889!2d80.2255752!3d13.0391549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d3b70a90f51%3A0xb6155325437cc516!2sCodeShip%20Private%20Limited!5e0!3m2!1sen!2sin!4v1745490585479!5m2!1sen!2sin" width="1620" height="467"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" className='rounded-5'></iframe>
 </div>
 

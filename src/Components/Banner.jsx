@@ -25,7 +25,7 @@ const Banner = ({ text, image }) => {
           </div>
 
           <div className="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center ">
               {" "}
               <img
                 src={image}
