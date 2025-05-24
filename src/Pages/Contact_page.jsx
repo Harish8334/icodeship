@@ -287,9 +287,9 @@ function Contact_page() {
       </Container>
     </section>
      {/* Locate us */}
-       <section>
-           <Container fluid>
-                      <p className=' font-size-37 font_weight_600 '>Locate Us :</p>
+       <section className='py-lg-5'>
+           <Container className='my_container'>
+                     <p className=' font-size-37 font_weight_600 '>Locate Us :</p>
             <div className="d-flex flex-sm-wrap flex-md-nowrap  gap-3 Contact_card_container justify-content-center">
   <div className="card border_shadow p-3 Contact_card rounded-5">
     <div className='ms-2 mt-2'>

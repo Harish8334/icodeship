@@ -9,8 +9,7 @@ import WorkTogther from "../Components/WorkTogther";
 import { Container, Button } from "react-bootstrap";
 import WorkCard_1 from "../Components/WorkCard_1";
 import WorkCard_2 from "../Components/WorkCard_2";
-import "../App.css"
-
+import "../App.css";
 
 function OurWorks() {
   const { text, image } = Banner_Data.works;
@@ -22,14 +21,30 @@ function OurWorks() {
       {/* works */}
       <section>
         <Container className="my_container">
-        <WorkCard_1 />
-        <WorkCard_2/>
-        <WorkCard_1 />
-        <WorkCard_2/>
-        <WorkCard_1 />
-        
+          <div className="row">
+            <WorkCard_1 index={0} />
+            <WorkCard_1 index={1} />
+            <WorkCard_2 index={0} />
+            <WorkCard_1 index={2} />
+            <WorkCard_1 index={3} />
+            <WorkCard_2 index={1} />
+            <WorkCard_1 index={4} />
+            <WorkCard_1 index={5} />
+            <WorkCard_2 index={2} />
+            <WorkCard_1 index={6} />
+            <WorkCard_1 index={7} />
+            <WorkCard_2 index={3} />
+            <WorkCard_1 index={8} />
+            <WorkCard_1 index={9} />
+            <WorkCard_2 index={4} />
+            <WorkCard_1 index={10} />
+            <WorkCard_1 index={11} />
+            <WorkCard_2 index={5} />
+            <WorkCard_1 index={12} />
+            <WorkCard_1 index={13} />
+            <WorkCard_2 index={6} />
+          </div>
         </Container>
-
       </section>
       <WorkTogther />
       <Footer />

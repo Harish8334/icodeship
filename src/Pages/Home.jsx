@@ -229,7 +229,7 @@ function Home() {
          <p className="font-size-20 font_weight_500 ">
                 How we can help you
               </p>
-              <p className="font-size-65 font_weight_600 line_height_70 ">
+              <p className="font-size-65 font_weight_600 line_height_70 m-0 ">
                 Services 
               </p>
               <p className="font-size-65 font_weight_600 line_height_70 mb-2">We offer</p>
@@ -252,13 +252,14 @@ function Home() {
           <div className="p-4 ms-4 pt-4 d-flex flex-column gap-3 justify-content-between">
             <div className="ms-0">
               <div className="d-flex flex-column">
-                <div className="pe-5 ">
-                  <img
-                    src={service.icon}
-                    alt={`${service.title} Icon`}
-                    className="pt-2 pb-3"
-                  />
-                </div>
+               <div className="pe-5 icon-container">
+  <img
+    src={service.icon}
+    alt={`${service.title} Icon`}
+    className="pt-2 pb-3 service-icon"
+  />
+</div>
+
                 <p className="ps-0 pt-2 pb-3 font-size-58 font_weight_500 things_head">
                   {service.title}
                 </p>
