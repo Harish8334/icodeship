@@ -16,7 +16,7 @@ function Capabilities() {
     <div className="capable_services_container">
       <Banner text={text} image={image} />
       <Brands />
-      <section className="position-relative">
+      <section className="position-relative pt-0">
         <Container className="my_container  ">
           {Services_Data.map((service, idx) => (
             <div

@@ -1,63 +1,65 @@
 .my_container {
   max-width: 1600px !important;
 }
-
-section {
-  padding-bottom: 2%;
-  padding-top: 2%;
-  padding-right:2%
-  padding-left:2%
+/* Navbar */
+.navbar_toggle_icon {
+  border-radius: 50%;
 }
 .nav-link.active {
   color: #49499d !important;
   font-weight: bold;
 }
-.Frequent_ask_height{
-  height: 80px;
-}
-
-/* Navbar */
-.logo_img{
-  max-width: 220px;
-}
-.navbar_toggle_icon {
-  border-radius: 50%;
-}
 
 /* Navbar hover effect */
-.dropdown-parent {
-  position: relative;
-}
 .custom-dropdown {
-   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: opacity 0.7s ease, transform 0.7s ease;
- 
-  left:-250%;
+  left: -250%;
   width: 100vw;
   max-width: 1100px;
-
-  
 }
-
 .dropdown-parent:hover .custom-dropdown {
- opacity: 1;
+  opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
-.brand_swiper {
-  max-width: 130px;
+/* Brands */
+.brand-track {
+  width: max-content;
+  animation: scroll-left 50s linear infinite;
 }
+
+.brand-slide {
+  flex: 0 0 auto;
+}
+
+.brand_swiper {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .map_text {
   max-width: 972px;
 }
+.Frequent_ask_height {
+  height: 80px;
+}
+
 /* things u can do section */
 .things_card {
   max-width: 382px;
-  border: 1px solid #eaeaea;
-  border-radius: 5%;
-  box-shadow: -3px 2px 16.4px 0px #0000001a;
 }
 .things_card :hover {
   background-color: #49499d;
@@ -87,81 +89,59 @@ section {
 .contact_input {
   max-width: 420px;
   border: none;
-  border-bottom: 1px solid black;
-  background-color: transparent;
-  outline: none;
-  box-shadow: none;
+  border-bottom: 1px solid black !important;
 }
 .contact_about_more {
-  width: 100%;
   max-width: 963px;
   border: none;
   border-bottom: 1px solid black;
-  background-color: transparent;
-  outline: none;
-  box-shadow: none;
 }
-.contact_input:focus {
+.contact_input,
+.contact_about_more:focus {
   outline: none;
-  box-shadow: none;
 }
 .contact_button {
-  width: 100%;
   max-width: 230px;
-  border-color:black;
-   border-width: 2px;
 }
 /* Testimonial */
 .Testimonial_text {
   max-width: 800px;
 }
 /* service */
-.service_text{
+.service_text {
   width: 662px;
 }
 .service_card {
   width: 847px;
 }
-.services_card_text{
+.services_card_text {
   width: 716px;
 }
-.scroll_container{
-  overflow-x:auto;
-  
-  scrollbar-width: none;  
-}
-.service_space_between{
+
+.service_gap {
   gap: 90px;
 }
 
 /* Footer */
 .footer_support {
-  text-decoration: underline;
-  text-decoration-thickness: 1.6px; 
-  text-underline-offset: 2px; 
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
 }
 .footer_links {
-  text-decoration: underline;
-  text-decoration-thickness: 1px; 
-  text-underline-offset: 10px; /* Push it below the text */
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 10px;
 }
 
 /* Software section */
-.bg_circle_gradient{
-  z-index: -1;
-}
-.icon_background {
-  background-color: #504ca0 !important;
-}
+
 .icon_background_line {
-  background-color: #49499d !important;
   width: 2%;
   height: 3vh;
 }
 /* tech stack */
 .tech_box {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
 }
 .tech_text {
   max-width: 750px;
@@ -172,205 +152,75 @@ section {
 
 /* Project */
 .rectangle {
-  width: 90vw;
   width: 992px;
   aspect-ratio: 992 / 686;
 }
 
-.icon_background {
-  background-color: #504ca0 !important;
-}
-.icon_background_line {
-  background-color: #49499d !important;
-  width: 2%;
-  height: 3vh;
-}
-.rotate {
-  transform: rotate(-5deg);
+.project_text {
+  left: -4%;
+  bottom: -4%;
 }
 
-.project_text{
-  left:-6%;
-  bottom: -6%;
-}
-
-.Work_Card{
-  margin-top: 20%;
-}
-
-
-.project_card{
-  width: 992px;
-}
-
-@media  (max-width: 576px) {
-  .things_card {
-    box-shadow: none;
-  }
-
-  .project_text {
-    left: -3%;
-    bottom: -5%;
-  }
-
+@media (max-width: 576px) {
+  .tech_sm_img,
   .tech_box {
-    height: 10px;
-    width: 10px;
-  }
-  .Work_Card{
-    margin-top: 0%;
-  }
-  .tech_sm_img {
     max-height: 28px;
     max-width: 28px;
   }
-  .logo_img{
-    max-width: 220px;
-  } 
-  .service_text{
-    width: 370px;
+  .service_text {
+    max-width: 370px;
   }
-  .service_card {
-    width: 547px;
-  }
-  .services_card_text{
-    width: 416px;
-  }
-  .scroll_container{
-    overflow-x:auto;
-  }
-  .service_space_between{
-    gap: 90px;
+  .services_card_text {
+    max-width: 416px;
   }
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
-  .things_card {
-    box-shadow: none;
-  }
-
   .tech_sm_img {
     max-height: 28px;
     max-width: 28px;
   }
-
-  .tech_middle_layer {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-  }
-
   .project_text {
     left: -3%;
   }
-  .Banner_img{
-    width: 100%;
-  width: 500px;
+  .Banner_img {
+    max-width: 500px;
   }
-  .logo_img{
-    max-width: 250px;
-  }
-
 }
 
-@media (min-width:768px) and (max-width: 1200px) {
-  .logo_img{
+@media (min-width: 768px) and (max-width: 1400px) {
+  .logo_img {
     max-width: 200px;
   }
-  .things_card {
-    box-shadow: none;
-  }
-
   .tech_box {
     height: 80px;
     width: 80px;
   }
 
   .tech_middle_layer {
-    width: 100%;
     max-width: 900px;
   }
-
   .project_text {
-    left: 0%;
+    left: 2%;
     bottom: -5%;
   }
-  .Banner_img{
-    width: 100%;
-  width: 600px;
+  .Banner_img {
+    max-width: 600px;
   }
-
-  
-}
-
-
-
-
-
-.software-section {
-  
-  position: relative;
-  overflow: hidden;
-}
-
-
-
-
-
-
-.scroll-area {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  flex-grow: 1;
-  scrollbar-width: none;
-}
-.scroll-area::-webkit-scrollbar {
-  display: none;
-}
-
-.step-section {
-  height: 100vh;
-  scroll-snap-align: start;
-  padding: 2rem;
-}
-.scroll-area {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth; /* important for smooth back/forth scroll */
-}
-
-.step-section {
-  height: 100vh;
-  scroll-snap-align: start;
+  .project_button_size {
+    width: 155px;
+  }
 }
 /* Loader.css */
-.loader-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .spinner {
   width: 50px;
   height: 50px;
   border: 6px solid #ccc;
-  border-top: 6px solid #49499d; /* your purple theme color */
-  border-radius: 50%;
+  border-top: 6px solid #49499d;
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
-

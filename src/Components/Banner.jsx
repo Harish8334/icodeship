@@ -1,20 +1,23 @@
 import { Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import useLetsTalk from "./Contact_page_link"; 
+import Button from "react-bootstrap/Button";
+import useLetsTalk from "./Contact_page_link";
 
 const Banner = ({ text, image }) => {
   const letsTalk = useLetsTalk();
   return (
-    <section className=" d-flex justify-content-center mt-5 ">
+    <div className=" d-flex justify-content-center mt-5 ">
       <Container className="my_container mt-5">
         <div className="row flex-column-reverse flex-lg-row mt-5">
           <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
             <div>
-              <p className="font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 mx-sm-3 mx-md-3 mx-lg-3 mx-3">
+              <p className="font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 ">
                 {text}
               </p>
               <div className="d-flex justify-content-center justify-content-lg-start justify-content-md-center">
-                <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25" onClick={letsTalk}>
+                <Button
+                  className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25"
+                  onClick={letsTalk}
+                >
                   Let's Talk
                 </Button>
               </div>
@@ -22,11 +25,18 @@ const Banner = ({ text, image }) => {
           </div>
 
           <div className="col-12 col-lg-6 col-md-12 col-sm-12">
-<div className="d-flex justify-content-center">            <img src={image} alt="Banner Visual" className="img-fluid Banner_img" /></div>
+            <div className="d-flex justify-content-center">
+              {" "}
+              <img
+                src={image}
+                alt="Banner Visual"
+                className="img-fluid Banner_img "
+              />
+            </div>
           </div>
         </div>
       </Container>
-    </section>
+    </div>
   );
 };
 

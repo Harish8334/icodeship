@@ -32,7 +32,7 @@ function Contact() {
 
   return (
     <section id="contactForm">
-      <Container className="my_container">
+      <Container className="my_container pt-5">
         <p className="font-size-62 font_weight_600">
           Have an innovative thought?
         </p>
@@ -83,7 +83,7 @@ function Contact() {
                         <Field
                           type="email"
                           name="email"
-                          className="contact_input mt-4"
+                          className="contact_input   mt-4"
                         />
                         <ErrorMessage
                           name="email"
@@ -144,7 +144,7 @@ function Contact() {
                                 : [...values.interests, interest];
                               setFieldValue("interests", selected);
                             }}
-                            className={`btn btn-outline-dark border border-3 py-2 mx-2 font-size-16 font_weight_400 rounded-pill contact_button my-4 ${
+                            className={`btn btn-outline-dark border border-1 border-black text-nowrap  py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 my-4 ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
@@ -169,7 +169,7 @@ function Contact() {
                                 : [...values.interests, interest];
                               setFieldValue("interests", selected);
                             }}
-                            className={`btn btn-outline-dark border border-3 py-2 mx-2 font-size-16 font_weight_400 rounded-pill contact_button my-4 ${
+                            className={`btn btn-outline-dark border border-1 py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 border-black text-nowrap  my-4 ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
@@ -195,7 +195,7 @@ function Contact() {
                     <Field
                       type="text"
                       name="about"
-                      className="contact_about_more"
+                      className="contact_about_more w-100 bg-transparent shadow-none"
                     />
                     <ErrorMessage
                       name="about"

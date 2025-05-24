@@ -63,36 +63,36 @@ function Home() {
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
-      <section className="container-fluid pt-4 pt-lg-5  d-flex justify-content-center align-items-center">
-        <img
-          src={map}
-          alt=""
-          className="img-fluid position-relative pt-0 pt-lg-5 "
-        />
-        <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text ">
-          <p className="font-size-40 font_weight_400 text-center mx-sm-3 mx-md-3 mx-lg-5 mx-3">
-            Since our founding in 2020, Codeship has rapidly grown into a
-            dynamic and thriving company.
-          </p>
-          <p className="font-size-40 font_weight_400 text-center  mx-sm-3 mx-md-3 mx-lg-3 mx-3 ">
-            With a shared dedication to innovation and a customer-centric
-            approach, our team brings a wealth of experience and skills to the
-            table.
-          </p>
-        </div>
-      </section>
+        <section className=" pt-4 pb-5 pt-lg-5  d-flex justify-content-center align-items-center">
+          <img
+            src={map}
+            alt=""
+            className="img-fluid position-relative pt-0 pt-lg-5 "
+          />
+          <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text ">
+            <p className="font-size-40 font_weight_400 text-center mx-lg-5 mx-3">
+              Since our founding in 2020, Codeship has rapidly grown into a
+              dynamic and thriving company.
+            </p>
+            <p className="font-size-40 font_weight_400 text-center   mx-3 ">
+              With a shared dedication to innovation and a customer-centric
+              approach, our team brings a wealth of experience and skills to the
+              table.
+            </p>
+          </div>
+        </section>
       {/* Things can do section */}
-      <section >
-        <Container className="my_container pt-5">
+      <section  >
+        <Container className="my_container py-lg-5 ">
           <div className="row ">
             <div className="col-12 col-sm-5 col-md-6">
-              <p className="font-size-58 line_height_70 font_weight_600  px-sp-3 px-pd-3 px-lg-3 px-3">
+              <p className="font-size-58 line_height_70 font_weight_600   ps-3">
                 Some of the <br className="d-none d-lg-block" /> things we can
                 do <br className="d-none d-lg-block" /> for you
               </p>
-              <p className="font-size-24 font_weight_400 px-sm-3 px-md-3 px-lg-3 px-3 ">
-                We offer a comprehensive range of software development services
-                tailored to meet the unique needs of your business.
+              <p className="font-size-24 font_weight_400 ps-3 ">
+                We offer a comprehensive range of <br className="d-none d-lg-block" /> software development services
+                tailored  <br className="d-none d-lg-block" /> to meet the unique needs of your  <br className="d-none d-lg-block" /> business.
               </p>
             </div>
             <div className="col-12 col-sm-7 col-md-6 mb-5">
@@ -102,7 +102,7 @@ function Home() {
                   {topCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card rounded-4 border-0 mb-4  card-hover-rotate"
+                      className="card things_card border_shadow rounded-4 border-0 mb-4  card-hover-rotate"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -142,7 +142,7 @@ function Home() {
                   {bottomCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card rounded-4 border-0 mb-4 card-hover-rotate"
+                      className="card things_card border_shadow rounded-4 border-0 mb-4 card-hover-rotate"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -177,11 +177,11 @@ function Home() {
                   ))}
                 </div>
                 <div className="d-flex justify-content-center align-items-center d-xl-none  px-sp-3 px-pd-3 px-lg-5 px-3 ">
-                  <Swiper loop={true} slidesPerView={1} spaceBetween={20}>
+                  <Swiper loop={true} slidesPerView={1} spaceBetween={30}>
                     {Things_Data.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="card things_card rounded-4 border-0 mb-4">
-                          <div className="card-body things_card">
+                          <div className="card-body  border_shadow rounded-4 border-0 m-2">
                             <div className="card-title">
                               <div className="d-flex">
                                 <div className="position-relative things_icon_container pe-5">
@@ -221,17 +221,18 @@ function Home() {
         </Container>
       </section >
        {/* Service section */}
-       <section className="scroll_container parallax_section"  >
+       <section className=" "  >
           <Container className="my_container services_row pe-5 " >
            <div className="service_wrapper">
-           <div className=" d-flex postion-relative  service_space_between ">
+           <div className=" d-flex postion-relative  service_gap ">
             <div className="text">
          <p className="font-size-20 font_weight_500 ">
                 How we can help you
               </p>
-              <p className="font-size-65 font_weight_600 line_height_70 mb-2">
-                Services <br className="d-none  d-lg-block" /> We Offer
+              <p className="font-size-65 font_weight_600 line_height_70 ">
+                Services 
               </p>
+              <p className="font-size-65 font_weight_600 line_height_70 mb-2">We offer</p>
               <br />
               <p className="service_text font-size-24 line_height_38 ">
                 We offer a comprehensive range of software development services
@@ -281,7 +282,7 @@ function Home() {
             </Container> 
         </section>
         {/* Sofware section */}
-        <section className="mb-0 bg-black  parallax_section pt-5   " id="section1">
+        <section className="mb-0 bg-black   pt-5 pb-5  ">
           <Container className="my_container  pt-5 ">
             <div className="d-flex align-items-center justify-content-center   bg-black position-relative">
               <div className="row z-2">
@@ -292,10 +293,10 @@ function Home() {
                         <img
                           src={item.icon}
                           alt={item.name}
-                          className="icon_background p-2 z-2 rounded-circle"
+                          className="icon_background background_color_light_blue p-2 z-2 rounded-circle"
                         />
 
-                        <span className="icon_background_line p-1"></span>
+                        <span className="icon_background_line background_color_light_blue p-1"></span>
                       </div>
                       <span className="font-size-18 pt-3">{item.name}</span>
                     </div>
@@ -332,7 +333,7 @@ function Home() {
             </div>
           </Container>
         </section>
-       <div className="parallax_section d-flex flex-column justify-content-center " id="section4">
+       <div className=" d-flex flex-column justify-content-center " >
          {/* Techstack section */}
          <section className="bg-black pt-5 pb-5 ">
         <Container className=" pt-5 pb-5  my_container ">
@@ -392,11 +393,11 @@ function Home() {
                     </div>
                   </div>
                   {/* middle text */}
-                  <div className="d-lg-flex d-md-flex  d-none flex-column align-items-center py-2 gap-3 pt-3">
-                    <p className="font-size-46 text-white text-center font_weight_600 p-0 px-lg-3 px-lg-5 px-md-5 ">
-                      Amazing tech stack in our pocket
+                  <div className="d-lg-flex d-md-flex  d-none flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
+                    <p className="font-size-46 text-white text-center font_weight_600 p-0 m-0  px-md-5 ">
+                      Amazing tech stack in <br /> our pocket
                     </p>
-                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-xl-block d-lg-none d-md-none d-sm-none px-3">
+                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-sm-none px-3 m-0">
                       Utilize our team’s specialized full-stack expertise in
                       software development to turn your product vision into
                       reality. We are committed to providing solutions that
@@ -426,7 +427,7 @@ function Home() {
               </div>
               {/* bottom layer */}
               <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pt-1 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
-                <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center  gap-3">
+                <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pb-3   gap-3">
                   <Animation
                     imgSrc={Angular_img}
                     animationDirection="bottomLeft"
@@ -512,8 +513,8 @@ function Home() {
                 </div>
                 {/* middle text */}
                 <div className="d-flex d-lg-none d-md-none tech_small_text   flex-column justify-content-center align-items-center  gap-2 pt-3 ">
-                  <p className="font-size-46 text-white text-center font_weight_600  px-2">
-                    Amazing tech stack in <br />
+                  <p className="font-size-20 text-white text-center font_weight_600 px-2 ">
+                    Amazing tech stack in <br className="d-none " />
                     our pocket
                   </p>
                   <p className="tech_text text-white font-size-18 font_weight_400 text-center d-none">
@@ -605,67 +606,49 @@ function Home() {
                 className="img-fluid position-absolute end-0 d-xl-block d-lg-block d-none   "
               />
             </div>
-            <Swiper
-              slidesPerView="auto"
-              centeredSlides={true}
-              spaceBetween={30}
-              loop={true}
-              grabCursor={true}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 20,
-                },
-                576: {
-                  slidesPerView: 1,
-                  spaceBetween: 15,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 90,
-                },
-                992: {
-                  slidesPerView: 2,
-                  spaceBetween: 85,
-                },
-                1200: {
-                  slidesPerView: 2,
-                  spaceBetween: 100,
-                },
-                1400: {
-                  slidesPerView: 3,
-                  spaceBetween: 80,
-                },
-              }}
-              className="project_swiper pb-5"
-            >
-              <div className="position-relative">
-                {projects.map((project, index) => (
-                  <SwiperSlide
-                    key={index}
-                    className="d-flex justify-content-center align-items-center "
-                  >
-                    <div className="rectangle bg_gradient_blue project_card rounded shadow">
-                      <div className="position-absolute  project_text inside_text text-white">
-                        <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
-                          {project.title}
-                        </p>
-                        <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2  ms-4 ms-lg-0 flex-nowrap">
-                          {project.tags.map((tag, tagIndex) => (
-                            <button
-                              key={tagIndex}
-                              className="btn text-dark font-size-16 rounded-pill bg-light text-nowrap "
-                            >
-                              {tag}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </div>
-            </Swiper>
+         <Swiper
+  slidesPerView={1}
+  centeredSlides={true}
+  spaceBetween={20}
+  loop={true}
+  grabCursor={true}
+  breakpoints={{
+    992: {
+      slidesPerView: "auto",
+      spaceBetween: 100,
+    },
+  }}
+  className="project_swiper pb-5"
+>
+  <div className="position-relative">
+    {projects.map((project, index) => (
+      <SwiperSlide
+        key={index}
+        className="d-flex justify-content-center align-items-center rectangle-slide"
+      >
+        <div className="rectangle bg_gradient_blue project_card rounded-5 shadow w-100">
+          <div className="position-absolute project_text inside_text text-white">
+            <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
+              {project.title}
+            </p>
+            <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2 ms-4 ms-lg-0 flex-nowrap">
+              {project.tags.map((tag, tagIndex) => (
+                <button
+                  key={tagIndex}
+                  className="btn text-dark font-size-16 rounded-pill bg-light  project_button_size"
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+  </div>
+</Swiper>
+
+
             <div className="d-flex justify-content-center pt-5 pb-5 ">
               <Button className=" font-size-22 px-4 py-2 rounded-5  font_weight_500 blue_gradient border-0">
                 View All{" "}

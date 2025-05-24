@@ -6,3 +6,11 @@
     width: 100%;
     height: 970px;
 }
+.Work_Card {
+  margin-top: 20%;
+}
+@media (max-width:576px){
+  .Work_Card {
+    margin-top: 0%;
+  }
+}

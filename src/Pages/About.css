@@ -86,23 +86,6 @@
 .workflow_icon{
   max-width: 240px;
 }
-.swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background-color: #5A496E; /* Your custom blue color */
-  opacity: 0.5;
-  margin: 0 4px;
-  border-radius: 50%;
-  transition: transform 0.3s ease, opacity 0.3s;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-
-
 
 @media (max-width: 576px) {
     .about_core_icon{
