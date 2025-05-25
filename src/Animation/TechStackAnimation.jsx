@@ -4,22 +4,26 @@ import { useEffect } from "react";
 
 // Helper function to get the initial position based on direction
 const getInitialPosition = (direction) => {
-  switch (direction) {
-    case "topLeft":
-      return { x: -50, y: -50, opacity: 0 };  // From top-left
-    case "topRight":
-      return { x: 50, y: -50, opacity: 0 };   // From top-right
-    case "bottomLeft":
-      return { x: -50, y: 50, opacity: 0 };   // From bottom-left
-    case "bottomRight":
-      return { x: 50, y: 50, opacity: 0 };    // From bottom-right
-    case "topToBottom":
-      return { x: 0, y: -50, opacity: 0 };   // From top (vertical)
-    case "bottomToTop":
-      return { x: 0, y: 50, opacity: 0 };    // From bottom (vertical)
-    default:
-      return { x: 0, y: 0, opacity: 0 };      // Default center
-  }
+ switch (direction) {
+  case "topLeft":
+    return { x: -50, y: -50, opacity: 0 };  // From top-left
+  case "topRight":
+    return { x: 50, y: -50, opacity: 0 };   // From top-right
+  case "bottomLeft":
+    return { x: -50, y: 50, opacity: 0 };   // From bottom-left
+  case "bottomRight":
+    return { x: 50, y: 50, opacity: 0 };    // From bottom-right
+  case "topToBottom":
+    return { x: 0, y: -50, opacity: 0 };    // From top
+  case "bottomToTop":
+    return { x: 0, y: 50, opacity: 0 };     // From bottom
+  case "leftToRight":
+    return { x: -50, y: 0, opacity: 0 };    // From left
+  case "rightToLeft":
+    return { x: 50, y: 0, opacity: 0 };     // From right
+  default:
+    return { x: 0, y: 0, opacity: 0 };      // Default (no movement)
+}
 };
 
 const Animation = ({ imgSrc, altText = "Tech Logo", animationDirection = "topLeft" }) => {
@@ -50,7 +54,7 @@ const Animation = ({ imgSrc, altText = "Tech Logo", animationDirection = "topLef
 
 <motion.div
       ref={ref}
-      className="tech_box  bg-white rounded-4 d-flex justify-content-center align-items-center"
+      className="  bg-white  tech_box d-flex justify-content-center align-items-center"
       initial={getInitialPosition(animationDirection)} // Set initial position dynamically
       animate={controls}
       style={{ willChange: "transform, opacity" }} // Helps browser optimize
@@ -58,7 +62,7 @@ const Animation = ({ imgSrc, altText = "Tech Logo", animationDirection = "topLef
       <img
         src={imgSrc}
         alt={altText}
-        className="img-fluid w-75 h-75"
+        className="img-fluid p-1"
         style={{ pointerEvents: "none" }}
       />
     </motion.div>

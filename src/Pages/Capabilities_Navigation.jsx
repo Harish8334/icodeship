@@ -3,25 +3,27 @@ import { Container, Button } from "react-bootstrap";
 import "../Pages/Capabilities.css";
 import { ChevronRight } from "lucide-react";
 import { Services_Data } from "../Data/Capable_Data";
-import Shape_4 from "../assets/images/Capable/capable_shape4.png";
 import { useNavigate } from "react-router-dom";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import Banner_Data from "../Data/Banner_Data";
-
-
+import { useRef } from "react";
+import { useImageSlideInAnimation } from "../Animation/animation";
 
 function Capabilities() {
   const { text, image } = Banner_Data.capable;
   const navigate = useNavigate();
+  const containerRef = useRef(null);
 
+  // Run animation hook
+  useImageSlideInAnimation(containerRef);
 
   return (
     <div className="capable_services_container">
       <Banner text={text} image={image} />
       <Brands />
-      <section className="position-relative pt-0 mb-5 ">
-        <Container className="my_container   ">
+      <section className="position-relative pt-0 mb-5">
+        <Container className="my_container" ref={containerRef}>
           {Services_Data.map((service, idx) => (
             <div
               key={idx}
@@ -61,10 +63,9 @@ function Capabilities() {
                       </a>
                     ))}
                   </div>
-                  {/* Display Shape_1 image for odd index */}
                   {idx % 2 !== 1 && (
                     <img
-                      src={service.imageOdd} // This will use the image for odd index
+                      src={service.imageOdd}
                       alt=""
                       className="img-fluid position-absolute top-25 start-50 capable_shape1"
                     />
@@ -75,16 +76,15 @@ function Capabilities() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="img-fluid mt-5 mt-lg-0"
+                  className="img-fluid mt-5 mt-lg-0 slide-img"
                 />
               </div>
             </div>
           ))}
         </Container>
-      
       </section>
-      
-        <WorkTogther />
+
+      <WorkTogther />
     </div>
   );
 }

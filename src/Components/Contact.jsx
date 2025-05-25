@@ -136,6 +136,7 @@ function Contact() {
                         {interestsOptions.slice(0, 4).map((interest) => (
                           <button
                             type="button"
+                            key={interest}
                             onClick={() => {
                               const selected = values.interests.includes(
                                 interest
@@ -158,9 +159,10 @@ function Contact() {
 
                     <div className="col-6">
                       <div className="d-flex justify-content-evenly flex-wrap">
-                        {interestsOptions.slice(4).map((interest) => (
+                        {interestsOptions.slice(4).map((interest ) => (
                           <button
                             type="button"
+                             key={interest}
                             onClick={() => {
                               const selected = values.interests.includes(
                                 interest
@@ -169,11 +171,12 @@ function Contact() {
                                 : [...values.interests, interest];
                               setFieldValue("interests", selected);
                             }}
-                            className={`btn btn-outline-dark border border-1 py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 border-black text-nowrap  my-4 ${
+                            className={`btn btn-outline-dark py-2 py-md-3 mx-2 font-size-16 font_weight_400 rounded-pill contact_button w-100 border-black text-nowrap  my-4 ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
                             }`}
+                       
                           >
                             {interest}
                           </button>

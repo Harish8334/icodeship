@@ -10,7 +10,7 @@ import Test from "../assets/images/Home/test.png";
 import Larrow from "../assets/images/Home/left_arrow.png";
 import Rarrow from "../assets/images/Home/right_arrow.png";
 
-import "../App.css";
+import "../Pages/Home.css";
 
 const testimonials = [
   {

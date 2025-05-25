@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useRef , } from "react";
 import Things_Data from "../Data/Things_Data";
 import Services from "../Data/Service_Data";
 import Banner_Data from "../Data/Banner_Data";
@@ -10,13 +10,13 @@ import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import Contact from "../Components/Contact";
 import Testimonial from "../Components/Testimonial";
-import "../Components/Contact_page_link"
+import "../Components/Contact_page_link";
 // React Bootstrap
 import { Container, Button, Card } from "react-bootstrap";
 // Fontawsome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from "lucide-react";
 // Swiper
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -25,9 +25,7 @@ import "swiper/css/scrollbar";
 // import required modules
 import { Swiper, SwiperSlide } from "swiper/react";
 // images
-import Amazon from "../assets/images/Home/amazon.png";
-import UBER from "../assets/images/Home/UBER.png";
-import Vogue from "../assets/images/Home/vogue.png";
+
 import map from "../assets/images/Home/map.png";
 
 import Software1_icon from "../assets/images/Home/software1.png";
@@ -39,11 +37,9 @@ import AWS from "../assets/images/Home/aws.png";
 import Nodejs from "../assets/images/Home/nodejs.png";
 import React_img from "../assets/images/Home/react.png";
 import Angular_img from "../assets/images/Home/angularJS.png";
-import { useScrollAnimation } from "../Animation/animation";
-
+import { useScrollAnimation  } from "../Animation/animation";
 
 function Home() {
-  const brandLogos = [Amazon, UBER, Vogue];
   const topCards = Things_Data.slice(0, 2);
   const bottomCards = Things_Data.slice(2, 4);
   const images = { AWS, Nodejs, React_img, Angular_img };
@@ -55,34 +51,35 @@ function Home() {
 
   const { text, image } = Banner_Data.home;
   useScrollAnimation();
-
+const section1Ref = useRef(null);
+  const section2Ref = useRef(null);
 
   return (
-    <div className="d overflow-x-hidden">
+    <div className="overflow-hidden">
       <Header />
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
-        <section className=" pt-4 pb-5 pt-lg-5  d-flex justify-content-center align-items-center">
-          <img
-            src={map}
-            alt=""
-            className="img-fluid position-relative pt-0 pt-lg-5 "
-          />
-          <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text ">
-            <p className="font-size-40 font_weight_400 text-center mx-lg-5 mx-3">
-              Since our founding in 2020, Codeship has rapidly grown into a
-              dynamic and thriving company.
-            </p>
-            <p className="font-size-40 font_weight_400 text-center   mx-3 ">
-              With a shared dedication to innovation and a customer-centric
-              approach, our team brings a wealth of experience and skills to the
-              table.
-            </p>
-          </div>
-        </section>
+      <section className=" pt-4 pb-5 pt-lg-5  d-flex justify-content-center align-items-center">
+        <img
+          src={map}
+          alt=""
+          className="img-fluid position-relative pt-0 pt-lg-5 "
+        />
+        <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text ">
+          <p className="font-size-40 font_weight_400 text-center mx-lg-5 mx-3">
+            Since our founding in 2020, Codeship has rapidly grown into a
+            dynamic and thriving company.
+          </p>
+          <p className="font-size-40 font_weight_400 text-center   mx-3 ">
+            With a shared dedication to innovation and a customer-centric
+            approach, our team brings a wealth of experience and skills to the
+            table.
+          </p>
+        </div>
+      </section>
       {/* Things can do section */}
-      <section  >
+      <section>
         <Container className="my_container py-lg-5 ">
           <div className="row ">
             <div className="col-12 col-sm-5 col-md-6">
@@ -91,8 +88,11 @@ function Home() {
                 do <br className="d-none d-lg-block" /> for you
               </p>
               <p className="font-size-24 font_weight_400 ps-3 ">
-                We offer a comprehensive range of <br className="d-none d-lg-block" /> software development services
-                tailored  <br className="d-none d-lg-block" /> to meet the unique needs of your  <br className="d-none d-lg-block" /> business.
+                We offer a comprehensive range of{" "}
+                <br className="d-none d-lg-block" /> software development
+                services tailored <br className="d-none d-lg-block" /> to meet
+                the unique needs of your <br className="d-none d-lg-block" />{" "}
+                business.
               </p>
             </div>
             <div className="col-12 col-sm-7 col-md-6 mb-5">
@@ -102,7 +102,7 @@ function Home() {
                   {topCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card border_shadow rounded-4 border-0 mb-4  card-hover-rotate"
+                      className="card things_card border_shadow  border-0 mb-4  card-hover-rotate me-3"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -119,18 +119,13 @@ function Home() {
                                 className="pt-2 pb-3 things_head things_icon position-absolute"
                               />
                             </div>
-                            <p className="ps-3 pt-2 pb-3 font-size-28 font_weight_500 things_head">
+                            <p className="ps-3 pt-2 pb-3 font-size-24 font_weight_500 things_head ">
                               {item.title}
                             </p>
                           </div>
                         </div>
-                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_24 pb-2">
-                          {item.description.split("\n").map((line, i) => (
-                            <React.Fragment key={i}>
-                              {line}
-                              <br className="d-none d-xxl-block" />
-                            </React.Fragment>
-                          ))}
+                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
+                          {item.description}
                         </div>
                       </div>
                     </div>
@@ -142,7 +137,7 @@ function Home() {
                   {bottomCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card border_shadow rounded-4 border-0 mb-4 card-hover-rotate"
+                      className="card things_card border_shadow rounded-4 border-0 mb-4  card-hover-rotate "
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -159,25 +154,20 @@ function Home() {
                                 className="pt-2 pb-3 things_head things_icon position-absolute"
                               />
                             </div>
-                            <p className="ps-3 pt-2 pb-3 font-size-28 font_weight_500 things_head">
+                            <p className="ps-3 pt-2 pb-3 font-size-24 font_weight_500 things_head ">
                               {item.title}
                             </p>
                           </div>
                         </div>
-                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_24 pb-2">
-                          {item.description.split("\n").map((line, i) => (
-                            <React.Fragment key={i}>
-                              {line}
-                              <br className="d-none d-xxl-block" />
-                            </React.Fragment>
-                          ))}
+                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
+                          {item.description}
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="d-flex justify-content-center align-items-center d-xl-none  px-sp-3 px-pd-3 px-lg-5 px-3 ">
-                  <Swiper loop={true} slidesPerView={1} spaceBetween={30}>
+                  <Swiper loop={SwiperSlide.length > 3} slidesPerView={1} spaceBetween={30}>
                     {Things_Data.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="card things_card rounded-4 border-0 mb-4">
@@ -219,165 +209,176 @@ function Home() {
             </div>
           </div>
         </Container>
-      </section >
+      </section>
+   
        {/* Service section */}
-       <section className=" "  >
-          <Container className="my_container services_row pe-5 " >
-           <div className="service_wrapper">
-           <div className=" d-flex postion-relative  service_gap ">
-            <div className="text">
-         <p className="font-size-20 font_weight_500 ">
-                How we can help you
-              </p>
-              <p className="font-size-65 font_weight_600 line_height_70 m-0 ">
-                Services 
-              </p>
-              <p className="font-size-65 font_weight_600 line_height_70 mb-2">We offer</p>
-              <br />
-              <p className="service_text font-size-24 line_height_38 ">
-                We offer a comprehensive range of software development services
-                tailored to meet the unique needs of your business. A
-                full-service creative agency designing and building inventive
-                digital experiences across all platforms and brand <br className="d-none d-lg-block" />  touchpoints
-              </p>
-              <div className="d-flex justify-content-start   justify-content-lg-start justify-content-md-start">
-                <Button className=" font-size-22 px-4 py-2  font_weight_500 blue_gradient border-radius-25">
-                  All Services{" "}
-                  <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-                </Button>
-              </div>
-         </div>
-         {Services.map((service, index) => (
-        <div key={index} className="border_shadow border service_card rounded-5 mb-4 me-5 d-flex flex-column justify-content-evenly" >
-          <div className="p-4 ms-4 pt-4 d-flex flex-column gap-3 justify-content-between">
-            <div className="ms-0">
-              <div className="d-flex flex-column">
-               <div className="pe-5 icon-container">
-  <img
-    src={service.icon}
-    alt={`${service.title} Icon`}
-    className="pt-2 pb-3 service-icon"
-  />
-</div>
-
-                <p className="ps-0 pt-2 pb-3 font-size-58 font_weight_500 things_head">
-                  {service.title}
+      <section className="">
+        <Container className="my_container services_row pe-5 ">
+          <div className="service_wrapper">
+            <div className=" d-flex postion-relative  service_gap ">
+              <div className="text">
+                <p className="font-size-20 font_weight_500 ">
+                  How we can help you
                 </p>
-              </div>
-            </div>
-            <p className="font-size-24 font_weight_400 font_color_light_grey pb-2 text-start services_card_text">
-              {service.description}
-            </p>
-            
-          </div>
-          <a href="" className=" text-decoration-none d-flex gap-0 font_color_light_blue ms-5    ">
-           <p className="font-size-24  font_weight_500">
-              Read More
-            </p>
-            <ChevronRight strokeWidth={2} size={34} className="pb-2 mt-lg-2 font-size-24" />      </a>       
-        </div>
-      ))}
-     <div className="d-lg-block d-none">d</div>
-            </div>
-           </div>
-            </Container> 
-        </section>
-        {/* Sofware section */}
-        <section className="mb-0 bg-black   pt-5 pb-5  ">
-          <Container className="my_container  pt-5 ">
-            <div className="d-flex align-items-center justify-content-center   bg-black position-relative">
-              <div className="row z-2">
-                <div className="col-xl-2  text-white   ">
-                  {softwareData.map((item, index) => (
-                    <div key={index} className="d-flex gap-5 z-2">
-                      <div className="d-flex flex-column align-items-center">
-                        <img
-                          src={item.icon}
-                          alt={item.name}
-                          className="icon_background background_color_light_blue p-2 z-2 rounded-circle"
-                        />
-
-                        <span className="icon_background_line background_color_light_blue p-1"></span>
-                      </div>
-                      <span className="font-size-18 pt-3">{item.name}</span>
-                    </div>
-                  ))}
+                <p className="font-size-65 font_weight_600 line_height_70 m-0 ">
+                  Services
+                </p>
+                <p className="font-size-65 font_weight_600 line_height_70 mb-2">
+                  We offer
+                </p>
+                <br />
+                <p className="service_text font-size-24 line_height_38 ">
+                  We offer a comprehensive range of software development
+                  services tailored to meet the unique needs of your business. A
+                  full-service creative agency designing and building inventive
+                  digital experiences across all platforms and brand{" "}
+                  <br className="d-none d-lg-block" /> touchpoints
+                </p>
+                <div className="d-flex justify-content-start   justify-content-lg-start justify-content-md-start">
+                  <Button className=" font-size-22 px-4 py-2  font_weight_500 blue_gradient border-radius-25">
+                    All Services{" "}
+                    <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
+                  </Button>
                 </div>
-                <div className="col-xl-10  pt-5  text-white  position-relative  ">
-                  <div className="d-flex align-items-center flex-column">
-                    <img
-                      src={Software_img}
-                      alt=""
-                      className="img-fluid pb-3 z-2 "
-                    />
-                    <p className="font-size-28  ">
-                      Custom Made ERP Softwares for your Needs
+              </div>
+              {Services.map((service, index) => (
+                <div
+                  key={index}
+                  className="border_shadow border service_card rounded-5 mb-4 me-5 d-flex flex-column justify-content-evenly"
+                >
+                  <div className="p-4 ms-4 pt-4 d-flex flex-column gap-3 justify-content-between">
+                    <div className="ms-0">
+                      <div className="d-flex flex-column">
+                        <div className="pe-5 icon-container">
+                          <img
+                            src={service.icon}
+                            alt={`${service.title} Icon`}
+                            className="pt-2 pb-3 service-icon"
+                          />
+                        </div>
+
+                        <p className="ps-0 pt-2 pb-3 font-size-58 font_weight_500 things_head">
+                          {service.title}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="font-size-24 font_weight_400 font_color_light_grey pb-2 text-start services_card_text">
+                      {service.description}
                     </p>
                   </div>
-                  <div className="text-center ">
-                    <Button
-                      href="/contact"
-                      className="px-4 blue_gradient  rounded-pill  border-0 mt-3 font-size-18 me-3 "
-                    >
-                      View Live Demo
-                    </Button>
-                    <Button
-                      href="/contact"
-                      className="px-4  bg-transparent btn-outline-light text-white   rounded-pill  mt-3  font-size-18"
-                    >
-                      Purchase Product
-                    </Button>
+                  <a
+                    href=""
+                    className=" text-decoration-none d-flex gap-0 font_color_light_blue ms-5    "
+                  >
+                    <p className="font-size-24  font_weight_500">Read More</p>
+                    <ChevronRight
+                      strokeWidth={2}
+                      size={34}
+                      className="pb-2 mt-lg-2 font-size-24"
+                    />{" "}
+                  </a>
+                </div>
+              ))}
+              <div className="d-lg-block d-none">d</div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      {/* Sofware section */}
+      <section className="mb-0 bg-black     section-1  ">
+        <Container className="my_container  pt-5 ">
+          <div className="d-flex align-items-center justify-content-center   bg-black position-relative">
+            <div className="row z-2">
+              <div className="col-xl-2  text-white   ">
+                {softwareData.map((item, index) => (
+                  <div key={index} className="d-flex gap-5 z-2">
+                    <div className="d-flex flex-column align-items-center">
+                      <img
+                        src={item.icon}
+                        alt={item.name}
+                        className="icon_background background_color_light_blue p-2 z-2 rounded-circle"
+                      />
+
+                      <span className="icon_background_line background_color_light_blue p-1"></span>
+                    </div>
+                    <span className="font-size-18 pt-3">{item.name}</span>
                   </div>
+                ))}
+              </div>
+              <div className="col-xl-10  pt-5  text-white  position-relative  ">
+                <div className="d-flex align-items-center flex-column">
+                  <img
+                    src={Software_img}
+                    alt=""
+                    className="img-fluid pb-3 z-2 "
+                  />
+                  <p className="font-size-28  ">
+                    Custom Made ERP Softwares for your Needs
+                  </p>
+                </div>
+                <div className="text-center ">
+                  <Button
+                    href="/contact"
+                    className="px-4 blue_gradient  rounded-pill  border-0 mt-3 font-size-18 me-3 "
+                  >
+                    View Live Demo
+                  </Button>
+                  <Button
+                    href="/contact"
+                    className="px-4  bg-transparent btn-outline-light text-white   rounded-pill  mt-3  font-size-18"
+                  >
+                    Purchase Product
+                  </Button>
                 </div>
               </div>
-              <div className="background-color_blue_1 bg_circle_gradient position-absolute bottom-0 end-0"></div>
             </div>
-          </Container>
-        </section>
-       <div className=" d-flex flex-column justify-content-center " >
+            <div className="background-color_blue_1 bg_circle_gradient position-absolute bottom-0 end-0"></div>
+          </div>
+        </Container>
+      </section>
+     
          {/* Techstack section */}
-         <section className="bg-black pt-5 pb-5 ">
-        <Container className=" pt-5 pb-5  my_container ">
+        <section className="bg-black pt-5 pb-5 ">
+          <Container className=" pt-5 pb-5  my_container ">
             {/* big screen */}
             {/* top layer */}
             <div className="tech_stack_container">
-              <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center gap-3">
-                ;
+              <div className="d-flex flex-row justify-content-center gap-3">
                 <Animation
                   imgSrc={AWS}
                   animationDirection="topLeft"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box background_color_grey rounded-4"></div>
-                <div className="tech_box background_color_grey rounded-4"></div>
-                <div className="tech_box background_color_grey rounded-4"></div>
-                <div className="tech_box background_color_grey rounded-4"></div>
+                <div className="tech_box background_color_grey  "></div>
+                <div className="tech_box background_color_grey  "></div>
+                <div className="tech_box background_color_grey  "></div>
+                <div className="tech_box background_color_grey  "></div>
               </div>
-              <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center mx-5 pt-3 gap-3">
-                <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pt-3 gap-3">
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <Animation
+              <div className="d-flex  flex-row justify-content-center mx-5 pt-3 gap-3">
+                <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
+                  <div className="tech_box background_color_grey "></div>
+                  <div className="tech_box background_color_grey "></div>
+                  <div className="tech_box background_color_grey "></div>
+                <div className="tech_box">  <Animation
                     imgSrc={AWS}
                     animationDirection="topToBottom"
                     altText="Image from Top Left"
-                  />
-                  <div className="tech_box background_color_grey rounded-4"></div>
+                  /></div>
+                  <div className="tech_box background_color_grey "></div>
                   <Animation
                     imgSrc={Nodejs}
                     animationDirection="topRight"
                     altText="Image from Top Left"
                   />
-                  <div className="tech_box background_color_grey rounded-4"></div>
+                  <div className="tech_box background_color_grey "></div>
                 </div>
               </div>
               {/* middle layer */}
-              <div className="d-flex flex-row justify-content-center align-items-center pb-lg-3 px-3 ">
-                <div className=" d-lg-flex tech_middle_layer   d-md-flex flex-nowrap  d-none  justify-content-evenly pt-3">
+              <div className="d-flex flex-row justify-content-center align-items-center pb-lg-3 ">
+                <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
                   <div className="left">
                     <div className="d-flex py-2   gap-3 ">
-                      <div className="tech_box background_color_grey rounded-4"></div>
+                      <div className="tech_box background_color_grey "></div>
                       <Animation
                         imgSrc={React_img}
                         animationDirection="topLeft"
@@ -387,18 +388,18 @@ function Home() {
                     <div className="d-flex pt-3 gap-3">
                       <Animation
                         imgSrc={Angular_img}
-                        animationDirection="topLeft"
+                        animationDirection="bottomRight"
                         altText="Image from Top Left"
                       />
-                      <div className="tech_box background_color_grey rounded-4"></div>
+                      <div className="tech_box background_color_grey "></div>
                     </div>
                   </div>
                   {/* middle text */}
-                  <div className="d-lg-flex d-md-flex  d-none flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
-                    <p className="font-size-46 text-white text-center font_weight_600 p-0 m-0  px-md-5 ">
+                  <div className="d-flex  flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
+                    <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3  px-md-5 ">
                       Amazing tech stack in <br /> our pocket
                     </p>
-                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-sm-none px-3 m-0">
+                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
                       Utilize our team’s specialized full-stack expertise in
                       software development to turn your product vision into
                       reality. We are committed to providing solutions that
@@ -413,13 +414,13 @@ function Home() {
                         animationDirection="topRight"
                         altText="Image from Top Left"
                       />
-                      <div className="tech_box background_color_grey rounded-4"></div>
+                      <div className="tech_box background_color_grey "></div>
                     </div>
                     <div className="d-flex pt-3 gap-3">
-                      <div className="tech_box background_color_grey rounded-4"></div>
+                      <div className="tech_box background_color_grey "></div>
                       <Animation
                         imgSrc={Nodejs}
-                        animationDirection="topRight"
+                        animationDirection="bottomLeft"
                         altText="Image from Top Left"
                       />
                     </div>
@@ -427,176 +428,47 @@ function Home() {
                 </div>
               </div>
               {/* bottom layer */}
-              <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pt-1 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
-                <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pb-3   gap-3">
+              <div className="d-flex  flex-row justify-content-center pt-2 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
+                <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
                   <Animation
                     imgSrc={Angular_img}
                     animationDirection="bottomLeft"
                     altText="Image from Top Left"
                   />
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <div className="tech_box background_color_grey rounded-4"></div>
+                  <div className="tech_box background_color_grey "></div>
+                  <div className="tech_box background_color_grey "></div>
+                  <div className="tech_box background_color_grey "></div>
                   <Animation
                     imgSrc={React_img}
                     animationDirection="bottomToTop"
                     altText="Image from Top Left"
                   />
-                  <div className="tech_box background_color_grey rounded-4"></div>
-                  <div className="tech_box background_color_grey rounded-4"></div>
+                  <div className="tech_box background_color_grey "></div>
+                  <div className="tech_box background_color_grey "></div>
                 </div>
               </div>
-
-              <div className="d-lg-flex d-md-flex  d-none flex-row justify-content-center pt-3 gap-3">
-                <div className="tech_box background_color_grey rounded-4"></div>
+              <div className="d-flex  flex-row justify-content-center  gap-3">
+                <div className="tech_box background_color_grey "></div>
                 <Animation
                   imgSrc={React_img}
                   animationDirection="bottomToTop"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box background_color_grey rounded-4"></div>
-                <div className="tech_box background_color_grey rounded-4"></div>
+                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box background_color_grey "></div>
                 <Animation
                   imgSrc={Angular_img}
                   animationDirection="bottomRight"
                   altText="Image from Top Left"
-                />
-              </div>
-            </div>
-            {/* small screen */}
-            {/* top layer */}
-            <div className="d-flex d-lg-none d-md-none   flex-row justify-content-center gap-2 ">
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img src={AWS} alt="" className="img-fluid tech_sm_img " />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-            </div>
-            <div className="d-flex d-lg-none d-md-none  flex-row justify-content-center pt-2 gap-2 pb-2">
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img src={AWS} alt="" className="img-fluid tech_sm_img " />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img src={Nodejs} alt="" className="img-fluid tech_sm_img " />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-            </div>
-            {/* middle layer */}
-            <div className="d-flex flex-row tech_middle_layer justify-content-center align-items-center ">
-              <div className=" d-flex d-lg-none d-md-none     justify-content-evenly">
-                <div className="left">
-                  <div className="d-flex py-1   gap-2 ">
-                    <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-                    <div className="bg-white p-1    p-sm-2  rounded-2 ">
-                      <img
-                        src={React_img}
-                        alt=""
-                        className="img-fluid tech_sm_img "
-                      />
-                    </div>
-                  </div>
-                  <div className="d-flex py-1 gap-2 ">
-                    <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                      <img
-                        src={Angular_img}
-                        alt=""
-                        className="img-fluid tech_sm_img "
-                      />
-                    </div>
-                    <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-                  </div>
-                </div>
-                {/* middle text */}
-                <div className="d-flex d-lg-none d-md-none tech_small_text   flex-column justify-content-center align-items-center  gap-2 pt-3 ">
-                  <p className="font-size-20 text-white text-center font_weight_600 px-2 ">
-                    Amazing tech stack in <br className="d-none " />
-                    our pocket
-                  </p>
-                  <p className="tech_text text-white font-size-18 font_weight_400 text-center d-none">
-                    Utilize our team’s specialized full-stack expertise in
-                    software development to turn your product vision into
-                    reality. We are committed to providing solutions that adhere
-                    to the highest coding standards, ensuring reliability,
-                    scalability, and security.
-                  </p>
-                </div>
-                <div className="right">
-                  <div className="d-flex py-1  gap-2">
-                    <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                      <img
-                        src={React_img}
-                        alt=""
-                        className="img-fluid tech_sm_img "
-                      />
-                    </div>
-                    <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-                  </div>
-                  <div className="d-flex py-1 gap-2">
-                    <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-                    <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                      <img
-                        src={Nodejs}
-                        alt=""
-                        className="img-fluid tech_sm_img "
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* bottom layer */}
-            <div className="d-flex d-lg-none d-md-none  flex-row justify-content-center pt-2 gap-2">
-              <div className="bg-white p-1    p-sm-2  rounded-2 ">
-                <img
-                  src={Angular_img}
-                  alt=""
-                  className="img-fluid tech_sm_img "
-                />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img
-                  src={React_img}
-                  alt=""
-                  className="img-fluid tech_sm_img "
-                />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-            </div>
-
-            <div className="d-flex d-lg-none d-md-none   flex-row justify-content-center pt-2 gap-2">
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img
-                  src={React_img}
-                  alt=""
-                  className="img-fluid tech_sm_img "
-                />
-              </div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className="p-3 p-sm-4 background_color_grey rounded-2"></div>
-              <div className=" bg-white p-1    p-sm-2  rounded-2 ">
-                <img
-                  src={Angular_img}
-                  alt=""
-                  className="img-fluid tech_sm_img "
+                  className="tech_sm_img"
                 />
               </div>
             </div>
           </Container>
         </section>
         {/* Projects */}
-      <section className="bg-black mb-5">
-        <Container fluid className="pt-xl-5  mb-5">
+        <section className="bg-black pb-2 mb-5">
+          <Container fluid className="pt-xl-5  mb-5">
             <div className=" d-flex align-items-center justify-content-center py-4 mb-5">
               <p className=" font-size-65   font_weight_600 font_family  text-white ">
                 Our Latest Projects
@@ -607,48 +479,47 @@ function Home() {
                 className="img-fluid position-absolute end-0 d-xl-block d-lg-block d-none   "
               />
             </div>
-         <Swiper
-  slidesPerView={1}
-  centeredSlides={true}
-  spaceBetween={20}
-  loop={true}
-  grabCursor={true}
-  breakpoints={{
-    992: {
-      slidesPerView: "auto",
-      spaceBetween: 100,
-    },
-  }}
-  className="project_swiper pb-5"
->
-  <div className="position-relative">
-    {projects.map((project, index) => (
-      <SwiperSlide
-        key={index}
-        className="d-flex justify-content-center align-items-center rectangle-slide"
-      >
-        <div className="rectangle bg_gradient_blue project_card rounded-5 shadow w-100">
-          <div className="position-absolute project_text inside_text text-white">
-            <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
-              {project.title}
-            </p>
-            <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2 ms-4 ms-lg-0 flex-nowrap">
-              {project.tags.map((tag, tagIndex) => (
-                <button
-                  key={tagIndex}
-                  className="btn text-dark font-size-16 rounded-pill bg-light  project_button_size"
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-    ))}
-  </div>
-</Swiper>
-
+            <Swiper
+              slidesPerView={1}
+              centeredSlides={true}
+              spaceBetween={20}
+              loop={true}
+              grabCursor={true}
+              breakpoints={{
+                992: {
+                  slidesPerView: "auto",
+                  spaceBetween: 100,
+                },
+              }}
+              className="project_swiper py-5"
+            >
+              <div className="position-relative">
+                {projects.map((project, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="d-flex justify-content-center align-items-center rectangle-slide"
+                  >
+                    <div className="rectangle bg_gradient_blue project_card rounded-5 shadow w-100">
+                      <div className="position-absolute project_text inside_text text-white">
+                        <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
+                          {project.title}
+                        </p>
+                        <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2 ms-4 ms-lg-0 flex-nowrap">
+                          {project.tags.map((tag, tagIndex) => (
+                            <button
+                              key={tagIndex}
+                              className="btn text-dark font-size-16 rounded-pill bg-light  project_button_size"
+                            >
+                              {tag}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </div>
+            </Swiper>
 
             <div className="d-flex justify-content-center pt-5 pb-5 ">
               <Button className=" font-size-22 px-4 py-2 rounded-5  font_weight_500 blue_gradient border-0">
@@ -657,8 +528,9 @@ function Home() {
               </Button>
             </div>
           </Container>
-          </section>
-       </div>
+        </section>
+      
+       
       <Testimonial />
       <Contact />
       <Footer />

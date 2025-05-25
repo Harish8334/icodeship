@@ -1,11 +1,9 @@
 import React,{useState,useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-import "./App.css";
 import "@fontsource/poppins";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/Utility.css";
-import "./App.css";
 import "swiper/css";
 import Home from "./Pages/Home";
 import About from "./Pages/About";

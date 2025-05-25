@@ -30,7 +30,7 @@
   font-size: clamp(20px, 3.6vw, 40px);
 }
 .font-size-46 {
-  font-size: clamp(30px, 2vw, 46px);
+  font-size: clamp(20px, 3vw, 46px);
 }
 .font-size-50 {
   font-size: clamp(22px, 4.2vw, 50px);
@@ -246,7 +246,14 @@
 .text-justify {
   text-align: justify;
 }
-.font-weight-600{
-  font-weight:48px
-}
 
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  color: #000; /* Change as needed */
+}
+.btn-outline-dark:hover {
+  background-color: black;
+  color: white;
+}

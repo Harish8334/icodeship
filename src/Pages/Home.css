@@ -2,8 +2,6 @@
   max-width: 1600px !important;
 }
 
-
-
 /* Navbar */
 .navbar_toggle_icon {
   border-radius: 50%;
@@ -13,24 +11,18 @@
   font-weight: bold;
 }
 
-
 /* Brands */
 .brand-track {
   width: max-content;
   animation: scroll-left 50s linear infinite;
 }
 
-.brand-slide {
-  flex: 0 0 auto;
-}
-
 .brand_swiper {
-  width: 100px;
+  width: 150px;
   height: auto;
-  object-fit: contain;
 }
 
-/* Animation */
+/* Brand Animation */
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -128,8 +120,9 @@
 }
 /* tech stack */
 .tech_box {
-  height: 130px;
-  width: 130px;
+  height: 120px;
+  width: 120px;
+  border-radius: 20px;
 }
 .tech_text {
   max-width: 750px;
@@ -150,10 +143,10 @@
 }
 
 @media (max-width: 576px) {
-  .tech_sm_img,
   .tech_box {
-    max-height: 28px;
-    max-width: 28px;
+    max-height: 38px;
+    max-width: 38px;
+    border-radius: 8px;
   }
   .service_text {
     max-width: 370px;
@@ -164,18 +157,22 @@
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
-  .tech_sm_img {
-    max-height: 28px;
-    max-width: 28px;
+  .tech_box {
+    max-height: 48px;
+    max-width: 48px;
+    border-radius: 10px;
+  }
+  .tech_middle_layer {
+    width: 100%;
+    max-width: 650px;
   }
   .project_text {
     left: -3%;
   }
   .Banner_img {
     max-width: 500px;
-   
   }
-   .services_card_text {
+  .services_card_text {
     max-width: 416px;
   }
 }
@@ -190,6 +187,7 @@
   }
 
   .tech_middle_layer {
+    width: 100%;
     max-width: 900px;
   }
   .project_text {
@@ -198,12 +196,12 @@
   }
   .Banner_img {
     max-width: 600px;
-     height:725px !important;
+    height: 725px !important;
   }
   .project_button_size {
     width: 155px;
   }
-   .services_card_text {
+  .services_card_text {
     max-width: 516px;
   }
 }
@@ -229,7 +227,6 @@
   width: 100vw;
   max-width: 1100px;
   transform: translateY(-10px);
-
 }
 
 .custom-dropdown.show-dropdown {
@@ -238,20 +235,5 @@
   pointer-events: auto;
   transform: translateY(0);
 }
-.icon-container {
-  position: relative;
-  will-change: transform;
-}
 
 
-.icon-container.left {
-  left: 0;
-  /* default position on top-left */
-}
-
-.icon-container.right {
-  position: absolute;
-  right: 20px; /* or your preferred spacing */
-  top: 10px;
-  transition: all 0.5s ease;
-}

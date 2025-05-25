@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Workdata_1 } from "../Data/WorkData";
 import { animateWorkCard } from "../Animation/animation";
-import "../App.css";
+import "../Pages/Home.css";
 
 const WorkCard_1 = ({ index }) => {
   const data = Workdata_1[index];

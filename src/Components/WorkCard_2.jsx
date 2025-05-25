@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Workdata_2 } from "../Data/WorkData";
 import { animateWorkCard } from "../Animation/animation";
-import "../App.css";
+import "../Pages/Home.css";
 
 const WorkCard_2 = ({ index }) => {
   const data = Array.isArray(Workdata_2) ? Workdata_2[index] : Workdata_2;

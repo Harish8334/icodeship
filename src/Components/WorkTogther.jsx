@@ -5,8 +5,8 @@ import useLetsTalk from "./Contact_page_link";
 function WorkTogther() {
   const letsTalk = useLetsTalk();
   return (
-    <section>
-      <Container className="mt-5 mb-5">
+    <section className="py-5" >
+      <Container className="my-5">
         <div className="work_together_card shadow bg-black position-relative  ">
           <img
             src={Swirl}

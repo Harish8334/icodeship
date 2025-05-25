@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef ,useEffect } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
@@ -10,7 +10,7 @@ import { Container, Button } from "react-bootstrap";
 import what_we_do from "../assets/images/Solutions/solution_whatwedo.png";
 import Map from "../assets/images/Solutions/solution_map.png";
 import "../Pages/Solution.css";
-import "../App.css";
+import "../Pages/Home.css";
 import Solution_workflow1 from "../assets/images/Solutions/solution_workflow1.png";
 import Solution_workflow2 from "../assets/images/Solutions/solution_workflow2.png";
 import Solution_workflow3 from "../assets/images/Solutions/solution_workflow3.png";
@@ -18,20 +18,44 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
+import {animateWorkCard , animateCardsOnScroll} from "../Animation/animation"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function Solution() {
   const { text, image } = Banner_Data.solutions;
+  const imgRef = useRef(null);
+  
+    useEffect(() => {
+      if (imgRef.current) {
+        animateWorkCard(imgRef.current);
+      }
+    }, []);
+
+     const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    animateCardsOnScroll(containerRef.current);
+
+    return () => {
+      // Clean up all ScrollTriggers when component unmounts
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
   return (
     <>
       <Header />
       <Banner text={text} image={image} />
       <Brands />
       {/* What we can do */}
-      <section className="mb-5 ">
-        <Container fluid className="  what_we_do_container ">
-          <div className="row mt-5 mb-5 mt-lg-0">
+      <section className="d-flex justify-content-center align-items-center what_we_do_container rounded-top-5 py-4 " ref={imgRef}>
+        <Container className="my_container" >
+          <div className="row">
             <div className="col-lg-6 col-md-12 col-12">
-              <p className="font-size-25  font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
+        <div className="d-flex flex-column gap-3 gap-lg-5">
+             <div>
+                 <p className="font-size-25  font_weight_300 mt-md-5  m-0">
                 What We Do ?
               </p>
               <p className="font-size-58 font_weight_600  ">
@@ -39,24 +63,27 @@ function Solution() {
                 <br className="d-none d-lg-block " />
                 Improving Effeciency.
               </p>
+             </div>
               <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0">
       Codeship offers tailored software solutions designed to meet your unique business needs. We create custom applications that streamline operations, enhance efficiency, and support your growth, ensuring your technology is as dynamic and adaptable as your business.
               </p>
+        </div>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
               <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0">
                 <img
                   src={what_we_do}
                   alt=""
-                  className=" Banner_img img-fluid "
+                  className=" img-fluid "
                 />
               </div>
             </div>
           </div>
         </Container>
       </section>
-      <section>
-        <Container className="my_container pt-md-5 ">
+      {/* Smart solution  */}
+      <section  >
+        <Container ref={containerRef} className="my_container my-5 ">
           <p className="text-center font-size-50 font_weight_500 pb-3 mt-md-5 pt-md-5">
             Smart Solutions For Your Business
             <br className="d-none d-lg-block" /> By Codeship.
@@ -64,8 +91,8 @@ function Solution() {
           {Solution_Data.map((item) => (
             <div
               key={item.id}
-              className="row solution_desk  pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
-              style={{ backgroundColor: item.bgColor }}
+              className="row solution_desk_radius  pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
+              style={{ backgroundColor: item.bgColor } } 
             >
               <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around  pb-lg-5 pb-5">
                 <div className="d-flex flex-column justify-content-between gap-5">
@@ -123,6 +150,7 @@ function Solution() {
         </Container>
       </section>
       <Brands />
+      {/* work */}
       <section className="">
         <Container fluid className="my_container mt-lg-5 ">
           <div className="row">

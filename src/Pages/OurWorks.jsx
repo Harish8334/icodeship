@@ -9,7 +9,7 @@ import WorkTogther from "../Components/WorkTogther";
 import { Container, Button } from "react-bootstrap";
 import WorkCard_1 from "../Components/WorkCard_1";
 import WorkCard_2 from "../Components/WorkCard_2";
-import "../App.css";
+import "../Pages/Home.css";
 
 function OurWorks() {
   const { text, image } = Banner_Data.works;

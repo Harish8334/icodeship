@@ -30,7 +30,7 @@ const Banner = ({ text, image }) => {
               <img
                 src={image}
                 alt="Banner Visual"
-                className="img-fluid Banner_img "
+                className="img-fluid"
               />
             </div>
           </div>
