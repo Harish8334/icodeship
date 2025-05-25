@@ -4,7 +4,7 @@ import ymca from "../assets/images/OurWorks/vertical_rectangle/ymca.png";
 import svi from "../assets/images/OurWorks/vertical_rectangle/svi.png";
 import aayra from "../assets/images/OurWorks/vertical_rectangle/aayra.png";
 import callback_events from "../assets/images/OurWorks/vertical_rectangle/callback_events.png";
-import edu_Home from "../assets/images/OurWorks/vertical_rectangle/edu_Home.png";
+import edu_Home from "../assets/images/OurWorks/vertical_rectangle/edu_home.png";
 import ez_worldship from "../assets/images/OurWorks/vertical_rectangle/ez_worldship.png";
 import farmbrite from "../assets/images/OurWorks/vertical_rectangle/farmbrite.png";
 import firstmed from "../assets/images/OurWorks/vertical_rectangle/firstmed.png";
