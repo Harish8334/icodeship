@@ -1,4 +1,4 @@
-import React, {useRef ,useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
@@ -18,20 +18,24 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
-import {animateWorkCard , animateCardsOnScroll} from "../Animation/animation"
+import {
+  animateWorkCard,
+  animateCardsOnScroll,
+  initImageRevealAnimation,
+} from "../Animation/animation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function Solution() {
   const { text, image } = Banner_Data.solutions;
   const imgRef = useRef(null);
-  
-    useEffect(() => {
-      if (imgRef.current) {
-        animateWorkCard(imgRef.current);
-      }
-    }, []);
 
-     const containerRef = useRef(null);
+  useEffect(() => {
+    if (imgRef.current) {
+      animateWorkCard(imgRef.current);
+    }
+  }, []);
+
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -43,46 +47,66 @@ function Solution() {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [modalBgColor, setModalBgColor] = useState("#fff");
+  const [origin, setOrigin] = useState({ x: "50%", y: "100%" });
+
+  const sectionRef = useRef(null);
+  const greyImgRef = useRef(null);
+  const colorImgRef = useRef(null);
+
+  useEffect(() => {
+    const cleanup = initImageRevealAnimation(
+      greyImgRef,
+      colorImgRef,
+      sectionRef
+    );
+    return () => cleanup && cleanup();
+  }, []);
+
   return (
     <>
       <Header />
       <Banner text={text} image={image} />
       <Brands />
       {/* What we can do */}
-      <section className="d-flex justify-content-center align-items-center what_we_do_container rounded-top-5 py-4 " ref={imgRef}>
-        <Container className="my_container" >
+      <section
+        className="d-flex justify-content-center align-items-center w-100 h-auto what_we_do_container rounded-top-5 py-4 "
+        ref={imgRef}
+      >
+        <Container className="my_container">
           <div className="row">
             <div className="col-lg-6 col-md-12 col-12">
-        <div className="d-flex flex-column gap-3 gap-lg-5">
-             <div>
-                 <p className="font-size-25  font_weight_300 mt-md-5  m-0">
-                What We Do ?
-              </p>
-              <p className="font-size-58 font_weight_600  ">
-                Accelerating <br className="d-none d-lg-block " /> Performance.{" "}
-                <br className="d-none d-lg-block " />
-                Improving Effeciency.
-              </p>
-             </div>
-              <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0">
-      Codeship offers tailored software solutions designed to meet your unique business needs. We create custom applications that streamline operations, enhance efficiency, and support your growth, ensuring your technology is as dynamic and adaptable as your business.
-              </p>
-        </div>
+              <div className="d-flex flex-column gap-3 gap-lg-5 ">
+                <div className="">
+                  <p className="font-size-25  font_weight_300 mt-md-5  m-0">
+                    What We Do ?
+                  </p>
+                  <p className="font-size-58 font_weight_600 pt-3  ">
+                    Accelerating <br className="d-none d-lg-block " />{" "}
+                    Performance. <br className="d-none d-lg-block " />
+                    Improving Effeciency.
+                  </p>
+                </div>
+                <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0 pb-5">
+                  Codeship offers tailored software solutions designed to meet
+                  your unique business needs. We create custom applications that
+                  streamline operations, enhance efficiency, and support your
+                  growth, ensuring your technology is as dynamic and adaptable
+                  as your business.
+                </p>
+              </div>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
               <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0">
-                <img
-                  src={what_we_do}
-                  alt=""
-                  className=" img-fluid "
-                />
+                <img src={what_we_do} alt="" className=" img-fluid " />
               </div>
             </div>
           </div>
         </Container>
       </section>
       {/* Smart solution  */}
-      <section  >
+      <section>
         <Container ref={containerRef} className="my_container my-5 ">
           <p className="text-center font-size-50 font_weight_500 pb-3 mt-md-5 pt-md-5">
             Smart Solutions For Your Business
@@ -92,7 +116,7 @@ function Solution() {
             <div
               key={item.id}
               className="row solution_desk_radius  pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
-              style={{ backgroundColor: item.bgColor } } 
+              style={{ backgroundColor: item.bgColor }}
             >
               <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around  pb-lg-5 pb-5">
                 <div className="d-flex flex-column justify-content-between gap-5">
@@ -119,6 +143,15 @@ function Solution() {
                     <Button
                       variant="outline-dark"
                       className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
+                      onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setOrigin({
+                          x: `${rect.left + rect.width / 2}px`,
+                          y: `${rect.top + rect.height / 2}px`,
+                        });
+                        setModalBgColor(item.bgColor);
+                        setShowFormModal(true);
+                      }}
                     >
                       Purchase Product
                     </Button>
@@ -137,19 +170,76 @@ function Solution() {
             </div>
           ))}
         </Container>
+        {showFormModal && (
+          <div className="fullscreen-form-modal position-fixed top-0 left-0">
+            <div
+              className="modal-form-content"
+              style={{
+                backgroundColor: modalBgColor,
+                transformOrigin: `${origin.x} ${origin.y}`,
+              }}
+            >
+              <button
+                className="close-btn  border-none bg-none cursor-pointer text-white font_size_19 "
+                onClick={() => setShowFormModal(false)}
+              >
+                &times;
+              </button>
+              <h2 className="text-center font-size-30 font_weight_600 mb-4">
+                Let’s Talk Business
+              </h2>
+              <form className="d-flex flex-column gap-4 px-4">
+                <input className="form-control py-2" placeholder="Full Name" />
+                <input
+                  className="form-control py-2"
+                  placeholder="Email Address"
+                />
+                <input
+                  className="form-control py-2"
+                  placeholder="Mobile Number"
+                />
+                <textarea
+                  className="form-control py-2"
+                  rows={4}
+                  placeholder="Tell us what you need..."
+                />
+                <button
+                  className="btn btn-dark rounded-pill px-4 py-2 font-size-18"
+                  type="submit"
+                >
+                  Submit Inquiry
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </section>
       {/* Map */}
-      <section>
-        <Container className="my_container">
+      <section ref={sectionRef} className="py-lg-5">
+        <Container className="my_container py-lg-5 pb-5 pb-md-0">
           <p className="text-center font-size-18">Global Scale</p>
-          <p className="text-center font-size-46 font_weight_600 ">
-            Trusted by companies around <br className="d-none d-lg-block" /> the
-            world
+          <p className="text-center font-size-46 font_weight_600">
+            Trusted by companies around <br className="d-none d-lg-block" />
+            the world
           </p>
-          <img src={Map} alt="" className="img-fluid" />
+
+          <div className="map-wrapper">
+            <img src={Map} alt="layout placeholder" className="placeholder" />
+            <img
+              ref={greyImgRef}
+              src={Map}
+              alt="Map Grey"
+              className="map-img grayscale"
+            />
+            <img
+              ref={colorImgRef}
+              src={Map}
+              alt="Map Color"
+              className="map-img colored"
+            />
+          </div>
         </Container>
       </section>
-      <Brands />
       {/* work */}
       <section className="">
         <Container fluid className="my_container mt-lg-5 ">

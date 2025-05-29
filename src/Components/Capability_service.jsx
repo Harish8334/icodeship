@@ -2,21 +2,30 @@ import Testimonial from "../Components/Testimonial";
 import WorkTogther from "./WorkTogther";
 import Brands from "./Brands";
 import { Container, Button } from "react-bootstrap";
-import Frequent_Ask from "./Frequent_Ask";
-import Capable_service_path from "../assets/images/Capable_service/capable_service_path.png";
 import Service_with_us from "../assets/images/Capable_service/capable_service_with_us.png";
 import "../Pages/Capabilities.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import serviceData from "../Service_Data/Service_Page_Data";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Accordion } from "react-bootstrap";
+import {
+  useVerticalToHorizontalScroll,
+  animateZigzagPath,
+} from "../Animation/animation";
+import { Pagination } from "swiper/modules";
+
+gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
+import "swiper/css/pagination";
 
 const Capable_service = () => {
   const { href } = useParams();
   const service = serviceData[href];
-  const workWithUsDetail = serviceData?.work_with_us_detail;
-
+  useVerticalToHorizontalScroll();
   //  Accordion
   const { left, right } = serviceData[href].accordionData;
 
@@ -34,8 +43,20 @@ const Capable_service = () => {
   if (!service) {
     return <div className="text-danger">Service not found!</div>;
   }
+
+  useEffect(() => {
+    animateZigzagPath();
+    const hasReloaded = sessionStorage.getItem("capable_service_reloaded");
+    if (!hasReloaded) {
+      sessionStorage.setItem("capable_service_reloaded", "true");
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem("capable_service_reloaded"); // reset for next time
+    }
+  }, []);
+
   return (
-    <div className="capable_services_container">
+    <div className="capable_services_container overflow-hidden">
       {/* Banner */}
       <section className=" d-flex justify-content-center mt-5 mb-md-5 ">
         <Container className="my_container mt-5">
@@ -59,7 +80,7 @@ const Capable_service = () => {
                 <img
                   src={service.banner.icon}
                   alt="Banner Visual"
-                  className="img-fluid Banner_img"
+                  className="img-fluid Banner_img w-100 h-100"
                 />
               </div>
             </div>
@@ -88,7 +109,7 @@ const Capable_service = () => {
                 <img
                   src={service.sub_banner.icon}
                   alt=""
-                  className="img-fluid Banner_img"
+                  className="img-fluid Banner_img w-100 h-100"
                 />
               </div>
             </div>
@@ -96,23 +117,36 @@ const Capable_service = () => {
         </Container>
       </section>
       {/* Software developement need */}
-      <section className="d-none d-md-block d-lg-block d-xl-block pb-5 ">
+      <section className="software_container_section d-none d-md-block d-lg-block d-xl-block pb-5">
         <Container className="my_container position-relative software_container">
           <p className="font-size-62 text-center font_weight_600">
             {service.software_need}
           </p>
-          <div className="d-flex justify-content-center mt-5">
-            <img src={Capable_service_path} alt="" className="img-fluid mt-5" />
+
+          <div className="d-flex justify-content-center mt-5 position-relative">
+            <svg
+              id="zigzag-svg"
+              width="845"
+              height="1156"
+              viewBox="0 0 845 1156"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="img-fluid mt-5"
+            >
+              <path
+                id="zigzag-path"
+                d="M219 39L728.202 1.59073C812.201 -4.58039 870.54 83.6094 832 158.5V158.5L721.771 315.275C636.186 436.999 472.832 475.026 342.288 403.616L318.415 390.557C275.741 367.213 226.404 359.057 178.488 367.424V367.424C25.8308 394.082 -49.1302 568.783 36.7362 697.786L163.95 888.908C168.642 895.958 173.897 902.616 179.664 908.819V908.819C225.817 958.46 298.615 972.88 360.206 944.581L466.068 895.942C526.367 868.237 597.861 889.596 633.08 945.837V945.837C670.728 1005.96 654.139 1085.08 595.514 1125.02L551.5 1155"
+              />
+            </svg>
+
             {service.cardData.map((item, index) => (
               <div
                 key={index}
                 className={`position-absolute ${item.className}`}
               >
-                <div className="card d-flex  flex-column rounded-4">
+                <div className="card d-flex flex-column rounded-4">
                   <div className="ms-4 pt-4 pb-4 pe-2">
-                    <div>
-                      <img src={item.icon} alt="" className="img-fluid" />
-                    </div>
+                    <img src={item.icon} alt="" className="img-fluid" />
                     <p className="font-size-30 font_weight_700 font_color_light_blue pt-3">
                       {item.title}
                     </p>
@@ -127,68 +161,93 @@ const Capable_service = () => {
         </Container>
       </section>
       {/* Software developement need small screen */}
-      <section className="d-lg-none d-md-none d-block ">
+      <section className="d-lg-none d-md-none d-block">
         <Container>
           <p className="font-size-62 text-center font_weight_600">
             {service.software_need}
           </p>
-          {service.cardData.map((item) => (
-            <div key={item.id} className={` ${item.className}`}>
-              <div className="card d-flex flex-column rounded-4 mt-3">
-                <div className="pt-3 pb-2">
-                  <div>
-                    <img
-                      src={item.icon}
-                      alt=""
-                      className="ms-3 img-fluid Capable_service_icon1"
-                    />
+
+          <Swiper
+            modules={[Pagination]}
+            slidesPerView={1}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+              renderBullet: (index, className) =>
+                `<span class="${className} custom-pagination-dot"></span>`,
+            }}
+            className="custom-swiper"
+          >
+            {service.cardData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className={` mb-5 ${item.className}`}>
+                  <div className="card d-flex flex-column rounded-4 mt-3">
+                    <div className="pt-3 pb-2">
+                      <div className="mobile_icon_container">
+                        <img
+                          src={item.icon}
+                          alt=""
+                          className="ms-3 img-fluid Capable_service_icon1"
+                        />
+                      </div>
+                      <p className="ms-3 font-size-30 font_weight_700 font_color_light_blue pt-3">
+                        {item.title}
+                      </p>
+                      <p className="ms-3 capable_service_card_text text-wrap font-size-20 line_height_30 font_weight_300">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                  <p className="ms-3 font-size-30 font_weight_700 font_color_light_blue pt-3">
-                    {item.title}
-                  </p>
-                  <p className="ms-3 capable_service_dev_card_text font-size-20 line_height_30 font_weight_300">
-                    {item.desc}
-                  </p>
                 </div>
-              </div>
-            </div>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Container>
       </section>
+
       {/* Why choose us */}
+
       <section>
-        <Container className="my_container why_choose_us pt-0  ">
+        <Container className="my_container why_choose_us pt-0">
           <div className="row mt-5 mb-5 mt-lg-0">
             <div className="col-lg-6 col-md-12 col-12">
-              <p className="font-size-25  font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
+              <p className="font-size-25 font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
                 Benefits of
               </p>
-              <p className="font-size-58 font_weight_600  ">
+              <p className="font-size-58 font_weight_600">
                 Working
-                <br className="d-none d-lg-block " /> With Us
+                <br className="d-none d-lg-block" /> With Us
               </p>
               <p className="font-size-30 font_weight_300 why_choose_us_text text-justify m-0">
                 {service.work_with_us}
               </p>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
-              <div className="d-flex justify-content-center  mt-md-5 mt-lg-5 mt-xl-0">
+              <div className="d-flex justify-content-center mt-md-5 mt-4 mt-xl-0">
                 <img
                   src={Service_with_us}
                   alt=""
-                  className=" Banner_img img-fluid "
+                  className="Banner_img img-fluid w-100 h-100"
                 />
               </div>
             </div>
           </div>
+
           <Swiper
+            modules={[Autoplay]}
+            className="p-3"
             slidesPerView="auto"
             spaceBetween={30}
             grabCursor={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
             breakpoints={{
               320: {
                 slidesPerView: 1,
-                spaceBetween: 20,
+                spaceBetween: 50,
               },
               560: {
                 slidesPerView: 1,
@@ -211,8 +270,8 @@ const Capable_service = () => {
             {service.work_with_us_detail &&
               Object.values(service.work_with_us_detail).map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="card py-3 rounded-5 border_shadow mb-3">
-                    <div className="d-flex justify-content-between px-5">
+                  <div className="py-3  rounded-5 border_shadow mb-5">
+                    <div className="d-flex justify-content-between px-4">
                       <p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">
                         {item.title}
                       </p>
@@ -220,7 +279,7 @@ const Capable_service = () => {
                         {item.series}
                       </p>
                     </div>
-                    <p className="text-justify px-5 font-size-18 font_weight_300">
+                    <p className="text-justify px-4 px-md-5 font-size-18 font_weight_300">
                       {item.description}
                     </p>
                   </div>
@@ -229,6 +288,7 @@ const Capable_service = () => {
           </Swiper>
         </Container>
       </section>
+
       <Testimonial />
       <section>
         <Container className="my_container">
@@ -247,7 +307,7 @@ const Capable_service = () => {
                     onClick={() => handleLeftToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500 line_height_30 Frequent_ask_height w-75 p-0 m-0">
+                      <p className="font-size-20 font_weight_500 line_height_30 p-0 m-0 py-md-4">
                         {item.title}
                       </p>
                     </Accordion.Header>
@@ -270,7 +330,7 @@ const Capable_service = () => {
                     onClick={() => handleRightToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500 line_height_30 Frequent_ask_height w-75 p-0 m-0">
+                      <p className="font-size-20 font_weight_500 line_height_30  p-0 m-0 py-md-4">
                         {item.title}
                       </p>
                     </Accordion.Header>

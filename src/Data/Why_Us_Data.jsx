@@ -6,27 +6,31 @@ import Why_us_icon4 from "../assets/images/About/about_why_icon4.png";
 const Why_Us_Data = [
   {
     id: 1,
-    img: Why_us_icon1,
-    count: "200+",
+    img: Why_us_icon2,
+    count: "350",
     title: "Happy Customers",
+    symbol:"+"
   },
   {
     id: 2,
-    img: Why_us_icon2,
-    count: "150+",
-    title: "Projects Completed",
+    img: Why_us_icon3,
+    count: "400+",
+    title: "Successful Projects",
+     symbol:"+"
   },
   {
     id: 3,
-    img: Why_us_icon3,
-    count: "100+",
+    img: Why_us_icon4,
+    count: "50+",
     title: "Team Members",
+     symbol:"+"
   },
   {
     id: 4,
-    img: Why_us_icon4,
-    count: "50+",
-    title: "Awards Won",
+    img: Why_us_icon1,
+    count: "100+",
+    title: "Customer satisfaction",
+     symbol:"%"
   },
 ];
 

@@ -6,22 +6,47 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../assets/images/Home/logo.png";
 import { HiMenu } from "react-icons/hi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircle,
+  faArrowLeft,
+  faChevronDown,
+  faChevronUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { useLocation, Link } from "react-router-dom";
 import useLetsTalk from "../Components/Contact_page_link";
 import { Services_Data } from "../Data/Capable_Data";
 import { useState, useRef } from "react";
+import Home from "../assets/images/Home/header/home.png";
 
-export default function Header() {
+export default function Header({}) {
   const [show, setShow] = useState(false);
+  const [showCapabilities, setShowCapabilities] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
   const location = useLocation();
   const currentPath = location.pathname;
   const letsTalk = useLetsTalk();
 
+  // State for capabilities dropdown in the new offcanvas
+  const [openServiceIndex, setOpenServiceIndex] = useState(null);
+
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
+  const handleShowCapabilities = () => {
+    setShow(false); // Close main menu
+    setShowCapabilities(true); // Open capabilities menu
+  };
+
+  const handleCloseCapabilities = () => {
+    setShowCapabilities(false);
+    setOpenServiceIndex(null); // Reset open dropdowns
+  };
+
+  const handleBackToMain = () => {
+    setShowCapabilities(false);
+    setShow(true); // Go back to main menu
+  };
 
   const showDropdown = () => {
     clearTimeout(timeoutRef.current);
@@ -29,7 +54,7 @@ export default function Header() {
   };
 
   const hideDropdownWithDelay = () => {
-    clearTimeout(timeoutRef.current); 
+    clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
     }, 100);
@@ -45,12 +70,16 @@ export default function Header() {
     }
   }
 
+  const toggleServiceDropdown = (index) => {
+    setOpenServiceIndex(openServiceIndex === index ? null : index);
+  };
+
   return (
     <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3">
       <Navbar expand="lg" className="p-0">
         <Container fluid className="bg-white pt-3 pb-3">
           {/* Mobile View Header */}
-          <div className="d-flex flex-row-reverse d-lg-none justify-content-between align-items-center w-100 px-0">
+          <div className="d-flex flex-row d-lg-none gap-4  justify-content-sm-between align-items-center w-100 px-0">
             <Button
               className="rounded-circle background_color_blue text-white p-2"
               onClick={handleShow}
@@ -58,12 +87,20 @@ export default function Header() {
               <HiMenu size={28} color="white" />
             </Button>
             <div className="d-flex">
-              <Navbar.Brand href="#">
-                <img src={logo} alt="Logo" className="logo_img" />
-              </Navbar.Brand>
+              <Nav.Link
+                as={Link}
+                to="/"
+                onClick={() => {
+                  if (window.location.pathname === "/") {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+              >
+                <img src={logo} alt="Logo" className="logo_img img-fluid" />
+              </Nav.Link>
             </div>
             <Button
-              className="text-nowrap font-size-20 d-none d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center gap-2 blue_gradient border-radius-25"
+              className="text-nowrap font-size-20 d-none d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center gap-2 blue_gradient rounded-5"
               onClick={letsTalk}
             >
               <FontAwesomeIcon
@@ -75,9 +112,19 @@ export default function Header() {
           </div>
 
           {/* Desktop Nav */}
-          <Navbar.Brand href="#" className="d-none d-lg-flex ms-xl-5 ms-lg-3">
+          <Nav.Link
+            as={Link}
+            to="/"
+            onClick={() => {
+              if (window.location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="d-none d-lg-flex ms-xl-5 ms-lg-3"
+          >
             <img src={logo} alt="Logo" className="logo_img" />
-          </Navbar.Brand>
+          </Nav.Link>
+
           <Navbar.Collapse id="navbarScroll" className="d-none d-lg-flex">
             <Nav className="me-auto my-2 my-lg-0" navbarScroll></Nav>
             <Nav className="font-size-24 font_weight_300 gap-xl-4 gap-lg-0 flex-nowrap">
@@ -164,53 +211,171 @@ export default function Header() {
               >
                 Contact
               </Nav.Link>
-              <Button
-                className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient border-radius-25"
-                onClick={letsTalk}
-              >
-                <FontAwesomeIcon
-                  icon={faCircle}
-                  className="font-size-9 text-success pe-2"
-                />{" "}
-                Let's Talk
-              </Button>
+             <Button
+  className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
+  onClick={letsTalk}
+>
+  <FontAwesomeIcon
+    icon={faCircle}
+    className="font-size-9 text-success  me-2 beep-glow"
+  />
+  Let's Talk
+</Button>
+
             </Nav>
           </Navbar.Collapse>
 
-          {/* Offcanvas Menu for Mobile */}
-          <Offcanvas show={show} onHide={handleClose} placement="end">
-            <Offcanvas.Header closeButton />
+          {/* Main Offcanvas Menu for Mobile */}
+          <Offcanvas
+            show={show}
+            onHide={handleClose}
+            placement="start"
+            className="offcanvas-fullscreen offcanvas-bounce"
+          >
+            <Offcanvas.Header closeButton={false}>
+              <div className="d-flex flex-column w-100">
+                {/* Top row with close button */}
+                <div className="mt-5 ms-3">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    aria-label="Close"
+                    onClick={handleClose}
+                  />
+                </div>
+
+                {/* Center logo and title */}
+                <div className="d-flex flex-column align-items-center pt-2 pb-3">
+                  <img src={logo} alt="Logo" className="my-3 img-fluid" />
+                </div>
+              </div>
+            </Offcanvas.Header>
+
             <Offcanvas.Body>
-              <Nav className="flex-column gap-3 font-size-20 text-center">
-                <Nav.Link as={Link} to="/">
+              <Nav className="flex-column gap-4 text-center font-size-50">
+                <Nav.Link as={Link} to="/" onClick={handleClose}>
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/about">
+
+                <Nav.Link as={Link} to="/about" onClick={handleClose}>
                   About
                 </Nav.Link>
-                <Nav.Link as={Link} to="/capable">
-                  Capabilities
+                  <Nav.Link as={Link} to="/capable" onClick={handleClose}>
+                 Capabilities
                 </Nav.Link>
-                <Nav.Link as={Link} to="/solutions">
+                {/* Capabilities - opens new offcanvas */}
+                <button
+                  className="btn w-100 text-decoration-none font-size-50  border-0 p-0"
+                  onClick={handleShowCapabilities}
+                >
+                  Capabilities Service
+                </button>
+
+                <Nav.Link as={Link} to="/solutions" onClick={handleClose}>
                   Solutions
                 </Nav.Link>
-                <Nav.Link as={Link} to="/ourworks">
+
+                <Nav.Link as={Link} to="/ourworks" onClick={handleClose}>
                   Our Works
                 </Nav.Link>
-                <Nav.Link as={Link} to="/contact">
+
+                <Nav.Link as={Link} to="/contact" onClick={handleClose}>
                   Contact
                 </Nav.Link>
+
                 <Button
-                  className="text-nowrap font-size-20 d-flex d-md-none justify-content-center align-items-center gap-2 blue_gradient border-radius-25"
-                  onClick={letsTalk}
+                  className="text-nowrap font-size-28 mt-3 d-flex d-md-none justify-content-center align-items-center gap-2 blue_gradient rounded-5 mx-auto px-4 py-3"
+                  onClick={() => {
+                    handleClose();
+                    letsTalk();
+                  }}
                 >
                   <FontAwesomeIcon
                     icon={faCircle}
                     className="font-size-9 text-success pe-2"
-                  />{" "}
+                  />
                   Let's Talk
                 </Button>
               </Nav>
+            </Offcanvas.Body>
+          </Offcanvas>
+
+          {/* Capabilities Offcanvas */}
+          <Offcanvas
+            show={showCapabilities}
+            onHide={handleCloseCapabilities}
+            placement="start"
+            className="offcanvas-fullscreen offcanvas-bounce"
+          >
+            <Offcanvas.Header closeButton={false}>
+              <div className="me-auto mt-5">
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={handleCloseCapabilities}
+                />
+              </div>
+            </Offcanvas.Header>
+  <img src={logo} alt="Logo" className="my-2 mx-5 " />
+            <p className="mb-0 font-size-80 ms-4 mt-5">Capabilities Services</p>
+            <Offcanvas.Body className="pt-4">
+              <div className="px-3 pt-4">
+                {uniqueServices.map((service, idx) => (
+                  <div key={idx} className="mb-4 border-bottom pb-4">
+                    <button
+                      className="btn w-100 d-flex justify-content-between align-items-center text-start p-0 border-0 bg-transparent"
+                      onClick={() => toggleServiceDropdown(idx)}
+                    >
+                      <h5 className="mb-0 font-size-28 fw-semibold ">
+                        {service.title}
+                      </h5>
+                      <FontAwesomeIcon
+                        icon={
+                          openServiceIndex === idx ? faChevronUp : faChevronDown
+                        }
+                        className="font-size-24 text-muted"
+                      />
+                    </button>
+
+                    {openServiceIndex === idx && (
+                      <div className="mt-3 ps-2">
+                        {service.points.map((point, i) => (
+                          <Nav.Link
+                            key={i}
+                            as={Link}
+                            to={`/capable_service/${point.href}`}
+                            onClick={handleCloseCapabilities}
+                            className="d-block py-2 px-3 mb-2 font-size-24 text-dark bg-light rounded-3 text-decoration-none "
+                            
+                            onMouseEnter={(e) => {
+                              e.target.style.borderLeftColor = "#007bff";
+                              e.target.style.backgroundColor = "#f8f9fa";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.target.style.borderLeftColor = "transparent";
+                              e.target.style.backgroundColor = "#f8f9fa";
+                            }}
+                          >
+                            {point.text}
+                          </Nav.Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="btn btn-link p-0 text-dark d-flex align-items-center gap-2 text-decoration-none"
+                  onClick={handleBackToMain}
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    className="font-size-28"
+                  />
+                  <span className="font-size-28 text-dec">Back</span>
+                </button>
+              </div>
             </Offcanvas.Body>
           </Offcanvas>
         </Container>

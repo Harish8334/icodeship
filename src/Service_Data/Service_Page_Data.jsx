@@ -112,16 +112,16 @@ const serviceData = {
       ],
     },
   },
-  "angular-js": {
+  "angular-": {
     banner: {
       title:
-        "Build dynamic web apps with Codeship’s – Expert AngularJS development tailored to your business needs!",
+        "Build dynamic web apps with Codeship’s – Expert Angular development tailored to your business needs!",
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "For Your AngularJS Development Services.",
+      title: "For Your Angular Development Services.",
       description:
-        "We use AngularJS’s advanced features to build dynamic, high-performance apps. Our expert team delivers responsive, secure, and scalable solutions. Want to elevate your digital presence? Contact us for innovative AngularJS services today!",
+        "We use Angular’s advanced features to build dynamic, high-performance apps. Our expert team delivers responsive, secure, and scalable solutions. Want to elevate your digital presence? Contact us for innovative Angular services today!",
       icon: web_banner,
     },
     software_need: "Your one stop to all your software development needs",
@@ -131,14 +131,14 @@ const serviceData = {
         className: "capable_service_dev_card_left",
         icon: Capable_service_icon1,
         title: "Requirements Analysis",
-        desc: "Our AngularJS experts will understand your business needs via call or meeting. Once the scope is defined, we’ll promptly begin the app development process.",
+        desc: "Our Angular experts will understand your business needs via call or meeting. Once the scope is defined, we’ll promptly begin the app development process.",
       },
       {
         id: 2,
         className: "capable_service_dev_card_right",
         icon: Capable_service_icon2,
         title: "Concept Generation",
-        desc: "After discussions with our AngularJS team, we brainstorm ideas and share prototypes or sample modules for better understanding of your app’s structure.",
+        desc: "After discussions with our Angular team, we brainstorm ideas and share prototypes or sample modules for better understanding of your app’s structure.",
       },
       {
         id: 3,
@@ -152,23 +152,23 @@ const serviceData = {
         className: "capable_service_dev_card_center",
         icon: Capable_service_icon4,
         title: "Maximizing Results",
-        desc: "After final adjustments and testing, we deliver the complete AngularJS app on time. We ensure the solution aligns with your expectations and goals.",
+        desc: "After final adjustments and testing, we deliver the complete Angular app on time. We ensure the solution aligns with your expectations and goals.",
       },
     ],
     work_with_us:
-      "We use AngularJS to deliver scalable and secure web apps tailored to your needs. Our team ensures timely delivery with smooth communication and support. Let us build innovative front-end solutions that elevate your brand and user experience.",
+      "We use Angular to deliver scalable and secure web apps tailored to your needs. Our team ensures timely delivery with smooth communication and support. Let us build innovative front-end solutions that elevate your brand and user experience.",
     work_with_us_detail: {
       first: {
         title: "Time-saving",
         series: "01",
         description:
-          "With deep AngularJS experience, Codeship saves your time and cost. Your investment in our team ensures efficient development and faster go-to-market. We help you stay ahead of the competition with powerful, dynamic apps.",
+          "With deep Angular experience, Codeship saves your time and cost. Your investment in our team ensures efficient development and faster go-to-market. We help you stay ahead of the competition with powerful, dynamic apps.",
       },
       second: {
         title: "Advanced Technology",
         series: "02",
         description:
-          "With AngularJS expertise, we ensure your app stays fast and secure. Need UI fixes, API integrations, or bug resolutions? Our team handles everything professionally. Get ongoing support and robust updates for  application performance.",
+          "With Angular expertise, we ensure your app stays fast and secure. Need UI fixes, API integrations, or bug resolutions? Our team handles everything professionally. Get ongoing support and robust updates for  application performance.",
       },
       third: {
         title: "More reliable",
@@ -181,24 +181,24 @@ const serviceData = {
     accordionData: {
       left: [
         {
-          title: "What services do you offer under AngularJS development?",
+          title: "What services do you offer under Angular development?",
           content:
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },
         {
-          title: "Why should I choose Codeship for AngularJS development?",
+          title: "Why should I choose Codeship for Angular development?",
           content:
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },
         {
-          title: "Can you migrate my app to AngularJS securely?",
+          title: "Can you migrate my app to Angular securely?",
           content:
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },
       ],
       right: [
         {
-          title: "Is AngularJS good for new development in 2025?",
+          title: "Is Angular good for new development in 2025?",
           content:
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },
@@ -208,7 +208,7 @@ const serviceData = {
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },
         {
-          title: "What makes your AngularJS team unique?",
+          title: "What makes your Angular team unique?",
           content:
             "We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!",
         },

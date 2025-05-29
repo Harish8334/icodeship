@@ -1,28 +1,41 @@
-
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 
 const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
 
   useEffect(() => {
+    const checkDevice = () => {
+      setIsDesktop(window.innerWidth >= 992);
+    };
+
     const toggleVisibility = () => {
-      setVisible(window.scrollY > 300);
+      if (window.scrollY > 300 && window.innerWidth >= 992) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
     };
 
     window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener('resize', checkDevice);
+
+    // Initial check
+    toggleVisibility();
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener('resize', checkDevice);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    visible && (
+    visible && isDesktop && (
       <button
         onClick={scrollToTop}
         style={{

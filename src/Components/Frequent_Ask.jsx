@@ -30,8 +30,8 @@ function Frequent_Ask() {
                   className=' border_shadow rounded-4  mb-lg-4 mb-3  '
                   onClick={() => handleLeftToggle(index.toString())}
                 >
-                 <Accordion.Header ><p className='font-size-20  font_weight_500 line_height_30  Frequent_ask_height w-75 p-0 m-0'>{item.title}</p></Accordion.Header>
-                  <Accordion.Body className='font-size-16 font_weight_500'>{item.content}</Accordion.Body>
+                 <Accordion.Header className="no-padding-header" ><p className='font-size-20  font_weight_500 line_height_30  Frequent_ask_height w-75 p-0 m-0'>{item.title}</p></Accordion.Header>
+                  <Accordion.Body className='font-size-16 font_weight_500 pt-0'>{item.content}</Accordion.Body>
                 </Accordion.Item>
               ))}
             </Accordion>
@@ -48,7 +48,7 @@ function Frequent_Ask() {
                   onClick={() => handleRightToggle(index.toString())}
                 >
                   <Accordion.Header ><p className='font-size-20  font_weight_500 line_height_30  Frequent_ask_height w-75 p-0 m-0'>{item.title}</p></Accordion.Header>
-                  <Accordion.Body className='font-size-16 font_weight_500'>{item.content}</Accordion.Body>
+                  <Accordion.Body className='font-size-16 font_weight_500 pt-0'>{item.content}</Accordion.Body>
                 </Accordion.Item>
               ))}
             </Accordion>

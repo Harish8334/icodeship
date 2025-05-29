@@ -10,6 +10,7 @@ import Shape_3 from "../assets/images/Capable/capable_shape3.png";
 
 export const Services_Data = [
   {
+    id : "web-development",
     title: "Website Development",
     description:
       "Get a high-quality, responsive, and fully optimized website designed to elevate your business. Our expert team ensures seamless functionality across all devices, enhancing user experience and driving results for your brand.",
@@ -17,13 +18,14 @@ export const Services_Data = [
     imageOdd: Shape_1,
     points: [
       { text: "Website Development", href: "web-dev" },
-      { text: "Angular Js Development", href: "angular-js" },
+      { text: "Angular  Development", href: "angular-js" },
       { text: "Custom Website Development", href: "custom-web-dev" },
       { text: "Wordpress Development", href: "wordpress-dev" },
       { text: "Web App Development", href: "web-app-dev" },
     ],
   },
   {
+    id: "mobile-app-development",
     title: "Mobile App Development",
     description:
       "In today's mobile-first era, people are more focused on mobile devices than any other platform Our cutting-edge technology ensures seamless performance, user-friendly interfaces, and tailored features to meet your business needs.",
@@ -35,6 +37,7 @@ export const Services_Data = [
     ],
   },
   {
+    id:"website-designing",
     title: "Website Designing",
     description:
       "Combining creativity with technical expertise, we design digital experiences that meet today's user needs while anticipating tomorrow's challenges. Our forward-thinking approach ensures adaptable, future-ready solutions that evolve with the digital landscape.",
@@ -51,6 +54,7 @@ export const Services_Data = [
   },
 
   {
+    id:"ecommerce-solutions",
     title: "E-Commerce Solutions",
     description:
       "We create powerful and scalable e-commerce platforms that help you sell more and manage your business better. From product pages to payment systems, we’ve got it all.",
@@ -63,6 +67,7 @@ export const Services_Data = [
     ],
   },
   {
+    id:"domain-hosting",
     title: "Domain & Hosting",
     description:
       "We provide specialized support for the procurement, setup, and maintenance of servers, ensuring the continuous, smooth operation of your online applications 24/7, allowing you to focus on growth while we handle the technical complexities.",
@@ -76,6 +81,7 @@ export const Services_Data = [
     ],
   },
   {
+    id:"digital-marketing",
     title: "Digital Marketing",
     description:
       "Boost your brand’s online presence with expert digital marketing strategies tailored to your business goals. We handle everything from content to analytics for maximum impact.",

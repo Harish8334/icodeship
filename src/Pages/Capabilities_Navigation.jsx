@@ -3,11 +3,11 @@ import { Container, Button } from "react-bootstrap";
 import "../Pages/Capabilities.css";
 import { ChevronRight } from "lucide-react";
 import { Services_Data } from "../Data/Capable_Data";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import Banner_Data from "../Data/Banner_Data";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useImageSlideInAnimation } from "../Animation/animation";
 
 function Capabilities() {
@@ -18,6 +18,18 @@ function Capabilities() {
   // Run animation hook
   useImageSlideInAnimation(containerRef);
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.getElementById(hash.substring(1));
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300); // slight delay ensures section has mounted
+      }
+    }
+  }, []);
+
   return (
     <div className="capable_services_container">
       <Banner text={text} image={image} />
@@ -27,6 +39,7 @@ function Capabilities() {
           {Services_Data.map((service, idx) => (
             <div
               key={idx}
+              id={service.id}
               className={`row mb-5 capable_service_data ${
                 idx % 2 !== 0 ? "flex-row-reverse" : ""
               }`}

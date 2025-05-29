@@ -1,77 +1,111 @@
-.capable_p_text{
-    max-width: 653px;
-    color: #282828;
+.capable_p_text {
+  max-width: 653px;
+  color: #282828;
 }
-.capable_shape1{
-    top: 20%;
-    z-index: -1;
+.capable_shape1 {
+  top: 20%;
+  z-index: -1;
 }
-  
-.capable_service_data {
-    padding-top: 10%;
-  }
-.capable_services_container{
-    overflow-x: hidden;
-    overflow-y: hidden;
 
+.capable_service_data {
+  padding-top: 10%;
 }
-.work_togehter_shape{
-    bottom: -10%;
-    left: 40%;
+.capable_services_container {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-.why_choose_us_text{
-    color: #888888;
+.work_togehter_shape {
+  bottom: -10%;
+  left: 40%;
+}
+.why_choose_us_text {
+  color: #888888;
 }
 
 .capable_service_dev_card_left {
-    left: 10%;
+  left: 10%;
 }
 .capable_service_dev_card_right {
-    right: 20%; 
-    top: 40%;
+  right: 20%;
+  top: 40%;
 }
-.capable_service_dev_card_text{
-    max-width: 408px;
+.capable_service_dev_card_text {
+  max-width: 408px;
 }
-.capable_service_dev_card_left2{
-    left: 10%; 
-    top: 70%;
-}
-.capable_service_dev_card_center{
-   top: 100%;
-} 
-.software_container{
-    margin-bottom: 21%;
-}
-.capable_service_card{
-    height:350px
+.capable_service_dev_card_left2 {
+  left: 10%;
+  top: 70%;
 }
 
-@media (max-width:576px) {
-    .Capable_service_icon1{
-        max-width: 60px;
-    }
-   
-    .capable_service_card{
-    height:210px
+.capable_service_dev_card_center {
+  top: 99%;
+  right:20%;
+}
+.software_container {
+  margin-bottom: 21%;
+}
+.capable_service_card {
+  height: 350px;
+}
+.capable_card{
+  height:550px;
+}
+
+
+@media (max-width: 576px) {
+  .Capable_service_icon1 {
+    max-width: 60px;
+  }
+.mobile_services_section_wrapper {
+  position: relative;
+  height: 100vh;
+}
+  .capable_service_card .card {
+    height: 250px;
+    width: 350px;
+  }
+  .capable_service_card_text {
+    max-width: 320px;
+  }
+}
+@media (min-width:576px) and (max-width: 768px) {
+  .capable_service_card {
+    height: 250px;
+  }
+   .capable_service_card .card {
+    height: 250px;
+    width: 450px;
+  }
+   .capable_service_card_text {
+    max-width: 400px;
+  }
+  .mobile_services_section_wrapper {
+  position: relative;
+  height: 100vh;
 }
 }
-@media (max-width:768px){
-  .capable_service_card{
-    height:250px
-}
-}
-@media (min-width:992px) and (max-width:1550px){
- .why_choose_us{
-    margin-top:8%
- }
-}
-.rectangle-slide {
-  width: 100%;
+@media (min-width: 992px) and (max-width: 1550px) {
+  .why_choose_us {
+    margin-top: 8%;
+  }
 }
 
 @media (min-width: 992px) {
   .rectangle-slide {
     width: 992px;
+    
   }
+}
+.mobile_services_row {
+  display: flex;
+  white-space: nowrap;
+}
+
+
+.mobile_services_row {
+  width: max-content;
+}
+.glow-on-touch {
+  box-shadow: 0 0 20px #504CA0, 0 0 40px #504CA0;
+  transition: box-shadow 0.3s ease;
 }

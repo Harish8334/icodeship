@@ -1,15 +1,28 @@
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Footer() {
+    const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
   return (
-    <Container className='my_container'>
-      <p className='font-size-80 font_weight_600'>Let’s Talk</p>
+    <Container className='my_container mt-5'>
+      <p className='font-size-80 font_weight_600 mt-5 pt-md-5'>Let’s Talk</p>
       <div className='row'>
         <div className='col-lg-6 col-md-6 col-sm-6 col-12 '>
           <div className='row-6'>
             <a href="mailto:support@codeship.in" className='footer_support font-size-28 font_weight_400 text-black '>
-              support@codeship.in
+              Techsupport@codeship.in
             </a>
           </div>
           <div className='row-6 mt-5'>
@@ -21,7 +34,7 @@ function Footer() {
           <div className='flex-column flex-lg-row flex-md-row flex-sm-row d-flex justify-content-end '>
             <div className='col-lg-6 col-md-6 col-sm-6 col-6 mt-5'>
               <div className='d-flex flex-column gap-5 '>
-                <div className="d-inline"><Link to="/" className='footer_links font-size-30 font_color_black font_weight_400 '>Home</Link></div>
+                <div className="d-inline"><Link to="/" className='footer_links font-size-30 font_color_black font_weight_400 ' onClick={handleHomeClick}>Home</Link></div>
                <div className="d-inline"><Link to="/about" className='footer_links font-size-30 font_color_black font_weight_400 d-inline'>About</Link></div>
                <div className="d-inline">  <Link to="/capable" className='footer_links font-size-30 font_color_black font_weight_400 d-inline '>Capabilities</Link></div>
                 

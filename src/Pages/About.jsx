@@ -18,38 +18,53 @@ import {
 import Why_us from "../assets/images/About/about_why_us.png";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/pagination';
 import "../Pages/About.css";
 import useLetsTalk from "../Components/Contact_page_link.jsx";
-import { animateCoreCards ,  animateOfficeCards } from "../Animation/animation";
+import {
+  countUpOnScroll,
+   scrollPopup,
+   useCoreCardAnimations
+} from "../Animation/animation";
 import { useRef, useEffect } from "react";
-
+import { Pagination } from "swiper/modules";
 function About() {
   const { text, image } = Banner_Data.about;
 
   const letsTalk = useLetsTalk();
- const cardRefs = useRef([]);
-const cardsRef = useRef([]);
+  const countRefs = useRef([]);
 
   useEffect(() => {
-    animateCoreCards(cardRefs);
+    countUpOnScroll(countRefs.current);
   }, []);
-   useEffect(() => {
-    animateOfficeCards(cardsRef);
-  }, []);
+  useEffect(() => {
+  scrollPopup();
+}, []);
+ const cardRefs = useRef([]);
+  useCoreCardAnimations(cardRefs);
+
+  const setCardRef = (el, index) => {
+    cardRefs.current[index] = el;
+  };
+
+
+
   return (
     <>
       <Header />
       <Banner text={text} image={image} />
       <Brands />
-      {/* Core value section */}
-       <section className="pt-0 pb-5">
+       {/* Core value section */}
+    <section className="pt-0 pb-md-5">
       <Container className="my_container mt-lg-5 mb-5">
         <div className="row services_row">
-          <div className="col-12 col-md-6 col-sm-6 col-xl-4 col-lg-4">
+          {/* Left Text & Button */}
+          <div className="col-12 col-md-6 col-sm-12 col-xl-5 col-lg-4">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
               Codeship core <br className="d-none d-lg-block" />
-              values that keep us <br />
+              values that keep us <br className="d-none d-lg-block" />
               so well together.
             </p>
             <p className="font-size-24 mx-3 mx-lg-0 mx-xl-0">
@@ -66,71 +81,97 @@ const cardsRef = useRef([]);
             </Button>
           </div>
 
-          <div className="col-12 col-xl-8 col-lg-8 col-md-6 col-sm-6 mt-md-5 mt-lg-5">
-            <div className="d-none d-lg-flex flex-column align-items-end">
-              <div className="row">
-                {cardData.slice(0, 2).map((item, index) => (
-                  <div
-                    key={index}
-                    className={`col-md-6 About_core_card_size ${
-                      index === 1 ? "About_core_card" : ""
-                    }`}
-                    ref={(el) => (cardRefs.current[index] = el)}
-                  >
-                    <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
-                      <div className="d-flex justify-content-center pt-3">
-                        <img
-                          src={item.icon}
-                          alt={item.title}
-                          className="img-fluid about_core_icon"
-                        />
-                      </div>
-                      <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
-                        {item.title}
-                      </p>
-                      <div className="d-flex justify-content-center mt-3">
-                        <p className="font-size-20 text-center px-4">
-                          {item.description}
-                        </p>
-                      </div>
+          {/* Desktop Cards Grid - visible lg and above */}
+          <div className="col-12 col-xl-7 col-lg-8 col-md-6 col-sm-6 mt-md-5 mt-lg-5 d-none d-lg-flex flex-column align-items-end">
+            <div className="row w-100">
+              {cardData.slice(0, 2).map((item, index) => (
+                <div
+                  key={index} ref={(el) => setCardRef(el, index)}
+                  className={`col-md-6 About_core_card_size ${
+                    index === 1 ? "About_core_card" : ""
+                  }`}
+                >
+                  <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
+                    <div className="d-flex justify-content-center pt-3">
+                      <img
+                        src={item.icon}
+                        alt={item.title}
+                        className="img-fluid about_core_icon"
+                      />
+                    </div>
+                    <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
+                      {item.title}
+                    </p>
+                    <div className="d-flex justify-content-center mt-3">
+                      <p className="font-size-20 text-center px-4">{item.description}</p>
                     </div>
                   </div>
-                ))}
-              </div>
-
-              <div className="row">
-                {cardData.slice(2).map((item, index) => {
-                  const overallIndex = index + 2;
-                  return (
-                    <div
-                      key={index}
-                      className={`col-md-6 About_core_card_size ${
-                        index === 1 ? "mt-5" : "About_core_card_down"
-                      }`}
-                      ref={(el) => (cardRefs.current[overallIndex] = el)}
-                    >
-                      <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
-                        <div className="d-flex justify-content-center mt-2 pt-3">
-                          <img
-                            src={item.icon}
-                            alt={item.title}
-                            className="img-fluid about_core_icon"
-                          />
-                        </div>
-                        <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
-                          {item.title}
-                        </p>
-                        <div className="d-flex justify-content-center mt-3">
-                          <p className="font-size-20 text-center px-4">
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                </div>
+              ))}
             </div>
+
+            <div className="row w-100">
+              {cardData.slice(2).map((item, index) => (
+                <div
+                  key={index} ref={(el) => setCardRef(el, index + 2)}
+                  className={`col-md-6 About_core_card_size ${
+                    index === 1 ? "mt-5" : "About_core_card_down"
+                  }`}
+                >
+                  <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
+                    <div className="d-flex justify-content-center mt-2 pt-3">
+                      <img
+                        src={item.icon}
+                        alt={item.title}
+                        className="img-fluid about_core_icon"
+                      />
+                    </div>
+                    <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
+                      {item.title}
+                    </p>
+                    <div className="d-flex justify-content-center mt-3">
+                      <p className="font-size-20 text-center px-4">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Swiper Slider for small screens only */}
+          <div className="col-12 col-md-6 d-lg-none mt-4">
+    <Swiper
+      modules={[Pagination]}
+      slidesPerView={1}
+      spaceBetween={30}
+      pagination={{
+        clickable: true,
+        renderBullet: (index, className) =>
+          `<span class="${className} custom-pagination-dot"></span>`,
+      }}
+      className="custom-swiper pb-5"
+    >
+  {cardData.map((item, index) => (
+    <SwiperSlide key={index}>
+      <div className="card pb-2 rounded-4 border_shadow mx-3" ref={(el) => setCardRef(el, index + 4)}>
+        <div className="d-flex justify-content-center pt-3">
+          <img
+            src={item.icon}
+            alt={item.title}
+            className="img-fluid about_core_icon"
+          />
+        </div>
+        <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
+          {item.title}
+        </p>
+        <div className="d-flex justify-content-center mt-3">
+          <p className="font-size-20 text-center px-4">{item.description}</p>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+
           </div>
         </div>
       </Container>
@@ -148,7 +189,7 @@ const cardsRef = useRef([]);
                 Why Working with <br />
                 Codeship?
               </p>
-              <p className="w-75">
+              <p className="">
                 We offer a comprehensive range of software development services
                 tailored to meet the unique needs of your business. A
                 full-service creative agency designing and building inventive
@@ -156,18 +197,26 @@ const cardsRef = useRef([]);
               </p>
               <div className="row g-2">
                 {Why_Us_Data.map((item, index) => (
-                  <div className="col-6" key={item.id}>
-                    <div className="card p-0  border_shadow rounded-4">
-                      <div className="d-flex gap-1 g-lg-5 g-md-5 g-sm-5 ">
+                  <div className="col-12 col-sm-6" key={item.id}>
+                    <div className="card p-0 border_shadow rounded-4">
+                      <div className="d-flex gap-1 g-lg-5 g-md-5 g-sm-5">
                         <img
                           src={item.img}
                           alt=""
                           className="img-fluid about_core_icon"
                         />
                         <div>
-                          <p className="font-size-40 font_weight_700 pt-2 m-0">
-                            {item.count}
+                          <p
+                            className="font-size-40 font_weight_700 pt-2 m-0"
+                            data-count={item.count}
+                            data-symbol={item.symbol || ""}
+                            ref={(el) => {
+                              if (el) countRefs.current[index] = el;
+                            }}
+                          >
+                            0 {item.symbol}
                           </p>
+
                           <p className="font_weight_500 font-size-16 p-0">
                             {item.title}
                           </p>
@@ -182,46 +231,33 @@ const cardsRef = useRef([]);
         </Container>
       </section>
       {/* Team members */}
-      <section>
+      <section className="my-5">
         <Container fluid>
           <p className="font-size-58 text-center font_weight_600 mt-5">
             Simply, a legendary team
           </p>
           <div className="d-flex justify-content-center">
-            {" "}
-            <p className="font-size-28 text-center   ">
+            <p className="font-size-28 text-center">
               Fueled by passion, expertise, and collaboration, our diverse team
-              at Codeship is <br className="d-none d-lg-block " />
+              at Codeship is
+              <br className="d-none d-lg-block" />
               dedicated to building successful products.
             </p>
           </div>
+
           <Swiper
+            modules={[Pagination]}
             slidesPerView={5}
             spaceBetween={50}
             loop={true}
             freeMode={true}
-            className="mySwiper mt-5 mb-5 px-3 px-lg-0"
+            className="mySwiper mt-5 mb-3 px-3 px-lg-0"
             breakpoints={{
-              320: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              576: {
-                slidesPerView: 4,
-                spaceBetween: 15,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 20,
-              },
-              992: {
-                slidesPerView: 4,
-                spaceBetween: 25,
-              },
-              1200: {
-                slidesPerView: 5,
-                spaceBetween: 30,
-              },
+              320: { slidesPerView: 2, spaceBetween: 30 },
+              576: { slidesPerView: 4, spaceBetween: 15 },
+              768: { slidesPerView: 4, spaceBetween: 20 },
+              992: { slidesPerView: 4, spaceBetween: 25 },
+              1200: { slidesPerView: 5, spaceBetween: 30 },
             }}
           >
             {Team_Data.map((member, index) => (
@@ -279,40 +315,75 @@ const cardsRef = useRef([]);
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Pagination bullets */}
+          <div className="custom-swiper-pagination d-flex justify-content-center my-5" id="office-section" />
         </Container>
       </section>
       {/* Office */}
-       <section>
-      <Container className="my_container">
-        <p className="font-size-62 font_weight_600 text-center">
-          Get a feeling at our office
-        </p>
-        <p className="font-size-30 text-center ">
-          Dynamic energy and collaborative spirit defines our workspace and its remarkable people.
-        </p>
+      <section >
+        <Container className="my_container">
+          <p className="font-size-62 font_weight_600 text-center">
+            Get a feeling at our office
+          </p>
+          <p className="font-size-30 text-center ">
+            Dynamic energy and collaborative spirit defines our workspace and
+            its remarkable people.
+          </p>
 
-        <div className="row d-none d-lg-flex d-md-flex">
-          {Office_Data.map((item, index) => (
-            <div
-              className={`col-md-6 office-card ${index % 2 === 1 ? "mt-lg-5 About_office" : ""}`}
-              key={index}  ref={(el) => (cardsRef.current[index] = el)}
-            >
-              <div className="rounded-4">
-                <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
-                  <img
-                    src={item.img}
-                    alt={`img ${index + 1}`}
-                    className="img-fluid pt-lg-5"
-                  />
+          <div className="row d-none d-lg-flex d-md-flex office-animation-wrapper">
+            {Office_Data.map((item, index) => (
+              <div
+                className={`col-md-6 office-card animate-from-bottom ${
+                  index % 2 === 1 ? " About_office" : ""
+                }`}
+                key={index}
+               
+              >
+                <div className="rounded-4">
+                  <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
+                    <img
+                      src={item.img}
+                      alt={`img ${index + 1}`}
+                      className="img-fluid pt-lg-5"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Add your Swiper for mobile here */}
-      </Container>
-    </section>
+          {/* Swiper for mobile here */}
+          <div className="d-md-none d-block">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              autoplay={{ delay: 1000, disableOnInteraction: false }}
+              loop={true}
+              className="mySwiper"
+            >
+              {Office_Data.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className={`office-card animate-from-bottom`}
+                  >
+                    <div className="rounded-4">
+                      <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
+                        <img
+                          src={item.img}
+                          alt={`img ${index + 1}`}
+                          className="img-fluid pt-lg-5"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </Container>
+      </section>
       <WorkTogther />
       <Footer />
     </>

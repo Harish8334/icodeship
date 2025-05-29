@@ -1,58 +1,196 @@
-import React , {useRef , } from "react";
+// React Core
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+// Data
 import Things_Data from "../Data/Things_Data";
 import Services from "../Data/Service_Data";
 import Banner_Data from "../Data/Banner_Data";
 import projects from "../Data/Project_Data";
-import Animation from "../Animation/TechStackAnimation";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import Banner from "../Components/Banner";
-import Brands from "../Components/Brands";
-import Contact from "../Components/Contact";
-import Testimonial from "../Components/Testimonial";
+import { softwareData } from "../Data/Software_Data";
+
+// Components
+import {
+  Header,
+  Footer,
+  Banner,
+  Brands,
+  Contact,
+  Testimonial,
+} from "../Components/Componets";
 import "../Components/Contact_page_link";
-// React Bootstrap
-import { Container, Button, Card } from "react-bootstrap";
-// Fontawsome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { ChevronRight } from "lucide-react";
+
+// Animation Hooks & Utils
+import {
+  useScrollAnimation,
+  useProjectCardHover,
+  openModalAnimation,
+  closeModalAnimation,
+} from "../Animation/animation";
+import Animation from "../Animation/TechStackAnimation";
+
 // Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-// import required modules
-import { Swiper, SwiperSlide } from "swiper/react";
-// images
+// Form Handling
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
+// React Bootstrap
+import { Container, Button } from "react-bootstrap";
+
+// FontAwesome & Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { ChevronRight } from "lucide-react";
+
+// GSAP
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Styles
+import "react-toastify/dist/ReactToastify.css";
+
+// Assets
 import map from "../assets/images/Home/map.png";
-
-import Software1_icon from "../assets/images/Home/software1.png";
-import Software2_icon from "../assets/images/Home/software2.png";
-import Software3_icon from "../assets/images/Home/software3.png";
-import Software_img from "../assets/images/Home/software.png";
-import Swirl from "../assets/images/Home/swirl.png";
 import AWS from "../assets/images/Home/aws.png";
 import Nodejs from "../assets/images/Home/nodejs.png";
 import React_img from "../assets/images/Home/react.png";
 import Angular_img from "../assets/images/Home/angularJS.png";
-import { useScrollAnimation  } from "../Animation/animation";
+
+// Constants
+const { text, image } = Banner_Data.home;
+
+const contactSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  mobile: Yup.string()
+    .matches(/^\d{10}$/, "Mobile number must be 10 digits")
+    .required("Enter a mobile number"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  industry: Yup.string().required("Industry is required"),
+  software: Yup.string().required("Software is required"),
+  message: Yup.string().required("Message is required"),
+});
 
 function Home() {
+  const navigate = useNavigate();
+
+  // Data slices for cards
   const topCards = Things_Data.slice(0, 2);
   const bottomCards = Things_Data.slice(2, 4);
-  const images = { AWS, Nodejs, React_img, Angular_img };
-  const softwareData = [
-    { name: "ERP Software", icon: Software1_icon },
-    { name: "CRM Software", icon: Software2_icon },
-    { name: "HRMS Software", icon: Software3_icon },
-  ];
 
-  const { text, image } = Banner_Data.home;
+  // Refs for project card hover animations
+  const cardRef = useRef(null);
+  const overlayRef = useRef(null);
+  const titleRef = useRef(null);
+
+  // Custom hooks for animation and hover effects
+  useProjectCardHover(cardRef, overlayRef, titleRef);
   useScrollAnimation();
-const section1Ref = useRef(null);
-  const section2Ref = useRef(null);
+
+  // Software section refs and state
+  const sectionRef = useRef(null);
+  const iconsRef = useRef([]);
+  const imageRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Projects section refs and state
+  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [data, setData] = useState({});
+
+  // Purchase Contact Form modal and toast state
+  const modalRef = useRef(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [formTitle, setFormTitle] = useState("");
+
+  // Pause and resume autoplay helpers
+  const pauseAutoplay = () => swiperRef.current?.autoplay?.stop();
+  const resumeAutoplay = () => swiperRef.current?.autoplay?.start();
+
+  // Handle project card click
+  const handleCardClick = (project, index) => {
+    if (window.innerWidth < 768) {
+      if (activeIndex === index) {
+        setData({ title: project.title, link: project.href });
+        setShowModal(true);
+      } else {
+        setActiveIndex(index);
+        pauseAutoplay();
+      }
+    } else {
+      setData({ title: project.title, link: project.href });
+      setShowModal(true);
+    }
+  };
+
+  // Handle opening purchase form modal
+  const handleOpenForm = (title) => {
+    setFormTitle(title);
+    setModalOpen(true);
+  };
+
+  // Handle closing purchase form modal with animation
+  const handleClose = () => {
+    closeModalAnimation(modalRef, () => {
+      setModalOpen(false);
+    });
+  };
+
+  useEffect(() => {
+    // --- ScrollTrigger setup for software section ---
+    const section = sectionRef.current;
+    const totalItems = softwareData.length;
+
+    const trigger = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: `+=${window.innerHeight * totalItems}`,
+      pin: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const newIndex = Math.floor(progress * totalItems);
+        setCurrentIndex(newIndex >= totalItems ? totalItems - 1 : newIndex);
+      },
+    });
+
+    // --- Modal click outside handler ---
+    const handleClickOutside = (e) => {
+      if (showModal && e.target.classList.contains("fullscreen-modal")) {
+        setShowModal(false);
+        resumeAutoplay();
+      }
+      if (
+        !e.target.closest(".project_card") &&
+        !e.target.closest(".fullscreen-modal")
+      ) {
+        setActiveIndex(null);
+        resumeAutoplay();
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    // --- Animate open modal when modalOpen changes ---
+    if (modalOpen) {
+      openModalAnimation(modalRef);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      trigger.kill();
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [softwareData.length, showModal, modalOpen]);
 
   return (
     <div className="overflow-hidden">
@@ -60,34 +198,35 @@ const section1Ref = useRef(null);
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
-      <section className=" pt-4 pb-5 pt-lg-5  d-flex justify-content-center align-items-center">
+      <section className="d-flex justify-content-center align-items-center py-5 pt-lg-5">
         <img
           src={map}
           alt=""
-          className="img-fluid position-relative pt-0 pt-lg-5 "
+          className="img-fluid position-relative pt-0 pt-lg-5"
         />
-        <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text ">
-          <p className="font-size-40 font_weight_400 text-center mx-lg-5 mx-3">
+        <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text">
+          <p className="font-size-40 font_weight_400 text-center mx-3 mx-lg-5">
             Since our founding in 2020, Codeship has rapidly grown into a
             dynamic and thriving company.
           </p>
-          <p className="font-size-40 font_weight_400 text-center   mx-3 ">
+          <p className="font-size-40 font_weight_400 text-center mx-3">
             With a shared dedication to innovation and a customer-centric
             approach, our team brings a wealth of experience and skills to the
             table.
           </p>
         </div>
       </section>
+
       {/* Things can do section */}
-      <section>
-        <Container className="my_container py-lg-5 ">
-          <div className="row ">
-            <div className="col-12 col-sm-5 col-md-6">
-              <p className="font-size-58 line_height_70 font_weight_600   ps-3">
+      <section className="py-5">
+        <Container className="my_container py-lg-5">
+          <div className="row">
+            <div className="col-12 col-sm-5 col-md-6 col-lg-5 ">
+              <p className="font-size-58 font_weight_600 line_height_70 ps-3">
                 Some of the <br className="d-none d-lg-block" /> things we can
                 do <br className="d-none d-lg-block" /> for you
               </p>
-              <p className="font-size-24 font_weight_400 ps-3 ">
+              <p className="font-size-24 font_weight_400 ps-3">
                 We offer a comprehensive range of{" "}
                 <br className="d-none d-lg-block" /> software development
                 services tailored <br className="d-none d-lg-block" /> to meet
@@ -95,31 +234,32 @@ const section1Ref = useRef(null);
                 business.
               </p>
             </div>
-            <div className="col-12 col-sm-7 col-md-6 mb-5">
-              <div className="row  ">
-                <div className="d-none  d-xl-flex flex-column gap-4    col-lg-6">
+
+            <div className="col-12 col-sm-7 col-md-6 col-lg-7 mb-5 ">
+              <div className="row">
+                <div className="d-none d-lg-flex flex-column gap-4 col-lg-6 ">
                   {/* Top two cards */}
                   {topCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card border_shadow  border-0 mb-4  card-hover-rotate me-3"
+                      className="card things_card  h-100 border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
                           <div className="d-flex">
-                            <div className="position-relative things_icon_container pe-5">
+                            <div className="position-relative pe-5 things_icon_container">
                               <img
                                 src={item.hoverIcon}
                                 alt=""
-                                className="pt-2 pb-3 things_head things_hover_icon position-absolute"
+                                className="things_head things_hover_icon position-absolute pt-2 pb-3"
                               />
                               <img
                                 src={item.icon}
                                 alt=""
-                                className="pt-2 pb-3 things_head things_icon position-absolute"
+                                className="things_head things_icon position-absolute pt-2 pb-3"
                               />
                             </div>
-                            <p className="ps-3 pt-2 pb-3 font-size-24 font_weight_500 things_head ">
+                            <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
                               {item.title}
                             </p>
                           </div>
@@ -132,29 +272,29 @@ const section1Ref = useRef(null);
                   ))}
                 </div>
 
-                <div className="d-none  d-xl-flex flex-column gap-4  col-lg-6">
+                <div className="d-none d-lg-flex flex-column gap-4 col-lg-6">
                   {/* Bottom two cards */}
                   {bottomCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card border_shadow rounded-4 border-0 mb-4  card-hover-rotate "
+                      className="card things_card border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
                           <div className="d-flex">
-                            <div className="position-relative things_icon_container pe-5">
+                            <div className="position-relative pe-5 things_icon_container">
                               <img
                                 src={item.hoverIcon}
                                 alt=""
-                                className="pt-2 pb-3 things_head things_hover_icon position-absolute"
+                                className="things_head things_hover_icon position-absolute pt-2 pb-3"
                               />
                               <img
                                 src={item.icon}
                                 alt=""
-                                className="pt-2 pb-3 things_head things_icon position-absolute"
+                                className="things_head things_icon position-absolute pt-2 pb-3"
                               />
                             </div>
-                            <p className="ps-3 pt-2 pb-3 font-size-24 font_weight_500 things_head ">
+                            <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
                               {item.title}
                             </p>
                           </div>
@@ -166,27 +306,39 @@ const section1Ref = useRef(null);
                     </div>
                   ))}
                 </div>
-                <div className="d-flex justify-content-center align-items-center d-xl-none  px-sp-3 px-pd-3 px-lg-5 px-3 ">
-                  <Swiper loop={SwiperSlide.length > 3} slidesPerView={1} spaceBetween={30}>
+
+                <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-3 px-lg-5 px-pd-3 px-sp-3">
+                  <Swiper
+                    modules={[Pagination]}
+                    loop={Things_Data.length > 3}
+                    slidesPerView={1}
+                    spaceBetween={30}
+                    pagination={{
+                      clickable: true,
+                      renderBullet: (index, className) =>
+                        `<span class="${className} custom-pagination-dot"></span>`,
+                    }}
+                    className="custom-swiper"
+                  >
                     {Things_Data.map((item, index) => (
                       <SwiperSlide key={index}>
-                        <div className="card things_card rounded-4 border-0 mb-4">
-                          <div className="card-body  border_shadow rounded-4 border-0 m-2">
+                        <div className="card things_card pb-3 pb-sm-0 rounded-4 border-0 mb-4">
+                          <div className="card-body border_shadow border-0 rounded-4 m-2">
                             <div className="card-title">
                               <div className="d-flex">
-                                <div className="position-relative things_icon_container pe-5">
+                                <div className="position-relative pe-5 things_icon_container">
                                   <img
                                     src={item.hoverIcon}
                                     alt=""
-                                    className="pt-2 pb-3 things_head things_hover_icon position-absolute"
+                                    className="things_head things_hover_icon position-absolute pt-2 pb-3"
                                   />
                                   <img
                                     src={item.icon}
                                     alt=""
-                                    className="pt-2 pb-3 things_head things_icon position-absolute"
+                                    className="things_head things_icon position-absolute pt-2 pb-3"
                                   />
                                 </div>
-                                <p className="ps-3 pt-2 pb-3 font-size-28 font_weight_500 things_head">
+                                <p className="font-size-28 font_weight_500 things_head ps-3 pt-2 pb-3">
                                   {item.title}
                                 </p>
                               </div>
@@ -210,244 +362,435 @@ const section1Ref = useRef(null);
           </div>
         </Container>
       </section>
-   
-       {/* Service section */}
-      <section className="">
-        <Container className="my_container services_row pe-5 ">
+      {/* Service section */}
+      <section >
+        <Container className="my_container pe-5 services_row">
           <div className="service_wrapper">
-            <div className=" d-flex postion-relative  service_gap ">
+            <div className="d-flex position-relative service_gap">
               <div className="text">
-                <p className="font-size-20 font_weight_500 ">
+                <p className="font-size-20 font_weight_500">
                   How we can help you
                 </p>
-                <p className="font-size-65 font_weight_600 line_height_70 m-0 ">
+                <p className="font-size-65 font_weight_600 line_height_70 m-0">
                   Services
                 </p>
                 <p className="font-size-65 font_weight_600 line_height_70 mb-2">
                   We offer
                 </p>
                 <br />
-                <p className="service_text font-size-24 line_height_38 ">
+                <p className="service_text font-size-24 line_height_38">
                   We offer a comprehensive range of software development
                   services tailored to meet the unique needs of your business. A
                   full-service creative agency designing and building inventive
                   digital experiences across all platforms and brand{" "}
                   <br className="d-none d-lg-block" /> touchpoints
                 </p>
-                <div className="d-flex justify-content-start   justify-content-lg-start justify-content-md-start">
-                  <Button className=" font-size-22 px-4 py-2  font_weight_500 blue_gradient border-radius-25">
-                    All Services{" "}
-                    <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-                  </Button>
+                <div className="d-flex justify-content-start justify-content-md-start justify-content-lg-start">
+                  <Link to="/capable" className="text-decoration-none">
+                    <Button className="blue_gradient border-radius-25 font-size-22 font_weight_500 px-4 py-2">
+                      All Services{" "}
+                      <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
+
               {Services.map((service, index) => (
                 <div
                   key={index}
-                  className="border_shadow border service_card rounded-5 mb-4 me-5 d-flex flex-column justify-content-evenly"
+                  className="d-flex flex-column justify-content-evenly border border_shadow rounded-5 mb-4 me-5 service_card"
                 >
-                  <div className="p-4 ms-4 pt-4 d-flex flex-column gap-3 justify-content-between">
+                  <div className="d-flex flex-column gap-3 justify-content-between p-4 pt-4 ms-4">
                     <div className="ms-0">
                       <div className="d-flex flex-column">
-                        <div className="pe-5 icon-container">
+                        <div className="icon-container pe-5">
                           <img
                             src={service.icon}
                             alt={`${service.title} Icon`}
                             className="pt-2 pb-3 service-icon"
                           />
                         </div>
-
-                        <p className="ps-0 pt-2 pb-3 font-size-58 font_weight_500 things_head">
+                        <p className="things_head font-size-58 font_weight_500 ps-0 pt-2 pb-3">
                           {service.title}
                         </p>
                       </div>
                     </div>
-                    <p className="font-size-24 font_weight_400 font_color_light_grey pb-2 text-start services_card_text">
+                    <p className="font-color-light-grey font-size-24 font_weight_400 pb-2 services_card_text text-start">
                       {service.description}
                     </p>
                   </div>
                   <a
-                    href=""
-                    className=" text-decoration-none d-flex gap-0 font_color_light_blue ms-5    "
+                    href={`/capable#${service.id}`}
+                    className="d-flex gap-0 font_color_light_blue ms-5 text-decoration-none"
                   >
-                    <p className="font-size-24  font_weight_500">Read More</p>
+                    <p className="font-size-24 font_weight_500">Read More</p>
                     <ChevronRight
                       strokeWidth={2}
                       size={34}
-                      className="pb-2 mt-lg-2 font-size-24"
-                    />{" "}
+                      className="font-size-28 pb-1"
+                    />
                   </a>
                 </div>
               ))}
-              <div className="d-lg-block d-none">d</div>
+
+              <div className="d-none d-lg-block">d</div>
             </div>
           </div>
         </Container>
       </section>
-      {/* Sofware section */}
-      <section className="mb-0 bg-black     section-1  ">
-        <Container className="my_container  pt-5 ">
-          <div className="d-flex align-items-center justify-content-center   bg-black position-relative">
-            <div className="row z-2">
-              <div className="col-xl-2  text-white   ">
-                {softwareData.map((item, index) => (
-                  <div key={index} className="d-flex gap-5 z-2">
-                    <div className="d-flex flex-column align-items-center">
-                      <img
-                        src={item.icon}
-                        alt={item.name}
-                        className="icon_background background_color_light_blue p-2 z-2 rounded-circle"
-                      />
 
-                      <span className="icon_background_line background_color_light_blue p-1"></span>
+      {/* Sofware section */}
+      <section
+        className="software-wrapper overflow-hidden w-100 pb-5 bg-black"
+        ref={sectionRef}
+      >
+        <div className="software-pinned mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
+          <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
+            <div className="row">
+              <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white mt-5">
+                <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
+                  {softwareData.map((item, index) => (
+                    <div key={index} className="d-flex gap-5">
+                      <div className="d-flex flex-column justify-content-center align-items-center">
+                        <img
+                          ref={(el) => (iconsRef.current[index] = el)}
+                          className={`icon icon_background background_color_light_blue p-1 p-sm-2 p-md-3 rounded-circle ${
+                            index === currentIndex ? "focus-ring" : ""
+                          }`}
+                          src={item.icon}
+                          alt={item.name}
+                        />
+                        <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
+                      </div>
+                      <p
+                        className={`font-size-18 text-nowrap mt-3 ${
+                          index === currentIndex
+                            ? "text-focus-ring position-relative m-0 p-0 font_weight_600"
+                            : ""
+                        }`}
+                      >
+                        {item.name}
+                      </p>
                     </div>
-                    <span className="font-size-18 pt-3">{item.name}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="col-xl-10  pt-5  text-white  position-relative  ">
-                <div className="d-flex align-items-center flex-column">
-                  <img
-                    src={Software_img}
-                    alt=""
-                    className="img-fluid pb-3 z-2 "
-                  />
-                  <p className="font-size-28  ">
-                    Custom Made ERP Softwares for your Needs
-                  </p>
+                  ))}
                 </div>
-                <div className="text-center ">
-                  <Button
-                    href="/contact"
-                    className="px-4 blue_gradient  rounded-pill  border-0 mt-3 font-size-18 me-3 "
-                  >
+                <div className="text-center d-lg-flex d-none d-xl-none flex-column gap-4 justify-content-center mt-lg-3">
+                  <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 me-3">
                     View Live Demo
                   </Button>
                   <Button
-                    href="/contact"
-                    className="px-4  bg-transparent btn-outline-light text-white   rounded-pill  mt-3  font-size-18"
+                    className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+                    onClick={() => handleOpenForm("Purchase Product")}
+                  >
+                    Purchase Product
+                  </Button>
+                </div>
+              </div>
+              <div className="col-lg-9 col-xl-10 col-md-8 text-white">
+                <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center mt-lg-5">
+                  <img
+                    ref={imageRef}
+                    src={softwareData[currentIndex].center_image}
+                    className="img-fluid software_img mb-3 mt-md-3 px-md-3"
+                    alt={softwareData[currentIndex].name}
+                  />
+                  <p className="font-size-28 pt-lg-4 m-0">
+                    {softwareData[currentIndex].description}
+                  </p>
+                </div>
+                <div className="text-center d-lg-none d-xl-flex d-flex gap-4 justify-content-center mt-lg-3">
+                  <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 ">
+                    View Live Demo
+                  </Button>
+                  <Button
+                    className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+                    onClick={() => handleOpenForm("Purchase Product")}
                   >
                     Purchase Product
                   </Button>
                 </div>
               </div>
             </div>
-            <div className="background-color_blue_1 bg_circle_gradient position-absolute bottom-0 end-0"></div>
+          </Container>
+        </div>
+
+        {modalOpen && (
+          <div
+            className="modal-backdrop position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            onClick={handleClose}
+          >
+            <Formik
+              initialValues={{
+                name: "",
+                mobile: "",
+                email: "",
+                industry: "",
+                message: "",
+                software: "",
+              }}
+              validationSchema={contactSchema}
+              onSubmit={(values, { resetForm }) => {
+                console.log("Form Submitted", values);
+                handleClose();
+                resetForm();
+                setShowToast(true);
+                setTimeout(() => setShowToast(false), 3000);
+              }}
+            >
+              {({ setFieldValue, values }) => (
+                <Form
+                  ref={modalRef}
+                  className="contact-modal container mt-5 mt-md-0 bg-black p-4 p-md-5 rounded-5 d-flex flex-column gap-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <h3 className="text-center mb-3 text-white pt-3 d-none d-md-block ">
+                    Have an innovative thought?
+                    <br />
+                    Tell us about it.
+                  </h3>
+
+                  <div className="row g-3">
+                    <div className="col-12 col-md-6">
+                      <Field
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                        className=" rounded-4 purchase_input w-100 outline-none p-3"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <Field
+                        type="tel"
+                        name="mobile"
+                        maxLength="10"
+                        inputMode="numeric"
+                        pattern="\d*"
+                        className="rounded-4 purchase_input w-100 outline-none p-3"
+                        placeholder="Enter mobile number"
+                        onInput={(e) => {
+                          e.target.value = e.target.value
+                            .replace(/\D/g, "")
+                            .slice(0, 10); // only digits, max 10
+                        }}
+                      />
+                      <ErrorMessage
+                        name="mobile"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row g-3">
+                    <div className="col-12 col-md-6">
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        className="rounded-4 purchase_input w-100 outline-none p-3"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <Field
+                        type="text"
+                        name="industry"
+                        placeholder="Enter your Industry / sector"
+                        className="rounded-4 purchase_input w-100 outline-none p-3"
+                      />
+                      <ErrorMessage
+                        name="industry"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row g-3">
+                    <div className="col-12 col-md-6">
+                      <p className="text-white mb-2 pb-2">
+                        Select your software
+                      </p>
+                      <div className="row">
+                        {["ERP", "CRM", "HRMS", "LMS"].map((software) => (
+                          <div
+                            key={software}
+                            className="col-6 col-md-6 col-lg-3 mb-3"
+                          >
+                            <button
+                              type="button"
+                              className={`software-button text-white py-2 bg-transparent rounded-4 w-100 ${
+                                values.software === software ? "selected" : ""
+                              }`}
+                              onClick={() =>
+                                setFieldValue("software", software)
+                              }
+                            >
+                              {software}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <ErrorMessage
+                        name="software"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+
+                    <div className="col-12 col-md-6">
+                      <Field
+                        as="textarea"
+                        name="message"
+                        rows={4}
+                        placeholder="Enter a message about the software you need"
+                        className="text-black rounded-4 purchase_input p-3 w-100"
+                      />
+                      <ErrorMessage
+                        name="message"
+                        component="div"
+                        className="text-danger mt-1"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="text-white bg-transparent rounded-4 outline-none p-3 px-4"
+                    onSubmit={(values, { resetForm }) => {
+                      console.log("Form Submitted", values);
+                      handleClose();
+                      resetForm();
+                      setShowToast(true);
+                      setTimeout(() => setShowToast(false), 3000); // auto-dismiss
+                    }}
+                  >
+                    Submit
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </div>
-        </Container>
+        )}
+        {showToast && (
+          <div className="position-fixed end-0 bottom-0  mb-4 px-2 py-2 mb-5 me-5 text-nowrap text-white bg-success rounded-3 shadow-lg animate__animated animate__fadeInUp">
+            Thank you! We'll get back to you soon.
+          </div>
+        )}
       </section>
-     
-         {/* Techstack section */}
-        <section className="bg-black pt-5 pb-5 ">
-          <Container className=" pt-5 pb-5  my_container ">
-            {/* big screen */}
-            {/* top layer */}
-            <div className="tech_stack_container">
-              <div className="d-flex flex-row justify-content-center gap-3">
-                <Animation
-                  imgSrc={AWS}
-                  animationDirection="topLeft"
-                  altText="Image from Top Left"
-                />
-                <div className="tech_box background_color_grey  "></div>
-                <div className="tech_box background_color_grey  "></div>
-                <div className="tech_box background_color_grey  "></div>
-                <div className="tech_box background_color_grey  "></div>
-              </div>
-              <div className="d-flex  flex-row justify-content-center mx-5 pt-3 gap-3">
-                <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
-                  <div className="tech_box background_color_grey "></div>
-                  <div className="tech_box background_color_grey "></div>
-                  <div className="tech_box background_color_grey "></div>
-                <div className="tech_box">  <Animation
+
+      {/* Techstack section */}
+      <section className="bg-black pt-5 pb-5  ">
+        <Container className=" pt-5 pb-5  my_container ">
+          {/* big screen */}
+          {/* top layer */}
+          <div className="tech_stack_container">
+            <div className="d-flex flex-row justify-content-center gap-3">
+              <Animation
+                imgSrc={AWS}
+                animationDirection="topLeft"
+                altText="Image from Top Left"
+              />
+              <div className="tech_box background_color_grey  "></div>
+              <div className="tech_box background_color_grey  "></div>
+              <div className="tech_box background_color_grey  "></div>
+              <div className="tech_box background_color_grey  "></div>
+            </div>
+            <div className="d-flex  flex-row justify-content-center mx-5 pt-4 gap-3">
+              <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
+                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box">
+                  {" "}
+                  <Animation
                     imgSrc={AWS}
                     animationDirection="topToBottom"
                     altText="Image from Top Left"
-                  /></div>
-                  <div className="tech_box background_color_grey "></div>
-                  <Animation
-                    imgSrc={Nodejs}
-                    animationDirection="topRight"
-                    altText="Image from Top Left"
                   />
-                  <div className="tech_box background_color_grey "></div>
                 </div>
+                <div className="tech_box background_color_grey "></div>
+                <Animation
+                  imgSrc={Nodejs}
+                  animationDirection="topRight"
+                  altText="Image from Top Left"
+                />
+                <div className="tech_box background_color_grey "></div>
               </div>
-              {/* middle layer */}
-              <div className="d-flex flex-row justify-content-center align-items-center pb-lg-3 ">
-                <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
-                  <div className="left">
-                    <div className="d-flex py-2   gap-3 ">
-                      <div className="tech_box background_color_grey "></div>
-                      <Animation
-                        imgSrc={React_img}
-                        animationDirection="topLeft"
-                        altText="Image from Top Left"
-                      />
-                    </div>
-                    <div className="d-flex pt-3 gap-3">
-                      <Animation
-                        imgSrc={Angular_img}
-                        animationDirection="bottomRight"
-                        altText="Image from Top Left"
-                      />
-                      <div className="tech_box background_color_grey "></div>
-                    </div>
+            </div>
+            {/* middle layer */}
+            <div className="d-flex flex-row justify-content-center pt-2 align-items-center pb-lg-3 ">
+              <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
+                <div className="left">
+                  <div className="d-flex py-2   gap-3 ">
+                    <div className="tech_box background_color_grey "></div>
+                    <Animation
+                      imgSrc={React_img}
+                      animationDirection="topLeft"
+                      altText="Image from Top Left"
+                    />
                   </div>
-                  {/* middle text */}
-                  <div className="d-flex  flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
-                    <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3  px-md-5 ">
-                      Amazing tech stack in <br /> our pocket
-                    </p>
-                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
-                      Utilize our team’s specialized full-stack expertise in
-                      software development to turn your product vision into
-                      reality. We are committed to providing solutions that
-                      adhere to the highest coding standards, ensuring
-                      reliability, scalability, and security.
-                    </p>
-                  </div>
-                  <div className="right">
-                    <div className="d-flex py-2 gap-3 ">
-                      <Animation
-                        imgSrc={AWS}
-                        animationDirection="topRight"
-                        altText="Image from Top Left"
-                      />
-                      <div className="tech_box background_color_grey "></div>
-                    </div>
-                    <div className="d-flex pt-3 gap-3">
-                      <div className="tech_box background_color_grey "></div>
-                      <Animation
-                        imgSrc={Nodejs}
-                        animationDirection="bottomLeft"
-                        altText="Image from Top Left"
-                      />
-                    </div>
+                  <div className="d-flex pt-4  gap-3">
+                    <Animation
+                      imgSrc={Angular_img}
+                      animationDirection="bottomRight"
+                      altText="Image from Top Left"
+                    />
+                    <div className="tech_box background_color_grey "></div>
                   </div>
                 </div>
-              </div>
-              {/* bottom layer */}
-              <div className="d-flex  flex-row justify-content-center pt-2 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
-                <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
-                  <Animation
-                    imgSrc={Angular_img}
-                    animationDirection="bottomLeft"
-                    altText="Image from Top Left"
-                  />
-                  <div className="tech_box background_color_grey "></div>
-                  <div className="tech_box background_color_grey "></div>
-                  <div className="tech_box background_color_grey "></div>
-                  <Animation
-                    imgSrc={React_img}
-                    animationDirection="bottomToTop"
-                    altText="Image from Top Left"
-                  />
-                  <div className="tech_box background_color_grey "></div>
-                  <div className="tech_box background_color_grey "></div>
+                {/* middle text */}
+                <div className="d-flex  flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
+                  <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3  px-md-5 ">
+                    Amazing tech stack in <br /> our pocket
+                  </p>
+                  <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
+                    Utilize our team’s specialized full-stack expertise in
+                    software development to turn your product vision into
+                    reality. We are committed to providing solutions that adhere
+                    to the highest coding standards, ensuring reliability,
+                    scalability, and security.
+                  </p>
+                </div>
+                <div className="right">
+                  <div className="d-flex py-2  gap-3 ">
+                    <Animation
+                      imgSrc={AWS}
+                      animationDirection="topRight"
+                      altText="Image from Top Left"
+                    />
+                    <div className="tech_box background_color_grey "></div>
+                  </div>
+                  <div className="d-flex pt-4 gap-3">
+                    <div className="tech_box background_color_grey "></div>
+                    <Animation
+                      imgSrc={Nodejs}
+                      animationDirection="bottomLeft"
+                      altText="Image from Top Left"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="d-flex  flex-row justify-content-center  gap-3">
+            </div>
+            {/* bottom layer */}
+            <div className="d-flex  flex-row justify-content-center pt-4 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
+              <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
+                <Animation
+                  imgSrc={Angular_img}
+                  animationDirection="bottomLeft"
+                  altText="Image from Top Left"
+                />
+                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box background_color_grey "></div>
                 <div className="tech_box background_color_grey "></div>
                 <Animation
                   imgSrc={React_img}
@@ -456,81 +799,175 @@ const section1Ref = useRef(null);
                 />
                 <div className="tech_box background_color_grey "></div>
                 <div className="tech_box background_color_grey "></div>
-                <Animation
-                  imgSrc={Angular_img}
-                  animationDirection="bottomRight"
-                  altText="Image from Top Left"
-                  className="tech_sm_img"
-                />
               </div>
             </div>
-          </Container>
-        </section>
-        {/* Projects */}
-        <section className="bg-black pb-2 mb-5">
-          <Container fluid className="pt-xl-5  mb-5">
-            <div className=" d-flex align-items-center justify-content-center py-4 mb-5">
-              <p className=" font-size-65   font_weight_600 font_family  text-white ">
-                Our Latest Projects
-              </p>
-              <img
-                src={Swirl}
-                alt=""
-                className="img-fluid position-absolute end-0 d-xl-block d-lg-block d-none   "
+            <div className="d-flex  flex-row justify-content-center   gap-3">
+              <div className="tech_box background_color_grey "></div>
+              <Animation
+                imgSrc={React_img}
+                animationDirection="bottomToTop"
+                altText="Image from Top Left"
+              />
+              <div className="tech_box background_color_grey "></div>
+              <div className="tech_box background_color_grey "></div>
+              <Animation
+                imgSrc={Angular_img}
+                animationDirection="bottomRight"
+                altText="Image from Top Left"
+                className="tech_sm_img"
               />
             </div>
-            <Swiper
-              slidesPerView={1}
-              centeredSlides={true}
-              spaceBetween={20}
-              loop={true}
-              grabCursor={true}
-              breakpoints={{
-                992: {
-                  slidesPerView: "auto",
-                  spaceBetween: 100,
-                },
-              }}
-              className="project_swiper py-5"
-            >
-              <div className="position-relative">
-                {projects.map((project, index) => (
-                  <SwiperSlide
-                    key={index}
-                    className="d-flex justify-content-center align-items-center rectangle-slide"
+          </div>
+        </Container>
+      </section>
+
+      {/* Projects */}
+      <section className="bg-black pb-2">
+        <div className="container-fluid pt-lg-5 mb-md-5">
+          <div className="d-flex align-items-center justify-content-center mb-md-5">
+            <p className="font-size-65 font_weight_600 font_family text-white">
+              Our Latest Projects
+            </p>
+          </div>
+          <Swiper
+            modules={[Autoplay]}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            slidesPerView={1} // default
+            spaceBetween={20}
+            centeredSlides={true}
+            autoplay={{
+              delay: 1500,
+              disableOnInteraction: false,
+            }}
+            speed={1500}
+            loop={true}
+            grabCursor={true}
+            breakpoints={{
+              576: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 1,
+              },
+              992: {
+                slidesPerView: 2,
+              },
+              1200: {
+                slidesPerView: 2,
+              },
+            }}
+            className="project_swiper"
+          >
+            {projects.map((project, index) => {
+              const cardRef = useRef();
+              const overlayRef = useRef();
+              const titleRef = useRef();
+
+              // Use the extracted hook here
+              useProjectCardHover(
+                cardRef,
+                overlayRef,
+                titleRef,
+                pauseAutoplay,
+                resumeAutoplay
+              );
+
+              return (
+                <SwiperSlide
+                  key={index}
+                  className="d-flex justify-content-center align-items-center rectangle-slide"
+                >
+                  <div
+                    className={`project_card position-relative ${
+                      activeIndex === index ? "active-mobile" : ""
+                    }`}
+                    onClick={() => handleCardClick(project, index)}
+                    ref={cardRef}
                   >
-                    <div className="rectangle bg_gradient_blue project_card rounded-5 shadow w-100">
-                      <div className="position-absolute project_text inside_text text-white">
-                        <p className="font_weight_600 text-start font-size-46 ms-4 ms-lg-0">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project_image w-100 h-auto object-fit-cover"
+                    />
+                    <div
+                      className="project_overlay_desktop position-absolute bottom-0 start-0 w-100  d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none "
+                      ref={overlayRef}
+                    >
+                      <div ref={titleRef}>
+                        <p className="project_title font-size-62 font_weight_600 text-white mb-2">
                           {project.title}
                         </p>
-                        <div className="d-flex gap-lg-3 gap-md-3 gap-sm-3 gap-2 ms-4 ms-lg-0 flex-nowrap">
-                          {project.tags.map((tag, tagIndex) => (
-                            <button
-                              key={tagIndex}
-                              className="btn text-dark font-size-16 rounded-pill bg-light  project_button_size"
+                        <div className="d-flex gap-2 flex-wrap justify-content-center">
+                          {project.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="badge bg-light text-dark px-3 py-2 rounded-pill"
                             >
                               {tag}
-                            </button>
+                            </span>
                           ))}
                         </div>
                       </div>
                     </div>
-                  </SwiperSlide>
-                ))}
-              </div>
-            </Swiper>
+                    {activeIndex === index && (
+                      <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
+                        <p className="fs-4 mb-2 ">{project.title}</p>
+                        <div className="d-flex flex-wrap justify-content-center gap-2">
+                          {project.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
 
-            <div className="d-flex justify-content-center pt-5 pb-5 ">
-              <Button className=" font-size-22 px-4 py-2 rounded-5  font_weight_500 blue_gradient border-0">
-                View All{" "}
-                <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-              </Button>
+          <div className="d-flex justify-content-center pt-5 pb-5">
+            <Button
+              className="font-size-22 px-4 py-2 rounded-5 font_weight_500 blue_gradient border-0"
+              onClick={() => navigate("ourworks")}
+            >
+              View All <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
+            </Button>
+          </div>
+        </div>
+
+        {showModal && (
+          <div
+            className="fullscreen-modal d-flex justify-content-center align-items-center"
+            onClick={(e) => {
+              if (e.target.classList.contains("fullscreen-modal")) {
+                setShowModal(false);
+              }
+            }}
+          >
+            <div className="modal-header  ">
+              <button className="close-btn" onClick={() => setShowModal(false)}>
+                &times;
+              </button>
             </div>
-          </Container>
-        </section>
-      
-       
+            <div
+              className="modal-content-iframe rounded-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src={data.link}
+                title={data.title}
+                className="iframe-full w-100 h-100 border-none"
+              />
+            </div>
+          </div>
+        )}
+      </section>
+
       <Testimonial />
       <Contact />
       <Footer />

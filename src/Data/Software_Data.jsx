@@ -1,28 +1,32 @@
 import Software1_icon from "../assets/images/Home/software1.png";
 import Software2_icon from "../assets/images/Home/software2.png";
 import Software3_icon from "../assets/images/Home/software3.png";
+import Software4_icon from "../assets/images/Home/software4.png";
 import Software_img from "../assets/images/Home/software.png";
-
-export const softwareSteps = [
+export const softwareData = [
   {
-    id: 1,
-    label: "Plan",
+    name: "ERP Software",
     icon: Software1_icon,
-    image: Software_img,
-    desc: "We analyze your needs, define goals, and plan a tailored software solution."
+    center_image: Software_img,
+    description: "Streamline operations with smart ERP tools",
   },
   {
-    id: 2,
-    label: "Design",
+    name: "CRM Software",
     icon: Software2_icon,
-    image: Software_img,
-    desc: "We create user-friendly designs focused on UX and modern aesthetics."
+    center_image: Software_img,
+    description: "Boost sales through tailored CRM solutions",
   },
   {
-    id: 3,
-    label: "Deploy",
+    name: "HRMS Software",
     icon: Software3_icon,
-    image: Software_img,
-    desc: "We test, finalize, and deliver a secure and scalable software product."
-  }
+    center_image: Software_img,
+    description: "Manage workforce with powerful HRMS features",
+  },
+  {
+    name: "LMS Software",
+    icon: Software4_icon,
+    center_image: Software_img,
+    description: "Simplify learning via interactive LMS systems",
+  },
 ];
+
