@@ -42,6 +42,7 @@
 
 .software-wrapper {
   will-change: transform, opacity;
+  min-height:100vh;
 }
 
 

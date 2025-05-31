@@ -5,9 +5,9 @@ import useLetsTalk from "./Contact_page_link";
 function WorkTogther() {
   const letsTalk = useLetsTalk();
   return (
-    <section className="py-5" >
+    <section className="py-3 py-md-5" >
       <Container className="my-5">
-        <div className="work_together_card shadow bg-black position-relative  ">
+        <div className="work_together_card w-100 overflow-hidden h-auto shadow bg-black position-relative  ">
           <img
             src={Swirl}
             alt=""
@@ -17,7 +17,7 @@ function WorkTogther() {
             <p className="text-center font-size-40 font_weight_300 m-0 text-white">
               How We Can Help You ?
             </p>
-            <p className="text-center font-size-65 font_weight_600 m-0 text-white">
+            <p className="text-center font-size-65 font_weight_600 m-0 z-50 text-white">
               Come Lets Work Together
             </p>
             <div className="d-flex justify-content-center mt-lg-5 my-3 mb-5">
@@ -28,7 +28,7 @@ function WorkTogther() {
                 Let's Talk
               </Button>
             </div>
-            <div className="background-color_blue_1 position-absolute d-none d-lg-block  "></div>
+            <div className="background-color_blue_1 position-absolute d-none d-lg-block   "></div>
           </div>
         </div>
       </Container>

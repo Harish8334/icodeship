@@ -169,19 +169,29 @@ const Capable_service = () => {
 
           <Swiper
             modules={[Pagination]}
-            slidesPerView={1}
+            slidesPerView={2}
             spaceBetween={30}
             pagination={{
               clickable: true,
               renderBullet: (index, className) =>
                 `<span class="${className} custom-pagination-dot"></span>`,
             }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              500: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+            }}
             className="custom-swiper"
           >
             {service.cardData.map((item) => (
               <SwiperSlide key={item.id}>
                 <div className={` mb-5 ${item.className}`}>
-                  <div className="card d-flex flex-column rounded-4 mt-3">
+                  <div className="card capable_card h-100 d-flex flex-column rounded-4 mt-3">
                     <div className="pt-3 pb-2">
                       <div className="mobile_icon_container">
                         <img
@@ -205,7 +215,7 @@ const Capable_service = () => {
         </Container>
       </section>
 
-      {/* Why choose us */}
+      {/* Working with us */}
 
       <section>
         <Container className="my_container why_choose_us pt-0">
@@ -254,7 +264,7 @@ const Capable_service = () => {
                 spaceBetween: 30,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               1200: {
@@ -270,16 +280,16 @@ const Capable_service = () => {
             {service.work_with_us_detail &&
               Object.values(service.work_with_us_detail).map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="py-3  rounded-5 border_shadow mb-5">
+                  <div className="py-3 capable_card rounded-5 border_shadow ">
                     <div className="d-flex justify-content-between px-4">
-                      <p className="font-size-24 font_color_light_blue font_weight_600 pt-lg-4 pt-md-3">
+                      <p className="font-size-24 font_color_light_blue font_weight_600  pt-md-3">
                         {item.title}
                       </p>
                       <p className="font-size-62 font_color_light_blue font_weight_700">
                         {item.series}
                       </p>
                     </div>
-                    <p className="text-justify px-4 px-md-5 font-size-18 font_weight_300">
+                    <p className="text-justify px-4 px-md-4 font-size-18 font_weight_300">
                       {item.description}
                     </p>
                   </div>
@@ -307,7 +317,7 @@ const Capable_service = () => {
                     onClick={() => handleLeftToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500 line_height_30 p-0 m-0 py-md-4">
+                      <p className="font-size-20 font_weight_500 line_height_30 Frequent_ask_height pt-0 p-0 m-0 pb-md-4">
                         {item.title}
                       </p>
                     </Accordion.Header>
@@ -330,7 +340,7 @@ const Capable_service = () => {
                     onClick={() => handleRightToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500 line_height_30  p-0 m-0 py-md-4">
+                      <p className="font-size-20 font_weight_500 line_height_30 Frequent_ask_height pt-0 p-0 m-0 pb-md-4">
                         {item.title}
                       </p>
                     </Accordion.Header>

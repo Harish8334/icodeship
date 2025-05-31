@@ -39,17 +39,22 @@ const ScrollToTopButton = () => {
       <button
         onClick={scrollToTop}
         style={{
-          position: 'fixed',
-          bottom: '40px',
-          right: '30px',
-          backgroundColor: '#49499D',
-          color: 'white',
-          border: 'none',
-          borderRadius: '50%',
-          padding: '12px',
-          cursor: 'pointer',
-          zIndex: 1000
-        }}
+  position: 'fixed',
+  bottom: '40px',
+  right: '30px',
+  width: '48px',             // Equal width and height
+  height: '48px',
+  backgroundColor: '#49499D',
+  color: 'white',
+  border: 'none',
+  borderRadius: '50%',
+  display: 'flex',           // Center the icon/text
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  zIndex: 1000
+}}
+
       >
         <FaArrowUp size={20} />
       </button>

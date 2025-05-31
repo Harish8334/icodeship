@@ -19,6 +19,7 @@ import {
   Testimonial,
 } from "../Components/Componets";
 import "../Components/Contact_page_link";
+import Home_service from "../Components/Home_service";
 
 // Animation Hooks & Utils
 import {
@@ -26,18 +27,18 @@ import {
   useProjectCardHover,
   openModalAnimation,
   closeModalAnimation,
+  BallSplash
 } from "../Animation/animation";
 import Animation from "../Animation/TechStackAnimation";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 // Form Handling
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -49,7 +50,6 @@ import { Container, Button } from "react-bootstrap";
 // FontAwesome & Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { ChevronRight } from "lucide-react";
 
 // GSAP
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -71,16 +71,19 @@ const contactSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   mobile: Yup.string()
     .matches(/^\d{10}$/, "Mobile number must be 10 digits")
-    .required("Enter a mobile number"),
+    .required("Mobile number is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   industry: Yup.string().required("Industry is required"),
-  software: Yup.string().required("Software is required"),
   message: Yup.string().required("Message is required"),
+  software: Yup.array()
+    .of(Yup.string())
+    .min(1, "Please select at least one software")
+    .required("Software is required"),
 });
 
 function Home() {
   const navigate = useNavigate();
-
+const [showSplash, setShowSplash] = useState(false);
   // Data slices for cards
   const topCards = Things_Data.slice(0, 2);
   const bottomCards = Things_Data.slice(2, 4);
@@ -134,6 +137,7 @@ function Home() {
 
   // Handle opening purchase form modal
   const handleOpenForm = (title) => {
+   
     setFormTitle(title);
     setModalOpen(true);
   };
@@ -191,6 +195,29 @@ function Home() {
       window.removeEventListener("click", handleClickOutside);
     };
   }, [softwareData.length, showModal, modalOpen]);
+    
+  const [submitted, setSubmitted] = useState(false);
+
+  const softwareOptions = ["ERP", "CRM", "HRMS", "LMS"];
+
+  const handleSuccessAnimation = () => {
+    setSubmitted(true);
+    gsap.fromTo(
+      ".submission-success-overlay",
+      { opacity: 0, scale: 0.9 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+      }
+    );
+
+    setTimeout(() => {
+      setSubmitted(false);
+      setShowToast(true);
+    }, 2500);
+  };
 
   return (
     <div className="overflow-hidden">
@@ -198,7 +225,7 @@ function Home() {
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
-      <section className="d-flex justify-content-center align-items-center py-5 pt-lg-5">
+      <section className="d-flex justify-content-center align-items-center py-5 pt-xl-5">
         <img
           src={map}
           alt=""
@@ -206,36 +233,36 @@ function Home() {
         />
         <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text">
           <p className="font-size-40 font_weight_400 text-center mx-3 mx-lg-5">
-            Since our founding in 2020, Codeship has rapidly grown into a
+            Since our founding in 2020, Codeship has rapidly <br className="d-none d-md-block" /> grown into a
             dynamic and thriving company.
           </p>
           <p className="font-size-40 font_weight_400 text-center mx-3">
-            With a shared dedication to innovation and a customer-centric
-            approach, our team brings a wealth of experience and skills to the
+            With a shared dedication to innovation and a <br className="d-none d-md-block" /> customer-centric
+            approach, our team brings a <br className="d-none d-md-block"  /> wealth of experience and skills to the
             table.
           </p>
         </div>
       </section>
 
       {/* Things can do section */}
-      <section className="py-5">
+      <section className="py-xl-5">
         <Container className="my_container py-lg-5">
           <div className="row">
-            <div className="col-12 col-sm-5 col-md-6 col-lg-5 ">
+            <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
               <p className="font-size-58 font_weight_600 line_height_70 ps-3">
                 Some of the <br className="d-none d-lg-block" /> things we can
                 do <br className="d-none d-lg-block" /> for you
               </p>
-              <p className="font-size-24 font_weight_400 ps-3">
+              <p className="font-size-24   font_weight_400 ps-3">
                 We offer a comprehensive range of{" "}
-                <br className="d-none d-lg-block" /> software development
-                services tailored <br className="d-none d-lg-block" /> to meet
-                the unique needs of your <br className="d-none d-lg-block" />{" "}
+                <br className="d-none d-xl-block" /> software development
+                services tailored <br className="d-none d-xl-block" /> to meet
+                the unique needs of your <br className="d-none d-xl-block" />{" "}
                 business.
               </p>
             </div>
 
-            <div className="col-12 col-sm-7 col-md-6 col-lg-7 mb-5 ">
+            <div className="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-7 mb-5 ">
               <div className="row">
                 <div className="d-none d-lg-flex flex-column gap-4 col-lg-6 ">
                   {/* Top two cards */}
@@ -277,7 +304,7 @@ function Home() {
                   {bottomCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
+                      className="card things_card h-100 border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -299,7 +326,7 @@ function Home() {
                             </p>
                           </div>
                         </div>
-                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
+                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-4">
                           {item.description}
                         </div>
                       </div>
@@ -363,88 +390,16 @@ function Home() {
         </Container>
       </section>
       {/* Service section */}
-      <section >
-        <Container className="my_container pe-5 services_row">
-          <div className="service_wrapper">
-            <div className="d-flex position-relative service_gap">
-              <div className="text">
-                <p className="font-size-20 font_weight_500">
-                  How we can help you
-                </p>
-                <p className="font-size-65 font_weight_600 line_height_70 m-0">
-                  Services
-                </p>
-                <p className="font-size-65 font_weight_600 line_height_70 mb-2">
-                  We offer
-                </p>
-                <br />
-                <p className="service_text font-size-24 line_height_38">
-                  We offer a comprehensive range of software development
-                  services tailored to meet the unique needs of your business. A
-                  full-service creative agency designing and building inventive
-                  digital experiences across all platforms and brand{" "}
-                  <br className="d-none d-lg-block" /> touchpoints
-                </p>
-                <div className="d-flex justify-content-start justify-content-md-start justify-content-lg-start">
-                  <Link to="/capable" className="text-decoration-none">
-                    <Button className="blue_gradient border-radius-25 font-size-22 font_weight_500 px-4 py-2">
-                      All Services{" "}
-                      <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+    <Home_service />
 
-              {Services.map((service, index) => (
-                <div
-                  key={index}
-                  className="d-flex flex-column justify-content-evenly border border_shadow rounded-5 mb-4 me-5 service_card"
-                >
-                  <div className="d-flex flex-column gap-3 justify-content-between p-4 pt-4 ms-4">
-                    <div className="ms-0">
-                      <div className="d-flex flex-column">
-                        <div className="icon-container pe-5">
-                          <img
-                            src={service.icon}
-                            alt={`${service.title} Icon`}
-                            className="pt-2 pb-3 service-icon"
-                          />
-                        </div>
-                        <p className="things_head font-size-58 font_weight_500 ps-0 pt-2 pb-3">
-                          {service.title}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="font-color-light-grey font-size-24 font_weight_400 pb-2 services_card_text text-start">
-                      {service.description}
-                    </p>
-                  </div>
-                  <a
-                    href={`/capable#${service.id}`}
-                    className="d-flex gap-0 font_color_light_blue ms-5 text-decoration-none"
-                  >
-                    <p className="font-size-24 font_weight_500">Read More</p>
-                    <ChevronRight
-                      strokeWidth={2}
-                      size={34}
-                      className="font-size-28 pb-1"
-                    />
-                  </a>
-                </div>
-              ))}
-
-              <div className="d-none d-lg-block">d</div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Sofware section */}
-      <section
-        className="software-wrapper overflow-hidden w-100 pb-5 bg-black"
+ <div className="stack-container position-relative overflow-x-hidden">
+       {/* Sofware section */}
+      <div className="section1 position-relative">
+        <section
+        className="software-wrapper overflow-hidden w-100 pb-5 bg-black "
         ref={sectionRef}
       >
-        <div className="software-pinned mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
+        <div className="software-pinned w-100 mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
           <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
             <div className="row">
               <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white mt-5">
@@ -494,7 +449,7 @@ function Home() {
                     className="img-fluid software_img mb-3 mt-md-3 px-md-3"
                     alt={softwareData[currentIndex].name}
                   />
-                  <p className="font-size-28 pt-lg-4 m-0">
+                  <p className="font-size-28 pt-lg-4 m-0 m-md-2">
                     {softwareData[currentIndex].description}
                   </p>
                 </div>
@@ -514,181 +469,181 @@ function Home() {
           </Container>
         </div>
 
-        {modalOpen && (
-          <div
-            className="modal-backdrop position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
-            onClick={handleClose}
+             {modalOpen && (
+        <div
+          className="modal-backdrop position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+          onClick={handleClose}
+        >
+          <Formik
+            initialValues={{
+              name: "",
+              mobile: "",
+              email: "",
+              industry: "",
+              message: "",
+              software: [],
+            }}
+            validationSchema={contactSchema}
+            onSubmit={(values, { resetForm }) => {
+              console.log("Form Submitted", values);
+              resetForm();
+              handleClose();
+              handleSuccessAnimation();
+            }}
           >
-            <Formik
-              initialValues={{
-                name: "",
-                mobile: "",
-                email: "",
-                industry: "",
-                message: "",
-                software: "",
-              }}
-              validationSchema={contactSchema}
-              onSubmit={(values, { resetForm }) => {
-                console.log("Form Submitted", values);
-                handleClose();
-                resetForm();
-                setShowToast(true);
-                setTimeout(() => setShowToast(false), 3000);
-              }}
-            >
-              {({ setFieldValue, values }) => (
-                <Form
-                  ref={modalRef}
-                  className="contact-modal container mt-5 mt-md-0 bg-black p-4 p-md-5 rounded-5 d-flex flex-column gap-4"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <h3 className="text-center mb-3 text-white pt-3 d-none d-md-block ">
-                    Have an innovative thought?
-                    <br />
-                    Tell us about it.
-                  </h3>
+            {({ setFieldValue, values }) => (
+              <Form
+                ref={modalRef}
+                className="contact-modal w-100 container mt-5 mt-md-0 bg-black p-4 p-md-5 rounded-5 d-flex flex-column gap-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h3 className="text-center mb-3 text-white pt-3 d-none d-md-block">
+                  Have an innovative thought?
+                  <br />
+                  Tell us about it.
+                </h3>
 
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <Field
-                        type="text"
-                        name="name"
-                        placeholder="Enter your name"
-                        className=" rounded-4 purchase_input w-100 outline-none p-3"
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <Field
-                        type="tel"
-                        name="mobile"
-                        maxLength="10"
-                        inputMode="numeric"
-                        pattern="\d*"
-                        className="rounded-4 purchase_input w-100 outline-none p-3"
-                        placeholder="Enter mobile number"
-                        onInput={(e) => {
-                          e.target.value = e.target.value
-                            .replace(/\D/g, "")
-                            .slice(0, 10); // only digits, max 10
-                        }}
-                      />
-                      <ErrorMessage
-                        name="mobile"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
-                    </div>
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <Field
+                      type="text"
+                      name="name"
+                      placeholder="Enter your name"
+                      className="rounded-4 purchase_input w-100 outline-none p-3"
+                    />
+                    <ErrorMessage
+                      name="name"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
                   </div>
-
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <Field
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        className="rounded-4 purchase_input w-100 outline-none p-3"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <Field
-                        type="text"
-                        name="industry"
-                        placeholder="Enter your Industry / sector"
-                        className="rounded-4 purchase_input w-100 outline-none p-3"
-                      />
-                      <ErrorMessage
-                        name="industry"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
-                    </div>
+                  <div className="col-12 col-md-6">
+                    <Field
+                      type="tel"
+                      name="mobile"
+                      maxLength="10"
+                      inputMode="numeric"
+                      pattern="\d*"
+                      className="rounded-4 purchase_input w-100 outline-none p-3"
+                      placeholder="Enter mobile number"
+                      onInput={(e) => {
+                        e.target.value = e.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 10);
+                      }}
+                    />
+                    <ErrorMessage
+                      name="mobile"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
                   </div>
+                </div>
 
-                  <div className="row g-3">
-                    <div className="col-12 col-md-6">
-                      <p className="text-white mb-2 pb-2">
-                        Select your software
-                      </p>
-                      <div className="row">
-                        {["ERP", "CRM", "HRMS", "LMS"].map((software) => (
-                          <div
-                            key={software}
-                            className="col-6 col-md-6 col-lg-3 mb-3"
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      className="rounded-4 purchase_input w-100 outline-none p-3"
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
+                  </div>
+                  <div className="col-12 col-md-6">
+                    <Field
+                      type="text"
+                      name="industry"
+                      placeholder="Enter your Industry / sector"
+                      className="rounded-4 purchase_input w-100 outline-none p-3"
+                    />
+                    <ErrorMessage
+                      name="industry"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
+                  </div>
+                </div>
+
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <p className="text-white mb-2 pb-2">Select your software</p>
+                    <div className="row">
+                      {softwareOptions.map((software) => (
+                        <div
+                          key={software}
+                          className="col-6 col-md-6 col-lg-3 mb-3"
+                        >
+                          <button
+                            type="button"
+                            className={`software-button text-white py-2 bg-transparent rounded-4 w-100 ${
+                              values.software.includes(software)
+                                ? "selected"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              const selected = values.software.includes(software)
+                                ? values.software.filter((s) => s !== software)
+                                : [...values.software, software];
+                              setFieldValue("software", selected);
+                            }}
                           >
-                            <button
-                              type="button"
-                              className={`software-button text-white py-2 bg-transparent rounded-4 w-100 ${
-                                values.software === software ? "selected" : ""
-                              }`}
-                              onClick={() =>
-                                setFieldValue("software", software)
-                              }
-                            >
-                              {software}
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                      <ErrorMessage
-                        name="software"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
+                            {software}
+                          </button>
+                        </div>
+                      ))}
                     </div>
-
-                    <div className="col-12 col-md-6">
-                      <Field
-                        as="textarea"
-                        name="message"
-                        rows={4}
-                        placeholder="Enter a message about the software you need"
-                        className="text-black rounded-4 purchase_input p-3 w-100"
-                      />
-                      <ErrorMessage
-                        name="message"
-                        component="div"
-                        className="text-danger mt-1"
-                      />
-                    </div>
+                    <ErrorMessage
+                      name="software"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="text-white bg-transparent rounded-4 outline-none p-3 px-4"
-                    onSubmit={(values, { resetForm }) => {
-                      console.log("Form Submitted", values);
-                      handleClose();
-                      resetForm();
-                      setShowToast(true);
-                      setTimeout(() => setShowToast(false), 3000); // auto-dismiss
-                    }}
-                  >
-                    Submit
-                  </button>
-                </Form>
-              )}
-            </Formik>
-          </div>
-        )}
-        {showToast && (
-          <div className="position-fixed end-0 bottom-0  mb-4 px-2 py-2 mb-5 me-5 text-nowrap text-white bg-success rounded-3 shadow-lg animate__animated animate__fadeInUp">
-            Thank you! We'll get back to you soon.
-          </div>
+                  <div className="col-12 col-md-6">
+                    <Field
+                      as="textarea"
+                      name="message"
+                      rows={4}
+                      placeholder="Enter a message about the software you need"
+                      className="text-black rounded-4 purchase_input p-3 w-100"
+                    />
+                    <ErrorMessage
+                      name="message"
+                      component="div"
+                      className="text-danger mt-1"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="text-white bg-transparent border border-white rounded-4 outline-none p-3 px-4"
+                >
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      )}
+      {showSplash && (
+          <BallSplash
+            onComplete={() => {
+              setShowSplash(false);
+            }}
+          />
         )}
       </section>
+      </div>
 
-      {/* Techstack section */}
+    
+ </div>
+        {/* Techstack section */}
       <section className="bg-black pt-5 pb-5  ">
         <Container className=" pt-5 pb-5  my_container ">
           {/* big screen */}
@@ -822,7 +777,7 @@ function Home() {
       </section>
 
       {/* Projects */}
-      <section className="bg-black pb-2">
+      <section className="bg-black p-0 pb-2">
         <div className="container-fluid pt-lg-5 mb-md-5">
           <div className="d-flex align-items-center justify-content-center mb-md-5">
             <p className="font-size-65 font_weight_600 font_family text-white">
@@ -967,7 +922,7 @@ function Home() {
           </div>
         )}
       </section>
-
+   
       <Testimonial />
       <Contact />
       <Footer />

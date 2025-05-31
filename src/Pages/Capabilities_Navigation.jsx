@@ -31,7 +31,7 @@ function Capabilities() {
   }, []);
 
   return (
-    <div className="capable_services_container">
+    <div className="capable_services_container ">
       <Banner text={text} image={image} />
       <Brands />
       <section className="position-relative pt-0 mb-5">
@@ -49,7 +49,7 @@ function Capabilities() {
                   <p className="f font-size-58 font_weight_600 mt-3">
                     {service.title}
                   </p>
-                  <p className="f font-size-24 line_height_30 capable_p_text">
+                  <p className="f font-size-24 line_height_30 ">
                     {service.description}
                   </p>
                   <div className="d-flex flex-column gap-3 mt-5">

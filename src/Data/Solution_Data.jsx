@@ -15,20 +15,29 @@ const Solution_Data = [
   {
     id: 2,
     heading: "Why Choose Us ?",
-    title: "Empower Your <br> Team with our <br> Powerful Tools.",
+    title: "Optimize your operations with our ERP solution.",
     description:
-      "Our solutions focus on automation and collaboration, helping your team close deals faster, serve customers better, and manage tasks more efficiently.",
+      "Codeship provides customized ERP software solutions tailored to meet the unique needs of your business. Our custom ERP systems streamline resource management, enhance operational efficiency, and drive growth, ensuring your platform is as adaptable and scalable as your evolving enterprise.",
     image: Solution_lap,
     bgColor: "#F4E0D0"
   },
   {
     id: 3,
     heading: "How It Works ?",
-    title: "Seamless <br> Integration with your <br> Existing Systems.",
+    title: "Enhance your <br> processes with our <br> HRMS software solution.",
     description:
-      "We ensure a smooth onboarding process with minimal disruption to your workflow. Our CRM integrates with all your current tools.",
+      "Codeship delivers customized HRMS software solutions designed to meet the unique requirements of your business. Our tailored HRMS systems streamline human resource management, boost operational efficiency, and support your growth, ensuring your platform is as adaptable and scalable as your evolving workforce.",
     image: Solution_desk,
     bgColor: "#E9DDED"
+  },
+    {
+    id: 4,
+    heading: "How It Works ?",
+    title: "Enhance your processes with our LMS software solution..",
+    description:
+      "Codeship delivers customized LMS software solutions designed to meet the unique needs of your organization. Our tailored Learning Management Systems streamline training and development, enhance learning efficiency, and support your growth—ensuring your platform is as adaptable and scalable as your evolving workforce.",
+    image: Solution_desk,
+    bgColor: "#FFFFD8"
   }
 ];
 

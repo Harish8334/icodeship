@@ -2,30 +2,31 @@ import Icon1 from "../assets/images/About/about_core_icon1.png";
 import Icon2 from "../assets/images/About/about_core_icon2.png"; 
 import Icon3 from "../assets/images/About/about_core_icon3.png"; 
 import Icon4 from "../assets/images/About/about_core_icon4.png"; 
+
 const cardData = [
   {
     icon: Icon1,
     title: "Dedicated Team",
     description:
-      "Get a team fully focused on your goals. Codeship provides dedicated experts who ensure seamless collaboration, consistent delivery, and complete alignment with your project requirements from start to finish.",
+      "Partner with a team focused entirely on your project. Codeship ensures aligned goals, seamless teamwork, and consistent delivery—providing clarity, commitment, and execution throughout every phase of your product journey.",
   },
   {
     icon: Icon2,
     title: "Modern Design",
     description:
-     "We design clean, responsive, and user-friendly interfaces. With Codeship’s creative expertise, your digital products reflect modern aesthetics and deliver intuitive experiences that keep users engaged across all platforms and devices.",
+      "Experience clean, responsive, user-centric design that reflects modern standards. Codeship crafts interfaces that feel intuitive, look sharp, and work beautifully—across devices, screen sizes, and every step of your user’s journey.",
   },
   {
     icon: Icon3,
     title: "24/7 Support",
     description:
-     "Get round-the-clock assistance whenever you need it. With Codeship’s 24/7 support, our team is always available to resolve issues quickly, ensure uptime, and keep your projects running smoothly without disruption.",
+      "Stay secure and supported anytime. Codeship’s always-available support resolves issues fast, prevents downtime, and ensures that your product remains stable, efficient, and online—whenever you or your users need it most.",
   },
   {
     icon: Icon4,
     title: "Fast Delivery",
     description:
-      "Accelerate your launch timeline with our efficient workflow. Codeship combines agile methods and expert planning to deliver high-quality solutions quickly—helping you stay ahead in a fast-moving digital environment.",
+      "Launch faster with agile workflows and expert planning. Codeship prioritizes speed without compromising quality—delivering scalable, production-ready solutions so your business stays ahead and grows without unnecessary delays or friction.",
   },
 ];
 

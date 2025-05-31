@@ -9,23 +9,31 @@ const team_data = [
     name: "Harish",
     position: "Web Developer",
     img: Member_1,
-    instagram: "https://www.instagram.com/harish____8334",
-    facebook: "",
-    linkedin: ""
+    instagram: "https://www.instagram.com/icodeship/",
+    facebook: "https://www.facebook.com/icodeship",
+    linkedin: "https://www.linkedin.com/in/harish-r-49b2a6184/"
   },
   {
     name: "Lokesh Chahuan",
-    position: "Front End Developer",
+    position: "Business Development Manager",
     img: Member_2,
-    instagram: "https://www.instagram.com/__mr.__chauhan__/",
-    facebook: "",
-    linkedin: ""
+    instagram: "https://www.instagram.com/icodeship/",
+    facebook: "https://www.facebook.com/icodeship",
+    linkedin: "https://www.linkedin.com/in/lokesh-chauhan-codeship-5b9185278/"
   },
   {
-    name: "Vipul kumar singh m",
+    name: "Vipul kumar singh ",
     position: "Founder & CEO",
     img: Member_3,
-    instagram: "https://www.instagram.com/vipul_singh_codeship/",
+    instagram: "https://www.instagram.com/icodeship/",
+    facebook: "https://www.facebook.com/icodeship",
+    linkedin: "https://www.linkedin.com/in/vipul-singh-472a49192/"
+  },
+   {
+    name: "Anjali Rao",
+    position: "COO",
+    img: Member_6,
+    instagram: "https://www.instagram.com/icodeship/",
     facebook: "",
     linkedin: ""
   },
@@ -33,26 +41,19 @@ const team_data = [
     name: "Vivek Tiwari",
     position: "Full Stack Developer",
     img: Member_4,
-    instagram: "",
-    facebook: "",
-    linkedin: ""
+    instagram: "https://www.instagram.com/icodeship/",
+    facebook: "https://www.facebook.com/icodeship",
+    linkedin: "https://www.linkedin.com/in/vivek-tiwari-49b457243/"
   },
   {
     name: "Naveen Kumar",
     position: "UI/UX Developer",
     img: Member_5,
-    instagram: "https://www.instagram.com/itz_me_nave3n/",
-    facebook: "",
-    linkedin: ""
+    instagram: "https://www.instagram.com/icodeship/",
+    facebook: "https://www.facebook.com/icodeship",
+    linkedin: "https://www.linkedin.com/in/naveen-kumar-4u/"
   },
-  {
-    name: "Daniel Fernandez",
-    position: "UI/UX Designer",
-    img: Member_6,
-    instagram: "",
-    facebook: "",
-    linkedin: ""
-  },
+ 
 ];
 
 export default team_data;

@@ -1,11 +1,11 @@
-// hooks/useLetsTalk.js
 import { useNavigate } from "react-router-dom";
+// hooks/useLetsTalk.js
 
 const useLetsTalk = () => {
   const navigate = useNavigate();
 
   const goToContact = () => {
-    navigate('/contact#contactForm');
+     navigate("/contact", { state: { scrollToForm: true } });
   };
 
   return goToContact;

@@ -18,7 +18,7 @@ export const Services_Data = [
     imageOdd: Shape_1,
     points: [
       { text: "Website Development", href: "web-dev" },
-      { text: "Angular  Development", href: "angular-js" },
+      { text: "Angular  Development", href: "angular" },
       { text: "Custom Website Development", href: "custom-web-dev" },
       { text: "Wordpress Development", href: "wordpress-dev" },
       { text: "Web App Development", href: "web-app-dev" },

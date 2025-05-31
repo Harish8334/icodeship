@@ -15,7 +15,6 @@ function OurWorks() {
   const { text, image } = Banner_Data.works;
   return (
     <>
-      <Header />
       <Banner text={text} image={image} />
       <Brands />
       {/* works */}

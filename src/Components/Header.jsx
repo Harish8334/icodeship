@@ -16,7 +16,6 @@ import { useLocation, Link } from "react-router-dom";
 import useLetsTalk from "../Components/Contact_page_link";
 import { Services_Data } from "../Data/Capable_Data";
 import { useState, useRef } from "react";
-import Home from "../assets/images/Home/header/home.png";
 
 export default function Header({}) {
   const [show, setShow] = useState(false);
@@ -100,15 +99,15 @@ export default function Header({}) {
               </Nav.Link>
             </div>
             <Button
-              className="text-nowrap font-size-20 d-none d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center gap-2 blue_gradient rounded-5"
-              onClick={letsTalk}
-            >
-              <FontAwesomeIcon
-                icon={faCircle}
-                className="font-size-9 text-success pe-2"
-              />{" "}
-              Let's Talk
-            </Button>
+                className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
+                onClick={letsTalk}
+              >
+                <FontAwesomeIcon
+                  icon={faCircle}
+                  className="font-size-9 text-success  me-2 beep-glow"
+                />
+                Let's Talk
+              </Button>
           </div>
 
           {/* Desktop Nav */}
@@ -211,17 +210,16 @@ export default function Header({}) {
               >
                 Contact
               </Nav.Link>
-             <Button
-  className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
-  onClick={letsTalk}
->
-  <FontAwesomeIcon
-    icon={faCircle}
-    className="font-size-9 text-success  me-2 beep-glow"
-  />
-  Let's Talk
-</Button>
-
+               <Button
+                className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
+                onClick={letsTalk}
+              >
+                <FontAwesomeIcon
+                  icon={faCircle}
+                  className="font-size-9 text-success  me-2 beep-glow"
+                />
+                Let's Talk
+              </Button>
             </Nav>
           </Navbar.Collapse>
 
@@ -246,7 +244,18 @@ export default function Header({}) {
 
                 {/* Center logo and title */}
                 <div className="d-flex flex-column align-items-center pt-2 pb-3">
-                  <img src={logo} alt="Logo" className="my-3 img-fluid" />
+                  <Nav.Link
+                    as={Link}
+                    to="/"
+                    onClick={() => {
+                      if (window.location.pathname === "/") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
+                    className="d-none d-lg-flex ms-xl-5 ms-lg-3"
+                  >
+                    <img src={logo} alt="Logo" className="logo_img" />
+                  </Nav.Link>
                 </div>
               </div>
             </Offcanvas.Header>
@@ -260,8 +269,8 @@ export default function Header({}) {
                 <Nav.Link as={Link} to="/about" onClick={handleClose}>
                   About
                 </Nav.Link>
-                  <Nav.Link as={Link} to="/capable" onClick={handleClose}>
-                 Capabilities
+                <Nav.Link as={Link} to="/capable" onClick={handleClose}>
+                  Capabilities
                 </Nav.Link>
                 {/* Capabilities - opens new offcanvas */}
                 <button
@@ -283,19 +292,18 @@ export default function Header({}) {
                   Contact
                 </Nav.Link>
 
-                <Button
-                  className="text-nowrap font-size-28 mt-3 d-flex d-md-none justify-content-center align-items-center gap-2 blue_gradient rounded-5 mx-auto px-4 py-3"
-                  onClick={() => {
-                    handleClose();
-                    letsTalk();
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faCircle}
-                    className="font-size-9 text-success pe-2"
-                  />
-                  Let's Talk
-                </Button>
+                <div className="d-flex justify-content-center">
+                   <Button
+                className="text-nowrap font-size-20 px-5 py-3 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
+                onClick={letsTalk}
+              >
+                <FontAwesomeIcon
+                  icon={faCircle}
+                  className="font-size-9 text-success me-2 beep-glow"
+                />
+                Let's Talk
+              </Button>
+                </div>
               </Nav>
             </Offcanvas.Body>
           </Offcanvas>
@@ -317,7 +325,7 @@ export default function Header({}) {
                 />
               </div>
             </Offcanvas.Header>
-  <img src={logo} alt="Logo" className="my-2 mx-5 " />
+            <img src={logo} alt="Logo" className="my-2 mx-5 " />
             <p className="mb-0 font-size-80 ms-4 mt-5">Capabilities Services</p>
             <Offcanvas.Body className="pt-4">
               <div className="px-3 pt-4">
@@ -347,7 +355,6 @@ export default function Header({}) {
                             to={`/capable_service/${point.href}`}
                             onClick={handleCloseCapabilities}
                             className="d-block py-2 px-3 mb-2 font-size-24 text-dark bg-light rounded-3 text-decoration-none "
-                            
                             onMouseEnter={(e) => {
                               e.target.style.borderLeftColor = "#007bff";
                               e.target.style.backgroundColor = "#f8f9fa";

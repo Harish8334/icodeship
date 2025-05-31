@@ -1,6 +1,9 @@
 .font-size-9 {
   font-size: clamp(4px, 1.5vw, 9px);
 }
+.font-size-12 {
+  font-size: clamp(10px, 2vw, 14px);
+}
 .font-size-16 {
   font-size: clamp(14px, 1.5vw, 16px);
 }
@@ -236,9 +239,28 @@
   color: #000; /* Change as needed */
 }
 .btn-outline-dark:hover {
-  background-color: black;
-  color: white;
+  background-color: #49499D !important;
+  color:white;
+}
+.btn-outline-dark.active{
+   background-color: #49499D !important;
 }
 textarea {
   resize: none;
+}
+/* Make sure fixed header stays on top */
+#header-root {
+  pointer-events: auto;
+  user-select: none;
+}
+
+/* Loader styles */
+#loader-root {
+  pointer-events: none; /* Prevent blocking clicks */
+  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent dark overlay */
+}
+
+/* Loader component should be centered */
+#loader-root > * {
+  pointer-events: all; /* Enable interactions inside loader if needed */
 }

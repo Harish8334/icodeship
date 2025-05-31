@@ -6,7 +6,6 @@ const Capable_service_layout = () => {
     
   return (
     <>
-    <Header />
     <Outlet />
     <Footer/>
   </>

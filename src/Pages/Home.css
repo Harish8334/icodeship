@@ -1,18 +1,15 @@
 .my_container {
   max-width: 1600px !important;
 }
+
 section {
-  padding-left: 2%;
-  padding-right: 2%;
+padding: 0 2%;
 }
 .banner_height {
   max-height: 600px;
   max-width: 800px;
 }
 /* Navbar */
-.navbar_toggle_icon {
-  border-radius: 50%;
-}
 .nav-link.active {
   color: #49499d !important;
   font-weight: bold;
@@ -30,8 +27,7 @@ section {
 }
 
 .brand_swiper {
-  width: 150px;
-  height: auto;
+  height: 150px;
   filter: grayscale(100%);
   transition: filter 0.1s ease, transform 0.1s ease;
 }
@@ -46,13 +42,12 @@ section {
   }
 }
 
-.map_text {
-  max-width: 972px;
-}
 .Frequent_ask_height {
   height: 80px;
 }
-
+.things_card{
+  height:300px;
+}
 /* things u can do section */
 .things_card :hover {
   background-color: #49499d;
@@ -80,12 +75,11 @@ section {
 
 /* Contact */
 .contact_input {
-  max-width: 620px;
   border: none;
   border-bottom: 1px solid black !important;
 }
 .contact_about_more {
-  max-width: 963px;
+ 
   border: none;
   border-bottom: 1px solid black;
 }
@@ -94,12 +88,7 @@ section {
   outline: none;
 }
 .contact_button {
-  width: 100%;
-  max-width: 230px;
-}
-/* Testimonial */
-.Testimonial_text {
-  max-width: 800px;
+  width: 210px !important;
 }
 /* service */
 .service_text {
@@ -165,7 +154,6 @@ section {
   .icon_background_line {
     height: 2vh;
   }
-
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
@@ -229,10 +217,6 @@ section {
 
 }
 
-.project_button_size {
-    width: 18%;
-  }
-
   /* Backdrop with grayscale and dimming */
 .modal-backdrop {
   inset: 0;
@@ -244,7 +228,6 @@ section {
 /* Contact modal with glowing effect */
 .contact-modal {
   max-width: 1080px;
-  width: 100%;
   box-shadow: 0 0 25px 5px #504ca0;
   transform-origin: center;
 }
@@ -324,6 +307,29 @@ section {
 }
 
 .beep-glow {
-  animation: greenGlow 1s infinite;
+  animation: greenGlow 1.5s infinite;
   border-radius: 50%; /* optional: makes the glow look circular */
+}
+
+.stack-container {
+  height: 400vh; /* 4 sections * 100vh each */
+}
+/* For WebKit browsers (Chrome, Safari) */
+.stack-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.stack-container {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* For Edge and IE (legacy) */
+.stack-container {
+  -ms-overflow-style: none;
+}
+
+
+.section1 {
+  z-index: 1;
 }

@@ -1,18 +1,9 @@
-.capable_p_text {
-  max-width: 653px;
-  color: #282828;
-}
 .capable_shape1 {
   top: 20%;
   z-index: -1;
 }
-
 .capable_service_data {
   padding-top: 10%;
-}
-.capable_services_container {
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 .work_togehter_shape {
   bottom: -10%;
@@ -44,22 +35,11 @@
 .software_container {
   margin-bottom: 21%;
 }
-.capable_service_card {
-  height: 350px;
-}
-.capable_card{
-  height:550px;
-}
-
 
 @media (max-width: 576px) {
   .Capable_service_icon1 {
     max-width: 60px;
   }
-.mobile_services_section_wrapper {
-  position: relative;
-  height: 100vh;
-}
   .capable_service_card .card {
     height: 250px;
     width: 350px;
@@ -67,6 +47,10 @@
   .capable_service_card_text {
     max-width: 320px;
   }
+    .capable_card{
+  height:200px;
+}
+
 }
 @media (min-width:576px) and (max-width: 768px) {
   .capable_service_card {
@@ -79,33 +63,15 @@
    .capable_service_card_text {
     max-width: 400px;
   }
-  .mobile_services_section_wrapper {
-  position: relative;
-  height: 100vh;
-}
+
 }
 @media (min-width: 992px) and (max-width: 1550px) {
   .why_choose_us {
     margin-top: 8%;
   }
+  .capable_card{
+  height:230px;
 }
-
-@media (min-width: 992px) {
-  .rectangle-slide {
-    width: 992px;
-    
-  }
-}
-.mobile_services_row {
-  display: flex;
-  white-space: nowrap;
 }
 
 
-.mobile_services_row {
-  width: max-content;
-}
-.glow-on-touch {
-  box-shadow: 0 0 20px #504CA0, 0 0 40px #504CA0;
-  transition: box-shadow 0.3s ease;
-}

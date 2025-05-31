@@ -34,7 +34,7 @@ function Brands() {
   return (
     <div className="overflow-hidden p-0 mt-md-5">
       <div className="brand-track-wrapper overflow-hidden w-100 position-relative">
-        <div ref={trackRef} className="brand-track d-flex gap-5">
+        <div ref={trackRef} className="brand-track  d-flex gap-5">
           {[...Array(30)].map((_, index) => (
             <div className="brand-slide p-4" key={index}>
               <img

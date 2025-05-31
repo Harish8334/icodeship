@@ -1,8 +1,9 @@
 import gsap from "gsap";
-import { useEffect , useRef } from "react";
+import { useEffect , useRef , useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLocation } from 'react-router-dom'
+import "./animation.css"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,6 +34,7 @@ export const useScrollAnimation = () => {
       pin: true,
       scrub: 1,
       animation: tween,
+      
     });
 
     cards.forEach((card) => {
@@ -82,83 +84,7 @@ export const useScrollAnimation = () => {
     }, 500);
   }, []);
 };
-// software
-export function animateSoftwareSection(sectionRef, iconsRef, imageRef, softwareData, setCurrentIndex) {
-  if (!sectionRef.current) return;
 
-  const total = softwareData.length;
-
- ScrollTrigger.create({
-  trigger: sectionRef.current,
-  start: "top top",
-  end: "+=400vh", // 3 icons * 100vh
-  scrub: true,
-  pin: sectionRef.current.querySelector(".software-pinned"),
-  pinSpacing: true,
-  onUpdate: (self) => {
-    const index = Math.min(
-      total - 1,
-      Math.floor(self.progress * total) // self.progress ranges from 0 to 1
-    );
-
-    setCurrentIndex(index);
-
-    // Animate icons
-   iconsRef.current.forEach((wrapper, i) => {
-  const icon = wrapper.querySelector("img");
-  const label = wrapper.querySelector("span.font-size-18");
-
-  if (i === index) {
-    // Focus style for active icon and text
-   gsap.to(icon, {
-    boxShadow: i === index ? "0 0 10px #00f" : "none",
-    duration: 0.3,
-  });
-    gsap.to(label, {
-      fontWeight: "bold",
-      textShadow: "0 0 5px #00f",
-      duration: 0.3,
-    });
-    wrapper.classList.add("focus-ring");
-  } else {
-    gsap.to(icon, {
-      boxShadow: "none",
-      duration: 0.3,
-    });
-    gsap.to(label, {
-      fontWeight: "normal",
-      textShadow: "none",
-      duration: 0.3,
-    });
-    wrapper.classList.remove("focus-ring");
-  }
-});
-
-// Animate image and text update
-gsap.to(imageRef.current, {
-  opacity: 0,
-  duration: 0.2,
-  onComplete: () => {
-    imageRef.current.src = softwareData[index].image;
-    document.querySelector(".dynamic-paragraph").textContent =
-      softwareData[index].description; // or any dynamic text field
-    gsap.to(imageRef.current, { opacity: 1, duration: 0.2 });
-  },
-});
-
-
-    // Animate image fade
-    gsap.to(imageRef.current, {
-      opacity: 0,
-      duration: 0.2,
-      onComplete: () => {
-        imageRef.current.src = softwareData[index].image;
-        gsap.to(imageRef.current, { opacity: 1, duration: 0.2 });
-      },
-    });
-  },
-});
-}
 
 // Project 
 export const useProjectCardHover = (cardRef, overlayRef, titleRef, onPauseAutoplay, onResumeAutoplay) => {
@@ -338,15 +264,15 @@ export const useVerticalToHorizontalScroll = () => {
 export const animateWorkCard = (element) => {
   gsap.fromTo(
     element,
-    { y: 30, opacity: 0 },
+    { y: 100, opacity: 0 },
     {
       y: 0,
       opacity: 1,
-      duration: 0.7,
+      duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: element,
-        start: "top 80%",
+        start: "top 70%",
         toggleActions: "play none none none",
       },
     }
@@ -450,7 +376,7 @@ export const scrollPopup = () => {
   }, 10); // small delay to wait for layout
 };
 
-// Testimonial
+
 
 // Capabilities navigation page
 export const useImageSlideInAnimation = (containerRef) => {
@@ -492,10 +418,17 @@ export const useImageSlideInAnimation = (containerRef) => {
 export const animateCardsOnScroll = (container) => {
   const cards = container.querySelectorAll(".solution_desk_radius");
 
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
+    // Assign decreasing z-index so each next card stacks on top
+    card.style.zIndex = cards.length - index;
+
     gsap.fromTo(
       card,
-      { scale: 0.5, y: 10, opacity: 0.2 },
+      { 
+        scale: 0.5,
+        y: 100,
+        opacity: 0.2
+      },
       {
         scale: 1,
         y: 0,
@@ -506,12 +439,12 @@ export const animateCardsOnScroll = (container) => {
           start: "top 80%",
           end: "top 30%",
           scrub: true,
-          // markers: true, // Uncomment for debugging
         },
       }
     );
   });
 };
+
 
 // Contact Splash
 const COLORS = ["#ff3f8b", "#04c2c9", "#2e55c1", "#f5a623", "#7b2ff7"];
@@ -625,7 +558,7 @@ export const animateZigzagPath = () => {
   path.setAttribute("stroke", "#504CA0");
   path.setAttribute("stroke-width", "6");
   path.setAttribute("fill", "none");
-  path.setAttribute("stroke-dasharray", "20 20");
+  path.setAttribute("stroke-dasharray", "20  20");
 
   path.style.strokeDasharray = pathLength;
   path.style.strokeDashoffset = pathLength;
@@ -665,14 +598,14 @@ export const initImageRevealAnimation = (greyImgRef, colorImgRef, sectionRef) =>
 // REVEAL from center
 loop.to(colorImgRef.current, {
   clipPath: "circle(150% at 50% 50%)", // full reveal
-  duration: 3, // 🔴 slow spread in
+  duration: 3, // 
   ease: "power2.inOut",
 });
 
 // RETURN to center
 loop.to(colorImgRef.current, {
   clipPath: "circle(0% at 50% 50%)", // collapse
-  duration: 3, // 🔴 slow spread out
+  duration: 3, // 
   ease: "power2.inOut",
 });
 
@@ -687,7 +620,7 @@ loop.to(colorImgRef.current, {
 
     ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: "top 80%",
+      start: "top 90%",
       end: "bottom 10%",
       onEnter: () => loop.play(),
       onLeave: () => loop.pause(),
@@ -770,3 +703,21 @@ useEffect(() => {
 };
 
 export default SmoothScrollProvider;
+export const initParallaxScroll = (containerSelector, panelSelector) => {
+  const container = document.querySelector(containerSelector);
+  const panels = gsap.utils.toArray(panelSelector);
+
+  if (!container || panels.length === 0) return;
+
+  gsap.to(panels, {
+    yPercent: -100 * (panels.length - 1),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: container,
+      start: 'top top',
+      end: () => '+=' + container.offsetHeight * (panels.length - 1),
+      scrub: true,
+      pin: true,
+    }
+  });
+};

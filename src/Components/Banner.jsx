@@ -10,10 +10,10 @@ const Banner = ({ text, image }) => {
         <div className="row flex-column-reverse flex-lg-row mt-5">
           <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center  align-items-center">
             <div>
-              <p className="ps-md-5 font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 ">
+              <p className="font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 ">
                 {text}
               </p>
-              <div className="ps-md-5 d-flex justify-content-center justify-content-md-start">
+              <div className=" d-flex justify-content-center justify-content-lg-start">
                 <Button
                   className="px-5 py-2 mb-5 font-size-25 font_weight_500 blue_gradient rounded-5"
                   onClick={letsTalk}
@@ -25,7 +25,7 @@ const Banner = ({ text, image }) => {
           </div>
 
           <div className="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div className="d-flex banner_height justify-content-center justify-content-md-end ">
+            <div className="d-flex banner_height  ">
               {" "}
               <img
                 src={image}

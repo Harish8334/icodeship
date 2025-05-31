@@ -23,6 +23,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "../Pages/About.css";
 import useLetsTalk from "../Components/Contact_page_link.jsx";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import {
   countUpOnScroll,
    scrollPopup,
@@ -38,6 +42,7 @@ function About() {
 
   useEffect(() => {
     countUpOnScroll(countRefs.current);
+     ScrollTrigger.refresh();
   }, []);
   useEffect(() => {
   scrollPopup();
@@ -53,7 +58,7 @@ function About() {
 
   return (
     <>
-      <Header />
+      
       <Banner text={text} image={image} />
       <Brands />
        {/* Core value section */}
@@ -61,7 +66,7 @@ function About() {
       <Container className="my_container mt-lg-5 mb-5">
         <div className="row services_row">
           {/* Left Text & Button */}
-          <div className="col-12 col-md-6 col-sm-12 col-xl-5 col-lg-4">
+          <div className="col-12 col-md-6 col-sm-12  col-lg-4 col-xl-6">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
               Codeship core <br className="d-none d-lg-block" />
               values that keep us <br className="d-none d-lg-block" />
@@ -82,13 +87,13 @@ function About() {
           </div>
 
           {/* Desktop Cards Grid - visible lg and above */}
-          <div className="col-12 col-xl-7 col-lg-8 col-md-6 col-sm-6 mt-md-5 mt-lg-5 d-none d-lg-flex flex-column align-items-end">
+          <div className="col-12 col-lg-8 col-xl-6 col-md-6 col-sm-6 mt-md-5 mt-lg-5 d-none d-lg-flex flex-column ">
             <div className="row w-100">
               {cardData.slice(0, 2).map((item, index) => (
                 <div
                   key={index} ref={(el) => setCardRef(el, index)}
                   className={`col-md-6 About_core_card_size ${
-                    index === 1 ? "About_core_card" : ""
+                    index === 1 ? "About_core_card " : ""
                   }`}
                 >
                   <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
@@ -158,7 +163,7 @@ function About() {
           <img
             src={item.icon}
             alt={item.title}
-            className="img-fluid about_core_icon"
+            className="img-fluid "
           />
         </div>
         <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
@@ -180,10 +185,10 @@ function About() {
       <section className="">
         <Container className="my_container">
           <div className="row">
-            <div className="col-lg-6 col-md-5 col-sm-12 col-12">
+            <div className="col-lg-5    col-sm-12 col-12">
               <img src={Why_us} alt="" className="img-fluid  " />
             </div>
-            <div className="col-lg-6 col-md-7 col-sm-12 col-12">
+            <div className="col-lg-7  col-sm-12 col-12">
               <p className="font-size-18 font_weight_500">Why Choose Us ?</p>
               <p className="font-size-62 font_weight_600">
                 Why Working with <br />
@@ -255,14 +260,14 @@ function About() {
             breakpoints={{
               320: { slidesPerView: 2, spaceBetween: 30 },
               576: { slidesPerView: 4, spaceBetween: 15 },
-              768: { slidesPerView: 4, spaceBetween: 20 },
+              768: { slidesPerView: 3, spaceBetween: 20 },
               992: { slidesPerView: 4, spaceBetween: 25 },
               1200: { slidesPerView: 5, spaceBetween: 30 },
             }}
           >
             {Team_Data.map((member, index) => (
               <SwiperSlide key={index}>
-                <div className="Team_img d-flex justify-content-center align-items-center rounded-4 member-card position-relative">
+                <div className="Team_img d-flex justify-content-center align-items-center rounded-4 member-card overflow-hidden position-relative">
                   <img
                     src={member.img}
                     alt={member.name}

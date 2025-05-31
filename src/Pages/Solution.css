@@ -35,31 +35,28 @@
     height: 85vh;
   }
 }
-
 .fullscreen-form-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  z-index: 1050;
+  background-color: rgba(0, 0, 0, 0.6); /* Optional */
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn 0.3s ease forwards;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transform-origin: center center; /* default fallback */
 }
 
-.modal-form-content {
-  width: 90%;
-  max-width: 600px;
-  padding: 3rem 2rem;
-  border-radius: 16px;
-  transform: scale(0.3);
-  animation: scaleFromOrigin 0.4s ease forwards;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-}
 
 .close-btn {
   position: absolute;

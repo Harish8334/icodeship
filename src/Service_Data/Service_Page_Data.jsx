@@ -4,7 +4,6 @@ import Capable_service_icon1 from "../assets/images/Capable_service/capable_serv
 import Capable_service_icon2 from "../assets/images/Capable_service/capable_service_icon2.png";
 import Capable_service_icon3 from "../assets/images/Capable_service/capable_service_icon3.png";
 import Capable_service_icon4 from "../assets/images/Capable_service/capable_service_icon4.png";
-import { title } from "framer-motion/client";
 
 const serviceData = {
   // Web development
@@ -112,7 +111,7 @@ const serviceData = {
       ],
     },
   },
-  "angular-": {
+  "angular": {
     banner: {
       title:
         "Build dynamic web apps with Codeship’s – Expert Angular development tailored to your business needs!",

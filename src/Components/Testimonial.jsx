@@ -63,11 +63,11 @@ const handleChange = (direction) => {
           Hear What Our <br /> Customers Are Saying!
         </p>
 
-        <div className="row ">
+        <div className="row  d-flex flex-column-reverse flex-md-row">
           {/* Left Column */}
           <div className="col-lg-7 col-md-8 col-sm-12 col-12 mt-5">
             <div ref={textRef}>
-              <p className="font-size-20 font_weight_400 font_color_light_grey text-justify text-lg-start line_height_30 ">
+              <p className="font-size-20 pe-lg-5 me-lg-5 font_weight_400 font_color_light_grey text-justify text-lg-start line_height_30 ">
                 "{testimonial.text}"
               </p>
               <div className="row mt-4">
@@ -79,7 +79,7 @@ const handleChange = (direction) => {
                       className="img-fluid rounded-circle w-75 "
                     />
                   </div>
-                  <p className="font-size-24 font_weight_600 mt-2">
+                  <p className="font-size-20 font_weight_600 mt-2">
                     {testimonial.name} <br />
                     {testimonial.title}
                   </p>
@@ -111,12 +111,12 @@ const handleChange = (direction) => {
           </div>
 
           {/* Right Image */}
-          <div className="col-lg-5 col-md-4 d-none d-lg-block d-md-block">
+          <div className="col-lg-5 col-md-4 col-12 d-lg-block d-md-block">
             <div ref={rightImageRef}>
               <img
                 src={testimonial.Banner}
                 alt="testimonial visual"
-                className="img-fluid mt-4 "
+                className="img-fluid mt-md-4 "
                 
               />
             </div>

@@ -66,7 +66,6 @@ function Solution() {
 
   return (
     <>
-      <Header />
       <Banner text={text} image={image} />
       <Brands />
       {/* What we can do */}
