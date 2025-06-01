@@ -311,7 +311,7 @@ export const useCoreCardAnimations = (cardRefs) => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",
+            start: "top 75%",
             toggleActions: "play none none none", // 👈 disables reverse
           },
         }
@@ -389,7 +389,6 @@ export const useImageSlideInAnimation = (containerRef) => {
       const img = row.querySelector("img.slide-img");
       if (!img) return;
 
-      // Determine direction from row class
       const fromX = row.classList.contains("flex-row-reverse") ? -100 : 100;
 
       gsap.fromTo(

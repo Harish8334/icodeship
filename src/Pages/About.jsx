@@ -1,204 +1,159 @@
+// React and React-related imports
+import React, { useRef, useEffect } from "react";
+import { Container, Button } from "react-bootstrap";
+
+// FontAwesome Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
+// Swiper-related imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
+// GSAP and ScrollTrigger
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+//  Components
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
+import Brands from "../Components/Brands";
+import WorkTogther from "../Components/WorkTogther";
+import About_core_card from "../Components/About_core_card.jsx";
+// Data imports
 import Banner_Data from "../Data/Banner_Data";
 import cardData from "../Data/About_Core_Data";
 import Why_Us_Data from "../Data/Why_Us_Data";
 import Team_Data from "../Data/Team_Data";
 import Office_Data from "../Data/Office_data.jsx";
-import Brands from "../Components/Brands";
-import { Container, Button } from "react-bootstrap";
-import WorkTogther from "../Components/WorkTogther";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faFacebook,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
+
+// Image imports
 import Why_us from "../assets/images/About/about_why_us.png";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/pagination';
+
+// CSS imports
 import "../Pages/About.css";
+
+// Custom Hooks and Animation Utilities
 import useLetsTalk from "../Components/Contact_page_link.jsx";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { countUpOnScroll, scrollPopup, useCoreCardAnimations } from "../Animation/animation";
 
 gsap.registerPlugin(ScrollTrigger);
-import {
-  countUpOnScroll,
-   scrollPopup,
-   useCoreCardAnimations
-} from "../Animation/animation";
-import { useRef, useEffect } from "react";
-import { Pagination } from "swiper/modules";
+
 function About() {
   const { text, image } = Banner_Data.about;
 
   const letsTalk = useLetsTalk();
   const countRefs = useRef([]);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     countUpOnScroll(countRefs.current);
-     ScrollTrigger.refresh();
+    ScrollTrigger.refresh();
   }, []);
+
   useEffect(() => {
-  scrollPopup();
-}, []);
- const cardRefs = useRef([]);
+    scrollPopup();
+  }, []);
+
   useCoreCardAnimations(cardRefs);
 
   const setCardRef = (el, index) => {
     cardRefs.current[index] = el;
   };
 
-
-
   return (
     <>
-      
       <Banner text={text} image={image} />
       <Brands />
-       {/* Core value section */}
-    <section className="pt-0 pb-md-5">
-      <Container className="my_container mt-lg-5 mb-5">
-        <div className="row services_row">
-          {/* Left Text & Button */}
-          <div className="col-12 col-md-6 col-sm-12  col-lg-4 col-xl-6">
+      {/* Core value section */}
+      <section className="my_container d-lg-none d-block">
+        <div className="row">
+          <div className="col-12 col-md-6 col-sm-12 col-lg-4 col-xl-6">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
               Codeship core <br className="d-none d-lg-block" />
               values that keep us <br className="d-none d-lg-block" />
               so well together.
             </p>
             <p className="font-size-24 mx-3 mx-lg-0 mx-xl-0">
-              We offer a comprehensive range of <br className="d-none d-xl-block" />
-              software development services tailored <br className="d-none d-xl-block" />
-              to meet the unique needs of your <br className="d-none d-xl-block" />
+              We offer a comprehensive range of{" "}
+              <br className="d-none d-xl-block" />
+              software development services tailored{" "}
+              <br className="d-none d-xl-block" />
+              to meet the unique needs of your{" "}
+              <br className="d-none d-xl-block" />
               business.
             </p>
-            <Button
+             <Button
               className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient rounded-5 mx-2 mx-lg-0 mx-xl-0"
               onClick={letsTalk}
             >
               Let's Talk
             </Button>
           </div>
-
-          {/* Desktop Cards Grid - visible lg and above */}
-          <div className="col-12 col-lg-8 col-xl-6 col-md-6 col-sm-6 mt-md-5 mt-lg-5 d-none d-lg-flex flex-column ">
-            <div className="row w-100">
-              {cardData.slice(0, 2).map((item, index) => (
-                <div
-                  key={index} ref={(el) => setCardRef(el, index)}
-                  className={`col-md-6 About_core_card_size ${
-                    index === 1 ? "About_core_card " : ""
-                  }`}
-                >
-                  <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
+          <div className="col-12 col-md-6 d-lg-none mt-4">
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={1}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+                renderBullet: (index, className) =>
+                  `<span class="${className} custom-pagination-dot"></span>`,
+              }}
+              className="custom-swiper pb-5"
+            >
+              {cardData.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="card pb-2 rounded-4 border_shadow mx-3"
+                    ref={(el) => setCardRef(el, index + 4)}
+                  >
                     <div className="d-flex justify-content-center pt-3">
                       <img
                         src={item.icon}
                         alt={item.title}
-                        className="img-fluid about_core_icon"
+                        className="img-fluid"
                       />
                     </div>
                     <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
                       {item.title}
                     </p>
                     <div className="d-flex justify-content-center mt-3">
-                      <p className="font-size-20 text-center px-4">{item.description}</p>
+                      <p className="font-size-20 text-center px-4">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
-
-            <div className="row w-100">
-              {cardData.slice(2).map((item, index) => (
-                <div
-                  key={index} ref={(el) => setCardRef(el, index + 2)}
-                  className={`col-md-6 About_core_card_size ${
-                    index === 1 ? "mt-5" : "About_core_card_down"
-                  }`}
-                >
-                  <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
-                    <div className="d-flex justify-content-center mt-2 pt-3">
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        className="img-fluid about_core_icon"
-                      />
-                    </div>
-                    <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
-                      {item.title}
-                    </p>
-                    <div className="d-flex justify-content-center mt-3">
-                      <p className="font-size-20 text-center px-4">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Swiper Slider for small screens only */}
-          <div className="col-12 col-md-6 d-lg-none mt-4">
-    <Swiper
-      modules={[Pagination]}
-      slidesPerView={1}
-      spaceBetween={30}
-      pagination={{
-        clickable: true,
-        renderBullet: (index, className) =>
-          `<span class="${className} custom-pagination-dot"></span>`,
-      }}
-      className="custom-swiper pb-5"
-    >
-  {cardData.map((item, index) => (
-    <SwiperSlide key={index}>
-      <div className="card pb-2 rounded-4 border_shadow mx-3" ref={(el) => setCardRef(el, index + 4)}>
-        <div className="d-flex justify-content-center pt-3">
-          <img
-            src={item.icon}
-            alt={item.title}
-            className="img-fluid "
-          />
-        </div>
-        <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
-          {item.title}
-        </p>
-        <div className="d-flex justify-content-center mt-3">
-          <p className="font-size-20 text-center px-4">{item.description}</p>
-        </div>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
-
+            </Swiper>
           </div>
         </div>
-      </Container>
-    </section>
+      </section>
+      <section className="mb-5 pb-5 d-none d-lg-block">
+        <About_core_card />
+      </section>
       {/* Why us ? */}
-      <section className="">
+      <section>
         <Container className="my_container">
           <div className="row">
-            <div className="col-lg-5    col-sm-12 col-12">
-              <img src={Why_us} alt="" className="img-fluid  " />
+            <div className="col-lg-5 col-sm-12 col-12">
+              <img src={Why_us} alt="" className="img-fluid" />
             </div>
-            <div className="col-lg-7  col-sm-12 col-12">
-              <p className="font-size-18 font_weight_500">Why Choose Us ?</p>
+            <div className="col-lg-7 col-sm-12 col-12">
+              <p className="font-size-18 font_weight_500">Why Choose Us?</p>
               <p className="font-size-62 font_weight_600">
                 Why Working with <br />
                 Codeship?
               </p>
-              <p className="">
+              <p>
                 We offer a comprehensive range of software development services
                 tailored to meet the unique needs of your business. A
                 full-service creative agency designing and building inventive
-                digital experiences across all platforms and brand touchpoints
+                digital experiences across all platforms and brand touchpoints.
               </p>
               <div className="row g-2">
                 {Why_Us_Data.map((item, index) => (
@@ -221,7 +176,6 @@ function About() {
                           >
                             0 {item.symbol}
                           </p>
-
                           <p className="font_weight_500 font-size-16 p-0">
                             {item.title}
                           </p>
@@ -322,16 +276,19 @@ function About() {
           </Swiper>
 
           {/* Pagination bullets */}
-          <div className="custom-swiper-pagination d-flex justify-content-center my-5" id="office-section" />
+          <div
+            className="custom-swiper-pagination d-flex justify-content-center my-5"
+            id="office-section"
+          />
         </Container>
       </section>
       {/* Office */}
-      <section >
+      <section>
         <Container className="my_container">
           <p className="font-size-62 font_weight_600 text-center">
             Get a feeling at our office
           </p>
-          <p className="font-size-30 text-center ">
+          <p className="font-size-30 text-center">
             Dynamic energy and collaborative spirit defines our workspace and
             its remarkable people.
           </p>
@@ -340,10 +297,9 @@ function About() {
             {Office_Data.map((item, index) => (
               <div
                 className={`col-md-6 office-card animate-from-bottom ${
-                  index % 2 === 1 ? " About_office" : ""
+                  index % 2 === 1 ? "About_office" : ""
                 }`}
                 key={index}
-               
               >
                 <div className="rounded-4">
                   <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
@@ -370,9 +326,7 @@ function About() {
             >
               {Office_Data.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div
-                    className={`office-card animate-from-bottom`}
-                  >
+                  <div className={`office-card animate-from-bottom`}>
                     <div className="rounded-4">
                       <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
                         <img

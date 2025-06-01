@@ -1,35 +1,52 @@
-import { useState , useEffect , useRef } from "react";
+// React and React-related imports
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import Header from "../Components/Header.jsx";
+
+// React Bootstrap components
+import { Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+
+// Formik and Yup for form handling
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+// Toast notifications
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// GSAP and ScrollSmoother for animations
+import gsap from "gsap";
+import ScrollSmoother from "gsap/ScrollSmoother";
+
+// components
 import Footer from "../Components/Footer.jsx";
-import Contact from "../Components/Contact.jsx";
+import Brands from "../Components/Brands.jsx";
 import Banner from "../Components/Banner.jsx";
+import Frequent_Ask from "../Components/Frequent_Ask.jsx";
+
+// Custom animations and utilities
+import { BallSplash } from "../Animation/animation";
+import { submitContactForm } from "../Service_Data/API.jsx";
+
+// Data
 import Banner_Data from "../Data/Banner_Data.jsx";
-import "../Pages/Contact_page.css";
+
+// Images
 import Location_icon from "../assets/images/Contact/contact_loc_icon.png";
 import Msg_icon from "../assets/images/Contact/contact_msg_icon.png";
 import Call_icon from "../assets/images/Contact/contact_call_icon.png";
-import Frequent_Ask from "../Components/Frequent_Ask.jsx";
-import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import Contact_icon1 from "../assets/images/Home/BB_icon.png";
 import Contact_icon2 from "../assets/images/Home/insta_icon.png";
 import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
 import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import {BallSplash} from "../Animation/animation"
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from "react-toastify";
-import gsap from "gsap";
-import ScrollSmoother from "gsap/ScrollSmoother";
-import { submitContactForm } from "../Service_Data/API.jsx";
-import "react-toastify/dist/ReactToastify.css";
+
+// CSS
+import "../Pages/Contact_page.css";
+
+// Register GSAP plugin
 gsap.registerPlugin(ScrollSmoother);
 
 const validationSchema = Yup.object().shape({
-
-
   name: Yup.string().required("Enter a company name"),
   email: Yup.string()
     .matches(
@@ -46,9 +63,39 @@ const validationSchema = Yup.object().shape({
 });
 
 function Contact_page() {
-    const location = useLocation();
+  const location = useLocation();
+
+  const services = [
+    "Web Development",
+    "App Development",
+    "CRM & Tools",
+    "Digital Marketing",
+    "UI / UX Design",
+    "AMC",
+    "Servers & Hosting",
+    "Other Services",
+  ];
 
   useEffect(() => {
+    if (location.hash) {
+      const scrollToElement = () => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "auto" });
+        }
+      };
+
+      // If page fully loaded, scroll immediately
+      if (document.readyState === "complete") {
+        scrollToElement();
+      } else {
+        // Wait for full load (images/fonts)
+        window.addEventListener("load", scrollToElement);
+        // Cleanup listener
+        return () => window.removeEventListener("load", scrollToElement);
+      }
+    }
+
     const scrollToTarget = (selector) => {
       const target = document.querySelector(selector);
       const smoother = ScrollSmoother.get();
@@ -71,255 +118,265 @@ function Contact_page() {
     return () => clearTimeout(timeout);
   }, [location]);
 
-
-  const services = [
-    "Web Development",
-    "App Development",
-    "CRM & Tools",
-    "Digital Marketing",
-    "UI / UX Design",
-    "AMC",
-    "Servers & Hosting",
-    "Other Services",
-  ];
-
-
-  useEffect(() => {
-    if (location.hash) {
-      const scrollToElement = () => {
-        const element = document.querySelector(location.hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "auto" });
-        }
-      };
-
-      // If page fully loaded, scroll immediately
-      if (document.readyState === "complete") {
-        scrollToElement();
-      } else {
-        // Wait for full load (images/fonts)
-        window.addEventListener("load", scrollToElement);
-        // Cleanup listener
-        return () => window.removeEventListener("load", scrollToElement);
-      }
-    }
-  }, [location]);
-    const containerRef = useRef(null);
-    const [showSplash, setShowSplash] = useState(false);
-  
-    const [showToast, setShowToast] = useState(false);
+  const containerRef = useRef(null);
+  const [showSplash, setShowSplash] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const { text, image } = Banner_Data.contact;
-// api call
-const handleSubmit = async (values, { resetForm }) => {
-  setShowSplash(true); // trigger splash immediately
 
-  try {
-    await submitContactForm(values); // send data to your API
+  // API call
+  const handleSubmit = async (values, { resetForm }) => {
+    setShowSplash(true); // trigger splash immediately
 
-    toast.success("Form submitted successfully!", {
-      className: "custom-toast",
-      hideProgressBar: false,
-      autoClose: 3000,
-      position: "top-right",
-      progressClassName: "Toastify__progress-bar",
-    });
+    try {
+      await submitContactForm(values); // send data to your API
 
-    resetForm();
-  } catch (error) {
-    console.error("Form submission error:", error);
+      toast.success("Form submitted successfully!", {
+        className: "custom-toast",
+        hideProgressBar: false,
+        autoClose: 3000,
+        position: "top-right",
+        progressClassName: "Toastify__progress-bar",
+      });
 
-    toast.error("Something went wrong. Please try again.", {
-      className: "custom-toast",
-      autoClose: 2500,
-      hideProgressBar: false,
-      position: "bottom-right",
-    });
-  } finally {
-    // optionally hide splash after some delay
-    setTimeout(() => setShowSplash(false), 2000);
-  }
-};
+      resetForm();
+    } catch (error) {
+      console.error("Form submission error:", error);
+
+      toast.error("Something went wrong. Please try again.", {
+        className: "custom-toast",
+        autoClose: 2500,
+        hideProgressBar: false,
+        position: "bottom-right",
+      });
+    } finally {
+      // optionally hide splash after some delay
+      setTimeout(() => setShowSplash(false), 2000);
+    }
+  };
+
   return (
     <>
       <Banner text={text} image={image} />
-  <section className="position-relative overflow-hidden" ref={containerRef}>
-      <Container className="my_container pt-5">
-        <p className="font-size-62 font_weight_600">Have an innovative thought?</p>
-        <p className="p-0 font-size-46 font_weight_500" id="contactForm">
-          Tell us about it.
-        </p>
-        <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            mobile: "",
-            subject: "",
-            interests: [],
-            about: "",
-          }}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ values, setFieldValue }) => (
-            <Form>
-              <div className="row d-flex flex-column-reverse flex-lg-row align-items-end">
-                <div className="col-lg-4">
-                  <div className="social-media-links mt-5 mt-lg-0">
-                    <p className="font-size-37 font_weight_600">Follow us on :</p>
-                    <div className="d-flex gap-3">
-                      <a href="#">
-                        <img src={Contact_icon1} alt="" className="img-fluid" />
-                      </a>
-                      <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-                        <img src={Contact_icon2} alt="" className="img-fluid" />
-                      </a>
-                      <a href="#">
-                        <img src={Contact_icon3} alt="" className="img-fluid" />
-                      </a>
-                      <a href="#">
-                        <img src={Contact_icon4} alt="" className="img-fluid" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
-                  <div className="row">
-                    <div className="col-md-6 col-12 mt-2 pe-lg-5 mt-lg-5">
-                      <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400">
-                          Name & Company
-                        </label>
-                        <Field
-                          type="text"
-                          name="name"
-                          className="contact_input border-none mt-4"
-                          placeholder="Enter your full name"
-                        />
-                        <ErrorMessage name="name" component="div" className="text-danger mt-3" />
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-12 mt-2 ps-lg-5 mt-lg-5">
-                      <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400 pt-4 pt-md-0">
-                          Email id
-                        </label>
-                        <Field
-                          type="email"
-                          name="email"
-                          placeholder="Enter your email address"
-                          className="contact_input mt-4"
-                        />
-                        <ErrorMessage name="email" component="div" className="text-danger mt-3" />
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-12 pe-lg-5 mt-5">
-                      <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400">Mobile Number</label>
-                        <Field
-                          type="tel"
-                          name="mobile"
-                          maxLength="10"
-                          inputMode="numeric"
-                          pattern="\d*"
-                          placeholder="Enter mobile number"
-                          onInput={(e) => {
-                            e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
-                          }}
-                          className="contact_input mt-4"
-                        />
-                        <ErrorMessage name="mobile" component="div" className="text-danger mt-3" />
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-12 ps-lg-5 mt-5">
-                      <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400">Subject</label>
-                        <Field type="text" name="subject" className="contact_input mt-4" />
-                        <ErrorMessage name="subject" component="div" className="text-danger mt-3" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="mt-5 font-size-20 font_weight_400 px-lg-0">I’m Interested in</p>
-                  <div className="row">
-                    <div className="col-6 col-md-12 d-flex flex-wrap flex-md-nowrap justify-content-evenly gap-3">
-                      {services.slice(0, 4).map((interest) => (
-                        <button
-                          key={interest}
-                          type="button"
-                          className={`btn btn-outline-dark w-100 text-nowrap py-2 py-md-3 font-size-12 font_weight_400 rounded-pill contact_button border-black ${
-                            values.interests.includes(interest) ? "active" : ""
-                          }`}
-                          onClick={() => {
-                            const selected = values.interests.includes(interest)
-                              ? values.interests.filter((i) => i !== interest)
-                              : [...values.interests, interest];
-                            setFieldValue("interests", selected);
-                          }}
-                        >
-                          {interest}
-                        </button>
-                      ))}
-                    </div>
-                    <div className="col-6 col-md-12 d-flex flex-wrap flex-md-nowrap justify-content-evenly gap-3 pt-md-3">
-                      {services.slice(4).map((interest) => (
-                        <button
-                          key={interest}
-                          type="button"
-                          className={`btn btn-outline-dark w-100 text-nowrap py-2 py-md-3 font-size-12 font_weight_400 rounded-pill contact_button border-black ${
-                            values.interests.includes(interest) ? "active" : ""
-                          }`}
-                          onClick={() => {
-                            const selected = values.interests.includes(interest)
-                              ? values.interests.filter((i) => i !== interest)
-                              : [...values.interests, interest];
-                            setFieldValue("interests", selected);
-                          }}
-                        >
-                          {interest}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <ErrorMessage name="interests" component="div" className="text-danger px-4" />
-
-                  <p className="mt-5 font-size-20 font_weight_400">Tell us more about your project</p>
-                  <div className="">
-                    <Field
-                      type="text"
-                      name="about"
-                      className="contact_about_more w-100 bg-transparent shadow-none"
-                    />
-                    <ErrorMessage name="about" component="div" className="text-danger mt-3" />
-                  </div>
-                  <div className="mt-5 d-flex justify-content-start">
-                    <Button
-                      type="submit"
-                      className="px-5 py-2 font-size-25 font_weight_500 blue_gradient rounded-5"
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
-        {showSplash && (
-          <BallSplash
-            onComplete={() => {
-              setShowSplash(false);
+      <Brands />
+      <section className="position-relative overflow-hidden" ref={containerRef}>
+        <Container className="my_container pt-5">
+          <p className="font-size-62 font_weight_600">
+            Have an innovative thought?
+          </p>
+          <p className="p-0 font-size-46 font_weight_500" id="contactForm">
+            Tell us about it.
+          </p>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              mobile: "",
+              subject: "",
+              interests: [],
+              about: "",
             }}
-          />
-        )}
-        <ToastContainer className="mt-5 pt-5" />
-      </Container>
-    </section>
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ values, setFieldValue }) => (
+              <Form>
+                <div className="row d-flex flex-column-reverse flex-lg-row align-items-end">
+                  <div className="col-lg-4">
+                    <div className="social-media-links mt-5 mt-lg-0">
+                      <p className="font-size-37 font_weight_600">
+                        Follow us on :
+                      </p>
+                      <div className="d-flex gap-3">
+                        <a href="#">
+                          <img
+                            src={Contact_icon1}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </a>
+                        <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                          <img
+                            src={Contact_icon2}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </a>
+                        <a href="#">
+                          <img
+                            src={Contact_icon3}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </a>
+                        <a href="#">
+                          <img
+                            src={Contact_icon4}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
+                    <div className="row">
+                      <div className="col-md-6 col-12 mt-2 pe-lg-5 mt-lg-5">
+                        <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
+                          <label className="font-size-20 font_weight_400">
+                            Name & Company
+                          </label>
+                          <Field
+                            type="text"
+                            name="name"
+                            className="contact_input border-none mt-4"
+                            placeholder="Enter your full name"
+                          />
+                          <ErrorMessage
+                            name="name"
+                            component="div"
+                            className="text-danger mt-3"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-12 mt-2 ps-lg-5 mt-lg-5">
+                        <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
+                          <label className="font-size-20 font_weight_400 pt-4 pt-md-0">
+                            Email id
+                          </label>
+                          <Field
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            className="contact_input mt-4"
+                          />
+                          <ErrorMessage
+                            name="email"
+                            component="div"
+                            className="text-danger mt-3"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-12 pe-lg-5 mt-5">
+                        <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
+                          <label className="font-size-20 font_weight_400">
+                            Mobile Number
+                          </label>
+                          <Field
+                            type="tel"
+                            name="mobile"
+                            maxLength="10"
+                            inputMode="numeric"
+                            pattern="\d*"
+                            placeholder="Enter mobile number"
+                            onInput={(e) => {
+                              e.target.value = e.target.value
+                                .replace(/\D/g, "")
+                                .slice(0, 10);
+                            }}
+                            className="contact_input mt-4"
+                          />
+                          <ErrorMessage
+                            name="mobile"
+                            component="div"
+                            className="text-danger mt-3"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-6 col-12 ps-lg-5 mt-5">
+                        <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
+                          <label className="font-size-20 font_weight_400">
+                            Subject
+                          </label>
+                          <Field
+                            type="text"
+                            name="subject"
+                            className="contact_input mt-4"
+                          />
+                          <ErrorMessage
+                            name="subject"
+                            component="div"
+                            className="text-danger mt-3"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="mt-5 font-size-20 font_weight_400 px-lg-0">
+                      I’m Interested in
+                    </p>
+                     <div className="row g-3">
+                    {services.map((interest, index) => (
+                      <div
+                        key={interest}
+                        className="col-6 col-md-3 d-flex justify-content-center"
+                      >
+                        <button
+                          type="button"
+                          className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
+                            values.interests.includes(interest) ? "active" : ""
+                          }`}
+                          onClick={() => {
+                            const selected = values.interests.includes(interest)
+                              ? values.interests.filter((i) => i !== interest)
+                              : [...values.interests, interest];
+                            setFieldValue("interests", selected);
+                          }}
+                        >
+                          {interest}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                    <ErrorMessage
+                      name="interests"
+                      component="div"
+                      className="text-danger px-4"
+                    />
+
+                    <p className="mt-5 font-size-20 font_weight_400">
+                      Tell us more about your project
+                    </p>
+                    <div className="">
+                      <Field
+                        type="text"
+                        name="about"
+                        className="contact_about_more w-100 bg-transparent shadow-none"
+                      />
+                      <ErrorMessage
+                        name="about"
+                        component="div"
+                        className="text-danger mt-3"
+                      />
+                    </div>
+                    <div className="mt-5 d-flex justify-content-start">
+                      <Button
+                        type="submit"
+                        className="px-5 py-2 font-size-25 font_weight_500 blue_gradient rounded-5"
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Form>
+            )}
+          </Formik>
+          {showSplash && (
+            <BallSplash
+              onComplete={() => {
+                setShowSplash(false);
+              }}
+            />
+          )}
+          <ToastContainer className="mt-5 pt-5" />
+        </Container>
+      </section>
       {/* Locate us */}
       <section className="pt-5">
         <Container className="my_container">
-          <p className=" font-size-37 font_weight_600 ">Locate Us :</p>
-          <div className="d-flex flex-sm-wrap flex-md-nowrap  gap-3 Contact_card_container justify-content-center">
+          <p className="font-size-37 font_weight_600">Locate Us :</p>
+          <div className="d-flex flex-sm-wrap flex-md-nowrap gap-3 Contact_card_container justify-content-center">
             <div className="card border_shadow p-3 Contact_card rounded-5">
               <div className="ms-2 mt-2">
                 <div className="mb-5">
@@ -382,7 +439,7 @@ const handleSubmit = async (values, { resetForm }) => {
       {/* Map */}
       <section>
         <Container fluid>
-          <div className="map-container d-flex justify-content-center w-100 m-auto mt-5  m-0">
+          <div className="map-container d-flex justify-content-center w-100 m-auto mt-5 m-0">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7773.890565645889!2d80.2255752!3d13.0391549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d3b70a90f51%3A0xb6155325437cc516!2sCodeShip%20Private%20Limited!5e0!3m2!1sen!2sin!4v1745490585479!5m2!1sen!2sin"
               width="1620"

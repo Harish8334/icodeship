@@ -1,23 +1,20 @@
 // React Core
 import React, { useRef, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Data
 import Things_Data from "../Data/Things_Data";
-import Services from "../Data/Service_Data";
 import Banner_Data from "../Data/Banner_Data";
 import projects from "../Data/Project_Data";
 import { softwareData } from "../Data/Software_Data";
 
 // Components
-import {
-  Header,
-  Footer,
-  Banner,
-  Brands,
-  Contact,
-  Testimonial,
-} from "../Components/Componets";
+import Header from "../Components/Header.jsx";
+import Banner from "../Components/Banner.jsx";
+import Brands from "../Components/Brands.jsx";
+import Contact from "../Components/Contact.jsx";
+import Testimonial from "../Components/Testimonial.jsx";
+
 import "../Components/Contact_page_link";
 import Home_service from "../Components/Home_service";
 
@@ -25,9 +22,6 @@ import Home_service from "../Components/Home_service";
 import {
   useScrollAnimation,
   useProjectCardHover,
-  openModalAnimation,
-  closeModalAnimation,
-  BallSplash
 } from "../Animation/animation";
 import Animation from "../Animation/TechStackAnimation";
 
@@ -40,9 +34,6 @@ import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 
-// Form Handling
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 
 // React Bootstrap
 import { Container, Button } from "react-bootstrap";
@@ -54,8 +45,6 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 // GSAP
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Styles
-import "react-toastify/dist/ReactToastify.css";
 
 // Assets
 import map from "../assets/images/Home/map.png";
@@ -67,23 +56,8 @@ import Angular_img from "../assets/images/Home/angularJS.png";
 // Constants
 const { text, image } = Banner_Data.home;
 
-const contactSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  mobile: Yup.string()
-    .matches(/^\d{10}$/, "Mobile number must be 10 digits")
-    .required("Mobile number is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  industry: Yup.string().required("Industry is required"),
-  message: Yup.string().required("Message is required"),
-  software: Yup.array()
-    .of(Yup.string())
-    .min(1, "Please select at least one software")
-    .required("Software is required"),
-});
-
 function Home() {
   const navigate = useNavigate();
-const [showSplash, setShowSplash] = useState(false);
   // Data slices for cards
   const topCards = Things_Data.slice(0, 2);
   const bottomCards = Things_Data.slice(2, 4);
@@ -109,11 +83,7 @@ const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState({});
 
-  // Purchase Contact Form modal and toast state
-  const modalRef = useRef(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [formTitle, setFormTitle] = useState("");
+
 
   // Pause and resume autoplay helpers
   const pauseAutoplay = () => swiperRef.current?.autoplay?.stop();
@@ -134,6 +104,10 @@ const [showSplash, setShowSplash] = useState(false);
       setShowModal(true);
     }
   };
+    const handlePurchaseClick = () => {
+    navigate("/purchase-contact");
+  };
+
 
   // Handle opening purchase form modal
 
@@ -156,12 +130,9 @@ const [showSplash, setShowSplash] = useState(false);
     });
 
 
-  }, [softwareData.length, showModal, modalOpen]);
+  }, [softwareData.length]);
  
 
-  const handlePurchaseClick = () => {
-    navigate("/purchase-contact");
-  };
 
   
 
@@ -422,29 +393,12 @@ const [showSplash, setShowSplash] = useState(false);
         </div>
       </Container>
     </div>
-
-    {/* MODAL FORM */}
- 
-
-
-    {/* SPLASH ANIMATION */}
-    {showSplash && (
-      <BallSplash
-        onComplete={() => {
-          setShowSplash(false);
-        }}
-      />
-    )}
   </section>
 </div>
-
-
-    
  </div>
         {/* Techstack section */}
-      <section className="bg-black pt-5 pb-5  ">
-        <Container className=" pt-5 pb-5  my_container ">
-          {/* big screen */}
+      <section className="bg-black pt-5 pb-5 px-0 ">
+        <Container className=" pt-5 pb-5  my_container px-1 ">
           {/* top layer */}
           <div className="tech_stack_container">
             <div className="d-flex flex-row justify-content-center gap-3">
@@ -458,7 +412,7 @@ const [showSplash, setShowSplash] = useState(false);
               <div className="tech_box bg-white  "></div>
               <div className="tech_box bg-white  "></div>
             </div>
-            <div className="d-flex  flex-row justify-content-center mx-5 pt-4 gap-3">
+            <div className="d-flex  flex-row justify-content-center mx-5 pt-2 gap-3">
               <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
                 <div className="tech_box bg-white "></div>
                 <div className="tech_box bg-white "></div>
@@ -481,10 +435,10 @@ const [showSplash, setShowSplash] = useState(false);
               </div>
             </div>
             {/* middle layer */}
-            <div className="d-flex flex-row justify-content-center pt-2 align-items-center pb-lg-3 ">
+            <div className="d-flex  flex-row justify-content-center  align-items-center pb-lg-3 ">
               <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
                 <div className="left">
-                  <div className="d-flex py-2   gap-3 ">
+                  <div className="d-flex py-1   gap-3 ">
                     <div className="tech_box bg-white "></div>
                     <Animation
                       imgSrc={React_img}
@@ -492,7 +446,7 @@ const [showSplash, setShowSplash] = useState(false);
                       altText="Image from Top Left"
                     />
                   </div>
-                  <div className="d-flex pt-4  gap-3">
+                  <div className="d-flex pt-3  gap-3">
                     <Animation
                       imgSrc={Angular_img}
                       animationDirection="bottomRight"
@@ -502,8 +456,8 @@ const [showSplash, setShowSplash] = useState(false);
                   </div>
                 </div>
                 {/* middle text */}
-                <div className="d-flex  flex-column justify-content-center align-items-center py-2 gap-3 pt-3">
-                  <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3  px-md-5 ">
+                <div className="d-flex  flex-column justify-content-center align-items-center  gap-3 py-sm-1 pt-0">
+                  <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3   px-md-5 ">
                     Amazing tech stack in <br /> our pocket
                   </p>
                   <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
@@ -511,7 +465,7 @@ const [showSplash, setShowSplash] = useState(false);
                   </p>
                 </div>
                 <div className="right">
-                  <div className="d-flex py-2  gap-3 ">
+                  <div className="d-flex   gap-3 ">
                     <Animation
                       imgSrc={AWS}
                       animationDirection="topRight"
@@ -519,7 +473,7 @@ const [showSplash, setShowSplash] = useState(false);
                     />
                     <div className="tech_box bg-white "></div>
                   </div>
-                  <div className="d-flex pt-4 gap-3">
+                  <div className="d-flex pt-3 gap-3">
                     <div className="tech_box bg-white "></div>
                     <Animation
                       imgSrc={Nodejs}
@@ -531,7 +485,7 @@ const [showSplash, setShowSplash] = useState(false);
               </div>
             </div>
             {/* bottom layer */}
-            <div className="d-flex  flex-row justify-content-center pt-4 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
+            <div className="d-flex  flex-row justify-content-center pt-2 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
               <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
                 <Animation
                   imgSrc={Angular_img}
@@ -550,7 +504,7 @@ const [showSplash, setShowSplash] = useState(false);
                 <div className="tech_box bg-white "></div>
               </div>
             </div>
-            <div className="d-flex  flex-row justify-content-center   gap-3">
+            <div className="d-flex  flex-row justify-content-center pt-2    gap-3">
               <div className="tech_box bg-white "></div>
               <Animation
                 imgSrc={React_img}
@@ -719,7 +673,7 @@ const [showSplash, setShowSplash] = useState(false);
    
       <Testimonial />
       <Contact />
-      <Footer />
+     
     </div>
   );
 }

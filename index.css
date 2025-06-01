@@ -166,3 +166,36 @@
 .accordion-button::after {
   margin-left: auto; 
 }
+.brand_swiper {
+  opacity: 0.5;
+  filter: grayscale(60%);
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.brand_swiper.active {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.2);
+  z-index: 10;
+}
+.parallax-wrapper {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.parallax-section {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.parallax-overlay {
+  position: relative;
+  z-index: 2;
+  background: white;
+  padding-top: 100vh; /* So it scrolls over the sticky section */
+}

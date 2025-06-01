@@ -15,7 +15,7 @@ const Banner = ({ text, image }) => {
               </p>
               <div className=" d-flex justify-content-center justify-content-lg-start">
                 <Button
-                  className="px-5 py-2 mb-5 font-size-25 font_weight_500 blue_gradient rounded-5"
+                  className="px-5 py-2  font-size-25 font_weight_500 blue_gradient rounded-5"
                   onClick={letsTalk}
                 >
                   Let's Talk

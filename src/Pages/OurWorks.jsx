@@ -2,7 +2,6 @@ import "./OurWorks.css";
 import "./About.css";
 import Banner from "../Components/Banner";
 import Banner_Data from "../Data/Banner_Data";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Brands from "../Components/Brands";
 import WorkTogther from "../Components/WorkTogther";

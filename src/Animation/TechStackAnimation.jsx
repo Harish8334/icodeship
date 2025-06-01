@@ -10,7 +10,7 @@ const getInitialPosition = (direction) => {
   case "topRight":
     return { x: 50, y: -50, opacity: 0 };   // From top-right
   case "bottomLeft":
-    return { x: -50, y: 50, opacity: 0 };   // From bottom-left
+    return { x: -10, y: 50, opacity: 0 };   // From bottom-left
   case "bottomRight":
     return { x: 50, y: 50, opacity: 0 };    // From bottom-right
   case "topToBottom":

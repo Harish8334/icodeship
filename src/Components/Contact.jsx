@@ -7,10 +7,11 @@ import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
 import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import {submitContactForm} from "../Service_Data/API.jsx"
+import { submitContactForm } from "../Service_Data/API.jsx";
 import { BallSplash } from "../Animation/animation";
-import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer.jsx";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Enter a company name"),
@@ -43,40 +44,38 @@ function Contact() {
     "Other Services",
   ];
 
-const handleSubmit = async (values, { resetForm }) => {
-  setShowSplash(true); // trigger splash immediately
+  const handleSubmit = async (values, { resetForm }) => {
+  setShowSplash(true);
 
   try {
-    await submitContactForm(values); // send data to your API
-
-    toast.success("Form submitted successfully!", {
-      className: "custom-toast",
-      hideProgressBar: false,
+    await submitContactForm(values);
+    toast.success("Form submitted successfully! 🚀", {
+      position: "top-center",
       autoClose: 3000,
-      position: "top-right",
-      progressClassName: "Toastify__progress-bar",
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
     });
-
     resetForm();
   } catch (error) {
-    console.error("Form submission error:", error);
-
     toast.error("Something went wrong. Please try again.", {
-      className: "custom-toast",
-      autoClose: 2500,
-      hideProgressBar: false,
-      position: "bottom-right",
+      position: "top-center",
+      autoClose: 3000,
     });
+    console.error("Form submission error:", error);
   } finally {
-    // optionally hide splash after some delay
     setTimeout(() => setShowSplash(false), 2000);
   }
 };
 
+
   return (
     <section className="position-relative overflow-hidden" ref={containerRef}>
       <Container className="my_container pt-5">
-        <p className="font-size-62 font_weight_600">Have an innovative thought?</p>
+        <p className="font-size-62 font_weight_600">
+          Have an innovative thought?
+        </p>
         <p className="p-0 font-size-46 font_weight_500" id="contactForm">
           Tell us about it.
         </p>
@@ -97,7 +96,9 @@ const handleSubmit = async (values, { resetForm }) => {
               <div className="row d-flex flex-column-reverse flex-lg-row align-items-end">
                 <div className="col-lg-4">
                   <div className="social-media-links mt-5 mt-lg-0">
-                    <p className="font-size-37 font_weight_600">Follow us on :</p>
+                    <p className="font-size-37 font_weight_600">
+                      Follow us on :
+                    </p>
                     <div className="d-flex gap-3">
                       <a href="#">
                         <img src={Contact_icon1} alt="" className="img-fluid" />
@@ -127,7 +128,11 @@ const handleSubmit = async (values, { resetForm }) => {
                           className="contact_input border-none mt-4"
                           placeholder="Enter your full name"
                         />
-                        <ErrorMessage name="name" component="div" className="text-danger mt-3" />
+                        <ErrorMessage
+                          name="name"
+                          component="div"
+                          className="text-danger mt-3"
+                        />
                       </div>
                     </div>
                     <div className="col-md-6 col-12 mt-2 ps-lg-5 mt-lg-5">
@@ -141,12 +146,18 @@ const handleSubmit = async (values, { resetForm }) => {
                           placeholder="Enter your email address"
                           className="contact_input mt-4"
                         />
-                        <ErrorMessage name="email" component="div" className="text-danger mt-3" />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-danger mt-3"
+                        />
                       </div>
                     </div>
                     <div className="col-md-6 col-12 pe-lg-5 mt-5">
                       <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400">Mobile Number</label>
+                        <label className="font-size-20 font_weight_400">
+                          Mobile Number
+                        </label>
                         <Field
                           type="tel"
                           name="mobile"
@@ -155,30 +166,50 @@ const handleSubmit = async (values, { resetForm }) => {
                           pattern="\d*"
                           placeholder="Enter mobile number"
                           onInput={(e) => {
-                            e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                            e.target.value = e.target.value
+                              .replace(/\D/g, "")
+                              .slice(0, 10);
                           }}
                           className="contact_input mt-4"
                         />
-                        <ErrorMessage name="mobile" component="div" className="text-danger mt-3" />
+                        <ErrorMessage
+                          name="mobile"
+                          component="div"
+                          className="text-danger mt-3"
+                        />
                       </div>
                     </div>
                     <div className="col-md-6 col-12 ps-lg-5 mt-5">
                       <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                        <label className="font-size-20 font_weight_400">Subject</label>
-                        <Field type="text" name="subject" className="contact_input mt-4" />
-                        <ErrorMessage name="subject" component="div" className="text-danger mt-3" />
+                        <label className="font-size-20 font_weight_400">
+                          Subject
+                        </label>
+                        <Field
+                          type="text"
+                          name="subject"
+                          className="contact_input mt-4"
+                        />
+                        <ErrorMessage
+                          name="subject"
+                          component="div"
+                          className="text-danger mt-3"
+                        />
                       </div>
                     </div>
                   </div>
 
-                  <p className="mt-5 font-size-20 font_weight_400 px-lg-0">I’m Interested in</p>
-                  <div className="row">
-                    <div className="col-6 col-md-12 d-flex flex-wrap flex-md-nowrap justify-content-evenly gap-3">
-                      {services.slice(0, 4).map((interest) => (
+                  <p className="mt-5 font-size-20 font_weight_400 px-lg-0">
+                    I’m Interested in
+                  </p>
+                  <div className="row g-3">
+                    {services.map((interest, index) => (
+                      <div
+                        key={interest}
+                        className="col-6 col-md-3 d-flex justify-content-center"
+                      >
                         <button
-                          key={interest}
                           type="button"
-                          className={`btn btn-outline-dark w-100 text-nowrap py-2 py-md-3 font-size-12 font_weight_400 rounded-pill contact_button border-black ${
+                          className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
                             values.interests.includes(interest) ? "active" : ""
                           }`}
                           onClick={() => {
@@ -190,38 +221,30 @@ const handleSubmit = async (values, { resetForm }) => {
                         >
                           {interest}
                         </button>
-                      ))}
-                    </div>
-                    <div className="col-6 col-md-12 d-flex flex-wrap flex-md-nowrap justify-content-evenly gap-3 pt-md-3">
-                      {services.slice(4).map((interest) => (
-                        <button
-                          key={interest}
-                          type="button"
-                          className={`btn btn-outline-dark w-100 text-nowrap py-2 py-md-3 font-size-12 font_weight_400 rounded-pill contact_button border-black ${
-                            values.interests.includes(interest) ? "active" : ""
-                          }`}
-                          onClick={() => {
-                            const selected = values.interests.includes(interest)
-                              ? values.interests.filter((i) => i !== interest)
-                              : [...values.interests, interest];
-                            setFieldValue("interests", selected);
-                          }}
-                        >
-                          {interest}
-                        </button>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
-                  <ErrorMessage name="interests" component="div" className="text-danger  mt-3" />
 
-                  <p className="mt-5 font-size-20 font_weight_400">Tell us more about your project</p>
+                  <ErrorMessage
+                    name="interests"
+                    component="div"
+                    className="text-danger  mt-3"
+                  />
+
+                  <p className="mt-5 font-size-20 font_weight_400">
+                    Tell us more about your project
+                  </p>
                   <div className="">
                     <Field
                       type="text"
                       name="about"
                       className="contact_about_more w-100 bg-transparent shadow-none"
                     />
-                    <ErrorMessage name="about" component="div" className="text-danger mt-3" />
+                    <ErrorMessage
+                      name="about"
+                      component="div"
+                      className="text-danger mt-3"
+                    />
                   </div>
                   <div className="mt-5 d-flex justify-content-start">
                     <Button
@@ -243,8 +266,10 @@ const handleSubmit = async (values, { resetForm }) => {
             }}
           />
         )}
-        <ToastContainer className="mt-5 pt-5" />
+        <ToastContainer />
+
       </Container>
+      <Footer />
     </section>
   );
 }

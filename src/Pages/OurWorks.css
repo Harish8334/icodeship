@@ -6,35 +6,15 @@
     margin-top: 0%;
   }
 }
-.fullscreen-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.85);
-  animation: fadeIn 0.3s ease forwards;
+.modal-content iframe {
+  pointer-events: auto;
 }
 
-.modal-content-iframe {
-  width: 90%;
-  height: 90%;
-  transform: scale(0.85);
-  animation: scaleIn 0.4s ease forwards;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+.modal-content > iframe-wrapper {
+  pointer-events: none; /* disables pointer events on parent container */
 }
 
-.modal-header {
-  position: absolute;
-  top: -3%;
-  right: 1rem;
-  z-index: 2;
-}
 
-.close-btn {
-  color: #fff;
-}
 
 /* Animations */
 @keyframes scaleIn {
