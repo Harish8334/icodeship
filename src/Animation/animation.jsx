@@ -476,14 +476,17 @@ export const BallSplash = ({ onComplete }) => {
       balls.push(ball);
     }
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        balls.forEach((ball) => {
-          container.removeChild(ball);
-        });
-        onComplete();
-      },
+   const tl = gsap.timeline({
+  onComplete: () => {
+    balls.forEach((ball) => {
+      container.removeChild(ball);
     });
+
+    if (typeof onComplete === "function") {
+      onComplete();
+    }
+  },
+});
 
     balls.forEach((ball) => {
       const angle = Math.random() * Math.PI * 5;
@@ -662,62 +665,3 @@ export const closeModalAnimation = (modalRef, onComplete) => {
 };
 
 // Smooth scrolling for all page 
-const SmoothScrollProvider = ({ children }) => {
-useEffect(() => {
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => t * (2 - t),
-    smooth: true,
-  });
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  requestAnimationFrame(raf);
-
-  lenis.on('scroll', ScrollTrigger.update);
-
-  ScrollTrigger.scrollerProxy(document.body, {
-    scrollTop(value) {
-      return arguments.length ? lenis.scrollTo(value) : lenis.scroll.instance.scroll.y;
-    },
-    getBoundingClientRect() {
-      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-    },
-    pinType: document.body.style.transform ? 'transform' : 'fixed',
-  });
-
-  ScrollTrigger.addEventListener('refresh', () => lenis.raf(performance.now()));
-  ScrollTrigger.refresh();
-
-  return () => {
-    lenis.destroy();
-    ScrollTrigger.kill();
-  };
-}, []);
-
-
-  return <>{children}</>;
-};
-
-export default SmoothScrollProvider;
-export const initParallaxScroll = (containerSelector, panelSelector) => {
-  const container = document.querySelector(containerSelector);
-  const panels = gsap.utils.toArray(panelSelector);
-
-  if (!container || panels.length === 0) return;
-
-  gsap.to(panels, {
-    yPercent: -100 * (panels.length - 1),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: container,
-      start: 'top top',
-      end: () => '+=' + container.offsetHeight * (panels.length - 1),
-      scrub: true,
-      pin: true,
-    }
-  });
-};

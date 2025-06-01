@@ -219,11 +219,7 @@
 .outline_none {
   outline: none;
 }
-/* Border radius utility classes */
 
-.border-radius-25 {
-  border-radius: 25px;
-}
 
 .border_shadow{
   box-shadow: -3px 2px 16.4px 0px #0000001a;
@@ -264,3 +260,38 @@ textarea {
 #loader-root > * {
   pointer-events: all; /* Enable interactions inside loader if needed */
 }
+.modal-open-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.modal-scroll-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+/* Remove input blue focus and suggestions */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide scrollbars */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: auto;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Disable input autofill style (Chrome) */
+input:-webkit-autofill {
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+
+
+

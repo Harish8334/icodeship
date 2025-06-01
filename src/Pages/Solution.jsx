@@ -18,26 +18,45 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
+// solutionData.js
+import Solution_desk from "../assets/images/Solutions/solution_desk.png";
+import Solution_lap from "../assets/images/Solutions/solution_lap.png";
+// Form Handling
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import {
   animateWorkCard,
   animateCardsOnScroll,
   initImageRevealAnimation,
 } from "../Animation/animation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router-dom";
+
+const contactSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  mobile: Yup.string()
+    .matches(/^\d{10}$/, "Mobile number must be 10 digits")
+    .required("Enter a mobile number"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  industry: Yup.string().required("Industry is required"),
+  software: Yup.string().required("Software is required"),
+  message: Yup.string().required("Message is required"),
+});
+import  PurchaseContactForm from "../Components/Purchase_form"
 
 function Solution() {
   const { text, image } = Banner_Data.solutions;
   const imgRef = useRef(null);
 
-  useEffect(() => {
-    if (imgRef.current) {
-      animateWorkCard(imgRef.current);
-    }
-  }, []);
+const navigate = useNavigate();
 
   const containerRef = useRef(null);
 
   useEffect(() => {
+    if (imgRef.current) {
+      animateWorkCard(imgRef.current);
+    }
+
     if (!containerRef.current) return;
 
     animateCardsOnScroll(containerRef.current);
@@ -64,8 +83,10 @@ function Solution() {
     return () => cleanup && cleanup();
   }, []);
 
+
+
   return (
-    <>
+    <> 
       <Banner text={text} image={image} />
       <Brands />
       {/* What we can do */}
@@ -105,114 +126,164 @@ function Solution() {
         </Container>
       </section>
       {/* Smart solution  */}
-      <section>
+      <div id="smooth-wrapper">
+         <div id="smooth-content">
+           <section >
         <Container ref={containerRef} className="my_container my-5 ">
           <p className="text-center font-size-50 font_weight_500 pb-3 mt-md-5 pt-md-5">
             Smart Solutions For Your Business
             <br className="d-none d-lg-block" /> By Codeship.
           </p>
-          {Solution_Data.map((item) => (
-            <div
-              key={item.id}
-              className="row solution_desk_radius  pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
-              style={{ backgroundColor: item.bgColor }}
-            >
-              <div className="col-lg-5 col-md-12 col-12 d-flex flex-column justify-content-around  pb-lg-5 pb-5">
-                <div className="d-flex flex-column justify-content-between gap-5">
-                  <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
-                    {item.heading}
-                  </p>
-                  <p className="font-size-40 font_weight_600">
-                    {item.title.split("<br>").map((line, idx) => (
-                      <React.Fragment key={idx}>
-                        {line}
-                        <br className="d-none d-lg-block" />
-                      </React.Fragment>
-                    ))}
-                  </p>
-                </div>
-                <div>
-                  <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
-                    {item.description}
-                  </p>
-                  <div className="d-flex gap-2 gap-lg-5 pt-3">
-                    <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
-                      View Live Demo
-                    </Button>
-                    <Button
-                      variant="outline-dark"
-                      className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
-                      onClick={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        setOrigin({
-                          x: `${rect.left + rect.width / 2}px`,
-                          y: `${rect.top + rect.height / 2}px`,
-                        });
-                        setModalBgColor(item.bgColor);
-                        setShowFormModal(true);
-                      }}
-                    >
-                      Purchase Product
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-12 col-12 pb-5 pt-lg-5 pb-lg-5 ">
-                <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
-                  <img
-                    src={item.image}
-                    alt="solution"
-                    className="img-fluid ms-xl-5 mx-md-5 px-3"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </Container>
-        {showFormModal && (
-          <div className="fullscreen-form-modal position-fixed top-0 left-0">
-            <div
-              className="modal-form-content"
-              style={{
-                backgroundColor: modalBgColor,
-                transformOrigin: `${origin.x} ${origin.y}`,
-              }}
-            >
-              <button
-                className="close-btn  border-none bg-none cursor-pointer text-white font_size_19 "
-                onClick={() => setShowFormModal(false)}
+          {/* CARD 1 */}
+         <div className="row solution_desk_radius pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5" style={{ backgroundColor: "#D0D9F5" }}>
+        <div className="col-lg-5 d-flex flex-column justify-content-around pb-lg-5 pb-5">
+          <div className="d-flex flex-column gap-5">
+            <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+              What We Do ?
+            </p>
+            <p className="font-size-40 font_weight_600">
+              Streamline Your <br className="d-none d-lg-block" />
+              Workflow with our <br className="d-none d-lg-block" />
+              CRM Solution.
+            </p>
+          </div>
+          <div>
+            <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
+              Codeship offers tailored CRM software solutions designed to meet the specific needs of your business. We develop custom CRM systems that streamline customer management, improve efficiency, and drive business growth, ensuring your platform is as flexible and scalable as your evolving operations.
+            </p>
+            <div className="d-flex gap-2 gap-lg-5 pt-3">
+              <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                View Live Demo
+              </Button>
+              <Button
+                variant="outline-dark" 
+                className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"    onClick={() => navigate("/purchase-contact")}
               >
-                &times;
-              </button>
-              <h2 className="text-center font-size-30 font_weight_600 mb-4">
-                Let’s Talk Business
-              </h2>
-              <form className="d-flex flex-column gap-4 px-4">
-                <input className="form-control py-2" placeholder="Full Name" />
-                <input
-                  className="form-control py-2"
-                  placeholder="Email Address"
-                />
-                <input
-                  className="form-control py-2"
-                  placeholder="Mobile Number"
-                />
-                <textarea
-                  className="form-control py-2"
-                  rows={4}
-                  placeholder="Tell us what you need..."
-                />
-                <button
-                  className="btn btn-dark rounded-pill px-4 py-2 font-size-18"
-                  type="submit"
-                >
-                  Submit Inquiry
-                </button>
-              </form>
+                Purchase Product
+              </Button>
             </div>
           </div>
-        )}
+        </div>
+        <div className="col-lg-6 pb-5 pt-lg-5 pb-lg-5">
+          <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
+            <img src={Solution_desk} alt="CRM Solution" className="img-fluid ms-xl-5 mx-md-5 px-3" />
+          </div>
+        </div>
+      </div>
+
+      {/* CARD 2 */}
+      <div className="row solution_desk_radius pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5" style={{ backgroundColor: "#F4E0D0" }}>
+        <div className="col-lg-5 d-flex flex-column justify-content-around pb-lg-5 pb-5">
+          <div className="d-flex flex-column gap-5">
+            <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+              Why Choose Us ?
+            </p>
+            <p className="font-size-40 font_weight_600">
+              Optimize your operations <br className="d-none d-lg-block" />
+              with our ERP solution.
+            </p>
+          </div>
+          <div>
+            <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
+              Codeship provides customized ERP software solutions tailored to meet the unique needs of your business. Our custom ERP systems streamline resource management, enhance operational efficiency, and drive growth, ensuring your platform is as adaptable and scalable as your evolving enterprise.
+            </p>
+            <div className="d-flex gap-2 gap-lg-5 pt-3">
+              <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                View Live Demo
+              </Button>
+              <Button
+                variant="outline-dark"
+                className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"   onClick={() => navigate("/purchase-contact")}
+              >
+                Purchase Product 
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-6 pb-5 pt-lg-5 pb-lg-5">
+          <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
+            <img src={Solution_lap} alt="ERP Solution" className="img-fluid ms-xl-5 mx-md-5 px-3" />
+          </div>
+        </div>
+      </div>
+
+      {/* CARD 3 */}
+      <div className="row solution_desk_radius pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5" style={{ backgroundColor: "#E9DDED" }}>
+        <div className="col-lg-5 d-flex flex-column justify-content-around pb-lg-5 pb-5">
+          <div className="d-flex flex-column gap-5">
+            <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+              How It Works ?
+            </p>
+            <p className="font-size-40 font_weight_600">
+              Enhance your <br className="d-none d-lg-block" />
+              processes with our <br className="d-none d-lg-block" />
+              HRMS software solution.
+            </p>
+          </div>
+          <div>
+            <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
+              Codeship delivers customized HRMS software solutions designed to meet the unique requirements of your business. Our tailored HRMS systems streamline human resource management, boost operational efficiency, and support your growth, ensuring your platform is as adaptable and scalable as your evolving workforce.
+            </p>
+            <div className="d-flex gap-2 gap-lg-5 pt-3">
+              <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                View Live Demo
+              </Button>
+              <Button
+                variant="outline-dark"   onClick={() => navigate("/purchase-contact")}
+                className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
+              >
+                Purchase Product
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-6 pb-5 pt-lg-5 pb-lg-5">
+          <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
+            <img src={Solution_desk} alt="HRMS Solution" className="img-fluid ms-xl-5 mx-md-5 px-3" />
+          </div>
+        </div>
+      </div>
+
+      {/* CARD 4 */}
+      <div className="row solution_desk_radius pt-lg-5 pb-lg-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5" style={{ backgroundColor: "#FFFFD8" }}>
+        <div className="col-lg-5 d-flex flex-column justify-content-around pb-lg-5 pb-5">
+          <div className="d-flex flex-column gap-5">
+            <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+              How It Works ?
+            </p>
+            <p className="font-size-40 font_weight_600">
+              Enhance your processes <br className="d-none d-lg-block" />
+              with our LMS software solution.
+            </p>
+          </div>
+          <div>
+            <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
+              Codeship delivers customized LMS software solutions designed to meet the unique needs of your organization. Our tailored Learning Management Systems streamline training and development, enhance learning efficiency, and support your growth—ensuring your platform is as adaptable and scalable as your evolving workforce.
+            </p>
+            <div className="d-flex gap-2 gap-lg-5 pt-3">
+              <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                View Live Demo
+              </Button>
+              <Button
+                variant="outline-dark"   onClick={() => navigate("/purchase-contact")}
+                className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
+
+              >
+                Purchase Product
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="col-lg-6 pb-5 pt-lg-5 pb-lg-5">
+          <div className="d-flex justify-content-lg-start justify-content-center mt-md-5">
+            <img src={Solution_desk} alt="LMS Solution" className="img-fluid ms-xl-5 mx-md-5 px-3" />
+          </div>
+        </div>
+      </div>
+        </Container>
       </section>
+         </div>
+      </div>
       {/* Map */}
       <section ref={sectionRef} className="py-lg-5">
         <Container className="my_container py-lg-5 pb-5 pb-md-0">

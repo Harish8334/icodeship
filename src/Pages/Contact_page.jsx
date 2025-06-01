@@ -295,7 +295,7 @@ const handleSubmit = async (values, { resetForm }) => {
                   <div className="mt-5 d-flex justify-content-start">
                     <Button
                       type="submit"
-                      className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25"
+                      className="px-5 py-2 font-size-25 font_weight_500 blue_gradient rounded-5"
                     >
                       Submit
                     </Button>

@@ -136,18 +136,6 @@ const [showSplash, setShowSplash] = useState(false);
   };
 
   // Handle opening purchase form modal
-  const handleOpenForm = (title) => {
-   
-    setFormTitle(title);
-    setModalOpen(true);
-  };
-
-  // Handle closing purchase form modal with animation
-  const handleClose = () => {
-    closeModalAnimation(modalRef, () => {
-      setModalOpen(false);
-    });
-  };
 
   useEffect(() => {
     // --- ScrollTrigger setup for software section ---
@@ -167,57 +155,16 @@ const [showSplash, setShowSplash] = useState(false);
       },
     });
 
-    // --- Modal click outside handler ---
-    const handleClickOutside = (e) => {
-      if (showModal && e.target.classList.contains("fullscreen-modal")) {
-        setShowModal(false);
-        resumeAutoplay();
-      }
-      if (
-        !e.target.closest(".project_card") &&
-        !e.target.closest(".fullscreen-modal")
-      ) {
-        setActiveIndex(null);
-        resumeAutoplay();
-      }
-    };
 
-    window.addEventListener("click", handleClickOutside);
-
-    // --- Animate open modal when modalOpen changes ---
-    if (modalOpen) {
-      openModalAnimation(modalRef);
-    }
-
-    // Cleanup on unmount
-    return () => {
-      trigger.kill();
-      window.removeEventListener("click", handleClickOutside);
-    };
   }, [softwareData.length, showModal, modalOpen]);
-    
-  const [submitted, setSubmitted] = useState(false);
+ 
 
-  const softwareOptions = ["ERP", "CRM", "HRMS", "LMS"];
-
-  const handleSuccessAnimation = () => {
-    setSubmitted(true);
-    gsap.fromTo(
-      ".submission-success-overlay",
-      { opacity: 0, scale: 0.9 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      }
-    );
-
-    setTimeout(() => {
-      setSubmitted(false);
-      setShowToast(true);
-    }, 2500);
+  const handlePurchaseClick = () => {
+    navigate("/purchase-contact");
   };
+
+  
+
 
   return (
     <div className="overflow-hidden">
@@ -245,7 +192,7 @@ const [showSplash, setShowSplash] = useState(false);
       </section>
 
       {/* Things can do section */}
-      <section className="py-xl-5">
+      <section className="py-xl-5 mb-5">
         <Container className="my_container py-lg-5">
           <div className="row">
             <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
@@ -392,254 +339,105 @@ const [showSplash, setShowSplash] = useState(false);
       {/* Service section */}
     <Home_service />
 
- <div className="stack-container position-relative overflow-x-hidden">
+ <div className="stack-container  position-relative overflow-x-hidden">
        {/* Sofware section */}
       <div className="section1 position-relative">
-        <section
-        className="software-wrapper overflow-hidden w-100 pb-5 bg-black "
-        ref={sectionRef}
-      >
-        <div className="software-pinned w-100 mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
-          <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
-            <div className="row">
-              <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white mt-5">
-                <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
-                  {softwareData.map((item, index) => (
-                    <div key={index} className="d-flex gap-5">
-                      <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img
-                          ref={(el) => (iconsRef.current[index] = el)}
-                          className={`icon icon_background background_color_light_blue p-1 p-sm-2 p-md-3 rounded-circle ${
-                            index === currentIndex ? "focus-ring" : ""
-                          }`}
-                          src={item.icon}
-                          alt={item.name}
-                        />
-                        <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
-                      </div>
-                      <p
-                        className={`font-size-18 text-nowrap mt-3 ${
-                          index === currentIndex
-                            ? "text-focus-ring position-relative m-0 p-0 font_weight_600"
-                            : ""
-                        }`}
-                      >
-                        {item.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-center d-lg-flex d-none d-xl-none flex-column gap-4 justify-content-center mt-lg-3">
-                  <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 me-3">
-                    View Live Demo
-                  </Button>
-                  <Button
-                    className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
-                    onClick={() => handleOpenForm("Purchase Product")}
+  <section
+    className="software-wrapper overflow-hidden w-100 pb-5 bg-black"
+    ref={sectionRef}
+  >
+    <div className="software-pinned mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
+      <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
+        <div className="row mt-sm-5">
+          {/* LEFT ICONS */}
+          <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white">
+            <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
+              {softwareData.map((item, index) => (
+                <div key={index} className="d-flex gap-5" id="purchase-form">
+                  <div className="d-flex flex-column justify-content-center align-items-center">
+                    <img
+                      ref={(el) => (iconsRef.current[index] = el)}
+                      className={`icon icon_background background_color_light_blue p-2 p-sm-2 p-md-3 rounded-circle ${
+                        index === currentIndex ? "focus-ring" : ""
+                      }`}
+                      src={item.icon}
+                      alt={item.name}
+                    />
+                    <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
+                  </div>
+                  <p
+                    className={`font-size-18 text-nowrap mt-3 ${
+                      index === currentIndex
+                        ? "text-focus-ring position-relative m-0 p-0 font_weight_600"
+                        : ""
+                    }`}
                   >
-                    Purchase Product
-                  </Button>
-                </div>
-              </div>
-              <div className="col-lg-9 col-xl-10 col-md-8 text-white">
-                <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center mt-lg-5">
-                  <img
-                    ref={imageRef}
-                    src={softwareData[currentIndex].center_image}
-                    className="img-fluid software_img mb-3 mt-md-3 px-md-3"
-                    alt={softwareData[currentIndex].name}
-                  />
-                  <p className="font-size-28 pt-lg-4 m-0 m-md-2">
-                    {softwareData[currentIndex].description}
+                    {item.name}
                   </p>
                 </div>
-                <div className="text-center d-lg-none d-xl-flex d-flex gap-4 justify-content-center mt-lg-3">
-                  <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 ">
-                    View Live Demo
-                  </Button>
-                  <Button
-                    className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
-                    onClick={() => handleOpenForm("Purchase Product")}
-                  >
-                    Purchase Product
-                  </Button>
-                </div>
-              </div>
+              ))}
             </div>
-          </Container>
-        </div>
 
-             {modalOpen && (
-        <div
-          className="modal-backdrop position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
-          onClick={handleClose}
-        >
-          <Formik
-            initialValues={{
-              name: "",
-              mobile: "",
-              email: "",
-              industry: "",
-              message: "",
-              software: [],
-            }}
-            validationSchema={contactSchema}
-            onSubmit={(values, { resetForm }) => {
-              console.log("Form Submitted", values);
-              resetForm();
-              handleClose();
-              handleSuccessAnimation();
-            }}
-          >
-            {({ setFieldValue, values }) => (
-              <Form
-                ref={modalRef}
-                className="contact-modal w-100 container mt-5 mt-md-0 bg-black p-4 p-md-5 rounded-5 d-flex flex-column gap-4"
-                onClick={(e) => e.stopPropagation()}
+            {/* CTA BUTTONS - DESKTOP */}
+            <div className="text-center d-lg-flex d-none d-xl-none flex-column gap-4 justify-content-center mt-lg-3">
+              <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 me-3">
+                View Live Demo
+              </Button>
+              <Button
+                className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+               onClick={handlePurchaseClick}
               >
-                <h3 className="text-center mb-3 text-white pt-3 d-none d-md-block">
-                  Have an innovative thought?
-                  <br />
-                  Tell us about it.
-                </h3>
+                Purchase Product
+              </Button>
+            </div>
+          </div>
 
-                <div className="row g-3">
-                  <div className="col-12 col-md-6">
-                    <Field
-                      type="text"
-                      name="name"
-                      placeholder="Enter your name"
-                      className="rounded-4 purchase_input w-100 outline-none p-3"
-                    />
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <Field
-                      type="tel"
-                      name="mobile"
-                      maxLength="10"
-                      inputMode="numeric"
-                      pattern="\d*"
-                      className="rounded-4 purchase_input w-100 outline-none p-3"
-                      placeholder="Enter mobile number"
-                      onInput={(e) => {
-                        e.target.value = e.target.value
-                          .replace(/\D/g, "")
-                          .slice(0, 10);
-                      }}
-                    />
-                    <ErrorMessage
-                      name="mobile"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-                </div>
+          {/* RIGHT IMAGE + DESCRIPTION */}
+          <div className="col-lg-9 col-xl-10 col-md-8 text-white">
+            <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center mt-lg-5">
+              <img
+                ref={imageRef}
+                src={softwareData[currentIndex].center_image}
+                className="img-fluid software_img mb-3 mt-md-3 px-md-3"
+                alt={softwareData[currentIndex].name}
+              />
+              <p className="font-size-28 pt-lg-4 m-0 m-md-2">
+                {softwareData[currentIndex].description}
+              </p>
+            </div>
 
-                <div className="row g-3">
-                  <div className="col-12 col-md-6">
-                    <Field
-                      type="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      className="rounded-4 purchase_input w-100 outline-none p-3"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <Field
-                      type="text"
-                      name="industry"
-                      placeholder="Enter your Industry / sector"
-                      className="rounded-4 purchase_input w-100 outline-none p-3"
-                    />
-                    <ErrorMessage
-                      name="industry"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-                </div>
-
-                <div className="row g-3">
-                  <div className="col-12 col-md-6">
-                    <p className="text-white mb-2 pb-2">Select your software</p>
-                    <div className="row">
-                      {softwareOptions.map((software) => (
-                        <div
-                          key={software}
-                          className="col-6 col-md-6 col-lg-3 mb-3"
-                        >
-                          <button
-                            type="button"
-                            className={`software-button text-white py-2 bg-transparent rounded-4 w-100 ${
-                              values.software.includes(software)
-                                ? "selected"
-                                : ""
-                            }`}
-                            onClick={() => {
-                              const selected = values.software.includes(software)
-                                ? values.software.filter((s) => s !== software)
-                                : [...values.software, software];
-                              setFieldValue("software", selected);
-                            }}
-                          >
-                            {software}
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                    <ErrorMessage
-                      name="software"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-
-                  <div className="col-12 col-md-6">
-                    <Field
-                      as="textarea"
-                      name="message"
-                      rows={4}
-                      placeholder="Enter a message about the software you need"
-                      className="text-black rounded-4 purchase_input p-3 w-100"
-                    />
-                    <ErrorMessage
-                      name="message"
-                      component="div"
-                      className="text-danger mt-1"
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="text-white bg-transparent border border-white rounded-4 outline-none p-3 px-4"
-                >
-                  Submit
-                </button>
-              </Form>
-            )}
-          </Formik>
+            {/* CTA BUTTONS - MOBILE */}
+            <div className="text-center d-lg-none d-xl-flex d-flex gap-4 justify-content-center mt-lg-3">
+              <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18">
+                View Live Demo
+              </Button>
+              <Button
+                className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+               onClick={handlePurchaseClick}
+              >
+                Purchase Product
+              </Button>
+            </div>
+          </div>
         </div>
-      )}
-      {showSplash && (
-          <BallSplash
-            onComplete={() => {
-              setShowSplash(false);
-            }}
-          />
-        )}
-      </section>
-      </div>
+      </Container>
+    </div>
+
+    {/* MODAL FORM */}
+ 
+
+
+    {/* SPLASH ANIMATION */}
+    {showSplash && (
+      <BallSplash
+        onComplete={() => {
+          setShowSplash(false);
+        }}
+      />
+    )}
+  </section>
+</div>
+
 
     
  </div>
@@ -655,16 +453,16 @@ const [showSplash, setShowSplash] = useState(false);
                 animationDirection="topLeft"
                 altText="Image from Top Left"
               />
-              <div className="tech_box background_color_grey  "></div>
-              <div className="tech_box background_color_grey  "></div>
-              <div className="tech_box background_color_grey  "></div>
-              <div className="tech_box background_color_grey  "></div>
+              <div className="tech_box bg-white  "></div>
+              <div className="tech_box bg-white  "></div>
+              <div className="tech_box bg-white  "></div>
+              <div className="tech_box bg-white  "></div>
             </div>
             <div className="d-flex  flex-row justify-content-center mx-5 pt-4 gap-3">
               <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
-                <div className="tech_box background_color_grey "></div>
-                <div className="tech_box background_color_grey "></div>
-                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white "></div>
                 <div className="tech_box">
                   {" "}
                   <Animation
@@ -673,13 +471,13 @@ const [showSplash, setShowSplash] = useState(false);
                     altText="Image from Top Left"
                   />
                 </div>
-                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box bg-white "></div>
                 <Animation
                   imgSrc={Nodejs}
                   animationDirection="topRight"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box bg-white "></div>
               </div>
             </div>
             {/* middle layer */}
@@ -687,7 +485,7 @@ const [showSplash, setShowSplash] = useState(false);
               <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
                 <div className="left">
                   <div className="d-flex py-2   gap-3 ">
-                    <div className="tech_box background_color_grey "></div>
+                    <div className="tech_box bg-white "></div>
                     <Animation
                       imgSrc={React_img}
                       animationDirection="topLeft"
@@ -700,7 +498,7 @@ const [showSplash, setShowSplash] = useState(false);
                       animationDirection="bottomRight"
                       altText="Image from Top Left"
                     />
-                    <div className="tech_box background_color_grey "></div>
+                    <div className="tech_box bg-white "></div>
                   </div>
                 </div>
                 {/* middle text */}
@@ -709,11 +507,7 @@ const [showSplash, setShowSplash] = useState(false);
                     Amazing tech stack in <br /> our pocket
                   </p>
                   <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
-                    Utilize our team’s specialized full-stack expertise in
-                    software development to turn your product vision into
-                    reality. We are committed to providing solutions that adhere
-                    to the highest coding standards, ensuring reliability,
-                    scalability, and security.
+                   Codeship turns your vision into scalable, secure software. Our team experts deliver reliable solutions that meet the highest standards in performance and code quality.
                   </p>
                 </div>
                 <div className="right">
@@ -723,10 +517,10 @@ const [showSplash, setShowSplash] = useState(false);
                       animationDirection="topRight"
                       altText="Image from Top Left"
                     />
-                    <div className="tech_box background_color_grey "></div>
+                    <div className="tech_box bg-white "></div>
                   </div>
                   <div className="d-flex pt-4 gap-3">
-                    <div className="tech_box background_color_grey "></div>
+                    <div className="tech_box bg-white "></div>
                     <Animation
                       imgSrc={Nodejs}
                       animationDirection="bottomLeft"
@@ -744,27 +538,27 @@ const [showSplash, setShowSplash] = useState(false);
                   animationDirection="bottomLeft"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box background_color_grey "></div>
-                <div className="tech_box background_color_grey "></div>
-                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white "></div>
                 <Animation
                   imgSrc={React_img}
                   animationDirection="bottomToTop"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box background_color_grey "></div>
-                <div className="tech_box background_color_grey "></div>
+                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white "></div>
               </div>
             </div>
             <div className="d-flex  flex-row justify-content-center   gap-3">
-              <div className="tech_box background_color_grey "></div>
+              <div className="tech_box bg-white "></div>
               <Animation
                 imgSrc={React_img}
                 animationDirection="bottomToTop"
                 altText="Image from Top Left"
               />
-              <div className="tech_box background_color_grey "></div>
-              <div className="tech_box background_color_grey "></div>
+              <div className="tech_box bg-white "></div>
+              <div className="tech_box bg-white "></div>
               <Animation
                 imgSrc={Angular_img}
                 animationDirection="bottomRight"

@@ -79,7 +79,7 @@ function About() {
               business.
             </p>
             <Button
-              className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient border-radius-25 mx-2 mx-lg-0 mx-xl-0"
+              className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient rounded-5 mx-2 mx-lg-0 mx-xl-0"
               onClick={letsTalk}
             >
               Let's Talk

@@ -212,7 +212,7 @@ const handleSubmit = async (values, { resetForm }) => {
                       ))}
                     </div>
                   </div>
-                  <ErrorMessage name="interests" component="div" className="text-danger px-4" />
+                  <ErrorMessage name="interests" component="div" className="text-danger  mt-3" />
 
                   <p className="mt-5 font-size-20 font_weight_400">Tell us more about your project</p>
                   <div className="">
@@ -226,7 +226,7 @@ const handleSubmit = async (values, { resetForm }) => {
                   <div className="mt-5 d-flex justify-content-start">
                     <Button
                       type="submit"
-                      className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25"
+                      className="px-5 py-2 font-size-25 font_weight_500 blue_gradient  rounded-5"
                     >
                       Submit
                     </Button>

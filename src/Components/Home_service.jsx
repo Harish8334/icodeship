@@ -27,7 +27,7 @@ function Home_service() {
               </p>
               <div className="d-flex justify-content-start">
                 <Link to="/capable" className="text-decoration-none">
-                  <Button className="blue_gradient border-radius-25 font-size-22 font_weight_500 px-4 py-2">
+                  <Button className="blue_gradient rounded-5 font-size-22 font_weight_500 px-4 py-2">
                     All Services{" "}
                     <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
                   </Button>

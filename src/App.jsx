@@ -23,7 +23,7 @@ import Capabilities from "./Pages/Capabilities_Navigation";
 import Contact_page from "./Pages/Contact_page";
 import Capabilities_service from "./Components/Capability_service";
 import Capable_service_layout from "./Pages/Capable_service_layout";
-
+import PurchaseContactForm from "./Components/Purchase_form"
 import Loader from "./Components/Loader";
 import Header from "./Components/Header"; // Your fixed header component
 
@@ -39,21 +39,18 @@ const PageWrapper = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const smootherRef = useRef(null);
-  const isMobile = useRef(false);
 
-  // Initialize ScrollSmoother once on mount
+  // Initialize ScrollSmoother once on mount for all devices
   useEffect(() => {
-    isMobile.current = window.innerWidth < 761;
-
-    // Only initialize ScrollSmoother on desktop for smooth scroll effect
-    if (!isMobile.current && !ScrollSmoother.get()) {
+    // Only create ScrollSmoother if it hasn't been initialized already
+    if (!ScrollSmoother.get()) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
-        smooth: 3,
+        smooth: 1.5,              // Adjust smoothness for better mobile experience
         effects: true,
         normalizeScroll: true,
-        ignoreMobileResize: true, // Optional for performance
+        ignoreMobileResize: false,
       });
     }
 
@@ -74,7 +71,7 @@ const PageWrapper = ({ children }) => {
     // Reset scroll position on navigation except when targeting a hash or form scroll
     if (!shouldScrollToForm && !hasHash && smootherRef.current) {
       smootherRef.current.scrollTo(0, false);
-    } else if (!shouldScrollToForm && !hasHash && isMobile.current) {
+    } else if (!shouldScrollToForm && !hasHash) {
       window.scrollTo(0, 0);
     }
 
@@ -90,7 +87,7 @@ const PageWrapper = ({ children }) => {
       // Scroll to #contactForm if specified
       const form = document.querySelector("#contactForm");
       if (shouldScrollToForm && form) {
-        if (!isMobile.current && smootherRef.current) {
+        if (smootherRef.current) {
           smootherRef.current.scrollTo(form, true);
         } else {
           form.scrollIntoView({ behavior: "smooth" });
@@ -142,6 +139,7 @@ function App() {
             <Route path="/capable_service/:href" element={<Capabilities_service />} />
           </Route>
           <Route path="/contact" element={<Contact_page />} />
+         <Route path="/purchase-contact" element={<PurchaseContactForm />} />
         </Routes>
       </PageWrapper>
     </Router>

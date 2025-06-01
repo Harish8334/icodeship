@@ -67,7 +67,7 @@ const Capable_service = () => {
                   {service.banner.title}
                 </p>
                 <div className="d-flex justify-content-center justify-content-lg-start justify-content-md-center">
-                  <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient border-radius-25 mt-3">
+                  <Button className="px-5 py-2 font-size-25 font_weight_500 blue_gradient rounded-5 mt-3">
                     Let's Talk
                   </Button>
                 </div>

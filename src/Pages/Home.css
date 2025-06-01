@@ -120,15 +120,15 @@ padding: 0 2%;
 }
 /* tech stack */
 .tech_box {
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   border-radius: 20px;
 }
 .tech_text {
   max-width: 750px;
 }
 .tech_middle_layer {
-  max-width: 1500px;
+  max-width: 1050px;
 }
 
 /* Project */
@@ -333,3 +333,4 @@ padding: 0 2%;
 .section1 {
   z-index: 1;
 }
+
