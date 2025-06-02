@@ -7,8 +7,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 import "@fontsource/poppins";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,14 +23,38 @@ import Capabilities from "./Pages/Capabilities_Navigation";
 import Contact_page from "./Pages/Contact_page";
 import Capabilities_service from "./Components/Capability_service";
 import Capable_service_layout from "./Pages/Capable_service_layout";
-import PurchaseContactForm from "./Components/Purchase_form"
+import PurchaseContactForm from "./Components/Purchase_form";
 import Loader from "./Components/Loader";
-import Header from "./Components/Header"; // Your fixed header component
+import Header from "./Components/Header";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
 import Sitemap from "./Pages/Sitemap";
-// Register GSAP plugins once globally
+
+// Register GSAP plugins globally
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+/** Client-only fixed header to avoid SSR hydration mismatch */
+const ClientOnlyHeader = () => {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  return hasMounted ? (
+    <div
+      id="header-root"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 1000,
+        pointerEvents: "auto",
+      }}
+    >
+      <Header />
+    </div>
+  ) : null;
+};
 
 /**
  * PageWrapper manages global smooth scrolling and loading states.
@@ -38,39 +62,43 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
  */
 const PageWrapper = ({ children }) => {
   const location = useLocation();
+  const [hasMounted, setHasMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const smootherRef = useRef(null);
 
-  // Initialize ScrollSmoother once on mount for all devices
   useEffect(() => {
-    // Only create ScrollSmoother if it hasn't been initialized already
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) return;
+
     if (!ScrollSmoother.get()) {
       smootherRef.current = ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
-        smooth: 1.5,              // Adjust smoothness for better mobile experience
+        smooth: 1.5,
         effects: true,
         normalizeScroll: true,
         ignoreMobileResize: false,
       });
     }
 
-    // Cleanup on unmount
     return () => {
       if (smootherRef.current) {
         smootherRef.current.kill();
         smootherRef.current = null;
       }
     };
-  }, []);
+  }, [hasMounted]);
 
-  // On route change
   useEffect(() => {
+    if (!hasMounted) return;
+
     const shouldScrollToForm = location.state?.scrollToForm;
     const hasHash = location.hash;
 
-    // Reset scroll position on navigation except when targeting a hash or form scroll
     if (!shouldScrollToForm && !hasHash && smootherRef.current) {
       smootherRef.current.scrollTo(0, false);
     } else if (!shouldScrollToForm && !hasHash) {
@@ -80,13 +108,11 @@ const PageWrapper = ({ children }) => {
     setLoading(true);
     setShowContent(false);
 
-    // Delay content show for loader animation effect
     const timeout = setTimeout(() => {
       setLoading(false);
       setShowContent(true);
-      ScrollTrigger.refresh(); // Refresh ScrollTrigger after content loads
+      ScrollTrigger.refresh();
 
-      // Scroll to #contactForm if specified
       const form = document.querySelector("#contactForm");
       if (shouldScrollToForm && form) {
         if (smootherRef.current) {
@@ -98,7 +124,9 @@ const PageWrapper = ({ children }) => {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [location]);
+  }, [location, hasMounted]);
+
+  if (!hasMounted) return null;
 
   return (
     <div id="smooth-wrapper" style={{ overflow: "hidden" }}>
@@ -113,38 +141,25 @@ const PageWrapper = ({ children }) => {
 function App() {
   return (
     <Router>
-      {/* Fixed header outside smooth scroll wrapper for fixed positioning */}
-      <div
-        id="header-root"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          zIndex: 1000,
-          pointerEvents: "auto",
-        }}
-      >
-        <Header />
-      </div>
-
-      {/* PageWrapper wraps routed content with ScrollSmoother */}
+      <ClientOnlyHeader />
       <PageWrapper>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ourworks" element={<OurWorks />} />
           <Route path="/solutions" element={<Solution />} />
-          {/* Nested routes for Capable_service_layout */}
           <Route element={<Capable_service_layout />}>
             <Route path="/capable" element={<Capabilities />} />
-            <Route path="/capable_service/:href" element={<Capabilities_service />} />
+            <Route
+              path="/capable_service/:href"
+              element={<Capabilities_service />}
+            />
           </Route>
           <Route path="/contact" element={<Contact_page />} />
-         <Route path="/purchase-contact" element={<PurchaseContactForm />} />
-         <Route path="/privacy" element={<Privacy />} />
-           <Route path="/terms" element={<Terms />} />
-             <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/purchase-contact" element={<PurchaseContactForm />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </PageWrapper>
     </Router>

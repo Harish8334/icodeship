@@ -1,5 +1,5 @@
 import web_banner from "../assets/images/Capable_service/capable_service_web.png";
-import web_main_banner from "../assets/images/Capable_service/capability_main_banner.png";
+import web_main_banner from "../assets/images/Capable_service/capability_main_banner.webp";
 import Capable_service_icon1 from "../assets/images/Capable_service/capable_service_icon1.png";
 import Capable_service_icon2 from "../assets/images/Capable_service/capable_service_icon2.png";
 import Capable_service_icon3 from "../assets/images/Capable_service/capable_service_icon3.png";

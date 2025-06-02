@@ -6,7 +6,7 @@ const Banner = ({ text, image }) => {
   const letsTalk = useLetsTalk();
   return (
     <div className=" d-flex justify-content-center  mt-5 ">
-      <Container className="my_container mt-5">
+      <Container className="my_container mt-md-5">
         <div className="row flex-column-reverse flex-lg-row mt-5">
           <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center  align-items-center">
             <div>

@@ -103,12 +103,12 @@ function About() {
                 renderBullet: (index, className) =>
                   `<span class="${className} custom-pagination-dot"></span>`,
               }}
-              className="custom-swiper pb-5"
+              className="custom-swiper pb-5 mb-5"
             >
               {cardData.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className="card pb-2 rounded-4 border_shadow mx-3"
+                    className="card core_card pb-2 rounded-4 border_shadow mx-3"
                     ref={(el) => setCardRef(el, index + 4)}
                   >
                     <div className="d-flex justify-content-center pt-3">
@@ -157,17 +157,17 @@ function About() {
               </p>
               <div className="row g-2">
                 {Why_Us_Data.map((item, index) => (
-                  <div className="col-12 col-sm-6" key={item.id}>
+                  <div className="col-12 col-sm-6 px-3 py-2" key={item.id}>
                     <div className="card p-0 border_shadow rounded-4">
-                      <div className="d-flex gap-1 g-lg-5 g-md-5 g-sm-5">
+                      <div className="d-flex gap-3  g-lg-5 g-md-5 g-sm-5">
                         <img
                           src={item.img}
                           alt=""
-                          className="img-fluid about_core_icon"
+                          className=" "
                         />
-                        <div>
+                        <div className="d-flex flex-column justify-content-center">
                           <p
-                            className="font-size-40 font_weight_700 pt-2 m-0"
+                            className="font-size-46 font_weight_700 pt-2 m-0"
                             data-count={item.count}
                             data-symbol={item.symbol || ""}
                             ref={(el) => {

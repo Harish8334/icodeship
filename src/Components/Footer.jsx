@@ -17,7 +17,7 @@ function Footer() {
   };
   return (
     <section>
-      <Container className='my_container mt-5 pb-5'>
+      <Container className='my_container mt-5 pb-md-5'>
       <p className='font-size-80 font_weight_600 mt-5 pt-md-5'>Let’s Talk</p>
       <div className='row'>
         <div className=' col-sm-6 col-12 justify-content-between d-flex flex-column '>
@@ -35,14 +35,14 @@ function Footer() {
   <div className='d-flex justify-content-end flex-column flex-sm-col'>
    <div className="row d-flex  flex-flex-md-column">
      <div className='col-6 col-sm-6 mt-5'>
-      <div className='d-flex flex-column gap-4'>
+      <div className='d-flex flex-column gap-5'>
         <Link to="/" className='footer_links font-size-30 font_color_black font_weight_400' onClick={handleHomeClick}>Home</Link>
         <Link to="/about" className='footer_links font-size-30 font_color_black font_weight_400'>About</Link>
         <Link to="/capable" className='footer_links font-size-30 font_color_black font_weight_400'>Capabilities</Link>
       </div>
     </div>
     <div className='col-6 col-sm-6 mt-5'>
-      <div className='d-flex flex-column gap-4'>
+      <div className='d-flex flex-column gap-5'>
         <Link to="/solutions" className='footer_links font-size-30 font_color_black font_weight_400'>Solutions</Link>
         <Link to="/ourworks" className='footer_links font-size-30 font_color_black font_weight_400'>Our Works</Link>
         <Link to="/contact" className='footer_links font-size-30 font_color_black font_weight_400'>Contact</Link>
@@ -57,7 +57,7 @@ function Footer() {
       <div className='row mt-lg-5 mb-4'>
         <div className='col-md-6   col-12 mt-5'>
           
-          <div className='d-flex  justify-content-lg-start justify-content-md-start gap-3  gap-lg-5 mt-lg-5 mt-sm-5 mb-3 '>
+          <div className='d-flex  justify-content-md-start gap-3  gap-lg-5  mt-sm-5 mb-3 '>
             <div className="d-inline"> <Link to="/privacy" className='footer_links font-size-30 font_color_black font_weight_400'>Privacy</Link></div>
             <div className="d-inline"> <Link to="/terms" className='footer_links font-size-30 font_color_black font_weight_400'>Terms</Link></div>
             <div className="d-inline"> <Link to="/sitemap" className='footer_links font-size-30 font_color_black font_weight_400'>Sitemap</Link></div>

@@ -79,20 +79,21 @@ function Capabilities() {
                   <p className="font-size-24 line_height_30">{service.description}</p>
                   <div className="d-flex flex-column gap-3 mt-5">
                     {service.points.map((point, index) => (
-                      <a
-                        key={index}
-                        href={`/capable_service/${point.href}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          navigate(`/capable_service/${point.href}`, {
-                            state: { name: point.text },
-                          });
-                        }}
-                        className="text-black d-flex gap-2 text-decoration-none"
-                      >
-                        <ChevronRight strokeWidth={1} size={40} className="mt-1" />
-                        <p className="pt-2 font-size-30 font_weight_600 m-0">{point.text}</p>
-                      </a>
+                    <a
+  key={index}
+  href={`/capable_service/${point.href}`}
+  onClick={(e) => {
+    e.preventDefault();
+    navigate(`/capable_service/${point.href}`, {
+      state: { name: point.text },
+    });
+  }}
+  className="text-black d-flex align-items-center gap-2 text-decoration-none"
+>
+  <ChevronRight strokeWidth={1} size={24} />
+  <p className="font-size-30 font_weight_600 m-0">{point.text}</p>
+</a>
+
                     ))}
                   </div>
 

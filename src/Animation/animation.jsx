@@ -90,36 +90,20 @@ export const useScrollAnimation = () => {
 export const useProjectCardHover = (cardRef, overlayRef, titleRef, onPauseAutoplay, onResumeAutoplay) => {
   useEffect(() => {
     if (!cardRef?.current || !overlayRef?.current || !titleRef?.current) return;
+    if (window.innerWidth < 768) return; // Skip on mobile
 
     const tl = gsap.timeline({ paused: true });
-
-    tl.to(overlayRef.current, {
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out",
-    });
-
-    tl.fromTo(
-      titleRef.current,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-      "<"
-    );
+    tl.to(overlayRef.current, { opacity: 1, duration: 0.4, ease: "power2.out" });
+    tl.fromTo(titleRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, "<");
 
     const cardEl = cardRef.current;
-
     const onMouseEnter = () => {
-      if (window.innerWidth >= 768) {
-        tl.play();
-        if (typeof onPauseAutoplay === "function") onPauseAutoplay();
-      }
+      tl.play();
+      if (typeof onPauseAutoplay === "function") onPauseAutoplay();
     };
-
     const onMouseLeave = () => {
-      if (window.innerWidth >= 768) {
-        tl.reverse();
-        if (typeof onResumeAutoplay === "function") onResumeAutoplay();
-      }
+      tl.reverse();
+      if (typeof onResumeAutoplay === "function") onResumeAutoplay();
     };
 
     cardEl.addEventListener("mouseenter", onMouseEnter);
@@ -131,6 +115,7 @@ export const useProjectCardHover = (cardRef, overlayRef, titleRef, onPauseAutopl
     };
   }, [cardRef, overlayRef, titleRef, onPauseAutoplay, onResumeAutoplay]);
 };
+
 
 
 
@@ -425,7 +410,7 @@ export const animateCardsOnScroll = (container) => {
       card,
       { 
         scale: 0.5,
-        y: 100,
+        y: 70,
         opacity: 0.2
       },
       {
@@ -435,8 +420,8 @@ export const animateCardsOnScroll = (container) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: card,
-          start: "top 80%",
-          end: "top 30%",
+          start: "top 90%",
+          end: "top 60%",
           scrub: true,
         },
       }

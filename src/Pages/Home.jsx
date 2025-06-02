@@ -15,7 +15,7 @@ import Banner from "../Components/Banner.jsx";
 import Brands from "../Components/Brands.jsx";
 import Contact from "../Components/Contact.jsx";
 import Testimonial from "../Components/Testimonial.jsx";
-
+import CustomModal from "../Components/Modal.jsx";
 import "../Components/Contact_page_link";
 import Home_service from "../Components/Home_service";
 
@@ -57,70 +57,7 @@ import Projects_Data from "../Data/Project_Data";
 const { text, image } = Banner_Data.home;
 
 // project Modal
-const CustomModal = ({ children, onClose }) => {
-  return ReactDOM.createPortal(
-    <div
-      className="modal-overlay"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.7)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 9999,
-      }}
-      onClick={onClose}
-    >
-      <div
-        className="modal-content rounded-5"
-        style={{
-          position: "relative",
-          width: "87vw",
-          height: "80vh",
-          backgroundColor: "#fff",
-          borderRadius: "90px",
-          overflow: "visible",
-          boxShadow: "0 0 20px rgba(0,0,0,0.3)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute",
-            top: "-50px",
-            right: "-20px",
-            background: "white",
-            border: "none",
-            fontSize: "1.8rem",
-            cursor: "pointer",
-            color: "#333",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 100000,
-            borderRadius: "50%",
-            width: "36px",
-            height: "36px",
-            lineHeight: "36px",
-            textAlign: "center",
-            userSelect: "none",
-          }}
-          aria-label="Close modal"
-        >
-          ✕
-        </button>
-      </div>
-    </div>,
-    document.body
-  );
-};
+
 
 function Home() {
   const navigate = useNavigate();
@@ -167,22 +104,29 @@ function Home() {
   const resumeAutoplay = () => swiperRef.current?.autoplay?.start();
 
   // Handle project card click
-  const handleCardClick = (project, index) => {
-    setModalData(project);
-    setShowModal(true);
-    if (window.innerWidth < 768) {
-      if (activeIndex === index) {
-        setData({ title: project.title, link: project.href });
+const handleCardClick = (project, index) => {
+  if (window.innerWidth < 768) {
+    if (activeIndex === index) {
+      // Second tap: open iframe modal
+      if (project.href) {
+        setModalData({ title: project.title, link: project.href });
         setShowModal(true);
-      } else {
-        setActiveIndex(index);
-        pauseAutoplay();
       }
     } else {
-      setData({ title: project.title, link: project.href });
+      // First tap: show tags + pause autoplay
+      setActiveIndex(index);
+      pauseAutoplay();
+    }
+  } else {
+    // Desktop: open modal on click
+    if (project.href) {
+      setModalData({ title: project.title, link: project.href });
       setShowModal(true);
     }
-  };
+  }
+};
+
+
   
   const handlePurchaseClick = () => {
     navigate("/purchase-contact");
@@ -209,6 +153,21 @@ function Home() {
 
     return () => trigger.kill();
   }, [softwareData.length]);
+useEffect(() => {
+  const handleClickOutside = (e) => {
+    if (window.innerWidth >= 768) return; // desktop: ignore
+
+    // If clicked outside any project card
+    const clickedCard = e.target.closest(".project_card");
+    if (!clickedCard && activeIndex !== null) {
+      setActiveIndex(null);
+      resumeAutoplay();
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+  return () => document.removeEventListener("click", handleClickOutside);
+}, [activeIndex]);
 
 
   
@@ -220,7 +179,7 @@ function Home() {
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
-      <section className="d-flex justify-content-center align-items-center py-5 pt-xl-5">
+      <section className="d-flex justify-content-center align-items-center py-5 my-4 pt-xl-5">
         <img
           src={map}
           alt=""
@@ -240,7 +199,7 @@ function Home() {
       </section>
 
       {/* Things can do section */}
-      <section className="py-xl-5 mb-5">
+      <section className="py-xl-5 ">
         <Container className="my_container py-lg-5">
           <div className="row">
             <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
@@ -329,23 +288,23 @@ function Home() {
                   ))}
                 </div>
 
-                <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-3 px-lg-5 px-pd-3 px-sp-3">
+                <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
                   <Swiper
                     modules={[Pagination]}
                     loop={Things_Data.length > 3}
                     slidesPerView={1}
-                    spaceBetween={30}
+                    spaceBetween={50}
                     pagination={{
                       clickable: true,
                       renderBullet: (index, className) =>
                         `<span class="${className} custom-pagination-dot"></span>`,
                     }}
-                    className="custom-swiper"
+                    className="custom-swiper p-0"
                   >
                     {Things_Data.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="card things_card pb-3 pb-sm-0 rounded-4 border-0 mb-4">
-                          <div className="card-body border_shadow border-0 rounded-4 m-2">
+                          <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
                             <div className="card-title">
                               <div className="d-flex">
                                 <div className="position-relative pe-5 things_icon_container">
@@ -415,7 +374,7 @@ function Home() {
                     <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
                   </div>
                   <p
-                    className={`font-size-18 text-nowrap mt-3 ${
+                    className={`font-size-18 text-nowrap   mt-3 ${
                       index === currentIndex
                         ? "text-focus-ring position-relative  p-0 font_weight_600"
                         : ""
@@ -536,7 +495,7 @@ function Home() {
                 {/* middle text */}
                 <div className="d-flex  flex-column justify-content-center align-items-center  gap-3 py-sm-1 pt-0">
                   <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3   px-md-5 ">
-                    Amazing tech stack in <br /> our pocket
+                    Amazing tech stack in <br className="d-none d-lg-block" /> our pocket
                   </p>
                   <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
                    Codeship turns your vision into scalable, secure software. Our team experts deliver reliable solutions that meet the highest standards in performance and code quality.
@@ -563,7 +522,7 @@ function Home() {
               </div>
             </div>
             {/* bottom layer */}
-            <div className="d-flex  flex-row justify-content-center pt-2 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
+            <div className="d-flex  flex-row justify-content-center pt-3 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
               <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
                 <Animation
                   imgSrc={Angular_img}
@@ -632,78 +591,60 @@ function Home() {
           }}
           className="project_swiper"
         >
-          {projects.map((project, index) => {
-            const cardRef = useRef();
-            const overlayRef = useRef();
-            const titleRef = useRef();
+         {projects.map((project, index) => {
+  const cardRef = useRef(null);
+  const overlayRef = useRef(null);
+  const titleRef = useRef(null);
 
-            useProjectCardHover(
-              cardRef,
-              overlayRef,
-              titleRef,
-              pauseAutoplay,
-              resumeAutoplay
-            );
+  useProjectCardHover(cardRef, overlayRef, titleRef, pauseAutoplay, resumeAutoplay);
 
-            return (
-              <SwiperSlide
-                key={index}
-                className="d-flex justify-content-center align-items-center rectangle-slide"
-              >
-                <div
-                  className={`project_card position-relative ${
-                    activeIndex === index ? "active-mobile" : ""
-                  }`}
-                  onClick={() => {
-                    setModalData(project);
-                    setShowModal(true);
-                  }}
-                  ref={cardRef}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project_image w-100 h-auto object-fit-cover"
-                  />
-                  <div
-                    className="project_overlay_desktop position-absolute bottom-0 start-0 w-100 d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none"
-                    ref={overlayRef}
-                  >
-                    <div ref={titleRef}>
-                      <p className="project_title font-size-62 font_weight_600 text-white mb-2">
-                        {project.title}
-                      </p>
-                      <div className="d-flex gap-2 flex-wrap justify-content-center">
-                        {project.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="badge bg-light text-dark px-3 py-2 rounded-pill"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  {activeIndex === index && (
-                    <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
-                      <p className="fs-4 mb-2 ">{project.title}</p>
-                      <div className="d-flex flex-wrap justify-content-center gap-2">
-                        {project.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </SwiperSlide>
-            );
-          })}
+  return (
+    <SwiperSlide key={index} className="d-flex justify-content-center align-items-center rectangle-slide">
+      <div
+        className={`project_card position-relative ${activeIndex === index ? "active-mobile" : ""}`}
+        onClick={() => handleCardClick(project, index)}
+        ref={cardRef}
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className="project_image w-100 h-auto object-fit-cover"
+        />
+        <div
+          className="project_overlay_desktop position-absolute bottom-0 start-0 w-100 d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none"
+          ref={overlayRef}
+        >
+          <div ref={titleRef}>
+            <p className="project_title font-size-62 font_weight_600 text-white mb-2">
+              {project.title}
+            </p>
+            <div className="d-flex gap-2 flex-wrap justify-content-center">
+              {project.tags.map((tag, i) => (
+                <span key={i} className="badge bg-light text-dark px-3 py-2 rounded-pill">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {activeIndex === index && (
+          <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
+            <p className="fs-4 mb-2">{project.title}</p>
+            <div className="d-flex flex-wrap justify-content-center gap-2">
+              {project.tags.map((tag, i) => (
+                <span key={i} className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill" >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </SwiperSlide>
+  );
+})}
+
         </Swiper>
 
         <div className="d-flex justify-content-center pt-5 pb-5">
@@ -716,17 +657,18 @@ function Home() {
         </div>
       </div>
 
-       {showModal && modalData && (
-        <CustomModal onClose={() => setShowModal(false)}>
-          <iframe
-            src={modalData.href}
-            title={modalData.title}
-            className="rounded-5"
-            style={{ width: "100%", height: "100%", border: "none" }}
-            allowFullScreen
-          />
-        </CustomModal>
-      )}
+     {showModal && modalData && (
+  <CustomModal onClose={() => setShowModal(false)}>
+    <iframe
+      src={modalData.link}
+      title={modalData.title}
+      className="rounded-5"
+      style={{ width: "100%", height: "100%", border: "none" }}
+      allowFullScreen
+    />
+  </CustomModal>
+)}
+
     </section>
 </div>
    

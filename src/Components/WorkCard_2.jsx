@@ -4,72 +4,9 @@ import { Workdata_2 } from "../Data/WorkData";
 import { animateWorkCard } from "../Animation/animation";
 import "../Pages/Home.css";
 import { ChevronRight } from "lucide-react";
-
+import Modal from "./Modal";
 // Reusable Modal Component
-const Modal = ({ children, onClose }) => {
-  return ReactDOM.createPortal(
-    <div
-      className="modal-overlay"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.7)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 9999,
-      }}
-      onClick={onClose}
-    >
-      <div
-        className="modal-content rounded-5"
-        style={{
-          position: "relative",
-          width: "87vw",
-          height: "80vh",
-          backgroundColor: "#fff",
-          borderRadius: "90px",
-          overflow: "visible",
-          boxShadow: "0 0 20px rgba(0,0,0,0.3)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-         <button
-          onClick={onClose} className="m-0"
-          style={{
-            position: "absolute",
-            top: "-50px",
-            right: "-20px",  // outside iframe box
-            background: "white",
-            border: "none",
-            fontSize: "1.8rem",
-            cursor: "pointer",
-            color: "#333",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 100000, // super high
-            borderRadius: "50%",
-            width: "36px",
-            height: "36px",
-            lineHeight: "36px",
-            textAlign: "center",
-            userSelect: "none",
-          }}
-          aria-label="Close modal"
-        >
-          ✕
-        </button>
-      </div>
-    </div>,
-    document.body
-  );
-};
+
 
 // WorkCard_2 Component
 const WorkCard_2 = ({ index }) => {

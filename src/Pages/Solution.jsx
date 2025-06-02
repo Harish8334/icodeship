@@ -122,7 +122,7 @@ function Solution() {
         <div id="smooth-content">
           <section>
             <Container ref={containerRef} className="my_container my-5">
-              <p className="text-center font-size-50 font_weight_500 pb-3 mt-md-5 pt-md-5">
+              <p className="text-center font-size-50 font_weight_500 pb-3 mt-5 pt-md-5">
                 Smart Solutions For Your Business
                 <br className="d-none d-lg-block" /> By Codeship.
               </p>
@@ -134,7 +134,7 @@ function Solution() {
                   style={{ backgroundColor: item.bgColor }}
                 >
                   <div className="col-lg-5 d-flex flex-column justify-content-around pb-lg-5 pb-5">
-                    <div className="d-flex flex-column gap-2 pb-5 mt-5">
+                    <div className="d-flex flex-column gap-2 pb-5 mt-3 mt-md-5">
                       <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
                         {item.heading}
                       </p>
@@ -216,11 +216,11 @@ function Solution() {
                 <br className="d-none d-lg-block" /> customer service, project
                 management, and more.
               </p>
-              <div className="d-flex justify-content-center justify-content-lg-start">
+              {/* <div className="d-flex justify-content-center justify-content-lg-start">
                 <Button className="px-lg-4 py-2 mt-lg-5 mt-md-4 font-size-18 font_weight_600 blue_gradient rounded-pill">
                   See all integrations
                 </Button>
-              </div>
+              </div> */}
             </div>
             <div className="col-xl-7 col-lg-6 col-12 mt-5 mt-lg-0">
               <div className="d-flex flex-wrap justify-content-evenly mb-5">
