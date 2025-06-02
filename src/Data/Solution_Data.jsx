@@ -1,6 +1,6 @@
 // solutionData.js
-import Solution_desk from "../assets/images/Solutions/solution_desk.png";
-import Solution_lap from "../assets/images/Solutions/solution_lap.png";
+import Solution_desk from "../assets/images/solutions/solution_desk.png";
+import Solution_lap from "../assets/images/solutions/solution_lap.png";
 
 const Solution_Data = [
   {

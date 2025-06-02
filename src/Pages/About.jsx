@@ -17,7 +17,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 //  Components
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
@@ -31,7 +30,7 @@ import Team_Data from "../Data/Team_Data";
 import Office_Data from "../Data/Office_data.jsx";
 
 // Image imports
-import Why_us from "../assets/images/About/about_why_us.png";
+import Why_us from "../assets/images/about/about_why_us.png";
 
 // CSS imports
 import "../Pages/About.css";

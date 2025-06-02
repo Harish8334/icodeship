@@ -1,9 +1,9 @@
-import lap_icon from "../assets/images/Home/service_icon1.png";
-import app_icon from "../assets/images/Home/service_icon2.png";
-import ui_icon from "../assets/images/Home/service_icon3.png";
-import amc_icon from "../assets/images/Home/service_icon4.png";
-import servers_icon from "../assets/images/Home/service_icon5.png";
-import digital_icon from "../assets/images/Home/service_icon6.png";
+import lap_icon from "../assets/images/home/service_icon1.png";
+import app_icon from "../assets/images/home/service_icon2.png";
+import ui_icon from "../assets/images/home/service_icon3.png";
+import amc_icon from "../assets/images/home/service_icon4.png";
+import servers_icon from "../assets/images/home/service_icon5.png";
+import digital_icon from "../assets/images/home/service_icon6.png";
 const Services = [
   {
     id : "web-development",

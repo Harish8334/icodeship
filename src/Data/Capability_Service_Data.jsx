@@ -1,8 +1,8 @@
 
-import Capable_service_icon1 from "../assets/images/Capable_service/capable_service_icon1.png";
-import Capable_service_icon2 from "../assets/images/Capable_service/capable_service_icon2.png";
-import Capable_service_icon3 from "../assets/images/Capable_service/capable_service_icon3.png";
-import Capable_service_icon4 from "../assets/images/Capable_service/capable_service_icon4.png";
+import Capable_service_icon1 from "../assets/images/capable_service/capable_service_icon1.png";
+import Capable_service_icon2 from "../assets/images/capable_service/capable_service_icon2.png";
+import Capable_service_icon3 from "../assets/images/capable_service/capable_service_icon3.png";
+import Capable_service_icon4 from "../assets/images/capable_service/capable_service_icon4.png";
 
 const cardData = [
     {

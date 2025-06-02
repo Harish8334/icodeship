@@ -2,7 +2,7 @@ import Testimonial from "../Components/Testimonial";
 import WorkTogther from "./WorkTogther";
 import Brands from "./Brands";
 import { Container, Button } from "react-bootstrap";
-import Service_with_us from "../assets/images/Capable_service/capable_service_with_us.png";
+import Service_with_us from "../assets/images/capable_service/capable_service_with_us.png";
 import "../Pages/Capabilities.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import serviceData from "../Service_Data/Service_Page_Data";

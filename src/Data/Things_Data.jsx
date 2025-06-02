@@ -1,11 +1,11 @@
-import Rocket_icon from "../assets/images/Home/rocket_icon.png";
-import Rocket_hover_icon from "../assets/images/Home/rocket_hover_icon.png";
-import Search_icon from "../assets/images/Home/search_icon.png";
-import Search_icon_hover from "../assets/images/Home/search_icon_hover.png";
-import Bug_icon from "../assets/images/Home/bug_icon.png";
-import Bug_hover_icon from "../assets/images/Home/bug_hover_icon.png";
-import Project_icon from "../assets/images/Home/project_icon.png";
-import Project_hover_icon from "../assets/images/Home/project_hover_icon.png";
+import Rocket_icon from "../assets/images/home/rocket_icon.png";
+import Rocket_hover_icon from "../assets/images/home/rocket_hover_icon.png";
+import Search_icon from "../assets/images/home/search_icon.png";
+import Search_icon_hover from "../assets/images/home/search_icon_hover.png";
+import Bug_icon from "../assets/images/home/bug_icon.png";
+import Bug_hover_icon from "../assets/images/home/bug_hover_icon.png";
+import Project_icon from "../assets/images/home/project_icon.png";
+import Project_hover_icon from "../assets/images/home/project_hover_icon.png";
 const Things_Data = [
   {
     title: "Discovery",

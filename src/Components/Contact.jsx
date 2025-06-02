@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap";
 import { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
-import Contact_icon1 from "../assets/images/Home/BB_icon.png";
-import Contact_icon2 from "../assets/images/Home/insta_icon.png";
-import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
-import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
+import Contact_icon1 from "../assets/images/home/BB_icon.png";
+import Contact_icon2 from "../assets/images/home/insta_icon.png";
+import Contact_icon3 from "../assets/images/home/linkdin_icon.png";
+import Contact_icon4 from "../assets/images/home/twitter_icon.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { submitContactForm } from "../Service_Data/API.jsx";

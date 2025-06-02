@@ -1,8 +1,8 @@
-import Software1_icon from "../assets/images/Home/software1.png";
-import Software2_icon from "../assets/images/Home/software2.png";
-import Software3_icon from "../assets/images/Home/software3.png";
-import Software4_icon from "../assets/images/Home/software4.png";
-import Software_img from "../assets/images/Home/software.png";
+import Software1_icon from "../assets/images/home/software1.png";
+import Software2_icon from "../assets/images/home/software2.png";
+import Software3_icon from "../assets/images/home/software3.png";
+import Software4_icon from "../assets/images/home/software4.png";
+import Software_img from "../assets/images/home/software.png";
 export const softwareData = [
   {
     name: "ERP Software",

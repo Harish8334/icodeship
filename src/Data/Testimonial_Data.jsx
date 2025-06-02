@@ -1,9 +1,9 @@
-import Testimonial_img_logo from "../assets/images/Home/testimonial.png";
-import Test_Brand_logo from "../assets/images/Home/testimonial_logo.png";
-import Test_Banner_1 from "../assets/images/Home/testimonial_1.png";
-import Test_Banner_2 from "../assets/images/Home/testimonial_2.png";
-import Test_Banner_3 from "../assets/images/Home/testimonial_3.png";
-import Test_Banner_4 from "../assets/images/Home/testimonial_4.png";
+import Testimonial_img_logo from "../assets/images/home/testimonial.png";
+import Test_Brand_logo from "../assets/images/home/testimonial_logo.png";
+import Test_Banner_1 from "../assets/images/home/testimonial_1.png";
+import Test_Banner_2 from "../assets/images/home/testimonial_2.png";
+import Test_Banner_3 from "../assets/images/home/testimonial_3.png";
+import Test_Banner_4 from "../assets/images/home/testimonial_4.png";
 const testimonials = [
   {
     text: `CodeShip Pvt. Ltd. appreciates the exceptional development services provided for Virtual Auditor. The project was executed with precision, innovation, and timely communication. The team showed professionalism and strong technical skills. The process was seamless from start to finish. We confidently recommend their expertise for any high-quality digital development project.`,

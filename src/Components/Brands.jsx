@@ -1,24 +1,24 @@
 import { useEffect, useRef } from "react";
 
-import veev from "../assets/images/Home/brands/veev.png";
-import virtual_auditor from "../assets/images/Home/brands/visual_auditor.png";
-import oi_tetra from "../assets/images/Home/brands/oi_tetra.png";
-import firstmed from "../assets/images/Home/brands/firstmed.png";
-import legendary from "../assets/images/Home/brands/legendary.png";
-import fmb from "../assets/images/Home/brands/fmb.png";
-import ymca from "../assets/images/Home/brands/ymca.png";
-import xark from "../assets/images/Home/brands/xark.png";
-import call_back from "../assets/images/Home/brands/call_back.png";
-import xity from "../assets/images/Home/brands/xity.png";
-import ultimasign from "../assets/images/Home/brands/ultimasign.png";
-import svi from "../assets/images/Home/brands/svi.png";
-import farmbrite from "../assets/images/Home/brands/farmbrite.png";
-import policy_nation from "../assets/images/Home/brands/policy_nation.png";
-import meals_maven from "../assets/images/Home/brands/meals_maven.png";
-import ez_worldship from "../assets/images/Home/brands/ship_ez.png";
-import aayraa from "../assets/images/Home/brands/aayraa.png";
-import edu_home from "../assets/images/Home/brands/edu_home.png";
-import tattoo from "../assets/images/Home/brands/tattoo.png";
+import veev from "../assets/images/home/brands/veev.png";
+import virtual_auditor from "../assets/images/home/brands/visual_auditor.png";
+import oi_tetra from "../assets/images/home/brands/oi_tetra.png";
+import firstmed from "../assets/images/home/brands/firstmed.png";
+import legendary from "../assets/images/home/brands/legendary.png";
+import fmb from "../assets/images/home/brands/fmb.png";
+import ymca from "../assets/images/home/brands/ymca.png";
+import xark from "../assets/images/home/brands/xark.png";
+import call_back from "../assets/images/home/brands/call_back.png";
+import xity from "../assets/images/home/brands/xity.png";
+import ultimasign from "../assets/images/home/brands/ultimasign.png";
+import svi from "../assets/images/home/brands/svi.png";
+import farmbrite from "../assets/images/home/brands/farmbrite.png";
+import policy_nation from "../assets/images/home/brands/policy_nation.png";
+import meals_maven from "../assets/images/home/brands/meals_maven.png";
+import ez_worldship from "../assets/images/home/brands/ship_ez.png";
+import aayraa from "../assets/images/home/brands/aayraa.png";
+import edu_home from "../assets/images/home/brands/edu_home.png";
+import tattoo from "../assets/images/home/brands/tattoo.png";
 
 function Brands() {
   const brandLogos = [
