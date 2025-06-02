@@ -168,7 +168,7 @@ export const Workdata_2 = [
     title: "Meals Maven",
     description: "Meal maven connects you with top Indian home cooks in Canada for delicious, home-cooked meals delivered to your door.",
     tags: ["UX/UI", "CRM", "Mobile App" , "React" , "Next JS"],
-     link: "https://mealmaven.org/"
+     link: "https://admin.meal-maven.com/"
   },
       {
     id: 5,
@@ -176,7 +176,7 @@ export const Workdata_2 = [
     title: "Policy Nation",
     description: "Policynation, a leading IRDAI-licensed Insurtech in India, simplifies insurance with expert guidance, diverse plans, and trusted partnerships to make coverage easy, accessible, and affordable.",
     tags: ["UX/UI", "Angular", "Mobile App","CRM"],
-     link: "https://policynation.com/"
+     link: "https://staging.policynation.com/"
   },
   {
     id: 6,

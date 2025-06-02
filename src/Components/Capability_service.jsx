@@ -79,8 +79,8 @@ const Capable_service = () => {
                 {" "}
                 <img
                   src={service.banner.icon}
-                  alt="Banner Visual"
-                  className="img-fluid Banner_img w-100 h-100"
+                  alt="Banner Visual "
+                  className="img-fluid banner_height Banner_img w-100 h-100"
                 />
               </div>
             </div>
@@ -244,7 +244,7 @@ const Capable_service = () => {
           </div>
 
           <Swiper
-            modules={[Autoplay]}
+            modules={[Autoplay , Pagination]}
             className="p-3"
             slidesPerView="auto"
             spaceBetween={30}
@@ -252,6 +252,11 @@ const Capable_service = () => {
             autoplay={{
               delay: 2000,
               disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              renderBullet: (index, className) =>
+                `<span class="${className} custom-pagination-dot"></span>`,
             }}
             loop={true}
             breakpoints={{
@@ -280,7 +285,7 @@ const Capable_service = () => {
             {service.work_with_us_detail &&
               Object.values(service.work_with_us_detail).map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="py-3 capable_card rounded-5 border_shadow ">
+                  <div className="py-3 mb-3 capable_card rounded-5 border_shadow ">
                     <div className="d-flex justify-content-between px-4">
                       <p className="font-size-24 font_color_light_blue font_weight_600  pt-md-3">
                         {item.title}

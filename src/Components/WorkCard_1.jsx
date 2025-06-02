@@ -45,7 +45,7 @@ const Modal = ({ children, onClose }) => {
 
         {/* Close button as sibling, positioned absolutely relative to modal-content */}
         <button
-          onClick={onClose}
+          onClick={onClose} className="m-0"
           style={{
             position: "absolute",
             top: "-50px",
@@ -55,7 +55,6 @@ const Modal = ({ children, onClose }) => {
             fontSize: "1.8rem",
             cursor: "pointer",
             color: "#333",
-            padding: "0 8px",
             boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
             zIndex: 100000, // super high
             borderRadius: "50%",

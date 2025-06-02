@@ -173,7 +173,7 @@ const PurchaseContactForm = () => {
                     </label>
                    <div className="row mb-2">
   {["ERP", "CRM", "HRM", "LMS"].map((opt) => (
-    <div key={opt} className="col-6 col-lg-3 mb-3">
+    <div key={opt} className="col-6 col-lg-3 mb-3 ">
       <button
         type="button"
         onClick={() => {
@@ -182,7 +182,7 @@ const PurchaseContactForm = () => {
             : [...values.options, opt];
           setFieldValue("options", updatedOptions);
         }}
-        className={`w-100 p-3 rounded-5 border-0 ${
+        className={`w-100 p-3 rounded-5 btn btn-outline-dark  ${
           values.options.includes(opt)
             ? "text-white bg_gradient_blue"
             : "text-black bg-light"

@@ -71,6 +71,7 @@ function Contact() {
 
 
   return (
+  <>
     <section className="position-relative overflow-hidden" ref={containerRef}>
       <Container className="my_container pt-5">
         <p className="font-size-62 font_weight_600">
@@ -269,8 +270,9 @@ function Contact() {
         <ToastContainer />
 
       </Container>
-      <Footer />
+     
     </section>
+     <Footer /></>
   );
 }
 

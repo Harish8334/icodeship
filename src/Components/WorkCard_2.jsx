@@ -41,20 +41,19 @@ const Modal = ({ children, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {children}
-        <button
-          onClick={onClose}
+         <button
+          onClick={onClose} className="m-0"
           style={{
             position: "absolute",
-            top: "-40px",
-            right: "-40px",
+            top: "-50px",
+            right: "-20px",  // outside iframe box
             background: "white",
             border: "none",
             fontSize: "1.8rem",
             cursor: "pointer",
             color: "#333",
-            padding: "0 8px",
             boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 100000,
+            zIndex: 100000, // super high
             borderRadius: "50%",
             width: "36px",
             height: "36px",

@@ -26,7 +26,9 @@ import Capable_service_layout from "./Pages/Capable_service_layout";
 import PurchaseContactForm from "./Components/Purchase_form"
 import Loader from "./Components/Loader";
 import Header from "./Components/Header"; // Your fixed header component
-
+import Privacy from "./Pages/Privacy";
+import Terms from "./Pages/Terms";
+import Sitemap from "./Pages/Sitemap";
 // Register GSAP plugins once globally
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -140,6 +142,9 @@ function App() {
           </Route>
           <Route path="/contact" element={<Contact_page />} />
          <Route path="/purchase-contact" element={<PurchaseContactForm />} />
+         <Route path="/privacy" element={<Privacy />} />
+           <Route path="/terms" element={<Terms />} />
+             <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </PageWrapper>
     </Router>

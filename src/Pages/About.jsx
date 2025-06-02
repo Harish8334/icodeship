@@ -65,7 +65,7 @@ function About() {
   };
 
   return (
-    <>
+    <div className="pb-5">
       <Banner text={text} image={image} />
       <Brands />
       {/* Core value section */}
@@ -296,17 +296,17 @@ function About() {
           <div className="row d-none d-lg-flex d-md-flex office-animation-wrapper">
             {Office_Data.map((item, index) => (
               <div
-                className={`col-md-6 office-card animate-from-bottom ${
-                  index % 2 === 1 ? "About_office" : ""
+                className={`col-md-6 office-card animate-from-bottom  ${
+                  index % 2 === 1 ? "About_office " : " "
                 }`}
                 key={index}
               >
                 <div className="rounded-4">
-                  <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
+                  <div className="d-flex justify-content-center  mt-lg-2 pt-lg-3">
                     <img
                       src={item.img}
                       alt={`img ${index + 1}`}
-                      className="img-fluid pt-lg-5"
+                      className="img-fluid  rounded-5"
                     />
                   </div>
                 </div>
@@ -332,7 +332,7 @@ function About() {
                         <img
                           src={item.img}
                           alt={`img ${index + 1}`}
-                          className="img-fluid pt-lg-5"
+                          className="img-fluid pt-lg-5 rounded-5"
                         />
                       </div>
                     </div>
@@ -345,7 +345,7 @@ function About() {
       </section>
       <WorkTogther />
       <Footer />
-    </>
+    </div>
   );
 }
 

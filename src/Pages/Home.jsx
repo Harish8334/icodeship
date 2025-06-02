@@ -1,6 +1,7 @@
 // React Core
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactDOM from "react-dom";
 
 // Data
 import Things_Data from "../Data/Things_Data";
@@ -34,7 +35,6 @@ import "swiper/css/free-mode";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 
-
 // React Bootstrap
 import { Container, Button } from "react-bootstrap";
 
@@ -45,16 +45,82 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 // GSAP
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 // Assets
 import map from "../assets/images/Home/map.png";
 import AWS from "../assets/images/Home/aws.png";
 import Nodejs from "../assets/images/Home/nodejs.png";
 import React_img from "../assets/images/Home/react.png";
 import Angular_img from "../assets/images/Home/angularJS.png";
+import Projects_Data from "../Data/Project_Data";
 
 // Constants
 const { text, image } = Banner_Data.home;
+
+// project Modal
+const CustomModal = ({ children, onClose }) => {
+  return ReactDOM.createPortal(
+    <div
+      className="modal-overlay"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0,0,0,0.7)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: 9999,
+      }}
+      onClick={onClose}
+    >
+      <div
+        className="modal-content rounded-5"
+        style={{
+          position: "relative",
+          width: "87vw",
+          height: "80vh",
+          backgroundColor: "#fff",
+          borderRadius: "90px",
+          overflow: "visible",
+          boxShadow: "0 0 20px rgba(0,0,0,0.3)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children}
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "-50px",
+            right: "-20px",
+            background: "white",
+            border: "none",
+            fontSize: "1.8rem",
+            cursor: "pointer",
+            color: "#333",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+            zIndex: 100000,
+            borderRadius: "50%",
+            width: "36px",
+            height: "36px",
+            lineHeight: "36px",
+            textAlign: "center",
+            userSelect: "none",
+          }}
+          aria-label="Close modal"
+        >
+          ✕
+        </button>
+      </div>
+    </div>,
+    document.body
+  );
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -82,8 +148,19 @@ function Home() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState({});
+  const [modalData, setModalData] = useState(null);
 
+  // Create refs for project cards at the top level
+  const projectCardRefs = useRef([]);
+  const projectOverlayRefs = useRef([]);
+  const projectTitleRefs = useRef([]);
 
+  // Initialize refs arrays
+  useEffect(() => {
+    projectCardRefs.current = projectCardRefs.current.slice(0, projects.length);
+    projectOverlayRefs.current = projectOverlayRefs.current.slice(0, projects.length);
+    projectTitleRefs.current = projectTitleRefs.current.slice(0, projects.length);
+  }, [projects.length]);
 
   // Pause and resume autoplay helpers
   const pauseAutoplay = () => swiperRef.current?.autoplay?.stop();
@@ -91,6 +168,8 @@ function Home() {
 
   // Handle project card click
   const handleCardClick = (project, index) => {
+    setModalData(project);
+    setShowModal(true);
     if (window.innerWidth < 768) {
       if (activeIndex === index) {
         setData({ title: project.title, link: project.href });
@@ -104,13 +183,12 @@ function Home() {
       setShowModal(true);
     }
   };
-    const handlePurchaseClick = () => {
+  
+  const handlePurchaseClick = () => {
     navigate("/purchase-contact");
   };
 
-
   // Handle opening purchase form modal
-
   useEffect(() => {
     // --- ScrollTrigger setup for software section ---
     const section = sectionRef.current;
@@ -129,9 +207,8 @@ function Home() {
       },
     });
 
-
+    return () => trigger.kill();
   }, [softwareData.length]);
- 
 
 
   
@@ -309,6 +386,7 @@ function Home() {
       </section>
       {/* Service section */}
     <Home_service />
+<div className="bg-black">
 
  <div className="stack-container  position-relative overflow-x-hidden">
        {/* Sofware section */}
@@ -339,7 +417,7 @@ function Home() {
                   <p
                     className={`font-size-18 text-nowrap mt-3 ${
                       index === currentIndex
-                        ? "text-focus-ring position-relative m-0 p-0 font_weight_600"
+                        ? "text-focus-ring position-relative  p-0 font_weight_600"
                         : ""
                     }`}
                   >
@@ -526,150 +604,131 @@ function Home() {
 
       {/* Projects */}
       <section className="bg-black p-0 pb-2">
-        <div className="container-fluid pt-lg-5 mb-md-5">
-          <div className="d-flex align-items-center justify-content-center mb-md-5">
-            <p className="font-size-65 font_weight_600 font_family text-white">
-              Our Latest Projects
-            </p>
-          </div>
-          <Swiper
-            modules={[Autoplay]}
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            slidesPerView={1} // default
-            spaceBetween={20}
-            centeredSlides={true}
-            autoplay={{
-              delay: 1500,
-              disableOnInteraction: false,
-            }}
-            speed={1500}
-            loop={true}
-            grabCursor={true}
-            breakpoints={{
-              576: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 1,
-              },
-              992: {
-                slidesPerView: 2,
-              },
-              1200: {
-                slidesPerView: 2,
-              },
-            }}
-            className="project_swiper"
-          >
-            {projects.map((project, index) => {
-              const cardRef = useRef();
-              const overlayRef = useRef();
-              const titleRef = useRef();
-
-              // Use the extracted hook here
-              useProjectCardHover(
-                cardRef,
-                overlayRef,
-                titleRef,
-                pauseAutoplay,
-                resumeAutoplay
-              );
-
-              return (
-                <SwiperSlide
-                  key={index}
-                  className="d-flex justify-content-center align-items-center rectangle-slide"
-                >
-                  <div
-                    className={`project_card position-relative ${
-                      activeIndex === index ? "active-mobile" : ""
-                    }`}
-                    onClick={() => handleCardClick(project, index)}
-                    ref={cardRef}
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="project_image w-100 h-auto object-fit-cover"
-                    />
-                    <div
-                      className="project_overlay_desktop position-absolute bottom-0 start-0 w-100  d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none "
-                      ref={overlayRef}
-                    >
-                      <div ref={titleRef}>
-                        <p className="project_title font-size-62 font_weight_600 text-white mb-2">
-                          {project.title}
-                        </p>
-                        <div className="d-flex gap-2 flex-wrap justify-content-center">
-                          {project.tags.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="badge bg-light text-dark px-3 py-2 rounded-pill"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    {activeIndex === index && (
-                      <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
-                        <p className="fs-4 mb-2 ">{project.title}</p>
-                        <div className="d-flex flex-wrap justify-content-center gap-2">
-                          {project.tags.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-
-          <div className="d-flex justify-content-center pt-5 pb-5">
-            <Button
-              className="font-size-22 px-4 py-2 rounded-5 font_weight_500 blue_gradient border-0"
-              onClick={() => navigate("ourworks")}
-            >
-              View All <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-            </Button>
-          </div>
+      <div className="container-fluid pt-lg-5 mb-md-5">
+        <div className="d-flex align-items-center justify-content-center mb-md-5">
+          <p className="font-size-65 font_weight_600 font_family text-white">
+            Our Latest Projects
+          </p>
         </div>
 
-        {showModal && (
-          <div
-            className="fullscreen-modal d-flex justify-content-center align-items-center"
-            onClick={(e) => {
-              if (e.target.classList.contains("fullscreen-modal")) {
-                setShowModal(false);
-              }
-            }}
+        <Swiper
+          modules={[Autoplay]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          slidesPerView={1}
+          spaceBetween={20}
+          centeredSlides={true}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
+          speed={1500}
+          loop={true}
+          grabCursor={true}
+          breakpoints={{
+            576: { slidesPerView: 1 },
+            768: { slidesPerView: 1 },
+            992: { slidesPerView: 2 },
+            1200: { slidesPerView: 2 },
+          }}
+          className="project_swiper"
+        >
+          {projects.map((project, index) => {
+            const cardRef = useRef();
+            const overlayRef = useRef();
+            const titleRef = useRef();
+
+            useProjectCardHover(
+              cardRef,
+              overlayRef,
+              titleRef,
+              pauseAutoplay,
+              resumeAutoplay
+            );
+
+            return (
+              <SwiperSlide
+                key={index}
+                className="d-flex justify-content-center align-items-center rectangle-slide"
+              >
+                <div
+                  className={`project_card position-relative ${
+                    activeIndex === index ? "active-mobile" : ""
+                  }`}
+                  onClick={() => {
+                    setModalData(project);
+                    setShowModal(true);
+                  }}
+                  ref={cardRef}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="project_image w-100 h-auto object-fit-cover"
+                  />
+                  <div
+                    className="project_overlay_desktop position-absolute bottom-0 start-0 w-100 d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none"
+                    ref={overlayRef}
+                  >
+                    <div ref={titleRef}>
+                      <p className="project_title font-size-62 font_weight_600 text-white mb-2">
+                        {project.title}
+                      </p>
+                      <div className="d-flex gap-2 flex-wrap justify-content-center">
+                        {project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="badge bg-light text-dark px-3 py-2 rounded-pill"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  {activeIndex === index && (
+                    <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
+                      <p className="fs-4 mb-2 ">{project.title}</p>
+                      <div className="d-flex flex-wrap justify-content-center gap-2">
+                        {project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        <div className="d-flex justify-content-center pt-5 pb-5">
+          <Button
+            className="font-size-22 px-4 py-2 rounded-5 font_weight_500 blue_gradient border-0"
+            onClick={() => navigate("ourworks")}
           >
-            <div className="modal-header  ">
-              <button className="close-btn" onClick={() => setShowModal(false)}>
-                &times;
-              </button>
-            </div>
-            <div
-              className="modal-content-iframe rounded-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <iframe
-                src={data.link}
-                title={data.title}
-                className="iframe-full w-100 h-100 border-none"
-              />
-            </div>
-          </div>
-        )}
-      </section>
+            View All <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
+          </Button>
+        </div>
+      </div>
+
+       {showModal && modalData && (
+        <CustomModal onClose={() => setShowModal(false)}>
+          <iframe
+            src={modalData.href}
+            title={modalData.title}
+            className="rounded-5"
+            style={{ width: "100%", height: "100%", border: "none" }}
+            allowFullScreen
+          />
+        </CustomModal>
+      )}
+    </section>
+</div>
    
       <Testimonial />
       <Contact />

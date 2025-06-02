@@ -99,15 +99,15 @@ export default function Header({}) {
               </Nav.Link>
             </div>
             <Button
-                className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
-                onClick={letsTalk}
-              >
-                <FontAwesomeIcon
-                  icon={faCircle}
-                  className="font-size-9 text-success  me-2 beep-glow"
-                />
-                Let's Talk
-              </Button>
+              className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
+              onClick={letsTalk}
+            >
+              <FontAwesomeIcon
+                icon={faCircle}
+                className="font-size-9 text-success  me-2 beep-glow"
+              />
+              Let's Talk
+            </Button>
           </div>
 
           {/* Desktop Nav */}
@@ -210,7 +210,7 @@ export default function Header({}) {
               >
                 Contact
               </Nav.Link>
-               <Button
+              <Button
                 className="text-nowrap font-size-20 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
                 onClick={letsTalk}
               >
@@ -230,38 +230,38 @@ export default function Header({}) {
             placement="start"
             className="offcanvas-fullscreen offcanvas-bounce"
           >
-            <Offcanvas.Header closeButton={false}>
-              <div className="d-flex flex-column w-100">
-                {/* Top row with close button */}
-                <div className="mt-5 ms-3">
-                  <button
-                    type="button"
-                    className="btn-close"
-                    aria-label="Close"
-                    onClick={handleClose}
-                  />
-                </div>
+             <div className="d-flex  gap-3">
+              <Offcanvas.Header closeButton={false} className="p-0" >
+                <div className="d-flex gap-4  w-100">
+                  {/* Top row with close button */}
+                  <div className="mt-5 pt-3 ms-3">
+                    <button
+                      type="button"
+                      className="btn-close font-size-65 font_weight_700 outline-none "
+                      onClick={handleClose}
+                      aria-label="Close"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2.5l11 11M13.5 2.5l-11 11' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E")`,
+                        opacity: 1,
+                        width: "0.7em",
+                        height: "0.7em",
+                        outline: "none",
+                        boxShadow: "none",
+                      }}
+                    />
+                  </div>
 
-                {/* Center logo and title */}
-                <div className="d-flex flex-column align-items-center pt-2 pb-3">
-                  <Nav.Link
-                    as={Link}
-                    to="/"
-                    onClick={() => {
-                      if (window.location.pathname === "/") {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }
-                    }}
-                    className="d-none d-lg-flex ms-xl-5 ms-lg-3"
-                  >
-                    <img src={logo} alt="Logo" className="logo_img" />
-                  </Nav.Link>
-                </div>
-              </div>
-            </Offcanvas.Header>
+                  {/* Center logo and title */}
+                  <div className="d-flex flex-column align-items-center mt-5">
+                   
+                      <img src={logo} alt="Logo" className="" />
 
+                  </div>
+                </div>
+              </Offcanvas.Header>
+            </div>
             <Offcanvas.Body>
-              <Nav className="flex-column gap-4 text-center font-size-50">
+              <Nav className="flex-column gap-4 ms-5 font-size-50">
                 <Nav.Link as={Link} to="/" onClick={handleClose}>
                   Home
                 </Nav.Link>
@@ -274,7 +274,7 @@ export default function Header({}) {
                 </Nav.Link>
                 {/* Capabilities - opens new offcanvas */}
                 <button
-                  className="btn w-100 text-decoration-none font-size-50  border-0 p-0"
+                  className="btn w-100 text-decoration-none d-flex font-size-50  border-0 p-0"
                   onClick={handleShowCapabilities}
                 >
                   Capabilities Service
@@ -291,19 +291,6 @@ export default function Header({}) {
                 <Nav.Link as={Link} to="/contact" onClick={handleClose}>
                   Contact
                 </Nav.Link>
-
-                <div className="d-flex justify-content-center">
-                   <Button
-                className="text-nowrap font-size-20 px-5 py-3 mx-xl-2 mx-lg-2 d-flex justify-content-center align-items-center blue_gradient rounded-5"
-                onClick={letsTalk}
-              >
-                <FontAwesomeIcon
-                  icon={faCircle}
-                  className="font-size-9 text-success me-2 beep-glow"
-                />
-                Let's Talk
-              </Button>
-                </div>
               </Nav>
             </Offcanvas.Body>
           </Offcanvas>
@@ -315,18 +302,48 @@ export default function Header({}) {
             placement="start"
             className="offcanvas-fullscreen offcanvas-bounce"
           >
-            <Offcanvas.Header closeButton={false}>
-              <div className="me-auto mt-5">
-                <button
-                  type="button"
-                  className="btn-close"
-                  aria-label="Close"
-                  onClick={handleCloseCapabilities}
-                />
-              </div>
-            </Offcanvas.Header>
-            <img src={logo} alt="Logo" className="my-2 mx-5 " />
+            <div className="d-flex gap-3">
+              <Offcanvas.Header closeButton={false} className="p-0">
+                <div className="d-flex gap-4 w-100">
+                  {/* Top row with close button */}
+                  <div className="mt-5 pt-3 ms-3">
+                    <button
+                      type="button"
+                      className="btn-close font-size-65 font_weight_700 outline-none "
+                      onClick={handleCloseCapabilities}
+                      aria-label="Close"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2.5l11 11M13.5 2.5l-11 11' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E")`,
+                        opacity: 1,
+                        width: "0.7em",
+                        height: "0.7em",
+                        outline: "none",
+                        boxShadow: "none",
+                      }}
+                    />
+                  </div>
+
+                  {/* Center logo and title */}
+                  <div className="d-flex flex-column align-items-center mt-5">
+                   
+                      <img src={logo} alt="Logo" className="logo_img" />
+
+                  </div>
+                </div>
+              </Offcanvas.Header>
+            </div>
             <p className="mb-0 font-size-80 ms-4 mt-5">Capabilities Services</p>
+             <button
+                  type="button"
+                  className="btn btn-link pt-5 ms-3 text-dark d-flex align-items-center gap-2 text-decoration-none"
+                  onClick={handleBackToMain}
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    className="font-size-28"
+                  />
+                  <span className="font-size-28 text-dec">Back</span>
+                </button>
             <Offcanvas.Body className="pt-4">
               <div className="px-3 pt-4">
                 {uniqueServices.map((service, idx) => (
@@ -371,17 +388,7 @@ export default function Header({}) {
                     )}
                   </div>
                 ))}
-                <button
-                  type="button"
-                  className="btn btn-link p-0 text-dark d-flex align-items-center gap-2 text-decoration-none"
-                  onClick={handleBackToMain}
-                >
-                  <FontAwesomeIcon
-                    icon={faArrowLeft}
-                    className="font-size-28"
-                  />
-                  <span className="font-size-28 text-dec">Back</span>
-                </button>
+               
               </div>
             </Offcanvas.Body>
           </Offcanvas>

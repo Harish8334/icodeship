@@ -236,7 +236,7 @@
 }
 .btn-outline-dark:hover {
   background-color: #49499D !important;
-  color:white;
+  color:white !important;
 }
 .btn-outline-dark.active{
    background-color: #49499D !important;
