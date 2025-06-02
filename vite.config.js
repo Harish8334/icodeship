@@ -1,29 +1,31 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
+import path from 'path';
 
-export default defineConfig({
-  plugins: [
-    react(),
-    svgr()
-  ],
+export default defineConfig(({ command, ssrBuild }) => ({
+  plugins: [react(), svgr()],
   optimizeDeps: {
-    include: ['swiper']
+    include: ['swiper'],
   },
-  // Your custom config (if scrollTrigger is a plugin option or custom, keep it here)
-  scrollTrigger: {
-    scroller: '[data-scroll-container]'
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   build: {
-    chunkSizeWarningLimit: 2000, // increase warning limit to 2MB
+    ssr: ssrBuild ? true : false,
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor'; // bundle all dependencies separately
-          }
-        }
-      }
-    }
-  }
-});
+          if (id.includes('node_modules')) return 'vendor';
+        },
+      },
+    },
+  },
+  ssr: {
+    noExternal: ['swiper', 'gsap'], // if needed for SSR-safe builds
+  },
+}));

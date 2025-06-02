@@ -31,6 +31,7 @@ const Banner = ({ text, image }) => {
                 src={image}
                 alt="Banner Visual"
                 className="img-fluid"
+                loading="lazy"
               />
             </div>
           </div>
