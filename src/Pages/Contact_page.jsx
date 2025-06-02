@@ -32,13 +32,13 @@ import { submitContactForm } from "../Service_Data/API.jsx";
 import Banner_Data from "../Data/Banner_Data.jsx";
 
 // Images
-import Location_icon from "../assets/images/contact/contact_loc_icon.png";
-import Msg_icon from "../assets/images/contact/contact_msg_icon.png";
-import Call_icon from "../assets/images/contact/contact_call_icon.png";
-import Contact_icon1 from "../assets/images/home/BB_icon.png";
-import Contact_icon2 from "../assets/images/home/insta_icon.png";
-import Contact_icon3 from "../assets/images/home/linkdin_icon.png";
-import Contact_icon4 from "../assets/images/home/twitter_icon.png";
+import Location_icon from "../assets/images/Contact/contact_loc_icon.png";
+import Msg_icon from "../assets/images/Contact/contact_msg_icon.png";
+import Call_icon from "../assets/images/Contact/contact_call_icon.png";
+import Contact_icon1 from "../assets/images/Home/BB_icon.png";
+import Contact_icon2 from "../assets/images/Home/insta_icon.png";
+import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
+import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
 
 // CSS
 import "../Pages/Contact_page.css";

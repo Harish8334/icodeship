@@ -1,25 +1,25 @@
-import visual_auditor from "../assets/images/ourworks/vertical_rectangle/visual_auditor.png";
-import itetra from "../assets/images/ourworks/vertical_rectangle/oi_tetra.png";
-import ymca from "../assets/images/ourworks/vertical_rectangle/ymca.png";
-import svi from "../assets/images/ourworks/vertical_rectangle/svi.png";
-import aayra from "../assets/images/ourworks/vertical_rectangle/aayraa.png";
-import callback_events from "../assets/images/ourworks/call_back.png";
-import edu_Home from "../assets/images/ourworks/vertical_rectangle/edu_home.png";
-import ez_worldship from "../assets/images/ourworks/vertical_rectangle/ez_ship.png";
-import farmbrite from "../assets/images/ourworks/vertical_rectangle/farmbrite.png";
-import firstmed from "../assets/images/ourworks/vertical_rectangle/firstmed.png";
-import tattoo from "../assets/images/ourworks/vertical_rectangle/tattoo.png";
-import ultimasign from "../assets/images/ourworks/vertical_rectangle/ultimasign.png";
-import xark from "../assets/images/ourworks/vertical_rectangle/xark.png";
-import xity from "../assets/images/ourworks/vertical_rectangle/xity.png";
-import gaddzy from "../assets/images/ourworks/vertical_rectangle/gaddzy.png";
+import visual_auditor from "../assets/images/OurWorks/vertical_rectangle/visual_auditor.png";
+import itetra from "../assets/images/OurWorks/vertical_rectangle/oi_tetra.png";
+import ymca from "../assets/images/OurWorks/vertical_rectangle/ymca.png";
+import svi from "../assets/images/OurWorks/vertical_rectangle/svi.png";
+import aayra from "../assets/images/OurWorks/vertical_rectangle/aayraa.png";
+import callback_events from "../assets/images/OurWorks/call_back.png";
+import edu_Home from "../assets/images/OurWorks/vertical_rectangle/edu_home.png";
+import ez_worldship from "../assets/images/OurWorks/vertical_rectangle/ez_ship.png";
+import farmbrite from "../assets/images/OurWorks/vertical_rectangle/farmbrite.png";
+import firstmed from "../assets/images/OurWorks/vertical_rectangle/firstmed.png";
+import tattoo from "../assets/images/OurWorks/vertical_rectangle/tattoo.png";
+import ultimasign from "../assets/images/OurWorks/vertical_rectangle/ultimasign.png";
+import xark from "../assets/images/OurWorks/vertical_rectangle/xark.png";
+import xity from "../assets/images/OurWorks/vertical_rectangle/xity.png";
+import gaddzy from "../assets/images/OurWorks/vertical_rectangle/gaddzy.png";
 
-import veev from "../assets/images/ourworks/veev.png";
-import fmb from "../assets/images/ourworks/fmb.png";
-import matrimony from "../assets/images/ourworks/matrimony.png";
-import meals_maven from "../assets/images/ourworks/meals_maven.png";
-import legendary from "../assets/images/ourworks/legendary.png";
-import policy_nation from "../assets/images/ourworks/policy_nation.png";
+import veev from "../assets/images/OurWorks/veev.png";
+import fmb from "../assets/images/OurWorks/fmb.png";
+import matrimony from "../assets/images/OurWorks/matrimony.png";
+import meals_maven from "../assets/images/OurWorks/meals_maven.png";
+import legendary from "../assets/images/OurWorks/legendary.png";
+import policy_nation from "../assets/images/OurWorks/policy_nation.png";
 
 
 export const Workdata_1 = [

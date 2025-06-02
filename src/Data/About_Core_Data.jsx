@@ -1,7 +1,7 @@
-import Icon1 from "../assets/images/about/about_core_icon1.png"; 
-import Icon2 from "../assets/images/about/about_core_icon2.png"; 
-import Icon3 from "../assets/images/about/about_core_icon3.png"; 
-import Icon4 from "../assets/images/about/about_core_icon4.png"; 
+import Icon1 from "../assets/images/About/about_core_icon1.png"; 
+import Icon2 from "../assets/images/About/about_core_icon2.png"; 
+import Icon3 from "../assets/images/About/about_core_icon3.png"; 
+import Icon4 from "../assets/images/About/about_core_icon4.png"; 
 
 const cardData = [
   {

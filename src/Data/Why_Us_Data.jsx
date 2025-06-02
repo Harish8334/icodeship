@@ -1,7 +1,7 @@
-import Why_us_icon1 from  "../assets/images/about/about_why_icon1.png";
-import Why_us_icon2 from "../assets/images/about/about_why_icon2.png";
-import Why_us_icon3 from "../assets/images/about/about_why_icon3.png";
-import Why_us_icon4 from "../assets/images/about/about_why_icon4.png";
+import Why_us_icon1 from  "../assets/images/About/about_why_icon1.png";
+import Why_us_icon2 from "../assets/images/About/about_why_icon2.png";
+import Why_us_icon3 from "../assets/images/About/about_why_icon3.png";
+import Why_us_icon4 from "../assets/images/About/about_why_icon4.png";
 
 const Why_Us_Data = [
   {

@@ -1,9 +1,9 @@
-import HomeImg from '../assets/images/home/home_banner.png';
-import AboutImg from '../assets/images/about/about_banner.png';
-import WorkImg from '../assets/images/ourworks/ourwork_banner.png';
-import CapableImg from '../assets/images/capable/capability_banner.png';
-import SolutionImg from '../assets/images/solutions/solution_banner.png';
-import ContactImg from '../assets/images/contact/contact_banner.png';
+import HomeImg from '../assets/images/Home/home_banner.png';
+import AboutImg from '../assets/images/About/about_banner.png';
+import WorkImg from '../assets/images/OurWorks/ourwork_banner.png';
+import CapableImg from '../assets/images/Capable/capability_banner.png';
+import SolutionImg from '../assets/images/Solutions/solution_banner.png';
+import ContactImg from '../assets/images/Contact/contact_banner.png';
 
 const BannerData = {
   home: {

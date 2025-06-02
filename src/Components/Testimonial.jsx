@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import { gsap } from "gsap";
 
 
-import Larrow from "../assets/images/home/left_arrow.png";
-import Rarrow from "../assets/images/home/right_arrow.png";
+import Larrow from "../assets/images/Home/left_arrow.png";
+import Rarrow from "../assets/images/Home/right_arrow.png";
 
 import "../Pages/Home.css";
 import testimonials from "../Data/Testimonial_Data"

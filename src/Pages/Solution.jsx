@@ -22,13 +22,13 @@ import Solution_Data from "../Data/Solution_Data";
 // Images
 import what_we_do from "../assets/images/Solutions/solution_whatwedo.png";
 import Map from "../assets/images/Solutions/solution_map.png";
-import Solution_workflow1 from "../assets/images/solutions/solution_workflow1.png";
-import Solution_workflow2 from "../assets/images/solutions/solution_workflow2.png";
-import Solution_workflow3 from "../assets/images/solutions/solution_workflow3.png";
-import Solution_workflow4 from "../assets/images/solutions/solution_workflow4.png";
-import Solution_workflow5 from "../assets/images/solutions/solution_workflow5.png";
-import Solution_workflow6 from "../assets/images/solutions/solution_workflow6.png";
-import Solution_workflow7 from "../assets/images/solutions/solution_workflow7.png";
+import Solution_workflow1 from "../assets/images/Solutions/solution_workflow1.png";
+import Solution_workflow2 from "../assets/images/Solutions/solution_workflow2.png";
+import Solution_workflow3 from "../assets/images/Solutions/solution_workflow3.png";
+import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.png";
+import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
+import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
+import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
 
 
 // CSS

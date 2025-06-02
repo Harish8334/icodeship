@@ -1,12 +1,12 @@
-import WebImg from "../assets/images/capable/capable_web.png";
-import MarketingImg from "../assets/images/capable/capable_dm.png";
-import EcommerceImg from "../assets/images/capable/capable_ecom.png";
-import AppImg from "../assets/images/capable/capable_app.png";
-import WebDesign from "../assets/images/capable/capable_design.png";
-import DomainImg from "../assets/images/capable/capable_domain.png";
-import Shape_1 from "../assets/images/capable/capable_shape1.png";
-import Shape_2 from "../assets/images/capable/capable_shape2.png";
-import Shape_3 from "../assets/images/capable/capable_shape3.png";
+import WebImg from "../assets/images/Capable/capable_web.png";
+import MarketingImg from "../assets/images/Capable/capable_dm.png";
+import EcommerceImg from "../assets/images/Capable/capable_ecom.png";
+import AppImg from "../assets/images/Capable/capable_app.png";
+import WebDesign from "../assets/images/Capable/capable_design.png";
+import DomainImg from "../assets/images/Capable/capable_domain.png";
+import Shape_1 from "../assets/images/Capable/capable_shape1.png";
+import Shape_2 from "../assets/images/Capable/capable_shape2.png";
+import Shape_3 from "../assets/images/Capable/capable_shape3.png";
 
 export const Services_Data = [
   {

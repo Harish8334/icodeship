@@ -46,11 +46,11 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Assets
-import map from "../assets/images/home/map.png";
-import AWS from "../assets/images/home/aws.png";
-import Nodejs from "../assets/images/home/nodejs.png";
-import React_img from "../assets/images/home/react.png";
-import Angular_img from "../assets/images/home/angularJS.png";
+import map from "../assets/images/Home/map.png";
+import AWS from "../assets/images/Home/aws.png";
+import Nodejs from "../assets/images/Home/nodejs.png";
+import React_img from "../assets/images/Home/react.png";
+import Angular_img from "../assets/images/Home/angularJS.png";
 import Projects_Data from "../Data/Project_Data";
 
 // Constants
