@@ -5,6 +5,7 @@ import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
 export default defineConfig(({ command, ssrBuild }) => ({
+  base: '/',
   plugins: [react(), svgr()],
   optimizeDeps: {
     include: ['swiper'],
