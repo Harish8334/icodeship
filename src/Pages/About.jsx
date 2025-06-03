@@ -17,7 +17,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 //  Components
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
@@ -293,10 +292,10 @@ function About() {
             its remarkable people.
           </p>
 
-          <div className="row d-none d-lg-flex d-md-flex office-animation-wrapper">
+          <div className="row d-none d-lg-flex d-md-flex">
             {Office_Data.map((item, index) => (
               <div
-                className={`col-md-6 office-card animate-from-bottom  ${
+                className={`col-md-6  ${
                   index % 2 === 1 ? "About_office " : " "
                 }`}
                 key={index}

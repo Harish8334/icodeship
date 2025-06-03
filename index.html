@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link rel="stylesheet" href="/index.css" />
     <link rel="icon" href="/src/assets/images/Home/logo1.png" type="image/png" />
+<link rel="preload" href="/fonts/YourFont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
     <!-- Required for SSR -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,5 +20,7 @@
 
     <!-- Entry point injected for CSR -->
     <script type="module" src="/src/entry-client.jsx"></script>
+    <script src="non-critical.js" defer></script>
+
   </body>
 </html>

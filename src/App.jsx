@@ -28,7 +28,7 @@ import Loader from "./Components/Loader";
 import Header from "./Components/Header";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
-import Sitemap from "./Pages/Sitemap";
+import Refund from "./Pages/Refund";
 
 // Register GSAP plugins globally
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -158,8 +158,8 @@ function App() {
           <Route path="/contact" element={<Contact_page />} />
           <Route path="/purchase-contact" element={<PurchaseContactForm />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/refund" element={< Refund />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/sitemap" element={<Sitemap />} />
         </Routes>
       </PageWrapper>
     </Router>

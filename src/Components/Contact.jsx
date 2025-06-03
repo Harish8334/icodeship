@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
-import Contact_icon1 from "../assets/images/Home/BB_icon.png";
+import Contact_icon1 from "../assets/images/Home/facebook.png";
 import Contact_icon2 from "../assets/images/Home/insta_icon.png";
 import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
 import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
@@ -101,13 +101,13 @@ function Contact() {
                       Follow us on :
                     </p>
                     <div className="d-flex gap-3">
-                      <a href="#">
+                      <a href="https://www.facebook.com/icodeship">
                         <img src={Contact_icon1} alt="" className="img-fluid" />
                       </a>
                       <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
                         <img src={Contact_icon2} alt="" className="img-fluid" />
                       </a>
-                      <a href="#">
+                      <a href="https://www.linkedin.com/company/icodeship/posts/?feedView=all">
                         <img src={Contact_icon3} alt="" className="img-fluid" />
                       </a>
                       <a href="#">
@@ -206,7 +206,7 @@ function Contact() {
                     {services.map((interest, index) => (
                       <div
                         key={interest}
-                        className="col-6 col-md-3 d-flex justify-content-center"
+                        className="col-6 col-md-3 mt-md-4 d-flex justify-content-center"
                       >
                         <button
                           type="button"

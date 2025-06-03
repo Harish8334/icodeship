@@ -58,9 +58,9 @@ function Footer() {
         <div className='col-md-6   col-12 mt-5'>
           
           <div className='d-flex  justify-content-md-start gap-3  gap-lg-5  mt-sm-5 mb-3 '>
-            <div className="d-inline"> <Link to="/privacy" className='footer_links font-size-30 font_color_black font_weight_400'>Privacy</Link></div>
+            <div className="d-inline"> <Link to="/privacy" className='footer_links font-size-30 font_color_black font_weight_400'>Privacy Policy</Link></div>
+            <div className="d-inline"> <Link to="/refund" className='footer_links font-size-30 font_color_black font_weight_400'>Refund Policy</Link></div>
             <div className="d-inline"> <Link to="/terms" className='footer_links font-size-30 font_color_black font_weight_400'>Terms</Link></div>
-            <div className="d-inline"> <Link to="/sitemap" className='footer_links font-size-30 font_color_black font_weight_400'>Sitemap</Link></div>
           </div>
         </div>
         <div className='col-md-6  col-12 d-flex justify-content-start mt-2 mt-md-5'>

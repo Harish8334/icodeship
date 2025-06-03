@@ -292,6 +292,7 @@ export default function Header({}) {
                   Contact
                 </Nav.Link>
               </Nav>
+              
             </Offcanvas.Body>
           </Offcanvas>
 

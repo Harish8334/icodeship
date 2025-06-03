@@ -111,7 +111,7 @@ const handleChange = (direction) => {
           </div>
 
           {/* Right Image */}
-          <div className="col-lg-5 col-md-4 col-12 d-lg-block d-md-block">
+          <div className="col-lg-5 col-md-4 col-12 d-lg-block d-md-block p-0 pe-1">
             <div ref={rightImageRef}>
               <img
                 src={testimonial.Banner}

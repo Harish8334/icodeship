@@ -1,476 +1,576 @@
-import Header from "../Components/Header"
-import Footer from "../Components/Footer"
-import { Container, Button } from "react-bootstrap";
-import "./Privacy.css"
-function Privacy() {
+import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Footer from "../Components/Footer";
+import "../Pages/Capabilities.css";
+import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+const Privacy = () => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll("[data-section]");
+      let current = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute("data-section");
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const navigationItems = [
+    { id: "interpretation", title: "Interpretation & Definitions" },
+    { id: "collecting", title: "Collecting Your Data" },
+    { id: "usage-data", title: "Usage Data" },
+    { id: "tracking", title: "Tracking Technologies" },
+    { id: "use-data", title: "Use of Your Data" },
+    { id: "retention", title: "Data Retention" },
+    { id: "transfer", title: "Data Transfer" },
+    { id: "disclosure", title: "Data Disclosure" },
+    { id: "security", title: "Data Security" },
+    { id: "children", title: "Children's Privacy" },
+    { id: "links", title: "Third-Party Links" },
+    { id: "changes", title: "Policy Changes" },
+    { id: "contact", title: "Contact Us" },
+  ];
+
   return (
-   <>
-   <section className="mt-5">
-     <Container className="my_container pt-5">
-     <div className="mx-auto text-white" style={{
-    }}>
+    <div className="bg-light min-vh-100">
       {/* Header */}
-      <div className="blue_gradient text-white border_shadow mb-5 text-center p-5 rounded-5 ">
-        <h1 className="font-size-46 font_weight_700 line_height_50 mb-4" >
-          Privacy Policy & Terms
-        </h1>
-        <p className="font-size-20 font_weight_400 line_height_25 mb-3 opacity-95" >
-          Codeship Private Limited
-        </p>
-        <p className="font-size-14 font_weight_300 line_height_18 opacity-80" >
-          Last updated: June 2025
-        </p>
-      </div>
-
-      {/* Privacy Policy Section */}
-      <section className="mb-5">
-        <div className="mb-4 ps-3" style={{
-          borderLeft: '5px solid #504CA0',
-        }}>
-          <p className="font-size-40 font_weight_700 font_color_blue line_height_40 mb-2" >
-            Privacy Policy
-          </p>
-        </div>
-        
-        <div className="mb-5" >
-          <p className="font-size-24 font_weight_400 font_color_black mb-4 text-justify" >
-            This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
-          </p>
-          
-          <p className="font-size-24 font_weight_400 font_color_black  mb-4 text-justify  ">
-            We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.
-          </p>
-
-          <h3 className="font-size-24 font_weight_600 font_color_blue mb-4 mt-5" >
-            Interpretation and Definitions
-          </h3>
-          
-          <div className="background_color_testimonial_light_blue border_radius_25 p-4 mb-5 " style={{
-            border: '1px solid #e0e7ff'
-          }}>
-            <h4 className="font-size-24 font_weight_600 font_color_blue line_height_25 mb-3" >
-              Key Definitions:
-            </h4>
-            <div className="row pt-3 g-3">
-  <div className="col-md-6">
-    <div className="mb-2">
-      <p className="fw-bold font-size-20 text-black  ">Company:</p>
-      <p className="d-block mt-1 font-size-16  text-dark pe-5">
-        Codeship Private Limited, No 49/A, 3rd St, Elumalai Nagar, Annai Theresa Nagar, Madipakkam, Chennai, Tamil Nadu 600091
-      </p>
-    </div>
-  </div>
-
-  <div className="col-md-6">
-    <div className="mb-2">
-      <p className="fw-bold font-size-20 text-black mb-3">Service:</p>
-      <p className="d-block mt-1  text-dark">
-        Refers to the Website accessible from https://codeship.in/
-      </p>
-    </div>
-  </div>
-
-  <div className="col-md-6">
-    <div className="mb-2">
-      <p className="fw-bold font-size-20 text-black ">Personal Data:</p>
-      <p className="d-block mt-1  text-dark">
-        Any information that relates to an identified or identifiable individual
-      </p>
-    </div>
-  </div>
-
-  <div className="col-md-6">
-    <div className="mb-2">
-      <p className="fw-bold font-size-20 text-black ">Usage Data:</p>
-      <p className="d-block mt-1  text-dark">
-        Data collected automatically when using the Service
-      </p>
-    </div>
-  </div>
-</div>
-
-          </div>
-
-          <h3 className="font-size-25 font_weight_600 font_color_blue mb-4" style={{
-            marginBottom: '20px'
-          }}>
-            Data Collection and Usage
-          </h3>
-          
-          <div style={{ marginBottom: '25px' }}>
-            <h4 className="font-size-18 font_weight_600 font_color_dark_blue " style={{
-              marginBottom: '15px'
-            }}>
-              Personal Data We Collect:
-            </h4>
-            <div style={{
-              backgroundColor: '#f8fafc',
-              padding: '20px',
-              borderRadius: '10px',
-              border: '1px solid #e2e8f0'
-            }}>
-              <ul className="font-size-16 font_weight_400 font_color_black " style={{
-                listStyle: 'disc',
-                paddingLeft: '20px',
-                margin: '0'
-              }}>
-                <li style={{ marginBottom: '8px' }}>Email address</li>
-                <li style={{ marginBottom: '8px' }}>First name and last name</li>
-                <li style={{ marginBottom: '8px' }}>Phone number</li>
-                <li style={{ marginBottom: '8px' }}>Usage data (IP address, browser information, device data)</li>
-              </ul>
-            </div>
-          </div>
-
-          <div style={{ marginBottom: '25px' }}>
-            <h4 className="font-size-18 font_weight_600 font_color_dark_blue " style={{
-              marginBottom: '15px'
-            }}>
-              How We Use Your Data:
-            </h4>
-            <div style={{
-              backgroundColor: '#f0f9ff',
-              padding: '20px',
-              borderRadius: '10px',
-              border: '1px solid #0ea5e9'
-            }}>
-              <ul className="font-size-16 font_weight_400 font_color_black " style={{
-                listStyle: 'disc',
-                paddingLeft: '20px',
-                margin: '0'
-              }}>
-                <li style={{ marginBottom: '8px' }}>To provide and maintain our Service</li>
-                <li style={{ marginBottom: '8px' }}>To manage Your Account and registration</li>
-                <li style={{ marginBottom: '8px' }}>To contact You with updates and communications</li>
-                <li style={{ marginBottom: '8px' }}>To provide news, special offers, and information about similar services</li>
-                <li style={{ marginBottom: '8px' }}>To manage Your requests and support</li>
-                <li style={{ marginBottom: '8px' }}>For business analysis and service improvement</li>
-              </ul>
-            </div>
-          </div>
-  <h3 className="fs-4 fw-semibold text-primary mb-3">
-    Cookies and Tracking
-  </h3>
-  <p className="fs-6 fw-normal text-dark mb-4 p-3 rounded" style={{
-    backgroundColor: '#fef3c7',
-    border: '1px solid #f59e0b',
-    textAlign: 'justify'
-  }}>
-    We use Cookies and similar tracking technologies including browser cookies, flash cookies, and web beacons to track activity and improve Our Service. You can control cookie preferences through your browser settings.
-  </p>
-
-  <h3 className="fs-4 fw-semibold text-primary mb-3">
-    Data Security and Retention
-  </h3>
-  <p className="fs-6 fw-normal text-dark mb-4" style={{
-    textAlign: 'justify'
-  }}>
-    We retain Your Personal Data only as long as necessary for the purposes outlined in this policy. While we strive to protect your data using commercially acceptable means, no method of transmission over the Internet is 100% secure.
-  </p>
-
-  <h3 className="fs-4 fw-semibold text-primary mb-3">
-    Children's Privacy
-  </h3>
-  <p className="fs-6 fw-normal text-dark mb-4 p-3 rounded" style={{
-    backgroundColor: '#fce7f3',
-    border: '1px solid #ec4899',
-    textAlign: 'justify'
-  }}>
-    Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If we become aware of such data collection, we take steps to remove that information from our servers.
-  </p>
-        </div>
-      </section>
-
-      {/* Payment and Refund Policy Section */}
-      <section style={{ marginBottom: '60px' }}>
-        <div style={{
-          borderLeft: '5px solid #059669',
-          paddingLeft: '20px',
-          marginBottom: '30px'
-        }}>
-          <p className="font-size-37 font_weight_700 line_height_40" style={{
-            marginBottom: '10px',
-            color: '#059669'
-          }}>
-            Payment & Refund Policy
-          </p>
-        </div>
-        
-        <div>
-          <h3 className="font-size-25 font_weight_600 font_color_blue mb-4" style={{
-            marginBottom: '20px'
-          }}>
-            Payment Policy
-          </h3>
-          
-          <div className="background_color_light_blue border_radius_25" style={{
-            padding: '25px',
-            marginBottom: '30px',
-            color: 'white'
-          }}>
-            <h4 className="font-size-20 font_weight_600 line_height_25" style={{
-              marginBottom: '15px',
-              color: 'white'
-            }}>
-              Payment Terms:
-            </h4>
-            <ul className="font-size-14 font_weight_400 line_height_20" style={{
-              listStyle: 'disc',
-              paddingLeft: '20px',
-              margin: '0',
-              color: 'white'
-            }}>
-              <li style={{ marginBottom: '10px' }}>Only valid payment methods acceptable to Codeship Private Limited may be used</li>
-              <li style={{ marginBottom: '10px' }}>All refunds will be credited back through the same payment method</li>
-              <li style={{ marginBottom: '10px' }}>Credit card charges include taxes, shipping, handling, and agreed amounts</li>
-              <li style={{ marginBottom: '10px' }}>Invalid or unverifiable payment methods may result in order suspension or cancellation</li>
-            </ul>
-          </div>
-
-          <div style={{ marginBottom: '30px' }}>
-            <h4 className="font-size-18 font_weight_600 font_color_dark_blue " style={{
-              marginBottom: '15px'
-            }}>
-              Annual Maintenance and Licensing:
-            </h4>
-            <div style={{
-              backgroundColor: '#f1f5f9',
-              padding: '20px',
-              borderRadius: '10px',
-              border: '1px solid #cbd5e1'
-            }}>
-              <ul className="font-size-16 font_weight_400 font_color_black " style={{
-                listStyle: 'disc',
-                paddingLeft: '20px',
-                margin: '0'
-              }}>
-                <li style={{ marginBottom: '8px' }}>Annual charges become due on the anniversary date of the End User License Agreement (EULA)</li>
-                <li style={{ marginBottom: '8px' }}>Invoices sent 30 days before amounts are due</li>
-                <li style={{ marginBottom: '8px' }}>Standard cancellation notice period is 60 days before renewal date</li>
-                <li style={{ marginBottom: '8px' }}>Unpaid amounts after 30 days accrue interest at Bank of England base rate plus 8% per month</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 className="font-size-25 font_weight_600 font_color_blue mb-4" style={{
-            marginBottom: '20px'
-          }}>
-            Refund Policy
-          </h3>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '20px',
-            marginBottom: '30px'
-          }}>
-            <div style={{
-              backgroundColor: '#dcfce7',
-              padding: '20px',
-              borderRadius: '15px',
-              border: '2px solid #16a34a'
-            }}>
-              <h4 className="font-size-18 font_weight_600 " style={{
-                marginBottom: '15px',
-                color: '#15803d'
-              }}>
-                Professional Services
-              </h4>
-              <p className="font-size-14 font_weight_400 line_height_20" style={{
-                marginBottom: '10px',
-                color: '#166534',
-                textAlign: 'justify'
-              }}>
-                30-day warranty for Professional Services performed in a proper and professional manner consistent with industry standards.
-              </p>
-              <p className="font-size-14 font_weight_400 line_height_20" style={{
-                color: '#166534',
-                textAlign: 'justify'
-              }}>
-                Client-requested delays are not Codeship's responsibility unless agreed in writing.
+      <header className="background_color_blue text-white py-5 mt-5 mb-0">
+        <div className="container mt-3">
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <h1 className="display-4 fw-bold mb-3">Privacy Policy</h1>
+              <p className="lead mb-0">
+                Codeship Private Limited - Your Privacy Matters
               </p>
             </div>
-            
-            <div style={{
-              backgroundColor: '#fee2e2',
-              padding: '20px',
-              borderRadius: '15px',
-              border: '2px solid #dc2626'
-            }}>
-              <h4 className="font-size-18 font_weight_600 " style={{
-                marginBottom: '15px',
-                color: '#dc2626'
-              }}>
-                Hardware & Software
-              </h4>
-              <p className="font-size-14 font_weight_400 line_height_20" style={{
-                color: '#991b1b',
-                textAlign: 'justify'
-              }}>
-                No refunds offered for hardware, software, maintenance and support services once agreed by the customer and past anniversary date.
-              </p>
-            </div>
-          </div>
-
-          <div style={{
-            backgroundColor: '#fef3c7',
-            padding: '25px',
-            borderRadius: '15px',
-            border: '2px solid #f59e0b',
-            marginBottom: '30px'
-          }}>
-            <h4 className="font-size-18 font_weight_600 " style={{
-              marginBottom: '15px',
-              color: '#d97706'
-            }}>
-              Training & Services Refund Schedule:
-            </h4>
-            <div className="font-size-14 font_weight_500 line_height_20" style={{
-              color: '#92400e'
-            }}>
-              <div style={{ marginBottom: '8px' }}>
-                <span className="font_weight_700">28+ days before:</span> 100% refund
-              </div>
-              <div style={{ marginBottom: '8px' }}>
-                <span className="font_weight_700">14-30 days before:</span> 50% refund
-              </div>
-              <div>
-                <span className="font_weight_700">Within 2 weeks:</span> No refund
+            <div className="col-lg-4 ">
+              <div className="bg-white bg-opacity-10 rounded-3 p-3">
+                <p className="mb-1 small">Last Updated</p>
+                <p className="mb-0 fw-semibold">June 2025</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </header>
+      {/* Main Content */}
+      <Container className="">
+        <h2 className="mt-5">Interpretation and Definitions</h2>
 
-      {/* Company Information */}
-      <section style={{ marginBottom: '40px' }}>
-        <div style={{
-          borderLeft: '5px solid #7c3aed',
-          paddingLeft: '20px',
-          marginBottom: '30px'
-        }}>
-          <p className="font-size-37 font_weight_700 line_height_40" style={{
-            marginBottom: '10px',
-            color: '#7c3aed'
-          }}>
-            Why Choose Codeship?
-          </p>
-        </div>
-        <div style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          padding: '30px',
-          borderRadius: '20px',
-          boxShadow: '-3px 2px 16.4px 0px #0000001a'
-        }} className="border_shadow">
-          <p className="font-size-16 font_weight_400 " style={{
-            color: 'white',
-            textAlign: 'justify',
-            margin: '0',
-            textShadow: '0 1px 2px rgba(0,0,0,0.1)'
-          }}>
-            Web development is the work involved in developing a website for the Internet or an intranet. Web development can range from developing a simple single static page of plain text to complex web applications, electronic businesses, and social network services. Website development gives out the impression of a new start for the business and the best developers in Chennai make sure you stand out from the competitors.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="background_color_grey border_radius_25" style={{
-        padding: '30px',
-        marginBottom: '40px'
-      }}>
-        <p className="font-size-25 font_weight_700 font_color_dark_blue mb-4" style={{
-          marginBottom: '25px',
-          textAlign: 'center'
-        }}>
-          Contact Us
+        <h3 className="mt-4">Interpretation</h3>
+        <p className="font_color_light_grey">
+          Words with capitalized initial letters have meanings defined under
+          specific conditions. These definitions apply regardless of whether
+          they appear in singular or plural form.
         </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '20px',
-          marginBottom: '25px'
-        }}>
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            <span className="font-size-16 font_weight_700 font_color_dark_blue">Email:</span>
-            <br />
-            <a href="mailto:techsupport@codeship.in" className="font-size-14 font_weight_400 font_color_light_blue line_height_18" style={{
-              textDecoration: 'none',
-              display: 'block',
-              marginTop: '8px'
-            }}>
-              techsupport@codeship.in
+
+        <h3>Definitions</h3>
+        <p className="font_color_light_grey">
+          For the purposes of this Privacy Policy:
+        </p>
+        <p className="font_color_light_grey">
+          Account means a unique account created for you to access our Service
+          or parts of it.
+        </p>
+        <p className="font_color_light_grey">
+          Company refers to Codeship Private Limited, also referred to as “the
+          Company”, “We”, “Us” or “Our” in this policy. Address: No 49/A, 3rd
+          St, Elumalai Nagar, Annai Theresa Nagar, Madipakkam, Chennai, Tamil
+          Nadu 600091.
+        </p>
+        <p className="font_color_light_grey">
+          Cookies are small files placed on your device that store browsing data
+          and preferences.
+        </p>
+        <p className="font_color_light_grey">
+          Country refers to Tamil Nadu, India.
+        </p>
+        <p className="font_color_light_grey">
+          Device means any tool that can access the Service, such as a computer,
+          smartphone, or tablet.
+        </p>
+        <p className="font_color_light_grey">
+          Personal Data is any information that relates to an identified or
+          identifiable individual.
+        </p>
+        <p className="font_color_light_grey">
+          Service refers to the website operated by the Company.
+        </p>
+        <p className="font_color_light_grey">
+          Service Provider means any person or entity processing data on behalf
+          of the Company to support the Service.
+        </p>
+        <p className="font_color_light_grey">
+          Usage Data refers to data collected automatically when using the
+          Service, such as IP address, device data, and interaction metrics.
+        </p>
+        <p className="font_color_light_grey">
+          Website refers to Codeship Private Limited's platform, accessible at{" "}
+          <a
+            className="text-decoration-none text-black font-size-18 font_weight_600"
+            href="https://codeship.in/"
+          >
+            https://codeship.in/
+          </a>
+          .
+        </p>
+        <p className="font_color_light_grey">
+          You means the individual accessing the Service, or the entity on whose
+          behalf the individual is accessing it.
+        </p>
+
+        <h2 className="mt-5">Collecting and Using Your Personal Data</h2>
+
+        <h3 className="mt-4">Types of Data Collected</h3>
+
+        <h4 className="mt-4">Personal Data</h4>
+        <p className="font_color_light_grey">
+          We may ask you to provide personal information that can be used to
+          contact or identify you. This may include your email address, first
+          and last name, and phone number.
+        </p>
+
+        <h4>Usage Data</h4>
+        <p className="font_color_light_grey">
+          Usage Data is collected automatically when using the Service. It may
+          include your IP address, browser type, browser version, the pages you
+          visit, the time and date of your visit, time spent on pages, device
+          identifiers, and other diagnostic data.
+        </p>
+        <p className="font_color_light_grey">
+          If you access the Service via a mobile device, we may also collect
+          information such as your mobile device type, unique device ID, mobile
+          IP address, mobile OS, mobile browser type, and other diagnostic data.
+        </p>
+
+        <h3 className="mt-5">Tracking Technologies and Cookies</h3>
+
+        <p className="font_color_light_grey">
+          We use Cookies and similar technologies such as beacons, tags, and
+          scripts to track activity on our Service and store information. These
+          technologies help us improve and analyze our Service.
+        </p>
+
+        <p className="font_color_light_grey">
+          A cookie is a small file placed on your device. You can instruct your
+          browser to refuse all cookies or to notify you when a cookie is being
+          sent. However, some parts of the Service may not function properly
+          without them.
+        </p>
+
+        <p className="font_color_light_grey">
+          Flash Cookies may be used to store your preferences or activity data.
+          These are not managed through standard browser settings. You can
+          control Flash Cookies by visiting{" "}
+          <a
+            className="text-decoration-none text-black font-size-18 font_weight_600"
+            href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html"
+          >
+            Adobe’s help page
+          </a>
+          .
+        </p>
+
+        <p className="font_color_light_grey">
+          Web Beacons (also called pixel tags or clear gifs) may be used in our
+          emails or on the Service to monitor user engagement and ensure system
+          performance.
+        </p>
+
+        <p className="font_color_light_grey">
+          Cookies may be “Persistent” (remain on your device after you go
+          offline) or “Session” (deleted once your browser is closed). We use
+          both types to operate our Service effectively.
+        </p>
+
+        <h4 className="mt-4">Types of Cookies Used</h4>
+
+        <p className="font_color_light_grey">
+          <strong>Necessary Cookies</strong> are session-based and essential for
+          providing access to secure areas of the website. These cookies enable
+          core functionality such as security, network management, and
+          accessibility.
+        </p>
+
+        <p className="font_color_light_grey">
+          <strong>Cookies Policy Acceptance Cookies</strong> are persistent and
+          store whether you’ve accepted the use of cookies on our site to avoid
+          repeatedly prompting you.
+        </p>
+
+        <p className="font_color_light_grey">
+          <strong>Functionality Cookies</strong> are persistent cookies that
+          remember your settings and preferences (such as login credentials or
+          language), enhancing your user experience.
+        </p>
+
+        <h4 className="mt-4">Other Tracking Technologies</h4>
+
+        <p className="font_color_light_grey">
+          In addition to cookies, we may use similar tracking technologies like
+          Flash Cookies and Web Beacons. These tools help us better understand
+          user behavior, track conversions, and improve our platform.
+        </p>
+
+        <p className="font_color_light_grey">
+          For more information about how we use cookies and how you can manage
+          them, please refer to our full Cookies Policy.
+        </p>
+
+        <h3 className="mt-5">Use of Your Personal Data</h3>
+
+        <p className="font_color_light_grey">
+          We use your Personal Data to provide and maintain the Service,
+          including monitoring usage.
+        </p>
+
+        <p className="font_color_light_grey">
+          We manage your account and registration as a user, giving you access
+          to specific functionalities of the Service.
+        </p>
+
+        <p className="font_color_light_grey">
+          Your data supports contract performance, including purchases or
+          services you’ve requested.
+        </p>
+
+        <p className="font_color_light_grey">
+          We may contact you via email, phone, SMS, or other digital channels to
+          update you on features, products, or security issues related to the
+          Service.
+        </p>
+
+        <p className="font_color_light_grey">
+          With your consent, we may send marketing materials about similar
+          products or services unless you opt out.
+        </p>
+
+        <p className="font_color_light_grey">
+          We respond to your inquiries and provide customer support as needed.
+        </p>
+
+        <p className="font_color_light_grey">
+          During corporate events like mergers, acquisitions, or asset sales,
+          your data may be transferred under proper safeguards.
+        </p>
+
+        <p className="font_color_light_grey">
+          We may use your data to analyze user behavior, improve functionality,
+          and enhance the overall experience.
+        </p>
+
+        <h3 className="mt-5">Sharing Your Personal Data</h3>
+
+        <p className="font_color_light_grey">
+          We may share your data with trusted Service Providers to assist in
+          data processing, analytics, or communication services.
+        </p>
+
+        <p className="font_color_light_grey">
+          During a merger, sale, or acquisition, your personal information may
+          be transferred as part of business assets.
+        </p>
+
+        <p className="font_color_light_grey">
+          We may share your information with our affiliates, in which case we
+          will require them to honor this Privacy Policy.
+        </p>
+
+        <p className="font_color_light_grey">
+          Business partners may receive information to offer you specific
+          products, services, or promotions in collaboration with us.
+        </p>
+
+        <p className="font_color_light_grey">
+          Any content you post in public areas of the Service may be visible to
+          other users and shared publicly.
+        </p>
+
+        <p className="font_color_light_grey">
+          We may disclose your data with your explicit consent for any other
+          purpose not listed above.
+        </p>
+
+        <h3 className="mt-5">Retention of Your Personal Data</h3>
+
+        <p className="font_color_light_grey">
+          We retain your Personal Data only for as long as necessary to fulfill
+          the purposes described in this Privacy Policy, including legal
+          obligations, dispute resolution, and policy enforcement.
+        </p>
+
+        <p className="font_color_light_grey">
+          Usage Data is generally kept for a shorter duration unless used to
+          enhance security or service improvements.
+        </p>
+
+        <h3 className="mt-5">Transfer of Your Personal Data</h3>
+
+        <p className="font_color_light_grey">
+          Your information may be transferred to — and maintained on — computers
+          located outside your state, province, or country where data protection
+          laws may differ. By submitting your data, you agree to such transfers.
+        </p>
+
+        <p className="font_color_light_grey">
+          We ensure appropriate safeguards are in place for cross-border data
+          transfers, such as contractual clauses and strict privacy commitments,
+          to ensure your information remains protected.
+        </p>
+        <h3 className="mt-5">Disclosure of Your Personal Data</h3>
+
+        <h4 className="mt-4">Business Transactions</h4>
+        <p className="font_color_light_grey">
+          If the Company is involved in a merger, acquisition, or asset sale,
+          Your Personal Data may be transferred. We will provide notice before
+          Your Personal Data is transferred and becomes subject to a different
+          Privacy Policy.
+        </p>
+
+        <h4>Law Enforcement</h4>
+        <p className="font_color_light_grey">
+          Under certain circumstances, the Company may be required to disclose
+          Your Personal Data if required to do so by law or in response to valid
+          requests by public authorities (e.g., a court or a government agency).
+        </p>
+
+        <h4>Other Legal Requirements</h4>
+        <p className="font_color_light_grey">
+          The Company may disclose Your Personal Data in the good faith belief
+          that such action is necessary to:
+        </p>
+        <p className="font_color_light_grey">
+          - Comply with a legal obligation
+          <br />
+          - Protect and defend the rights or property of the Company
+          <br />
+          - Prevent or investigate possible wrongdoing in connection with the
+          Service
+          <br />
+          - Protect the personal safety of Users of the Service or the public
+          <br />- Protect against legal liability
+        </p>
+
+        <h3 className="mt-5">Security of Your Personal Data</h3>
+        <p className="font_color_light_grey">
+          The security of Your Personal Data is important to Us, but remember
+          that no method of transmission over the Internet or method of
+          electronic storage is 100% secure. While We strive to use commercially
+          acceptable means to protect Your Personal Data, We cannot guarantee
+          its absolute security.
+        </p>
+
+        <h3 className="mt-5">Children’s Privacy</h3>
+        <p className="font_color_light_grey">
+          Our Service does not address anyone under the age of 13. We do not
+          knowingly collect personally identifiable information from anyone
+          under the age of 13. If You are a parent or guardian and You are aware
+          that Your child has provided Us with Personal Data, please contact Us.
+          If We become aware that We have collected Personal Data from anyone
+          under the age of 13 without verification of parental consent, We take
+          steps to remove that information from Our servers.
+        </p>
+        <p className="font_color_light_grey">
+          If We need to rely on consent as a legal basis for processing Your
+          information and Your country requires consent from a parent, We may
+          require Your parent’s consent before We collect and use that
+          information.
+        </p>
+
+        <h3 className="mt-5">Links to Other Websites</h3>
+        <p className="font_color_light_grey">
+          Our Service may contain links to other websites that are not operated
+          by Us. If You click on a third-party link, You will be directed to
+          that third party’s site. We strongly advise You to review the Privacy
+          Policy of every site You visit.
+        </p>
+        <p className="font_color_light_grey">
+          We have no control over and assume no responsibility for the content,
+          privacy policies, or practices of any third-party sites or services.
+        </p>
+
+        <h3 className="mt-5">Changes to This Privacy Policy</h3>
+        <p className="font_color_light_grey">
+          We may update Our Privacy Policy from time to time. We will notify You
+          of any changes by posting the new Privacy Policy on this page.
+        </p>
+        <p className="font_color_light_grey">
+          We will let You know via email and/or a prominent notice on Our
+          Service prior to the change becoming effective and update the “Last
+          updated” date at the top of this Privacy Policy.
+        </p>
+        <p className="font_color_light_grey">
+          You are advised to review this Privacy Policy periodically for any
+          changes. Changes to this Privacy Policy are effective when they are
+          posted on this page.
+        </p>
+
+        {/* Why Choose Codeship Section */}
+        <section className="mt-5" style={{ marginBottom: "40px" }}>
+          <div
+            style={{
+              borderLeft: "5px solid #7c3aed",
+              paddingLeft: "20px",
+              marginBottom: "30px",
+            }}
+          >
+            <p
+              className="font-size-37 font_weight_700 line_height_40 font_color_blue"
+              style={{ marginBottom: "10px" }}
+            >
+              Why Choose Codeship?
+            </p>
+          </div>
+          <div
+            style={{
+              padding: "30px",
+              borderRadius: "20px",
+              boxShadow: "-3px 2px 20.4px 0px #0000001a",
+            }}
+            className="border_shadow"
+          >
+            <p
+              className="font-size-20  text-black"
+              style={{ textAlign: "justify", margin: "0" }}
+            >
+              Web development is the work involved in developing a website for
+              the Internet or an intranet. Web development can range from
+              developing a simple single static page of plain text to complex
+              web applications, electronic businesses, and social network
+              services. Website development gives out the impression of a new
+              start for the business and the best developers in Chennai make
+              sure you stand out from the competitors.
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Information */}
+        <section
+          className="border_shadow background_color_testimonial_light_blue border_radius_25"
+          style={{ padding: "30px", marginBottom: "40px" }}
+        >
+          <p
+            className="font-size-25 font_weight_700 font_color_dark_blue mb-4"
+            style={{ marginBottom: "25px", textAlign: "center" }}
+          >
+            Contact Us
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "20px",
+              marginBottom: "25px",
+            }}
+          >
+            <a
+              href="mailto:techsupport@codeship.in"
+              className="text-decoration-none"
+            >
+              <div className="bg-white p-4 rounded shadow-sm">
+                <span className="fs-5 fw-bold text-black">Email:</span>
+                <br />
+                <span className="fs-6 fw-normal text-black d-block mt-2 lh-sm">
+                  techsupport@codeship.in
+                </span>
+              </div>
+            </a>
+
+            <Link to="/contact" className="text-decoration-none">
+              <div className="bg-white p-4 rounded shadow-sm">
+                <span className="fs-5 fw-bold text-black">Website:</span>
+                <br />
+                <span className="fs-6 fw-normal text-black d-block mt-2 lh-sm">
+                  codeship.in/contact
+                </span>
+              </div>
+            </Link>
+            <div
+              style={{
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "10px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              }}
+            >
+              <span className="font-size-20 font_weight_700 font_color_dark_blue">
+                Phone:
+              </span>
+              <br />
+              <span
+                className="font-size-14 font_weight_400 font_color_black line_height_18"
+                style={{ display: "block", marginTop: "8px" }}
+              >
+                +91 93424 88917
+              </span>
+            </div>
+          </div>
+
+          <div
+            style={{
+              backgroundColor: "white",
+              padding: "20px",
+              borderRadius: "10px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+            }}
+          >
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Codeship+Private+Limited,+No+1,+1st+Floor,+Narasimhan+St,+near+TNSC+Bank,+West+Mambalam,+Chennai,+Tamil+Nadu+600033"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-decoration-none"
+            >
+              <p
+                className="font-size-12 font_weight_400 font_color_light_grey line_height_20"
+                style={{ margin: "0" }}
+              >
+                <span className="font_weight_600">Address:</span> Codeship
+                Private Limited, No 1, 1st Floor, Narasimhan St, near TNSC Bank,
+                West Mambalam, Chennai, Tamil Nadu 600033
+              </p>
             </a>
           </div>
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            <span className="font-size-16 font_weight_700 font_color_dark_blue">Website:</span>
-            <br />
-            <a href="https://codeship.in/contact/" className="font-size-14 font_weight_400 font_color_light_blue line_height_18" style={{
-              textDecoration: 'none',
-              display: 'block',
-              marginTop: '8px'
-            }}>
-              codeship.in/contact
-            </a>
-          </div>
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            <span className="font-size-16 font_weight_700 font_color_dark_blue">Phone:</span>
-            <br />
-            <span className="font-size-14 font_weight_400 font_color_black line_height_18" style={{
-              display: 'block',
-              marginTop: '8px'
-            }}>
-              +91 93424 88917
-            </span>
-          </div>
-        </div>
-        
-        <div style={{
-          backgroundColor: 'white',
-          padding: '20px',
-          borderRadius: '10px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
-          <p className="font-size-12 font_weight_400 font_color_light_grey line_height_16" style={{
-            margin: '0'
-          }}>
-            <span className="font_weight_600">Address:</span> Codeship Private Limited, No 49/A, 3rd St, Elumalai Nagar, Annai Theresa Nagar, Madipakkam, Chennai, Tamil Nadu 600091
+        </section>
+
+        {/* Footer */}
+        <div
+          style={{
+            borderTop: "2px solid #e5e7eb",
+            paddingTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          <p className="font-size-20 font_weight_400 font_color_light_grey m-0">
+            We reserve the right to change these policy terms and conditions at
+            any time. Any such changes will take effect when posted on the
+            website.
           </p>
         </div>
-      </section>
+      </Container>
 
       {/* Footer */}
-      <footer style={{
-        borderTop: '2px solid #e5e7eb',
-        paddingTop: '20px',
-        textAlign: 'center'
-      }}>
-        <p className="font-size-12 font_weight_400 font_color_light_grey line_height_16" style={{
-          margin: '0'
-        }}>
-          We reserve the right to change these policy terms and conditions at any time. Any such changes will take effect when posted on the website.
-        </p>
-      </footer>
+      <Footer />
     </div>
-     </Container>
-   </section>
-   <Footer />
-   </>
-  )
-}
+  );
+};
 
-export default Privacy
+export default Privacy;

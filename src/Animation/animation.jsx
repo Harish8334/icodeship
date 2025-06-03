@@ -341,13 +341,13 @@ export const scrollPopup = () => {
 
     ScrollTrigger.create({
       trigger: target,
-      start: "top 98%",
+      start: "top 70%",
       onEnter: () => {
         gsap.to(target, {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 0.5,
+          duration: 1,
           ease: "power3.out",
         });
       },

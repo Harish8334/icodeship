@@ -35,7 +35,7 @@ import Banner_Data from "../Data/Banner_Data.jsx";
 import Location_icon from "../assets/images/Contact/contact_loc_icon.png";
 import Msg_icon from "../assets/images/Contact/contact_msg_icon.png";
 import Call_icon from "../assets/images/Contact/contact_call_icon.png";
-import Contact_icon1 from "../assets/images/Home/BB_icon.png";
+import Contact_icon1 from "../assets/images/Home/facebook.png";
 import Contact_icon2 from "../assets/images/Home/insta_icon.png";
 import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
 import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
@@ -188,7 +188,7 @@ function Contact_page() {
                         Follow us on :
                       </p>
                       <div className="d-flex gap-3">
-                        <a href="#">
+                        <a href="https://www.facebook.com/icodeship">
                           <img
                             src={Contact_icon1}
                             alt=""
@@ -202,7 +202,7 @@ function Contact_page() {
                             className="img-fluid"
                           />
                         </a>
-                        <a href="#">
+                        <a href="https://www.linkedin.com/company/icodeship/posts/?feedView=all">
                           <img
                             src={Contact_icon3}
                             alt=""
