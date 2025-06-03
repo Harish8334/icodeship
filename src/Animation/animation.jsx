@@ -1,11 +1,11 @@
 import gsap from "gsap";
 import { useEffect , useRef , useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useGSAP } from "@gsap/react";
-import { useLocation } from 'react-router-dom'
 import "./animation.css"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger , ScrollSmoother);
 
 
 
@@ -332,34 +332,61 @@ export const countUpOnScroll = (elements) => {
 };
 // office
 export const scrollPopup = () => {
-  const targets = document.querySelectorAll(".animate-from-bottom");
+  const elements = document.querySelectorAll(".animate-from-bottom");
 
-  if (!targets.length) return;
+  if (!elements.length) return;
 
-  targets.forEach((target) => {
-    gsap.set(target, { opacity: 0, y: 50, scale: 0.1 });
+  const smoother = ScrollSmoother.get();
+  const validScroller = smoother ? smoother.scrollContainer : undefined;
+
+  elements.forEach((el) => {
+    if (!(el instanceof Element)) return;
+
+    // Add will-change and layout stability
+    el.style.willChange = "transform, opacity";
+    el.style.backfaceVisibility = "hidden";
+
+    // Ensure image containers are stable
+    if (el.tagName === "IMG" || el.querySelector("img")) {
+      el.style.overflow = "hidden";
+      el.style.minHeight = "200px"; // adjust based on expected height
+    }
+
+    gsap.set(el, {
+      opacity: 0,
+      y: 100,
+      scale: 0.95, // use subtle scale for smoother entry
+      transformOrigin: "center center",
+      force3D: true,
+    });
 
     ScrollTrigger.create({
-      trigger: target,
+      trigger: el,
       start: "top 70%",
+      scroller: validScroller,
       onEnter: () => {
-        gsap.to(target, {
-          y: 0,
+        gsap.to(el, {
           opacity: 1,
+          y: 0,
           scale: 1,
-          duration: 1,
+          duration: 1.2,
           ease: "power3.out",
+          overwrite: "auto",
         });
       },
       once: true,
     });
   });
 
-  // 🔁 Refresh triggers after full DOM update (fixes slow re-entry)
   setTimeout(() => {
     ScrollTrigger.refresh();
-  }, 10); // small delay to wait for layout
+    smoother?.scrollTrigger?.refresh?.();
+  }, 150);
 };
+
+
+
+
 
 
 
@@ -386,7 +413,7 @@ export const useImageSlideInAnimation = (containerRef) => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: row,
-            start: "top 80%",
+            start: "top 50%",
             toggleActions: "play none none none",
           },
         }
@@ -403,16 +430,11 @@ export const animateCardsOnScroll = (container) => {
   const cards = container.querySelectorAll(".solution_desk_radius");
 
   cards.forEach((card, index) => {
-    // Assign decreasing z-index so each next card stacks on top
     card.style.zIndex = cards.length - index;
 
     gsap.fromTo(
       card,
-      { 
-        scale: 0.5,
-        y: 70,
-        opacity: 0.2
-      },
+      { scale: 0.5, y: 100, opacity: 0.2 },
       {
         scale: 1,
         y: 0,
@@ -420,14 +442,16 @@ export const animateCardsOnScroll = (container) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: card,
-          start: "top 90%",
-          end: "top 60%",
-          scrub: true,
+          start: "top 60%",    // animation starts when top of card hits 80% viewport height (lower on screen)
+          end: "top 30%",      // animation ends when top of card hits 30% viewport height (higher on screen)
+          scrub: 0.5,          // smooth scrubbing with slight delay
+          // markers: true,     // enable if you want to debug scroll positions
         },
       }
     );
   });
 };
+
 
 
 // Contact Splash
@@ -542,33 +566,30 @@ export const animateZigzagPath = () => {
 
   const pathLength = path.getTotalLength();
 
+  // Prepare the path
   path.setAttribute("stroke", "#504CA0");
   path.setAttribute("stroke-width", "6");
   path.setAttribute("fill", "none");
-  path.setAttribute("stroke-dasharray", "20  20");
-
-  path.style.strokeDasharray = pathLength;
+  path.setAttribute("stroke-dasharray", pathLength);
   path.style.strokeDashoffset = pathLength;
 
   gsap.to(path, {
     strokeDashoffset: 0,
-    ease: "power2.inOut",
+    ease: "none", // no easing for linear scroll-based animation
     scrollTrigger: {
       trigger: section,
-      start: "top center",
-      end: () => `+=${window.innerHeight * 1.5}`,  // fixed scroll distance
-      scrub: 1,  // smooth scrub easing
+      start: "top bottom",             // start when section top hits bottom of viewport
+      end: "bottom top+=1000",          // stretch scroll distance to slow it down
+      scrub: 1,                      // add slight easing for smoothness
       onLeaveBack: () => {
-        gsap.to(path, {
-          strokeDashoffset: pathLength,
-          duration: 1,
-          ease: "power2.inOut",
-        });
+        gsap.set(path, { strokeDashoffset: pathLength });
       },
-      invalidateOnRefresh: true,  // recalc end on resize
+      invalidateOnRefresh: true,
     },
   });
 };
+
+
 
 // Map in solution
 export const initImageRevealAnimation = (greyImgRef, colorImgRef, sectionRef) => {

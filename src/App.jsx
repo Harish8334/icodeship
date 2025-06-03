@@ -1,5 +1,4 @@
-// App.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -29,112 +28,110 @@ import Header from "./Components/Header";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
 import Refund from "./Pages/Refund";
+import ScrollToTopButton from './Components/ScrollToTopButton.jsx';
 
-// Register GSAP plugins globally
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-/** Client-only fixed header to avoid SSR hydration mismatch */
 const ClientOnlyHeader = () => {
-  const [hasMounted, setHasMounted] = useState(false);
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-  return hasMounted ? (
-    <div
-      id="header-root"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        zIndex: 1000,
-        pointerEvents: "auto",
-      }}
-    >
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? (
+    <div id="header-root" style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}>
       <Header />
     </div>
   ) : null;
 };
 
-/**
- * PageWrapper manages global smooth scrolling and loading states.
- * Wraps routed content with GSAP ScrollSmoother.
- */
 const PageWrapper = ({ children }) => {
   const location = useLocation();
-  const [hasMounted, setHasMounted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [showContent, setShowContent] = useState(false);
   const smootherRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
+  // Mount state
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    setHasMounted(true);
+    setMounted(true);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
   }, []);
-
   useEffect(() => {
-    if (!hasMounted) return;
+  const handleResize = () => {
+    ScrollTrigger.refresh();
+    smootherRef.current?.refresh();
+  };
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
-    if (!ScrollSmoother.get()) {
+
+  // Init ScrollSmoother
+  useEffect(() => {
+    if (!mounted) return;
+
+    const wrapper = document.querySelector("#smooth-wrapper");
+    const content = document.querySelector("#smooth-content");
+
+    if (!ScrollSmoother.get() && wrapper && content) {
       smootherRef.current = ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 1.5,
+        wrapper,
+        content,
+        smooth: 2,
         effects: true,
         normalizeScroll: true,
-        ignoreMobileResize: false,
+        ignoreMobileResize: true,
       });
+
+      ScrollTrigger.refresh();
+      smootherRef.current.refresh();
     }
 
     return () => {
-      if (smootherRef.current) {
-        smootherRef.current.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+      if (ScrollSmoother.get()) {
+        ScrollSmoother.get().kill();
         smootherRef.current = null;
       }
     };
-  }, [hasMounted]);
+  }, [mounted]);
 
+  // Scroll to top or form after route change
   useEffect(() => {
-    if (!hasMounted) return;
-
-    const shouldScrollToForm = location.state?.scrollToForm;
-    const hasHash = location.hash;
-
-    if (!shouldScrollToForm && !hasHash && smootherRef.current) {
-      smootherRef.current.scrollTo(0, false);
-    } else if (!shouldScrollToForm && !hasHash) {
-      window.scrollTo(0, 0);
-    }
+    if (!mounted) return;
 
     setLoading(true);
-    setShowContent(false);
-
     const timeout = setTimeout(() => {
       setLoading(false);
-      setShowContent(true);
-      ScrollTrigger.refresh();
-
       const form = document.querySelector("#contactForm");
-      if (shouldScrollToForm && form) {
+
+      if (location.state?.scrollToForm && form) {
+        smootherRef.current?.scrollTo(form, true);
+      } else {
         if (smootherRef.current) {
-          smootherRef.current.scrollTo(form, true);
+          smootherRef.current.scrollTo(0, true);
         } else {
-          form.scrollIntoView({ behavior: "smooth" });
+          window.scrollTo(0, 0);
         }
       }
+
+      ScrollTrigger.refresh();
+      smootherRef.current?.refresh();
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [location, hasMounted]);
+  }, [location, mounted]);
 
-  if (!hasMounted) return null;
+  if (!mounted) return null;
 
   return (
-    <div id="smooth-wrapper" style={{ overflow: "hidden" }}>
-      <div id="smooth-content">
-        {loading && <Loader />}
-        {showContent && children}
+    <>
+      <div id="smooth-wrapper" style={{ overflow: "hidden" }}>
+        <div id="smooth-content">
+          {loading ? <Loader /> : children}
+        </div>
       </div>
-    </div>
+      <ScrollToTopButton />
+    </>
   );
 };
 
@@ -150,15 +147,12 @@ function App() {
           <Route path="/solutions" element={<Solution />} />
           <Route element={<Capable_service_layout />}>
             <Route path="/capable" element={<Capabilities />} />
-            <Route
-              path="/capable_service/:href"
-              element={<Capabilities_service />}
-            />
+            <Route path="/capable_service/:href" element={<Capabilities_service />} />
           </Route>
           <Route path="/contact" element={<Contact_page />} />
           <Route path="/purchase-contact" element={<PurchaseContactForm />} />
           <Route path="/privacy" element={<Privacy />} />
-          <Route path="/refund" element={< Refund />} />
+          <Route path="/refund" element={<Refund />} />
           <Route path="/terms" element={<Terms />} />
         </Routes>
       </PageWrapper>

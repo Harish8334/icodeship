@@ -35,6 +35,9 @@
 .software_container {
   margin-bottom: 21%;
 }
+    .capable_card{
+  height:300px;
+}
 
 @media (max-width: 576px) {
   .Capable_service_icon1 {

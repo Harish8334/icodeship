@@ -311,27 +311,31 @@ function Contact_page() {
                         key={interest}
                         className="col-6 col-md-3 d-flex justify-content-center"
                       >
-                        <button
-                          type="button"
-                          className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
-                            values.interests.includes(interest) ? "active" : ""
-                          }`}
-                          onClick={() => {
-                            const selected = values.interests.includes(interest)
-                              ? values.interests.filter((i) => i !== interest)
-                              : [...values.interests, interest];
-                            setFieldValue("interests", selected);
-                          }}
-                        >
-                          {interest}
-                        </button>
+                                               <button
+                            type="button"
+                            className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
+                              values.interests.includes(interest)
+                                ? "active"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              const selected = values.interests.includes(
+                                interest
+                              )
+                                ? values.interests.filter((i) => i !== interest)
+                                : [...values.interests, interest];
+                              setFieldValue("interests", selected);
+                            }}
+                          >
+                            {interest}
+                          </button>
                       </div>
                     ))}
                   </div>
                     <ErrorMessage
                       name="interests"
                       component="div"
-                      className="text-danger px-4"
+                      className="text-danger px-4 pt-3"
                     />
 
                     <p className="mt-5 font-size-20 font_weight_400">
@@ -438,16 +442,16 @@ function Contact_page() {
       </section>
       {/* Map */}
       <section>
-        <Container fluid>
+        <Container className="my_container">
           <div className="map-container d-flex justify-content-center w-100 m-auto mt-5 m-0">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7773.890565645889!2d80.2255752!3d13.0391549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d3b70a90f51%3A0xb6155325437cc516!2sCodeShip%20Private%20Limited!5e0!3m2!1sen!2sin!4v1745490585479!5m2!1sen!2sin"
-              width="1620"
+              width="1600"
               height="467"
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer"
-              className="rounded-5"
+              className="rounded-5 px-1"
             ></iframe>
           </div>
         </Container>

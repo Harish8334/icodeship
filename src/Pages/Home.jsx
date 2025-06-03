@@ -175,7 +175,7 @@ useEffect(() => {
 
   return (
     <div className="overflow-hidden">
-      <Header />
+    
       <Banner text={text} image={image} />
       <Brands />
       {/* Map section */}
@@ -223,7 +223,7 @@ useEffect(() => {
                   {topCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card  h-100 border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
+                      className="card things_card   border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -402,7 +402,7 @@ useEffect(() => {
 
           {/* RIGHT IMAGE + DESCRIPTION */}
           <div className="col-lg-9 col-xl-10 col-md-8 text-white">
-            <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center mt-lg-5">
+            <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center ">
               <img
                 ref={imageRef}
                 src={softwareData[currentIndex].center_image}

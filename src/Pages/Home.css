@@ -1,7 +1,3 @@
-.my_container {
-  max-width: 1600px !important;
-}
-
 
 .banner_height {
   max-height: 600px;
@@ -44,7 +40,7 @@
   height: 80px;
 }
 .things_card{
-  height:300px;
+  height:350px;
 }
 /* things u can do section */
 .things_card :hover {
@@ -152,6 +148,9 @@
   .icon_background_line {
     height: 2vh;
   }
+  .things_card{
+  height:300px;
+}
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
@@ -179,6 +178,7 @@
   .software_img {
     height: 350px;
   }
+
 
 }
 

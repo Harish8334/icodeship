@@ -231,24 +231,31 @@
 
 .btn-transparent {
   background-color: transparent;
-  border: none;
-  color: #000; /* Change as needed */
+
+  user-select: none; /* Prevent accidental text selection */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
+
 .btn-outline-dark:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+.btn-outline-dark.active {
   background-color: #49499D !important;
-  color:white !important;
+  color: white !important; /* Add this to ensure text is visible */
+  border-color: #49499D !important; /* Ensure border matches background */
+  box-shadow: none !important; /* Optional: override any default shadows */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.btn-outline-dark.active{
-   background-color: #49499D !important;
-}
+
+
 textarea {
   resize: none;
 }
 /* Make sure fixed header stays on top */
-#header-root {
-  pointer-events: auto;
-  user-select: none;
-}
+
 
 /* Loader styles */
 #loader-root {
@@ -293,5 +300,27 @@ input:-webkit-autofill {
 }
 
 
+.my_container {
+  width: 100%;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+  @media (min-width: 1400px) {
+    max-width: 1400px;
+  }
+   @media (min-width: 1600px) {
+    max-width: 1600px;
+  }
+}
 
 

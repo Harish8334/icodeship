@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
+import Footer from "./Footer";
 import Purchase_button from "../assets/images/purchase_arrow.png";
 import { BallSplash } from "../Animation/animation";
 import { ToastContainer, toast } from "react-toastify";
@@ -68,7 +69,7 @@ const PurchaseContactForm = () => {
         </button>
       </div>
 
-      <div className="pb-5">
+      <div>
         <Container className="my_container solution_desk_radius py-5 border_shadow px-5 my-5 no-scrollbar">
           <div className="row ">
             <div className="col-lg-7 col-md-6 col-12 d-flex flex-column">
@@ -246,6 +247,7 @@ const PurchaseContactForm = () => {
         </Container>
       </div>
       <ToastContainer />
+      <Footer />
     </>
   );
 };

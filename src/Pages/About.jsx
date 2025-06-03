@@ -17,6 +17,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 //  Components
+
 import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
@@ -53,9 +54,14 @@ function About() {
     ScrollTrigger.refresh();
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
+  const timeout = setTimeout(() => {
     scrollPopup();
-  }, []);
+  }, 100); // wait for Swiper to mount and DOM to update
+
+  return () => clearTimeout(timeout);
+}, [])
+
 
   useCoreCardAnimations(cardRefs);
 
@@ -64,7 +70,7 @@ function About() {
   };
 
   return (
-    <div className="pb-5">
+    <div className="pb-5 ">
       <Banner text={text} image={image} />
       <Brands />
       {/* Core value section */}
@@ -72,8 +78,8 @@ function About() {
         <div className="row">
           <div className="col-12 col-md-6 col-sm-12 col-lg-4 col-xl-6">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
-              Codeship core <br className="d-none d-lg-block" />
-              values that keep us <br className="d-none d-lg-block" />
+              Codeship core 
+              values that keep us
               so well together.
             </p>
             <p className="font-size-24 mx-3 mx-lg-0 mx-xl-0">
@@ -282,66 +288,65 @@ function About() {
         </Container>
       </section>
       {/* Office */}
-      <section>
-        <Container className="my_container">
-          <p className="font-size-62 font_weight_600 text-center">
-            Get a feeling at our office
-          </p>
-          <p className="font-size-30 text-center">
-            Dynamic energy and collaborative spirit defines our workspace and
-            its remarkable people.
-          </p>
+         <section>
+      <Container className="my_container">
+        <p className="font-size-62 font_weight_600 text-center">
+          Get a feeling at our office
+        </p>
+        <p className="font-size-30 text-center">
+          Dynamic energy and collaborative spirit defines our workspace and
+          its remarkable people.
+        </p>
 
-          <div className="row d-none d-lg-flex d-md-flex">
-            {Office_Data.map((item, index) => (
-              <div
-                className={`col-md-6  ${
-                  index % 2 === 1 ? "About_office " : " "
-                }`}
-                key={index}
-              >
-                <div className="rounded-4">
-                  <div className="d-flex justify-content-center  mt-lg-2 pt-lg-3">
-                    <img
-                      src={item.img}
-                      alt={`img ${index + 1}`}
-                      className="img-fluid  rounded-5"
-                    />
-                  </div>
+        {/* Desktop View */}
+        <div className="row d-none d-md-flex">
+          {Office_Data.map((item, index) => (
+            <div
+              key={index}
+              className={`col-md-6 ${index % 2 === 1 ? "About_office" : ""}`}
+            >
+              <div className="rounded-4 animate-from-bottom">
+                <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
+                  <img
+                    src={item.img}
+                    alt={`img ${index + 1}`}
+                    className="img-fluid rounded-5" 
+                  />
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
 
-          {/* Swiper for mobile here */}
-          <div className="d-md-none d-block">
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              autoplay={{ delay: 1000, disableOnInteraction: false }}
-              loop={true}
-              className="mySwiper"
-            >
-              {Office_Data.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div className={`office-card animate-from-bottom`}>
-                    <div className="rounded-4">
-                      <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
-                        <img
-                          src={item.img}
-                          alt={`img ${index + 1}`}
-                          className="img-fluid pt-lg-5 rounded-5"
-                        />
-                      </div>
+        {/* Mobile View */}
+        <div className="d-md-none d-block">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop={true}
+            className="mySwiper office-card animate-from-bottom"
+          >
+            {Office_Data.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="office-card animate-from-bottom">
+                  <div className="rounded-4">
+                    <div className="d-flex justify-content-center mt-3 pt-3">
+                      <img
+                        src={item.img}
+                        alt={`img ${index + 1}`}
+                        className="img-fluid pt-lg-5 rounded-5"
+                      />
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </Container>
-      </section>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </Container>
+    </section>
       <WorkTogther />
       <Footer />
     </div>

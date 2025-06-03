@@ -76,7 +76,7 @@ export default function Header({}) {
   return (
     <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3">
       <Navbar expand="lg" className="p-0">
-        <Container fluid className="bg-white pt-3 pb-3">
+        <Container fluid className="bg-white pt-4 pb-3">
           {/* Mobile View Header */}
           <div className="d-flex flex-row d-lg-none gap-4  justify-content-sm-between align-items-center w-100 px-0">
             <Button

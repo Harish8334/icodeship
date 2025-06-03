@@ -8,7 +8,7 @@ const Banner = ({ text, image }) => {
     <div className=" d-flex justify-content-center  mt-5 ">
       <Container className="my_container mt-md-5">
         <div className="row flex-column-reverse flex-lg-row mt-5">
-          <div className="col-12 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center  align-items-center">
+          <div className="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center  align-items-center">
             <div>
               <p className="font-size-54 text-center text-lg-start text-md-center font_weight_500 pb-3 pt-3 ">
                 {text}
@@ -24,7 +24,7 @@ const Banner = ({ text, image }) => {
             </div>
           </div>
 
-          <div className="col-12 col-lg-6 col-md-12 col-sm-12">
+          <div className="col-12 col-lg-5 col-md-12 col-sm-12">
             <div className="d-flex banner_height  ">
               {" "}
               <img
