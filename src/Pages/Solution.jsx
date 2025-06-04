@@ -29,7 +29,7 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
-
+import ScrollStackCards from "../Pages/ScrollStackCards"
 
 // CSS
 import "../Pages/Solution.css";
@@ -76,15 +76,20 @@ function Solution() {
     );
     return () => cleanup && cleanup();
   }, []);
+    
 
   return (
     <>
       <Banner text={text} image={image} />
       <Brands />
-      {/* What we can do */}
+         
+     
+
+      {/* What we do section with margin-top to prevent visual overlap */}
       <section
         className="d-flex justify-content-center align-items-center w-100 h-auto what_we_do_container rounded-5 mt-5 py-4"
         ref={imgRef}
+       // Reserve viewport height so no overlap
       >
         <Container className="my_container">
           <div className="row">
@@ -111,18 +116,25 @@ function Solution() {
             </div>
             <div className="col-lg-6 col-md-12 col-12">
               <div className="d-flex justify-content-center mt-md-5 mt-lg-5 mt-xl-0">
-                <img src={what_we_do} alt="" className="img-fluid" />
+                <img src={what_we_do} alt="What we do" className="img-fluid" />
               </div>
             </div>
           </div>
         </Container>
+        
+      </section>
+       <section className="d-none d-md-block"
+        style={{ position: "relative" ,marginBottom:"70vh" }}
+      >
+ <ScrollStackCards />
+       
       </section>
       {/* Smart solution */}
-      <div id="smooth-wrapper">
+      <div id="smooth-wrapper ">
         <div id="smooth-content">
-          <section>
-            <Container ref={containerRef} className="my_container my-5">
-              <p className="text-center font-size-50 font_weight_500 pb-3 mt-5 pt-md-5">
+          <section className="d-block d-md-none">
+            <Container ref={containerRef} className="my_container mt-5">
+              <p className="text-center font-size-50 font_weight_500  mt-5 pt-md-5">
                 Smart Solutions For Your Business
                 <br className="d-none d-lg-block" /> By Codeship.
               </p>

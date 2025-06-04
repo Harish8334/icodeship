@@ -28,12 +28,17 @@
   .solution_desk_text {
     max-width: 652px;
   }
+  .solution_lap{
+    height:300px;
+  }
+  
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width:1200px) {
   .what_we_do_container {
     height: 85vh;
   }
+
 }
 
 
@@ -94,4 +99,7 @@
 .map-img.colored {
   z-index: 2;
   clip-path: circle(0% at 50% 50%);
+}
+.solution_desk_radius{
+  height:80%;
 }

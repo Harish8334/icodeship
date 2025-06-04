@@ -434,7 +434,7 @@ export const animateCardsOnScroll = (container) => {
 
     gsap.fromTo(
       card,
-      { scale: 0.5, y: 100, opacity: 0.2 },
+      { scale: 0.5, y: 40, opacity: 0.2 },
       {
         scale: 1,
         y: 0,
@@ -442,7 +442,7 @@ export const animateCardsOnScroll = (container) => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: card,
-          start: "top 60%",    // animation starts when top of card hits 80% viewport height (lower on screen)
+          start: "top 90%",    // animation starts when top of card hits 80% viewport height (lower on screen)
           end: "top 30%",      // animation ends when top of card hits 30% viewport height (higher on screen)
           scrub: 0.5,          // smooth scrubbing with slight delay
           // markers: true,     // enable if you want to debug scroll positions
