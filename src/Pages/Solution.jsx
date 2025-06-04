@@ -29,7 +29,7 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
-import ScrollStackCards from "../Pages/ScrollStackCards"
+import ScrollStackCards from "../Components/ScrollStackCards"
 
 // CSS
 import "../Pages/Solution.css";

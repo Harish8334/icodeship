@@ -185,7 +185,7 @@
               {service.cardData.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className={` mb-5 ${item.className}`}>
-                    <div className="card capable_card h-100 d-flex flex-column rounded-4 mt-3">
+                    <div className="card capable_card  d-flex flex-column rounded-4 mt-3">
                       <div className="pt-3 pb-2">
                         <div className="mobile_icon_container">
                           <img
