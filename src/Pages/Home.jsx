@@ -258,7 +258,7 @@ useEffect(() => {
                   {bottomCards.map((item, index) => (
                     <div
                       key={index}
-                      className="card things_card h-100 border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
+                      className="card things_card  border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
                     >
                       <div className="card-body border-0">
                         <div className="card-title ms-4">
@@ -303,7 +303,7 @@ useEffect(() => {
                   >
                     {Things_Data.map((item, index) => (
                       <SwiperSlide key={index}>
-                        <div className="card things_card pb-3 pb-sm-0 rounded-4 border-0 mb-4">
+                        <div className="card things_card  pb-sm-0 rounded-4 border-0 mb-4">
                           <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
                             <div className="card-title">
                               <div className="d-flex">
