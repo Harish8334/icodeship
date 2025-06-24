@@ -35,7 +35,7 @@ async function startServer() {
         render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render;
       } else {
         template = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
-        render = (await import('./dist/server/entry-server.js')).render;
+        render = (await import('../dist/server/entry-server.js')).render;
       }
 
       const appHtml = await render(url);
