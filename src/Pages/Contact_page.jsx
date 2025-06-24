@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 // React Bootstrap components
 import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 
 // Formik and Yup for form handling
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -303,7 +303,7 @@ function Contact_page() {
                     </div>
 
                     <p className="mt-5 font-size-20 font_weight_400 px-lg-0">
-                      I’m Interested in
+                      I'm Interested in
                     </p>
                      <div className="row g-3">
                     {services.map((interest, index) => (

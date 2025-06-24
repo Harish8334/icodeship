@@ -1,6 +1,7 @@
 // React and React-related imports
 import React, { useRef, useEffect } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 // FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

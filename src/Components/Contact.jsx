@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useState, useRef } from "react";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 import Contact_icon1 from "../assets/images/Home/facebook.png";
 import Contact_icon2 from "../assets/images/Home/insta_icon.png";
 import Contact_icon3 from "../assets/images/Home/linkdin_icon.png";
@@ -215,7 +215,7 @@ function Contact() {
                     </div>
 
                     <p className="mt-5 font-size-20 font_weight_400 px-lg-0">
-                      I’m Interested in
+                      I'm Interested in
                     </p>
                     <div className="row g-3">
                       {services.map((interest, index) => (

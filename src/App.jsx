@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
+  useLocation
 } from "react-router-dom";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-
 import "@fontsource/poppins";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/Utility.css";
 import "swiper/css";
 
+// Pages & Components
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import OurWorks from "./Pages/OurWorks";
@@ -30,7 +26,7 @@ import Terms from "./Pages/Terms";
 import Refund from "./Pages/Refund";
 import ScrollToTopButton from './Components/ScrollToTopButton.jsx';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+const isBrowser = typeof window !== "undefined";
 
 const ClientOnlyHeader = () => {
   const [mounted, setMounted] = useState(false);
@@ -46,56 +42,66 @@ const PageWrapper = ({ children }) => {
   const location = useLocation();
   const smootherRef = useRef(null);
   const [loading, setLoading] = useState(true);
-
-  // Mount state
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     setMounted(true);
-    if ('scrollRestoration' in window.history) {
+    if (typeof window !== "undefined" && 'scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
   }, []);
-  useEffect(() => {
-  const handleResize = () => {
-    ScrollTrigger.refresh();
-    smootherRef.current?.refresh();
-  };
-  window.addEventListener('resize', handleResize);
-  return () => window.removeEventListener('resize', handleResize);
-}, []);
 
-
-  // Init ScrollSmoother
   useEffect(() => {
     if (!mounted) return;
 
-    const wrapper = document.querySelector("#smooth-wrapper");
-    const content = document.querySelector("#smooth-content");
+    let gsap, ScrollTrigger, ScrollSmoother;
+    let killed = false;
 
-    if (!ScrollSmoother.get() && wrapper && content) {
-      smootherRef.current = ScrollSmoother.create({
-        wrapper,
-        content,
-        smooth: 2,
-        effects: true,
-        normalizeScroll: true,
-        ignoreMobileResize: true,
-      });
+    // Dynamically import GSAP and plugins
+    import("gsap").then((mod) => {
+      gsap = mod.gsap;
+      return Promise.all([
+        import("gsap/ScrollTrigger"),
+        import("gsap/ScrollSmoother"),
+      ]);
+    }).then(([st, ss]) => {
+      if (killed) return;
+      ScrollTrigger = st.ScrollTrigger;
+      ScrollSmoother = ss.ScrollSmoother;
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-      ScrollTrigger.refresh();
-      smootherRef.current.refresh();
-    }
+      const wrapper = document.querySelector("#smooth-wrapper");
+      const content = document.querySelector("#smooth-content");
+
+      if (!ScrollSmoother.get() && wrapper && content) {
+        smootherRef.current = ScrollSmoother.create({
+          wrapper,
+          content,
+          smooth: 2,
+          effects: true,
+          normalizeScroll: true,
+          ignoreMobileResize: true,
+        });
+
+        ScrollTrigger.refresh();
+        smootherRef.current.refresh();
+      }
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
-      if (ScrollSmoother.get()) {
-        ScrollSmoother.get().kill();
+      killed = true;
+      if (typeof window !== "undefined") {
+        import("gsap/ScrollTrigger").then((st) => {
+          st.ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+        });
+        import("gsap/ScrollSmoother").then((ss) => {
+          ss.ScrollSmoother.get()?.kill();
+        });
         smootherRef.current = null;
       }
     };
   }, [mounted]);
 
-  // Scroll to top or form after route change
   useEffect(() => {
     if (!mounted) return;
 
@@ -107,11 +113,7 @@ const PageWrapper = ({ children }) => {
       if (location.state?.scrollToForm && form) {
         smootherRef.current?.scrollTo(form, true);
       } else {
-        if (smootherRef.current) {
-          smootherRef.current.scrollTo(0, true);
-        } else {
-          window.scrollTo(0, 0);
-        }
+        smootherRef.current?.scrollTo(0, true);
       }
 
       ScrollTrigger.refresh();
@@ -121,7 +123,10 @@ const PageWrapper = ({ children }) => {
     return () => clearTimeout(timeout);
   }, [location, mounted]);
 
-  if (!mounted) return null;
+  if (!isBrowser) {
+    // On server: avoid rendering nothing
+    return <div>{children}</div>;
+  }
 
   return (
     <>
@@ -137,7 +142,7 @@ const PageWrapper = ({ children }) => {
 
 function App() {
   return (
-    <Router>
+    <>
       <ClientOnlyHeader />
       <PageWrapper>
         <Routes>
@@ -156,8 +161,8 @@ function App() {
           <Route path="/terms" element={<Terms />} />
         </Routes>
       </PageWrapper>
-    </Router>
+    </>
   );
 }
 
-export { App };
+export default App;

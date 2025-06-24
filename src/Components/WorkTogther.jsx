@@ -1,5 +1,6 @@
 import Swirl from "../assets/images/About/work_swirl.png";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import useLetsTalk from "./Contact_page_link";
 
 function WorkTogther() {

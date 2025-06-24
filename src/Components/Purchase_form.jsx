@@ -75,7 +75,7 @@ const PurchaseContactForm = () => {
             <div className="col-lg-7 col-md-6 col-12 d-flex flex-column">
               <div className="me-5 mt-md-5 mt-0">
                 <p className="font-size-24 font_weight_600 font_color_light_grey">
-                  WE’RE HERE TO HELP YOU
+                  WE'RE HERE TO HELP YOU
                 </p>
                 <p className="font-size-62 font_weight_600">
                   Discuss Your Tech <br /> Solution Needs With <br /> Us

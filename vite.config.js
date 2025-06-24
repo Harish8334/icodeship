@@ -6,7 +6,12 @@ import path from 'path';
 
 export default defineConfig(({ command, ssrBuild }) => ({
   base: '/',
-  plugins: [react(), svgr()],
+  plugins: [
+    react({
+      include: "**/*.{jsx,js}",  // Enable JSX in .js files
+    }), 
+    svgr()
+  ],
   optimizeDeps: {
     include: ['swiper'],
   },
@@ -27,6 +32,8 @@ export default defineConfig(({ command, ssrBuild }) => ({
     },
   },
   ssr: {
-    noExternal: ['swiper', 'gsap'], // if needed for SSR-safe builds
+    noExternal: ['swiper', 'gsap', 'react-router-dom', '@remix-run/router'],
+    target: 'node',
+    format: 'esm'
   },
 }));

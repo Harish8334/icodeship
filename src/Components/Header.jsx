@@ -1,8 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
+import { Container } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import logo from "../assets/images/Home/logo.png";
 import { HiMenu } from "react-icons/hi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

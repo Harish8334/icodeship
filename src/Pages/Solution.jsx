@@ -3,7 +3,8 @@ import  { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // React Bootstrap components
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 // GSAP and Animation
 import { ScrollTrigger } from "gsap/ScrollTrigger";

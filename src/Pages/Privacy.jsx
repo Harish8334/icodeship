@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Removed for SSR compatibility
 import Footer from "../Components/Footer";
 import "../Pages/Capabilities.css";
 import { Container } from "react-bootstrap";
@@ -92,8 +92,8 @@ const Privacy = () => {
           or parts of it.
         </p>
         <p className="font_color_light_grey">
-          Company refers to Codeship Private Limited, also referred to as “the
-          Company”, “We”, “Us” or “Our” in this policy. Address: No 49/A, 3rd
+          Company refers to Codeship Private Limited, also referred to as "the
+          Company", "We", "Us" or "Our" in this policy. Address: No 49/A, 3rd
           St, Elumalai Nagar, Annai Theresa Nagar, Madipakkam, Chennai, Tamil
           Nadu 600091.
         </p>
@@ -185,7 +185,7 @@ const Privacy = () => {
             className="text-decoration-none text-black font-size-18 font_weight_600"
             href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html"
           >
-            Adobe’s help page
+            Adobe's help page
           </a>
           .
         </p>
@@ -197,8 +197,8 @@ const Privacy = () => {
         </p>
 
         <p className="font_color_light_grey">
-          Cookies may be “Persistent” (remain on your device after you go
-          offline) or “Session” (deleted once your browser is closed). We use
+          Cookies may be "Persistent" (remain on your device after you go
+          offline) or "Session" (deleted once your browser is closed). We use
           both types to operate our Service effectively.
         </p>
 
@@ -213,7 +213,7 @@ const Privacy = () => {
 
         <p className="font_color_light_grey">
           <strong>Cookies Policy Acceptance Cookies</strong> are persistent and
-          store whether you’ve accepted the use of cookies on our site to avoid
+          store whether you've accepted the use of cookies on our site to avoid
           repeatedly prompting you.
         </p>
 
@@ -250,7 +250,7 @@ const Privacy = () => {
 
         <p className="font_color_light_grey">
           Your data supports contract performance, including purchases or
-          services you’ve requested.
+          services you've requested.
         </p>
 
         <p className="font_color_light_grey">
@@ -379,7 +379,7 @@ const Privacy = () => {
           its absolute security.
         </p>
 
-        <h3 className="mt-5">Children’s Privacy</h3>
+        <h3 className="mt-5">Children's Privacy</h3>
         <p className="font_color_light_grey">
           Our Service does not address anyone under the age of 13. We do not
           knowingly collect personally identifiable information from anyone
@@ -392,7 +392,7 @@ const Privacy = () => {
         <p className="font_color_light_grey">
           If We need to rely on consent as a legal basis for processing Your
           information and Your country requires consent from a parent, We may
-          require Your parent’s consent before We collect and use that
+          require Your parent's consent before We collect and use that
           information.
         </p>
 
@@ -400,7 +400,7 @@ const Privacy = () => {
         <p className="font_color_light_grey">
           Our Service may contain links to other websites that are not operated
           by Us. If You click on a third-party link, You will be directed to
-          that third party’s site. We strongly advise You to review the Privacy
+          that third party's site. We strongly advise You to review the Privacy
           Policy of every site You visit.
         </p>
         <p className="font_color_light_grey">
@@ -415,8 +415,8 @@ const Privacy = () => {
         </p>
         <p className="font_color_light_grey">
           We will let You know via email and/or a prominent notice on Our
-          Service prior to the change becoming effective and update the “Last
-          updated” date at the top of this Privacy Policy.
+          Service prior to the change becoming effective and update the "Last
+          updated" date at the top of this Privacy Policy.
         </p>
         <p className="font_color_light_grey">
           You are advised to review this Privacy Policy periodically for any

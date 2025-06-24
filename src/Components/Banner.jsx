@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Button } from "react-bootstrap";
 import useLetsTalk from "./Contact_page_link";
 
 const Banner = ({ text, image }) => {
