@@ -1,6 +1,7 @@
 // React and React-related imports
 import  { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 // React Bootstrap components
 import { Container } from "react-bootstrap";
@@ -14,7 +15,7 @@ import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import WorkTogther from "../Components/WorkTogther";
 import Brands from "../Components/Brands";
-
+import MetaTags from '../Components/MetaTags';
 
 // Data
 import Banner_Data from "../Data/Banner_Data";
@@ -54,6 +55,24 @@ function Solution() {
   const greyImgRef = useRef(null);
   const colorImgRef = useRef(null);
 
+  // Prepare meta content with dynamic data
+  const solutionKeywords = Solution_Data?.map(item => item?.title).filter(Boolean) || [];
+  const metaContent = {
+    title: 'Solutions',
+    description: 'Discover Codeship\'s innovative digital solutions designed to transform your business. From custom software development to enterprise solutions, we deliver technology that drives growth and success.',
+    keywords: [
+      ...solutionKeywords,
+      'digital solutions',
+      'enterprise solutions',
+      'custom software',
+      'business transformation',
+      'technology solutions',
+      'digital transformation',
+      'IT consulting'
+    ],
+    ogImage: image
+  };
+
   useEffect(() => {
     if (imgRef.current) {
       animateWorkCard(imgRef.current);
@@ -80,7 +99,12 @@ function Solution() {
     
 
   return (
-    <>
+    <div>
+      <MetaTags {...metaContent} />
+      <Helmet>
+        <title>Solutions - Codeship</title>
+        <meta name="description" content="Discover Codeship's range of digital solutions designed to solve business challenges and drive growth." />
+      </Helmet>
       <Banner text={text} image={image} />
       <Brands />
          
@@ -281,7 +305,7 @@ function Solution() {
       </section>
       <WorkTogther />
       <Footer />
-    </>
+    </div>
   );
 }
 

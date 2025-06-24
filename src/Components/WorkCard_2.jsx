@@ -15,34 +15,14 @@ const WorkCard_2 = ({ index }) => {
   const cardRef = useRef(null);
 
   const [showModal, setShowModal] = useState(false);
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
 
   useEffect(() => {
     if (imgRef.current) animateWorkCard(imgRef.current);
     if (cardRef.current) animateWorkCard(cardRef.current);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () =>
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const chevronSize =
-    windowSize.width < 576
-      ? 20
-      : windowSize.width < 768
-      ? 25
-      : windowSize.width < 992
-      ? 27
-      : 45;
+  // Set a fixed chevron size
+  const chevronSize = 30;
 
   if (!data) return null;
 
@@ -63,6 +43,7 @@ const WorkCard_2 = ({ index }) => {
             onClick={() => setShowModal(true)}              style={{ cursor: "pointer" }}
           >
             {data.title}
+            <ChevronRight size={chevronSize} />
           </p>
           <p className="font-size-30">{data.description}</p>
           <div className="d-flex flex-wrap gap-4 font-size-30 font_color_light_grey">

@@ -38,10 +38,34 @@ async function startServer() {
         render = (await import('./dist/server/entry-server.js')).render;
       }
 
-      const appHtml = await render(url);
+      const helmetContext = {};
+      const appHtml = await render(url, helmetContext);
       console.log('✅ Rendered HTML for:', url);
 
-      const html = template.replace('<!--app-html-->', appHtml);
+      if (!helmetContext.helmet) {
+        console.warn('⚠️ No helmet context found');
+        helmetContext.helmet = {
+          title: { toString: () => '<title>Codeship</title>' },
+          meta: { toString: () => '' },
+          link: { toString: () => '' },
+          style: { toString: () => '' },
+          script: { toString: () => '' }
+        };
+      }
+
+      const { helmet } = helmetContext;
+
+      // Replace the SSR comment with the app HTML
+      let html = template.replace('<!--app-html-->', appHtml);
+
+      // Replace the title tag
+      const titleRegex = /<title[^>]*>([^<]*)<\/title>/;
+      html = html.replace(titleRegex, helmet.title.toString());
+
+      // Insert meta tags before </head>
+      const headTags = `${helmet.meta.toString()}${helmet.link.toString()}${helmet.style.toString()}${helmet.script.toString()}`;
+      html = html.replace('</head>', `${headTags}</head>`);
+
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e) {
       console.error('❌ Error during render:\n', e.stack || e);

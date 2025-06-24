@@ -32,7 +32,7 @@ export default defineConfig(({ command, ssrBuild }) => ({
     },
   },
   ssr: {
-    noExternal: ['swiper', 'gsap', 'react-router-dom', '@remix-run/router'],
+    noExternal: ['swiper', 'gsap', 'react-router-dom', '@remix-run/router', 'react-helmet-async'],
     target: 'node',
     format: 'esm'
   },

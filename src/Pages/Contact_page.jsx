@@ -1,6 +1,7 @@
 // React and React-related imports
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 // React Bootstrap components
 import { Container } from "react-bootstrap";
@@ -23,6 +24,7 @@ import Footer from "../Components/Footer.jsx";
 import Brands from "../Components/Brands.jsx";
 import Banner from "../Components/Banner.jsx";
 import Frequent_Ask from "../Components/Frequent_Ask.jsx";
+import MetaTags from '../Components/MetaTags';
 
 // Custom animations and utilities
 import { BallSplash } from "../Animation/animation";
@@ -75,6 +77,21 @@ function Contact_page() {
     "Servers & Hosting",
     "Other Services",
   ];
+
+  // Prepare meta content
+  const servicesOffered = services.slice(0, -1); // Exclude "Other Services"
+  const metaContent = {
+    title: "Contact Us",
+    description: `Get in touch with Codeship for ${servicesOffered.join(', ')} and more. Let's discuss your next digital project and create innovative solutions together.`,
+    keywords: [
+      ...services,
+      'contact us',
+      'project inquiry',
+      'consultation',
+      'get in touch'
+    ],
+    ogImage: Banner_Data.contact.image
+  };
 
   useEffect(() => {
     if (location.hash) {
@@ -156,7 +173,8 @@ function Contact_page() {
   };
 
   return (
-    <>
+    <div>
+      <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
       <section className="position-relative overflow-hidden" ref={containerRef}>
@@ -458,7 +476,7 @@ function Contact_page() {
       </section>
       <Frequent_Ask />
       <Footer />
-    </>
+    </div>
   );
 }
 

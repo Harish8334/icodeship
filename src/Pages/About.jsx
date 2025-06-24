@@ -2,10 +2,15 @@
 import React, { useRef, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { Helmet } from 'react-helmet-async';
 
 // FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faFacebook,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
 // Swiper-related imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -39,12 +44,36 @@ import "../Pages/About.css";
 
 // Custom Hooks and Animation Utilities
 import useLetsTalk from "../Components/Contact_page_link.jsx";
-import { countUpOnScroll, scrollPopup, useCoreCardAnimations } from "../Animation/animation";
+import {
+  countUpOnScroll,
+  scrollPopup,
+  useCoreCardAnimations,
+} from "../Animation/animation";
+
+import MetaTags from '../Components/MetaTags';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const { text, image } = Banner_Data.about;
+  
+  // Prepare meta content with null checks
+  const coreValues = cardData?.map(card => card?.title).filter(Boolean) || [];
+  const whyUsPoints = Why_Us_Data?.map(item => item?.title).filter(Boolean) || [];
+  const teamSize = Team_Data?.length || 'experienced';
+  
+  const metaContent = {
+    title: 'About Us',
+    description: `Learn about Codeship's core values: ${coreValues.join(', ')}. A team of ${teamSize} professionals dedicated to delivering exceptional digital solutions.`,
+    keywords: [
+      ...coreValues,
+      ...whyUsPoints,
+      'about codeship',
+      'our team',
+      'company values'
+    ],
+    ogImage: image
+  };
 
   const letsTalk = useLetsTalk();
   const countRefs = useRef([]);
@@ -55,14 +84,13 @@ function About() {
     ScrollTrigger.refresh();
   }, []);
 
-useEffect(() => {
-  const timeout = setTimeout(() => {
-    scrollPopup();
-  }, 100); // wait for Swiper to mount and DOM to update
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      scrollPopup();
+    }, 100); // wait for Swiper to mount and DOM to update
 
-  return () => clearTimeout(timeout);
-}, [])
-
+    return () => clearTimeout(timeout);
+  }, []);
 
   useCoreCardAnimations(cardRefs);
 
@@ -71,7 +99,8 @@ useEffect(() => {
   };
 
   return (
-    <div className="pb-5 ">
+    <div className="pb-5">
+      <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
       {/* Core value section */}
@@ -79,9 +108,7 @@ useEffect(() => {
         <div className="row">
           <div className="col-12 col-md-6 col-sm-12 col-lg-4 col-xl-6">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
-              Codeship core 
-              values that keep us
-              so well together.
+              Codeship core values that keep us so well together.
             </p>
             <p className="font-size-24 mx-3 mx-lg-0 mx-xl-0">
               We offer a comprehensive range of{" "}
@@ -92,7 +119,7 @@ useEffect(() => {
               <br className="d-none d-xl-block" />
               business.
             </p>
-             <Button
+            <Button
               className="px-5 py-2 mt-3 mb-3 font-size-25 font_weight_500 blue_gradient rounded-5 mx-2 mx-lg-0 mx-xl-0"
               onClick={letsTalk}
             >
@@ -166,11 +193,7 @@ useEffect(() => {
                   <div className="col-12 col-sm-6 px-3 py-2" key={item.id}>
                     <div className="card p-0 border_shadow rounded-4">
                       <div className="d-flex gap-3  g-lg-5 g-md-5 g-sm-5">
-                        <img
-                          src={item.img}
-                          alt=""
-                          className=" "
-                        />
+                        <img src={item.img} alt="" className=" " />
                         <div className="d-flex flex-column justify-content-center">
                           <p
                             className="font-size-46 font_weight_700 pt-2 m-0"
@@ -245,6 +268,7 @@ useEffect(() => {
                         href={member.instagram}
                         target="_blank"
                         rel="noreferrer"
+                        aria-label="Instagram profile"
                       >
                         <FontAwesomeIcon
                           icon={faInstagram}
@@ -256,6 +280,7 @@ useEffect(() => {
                         href={member.facebook}
                         target="_blank"
                         rel="noreferrer"
+                        aria-label="Facebook profile"
                       >
                         <FontAwesomeIcon
                           icon={faFacebook}
@@ -267,6 +292,7 @@ useEffect(() => {
                         href={member.linkedin}
                         target="_blank"
                         rel="noreferrer"
+                        aria-label="LinkedIn profile"
                       >
                         <FontAwesomeIcon
                           icon={faLinkedin}
@@ -289,65 +315,65 @@ useEffect(() => {
         </Container>
       </section>
       {/* Office */}
-         <section>
-      <Container className="my_container">
-        <p className="font-size-62 font_weight_600 text-center">
-          Get a feeling at our office
-        </p>
-        <p className="font-size-30 text-center">
-          Dynamic energy and collaborative spirit defines our workspace and
-          its remarkable people.
-        </p>
+      <section>
+        <Container className="my_container">
+          <p className="font-size-62 font_weight_600 text-center">
+            Get a feeling at our office
+          </p>
+          <p className="font-size-30 text-center">
+            Dynamic energy and collaborative spirit defines our workspace and
+            its remarkable people.
+          </p>
 
-        {/* Desktop View */}
-        <div className="row d-none d-md-flex">
-          {Office_Data.map((item, index) => (
-            <div
-              key={index}
-              className={`col-md-6 ${index % 2 === 1 ? "About_office" : ""}`}
-            >
-              <div className="rounded-4 animate-from-bottom">
-                <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
-                  <img
-                    src={item.img}
-                    alt={`img ${index + 1}`}
-                    className="img-fluid rounded-5" 
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile View */}
-        <div className="d-md-none d-block">
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            loop={true}
-            className="mySwiper office-card animate-from-bottom"
-          >
+          {/* Desktop View */}
+          <div className="row d-none d-md-flex">
             {Office_Data.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div className="office-card animate-from-bottom">
-                  <div className="rounded-4">
-                    <div className="d-flex justify-content-center mt-3 pt-3">
-                      <img
-                        src={item.img}
-                        alt={`img ${index + 1}`}
-                        className="img-fluid pt-lg-5 rounded-5"
-                      />
-                    </div>
+              <div
+                key={index}
+                className={`col-md-6 ${index % 2 === 1 ? "About_office" : ""}`}
+              >
+                <div className="rounded-4 animate-from-bottom">
+                  <div className="d-flex justify-content-center mt-lg-2 pt-lg-3">
+                    <img
+                      src={item.img}
+                      alt={`img ${index + 1}`}
+                      className="img-fluid rounded-5"
+                    />
                   </div>
                 </div>
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
-        </div>
-      </Container>
-    </section>
+          </div>
+
+          {/* Mobile View */}
+          <div className="d-md-none d-block">
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              loop={true}
+              className="mySwiper office-card animate-from-bottom"
+            >
+              {Office_Data.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="office-card animate-from-bottom">
+                    <div className="rounded-4">
+                      <div className="d-flex justify-content-center mt-3 pt-3">
+                        <img
+                          src={item.img}
+                          alt={`img ${index + 1}`}
+                          className="img-fluid pt-lg-5 rounded-5"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </Container>
+      </section>
       <WorkTogther />
       <Footer />
     </div>

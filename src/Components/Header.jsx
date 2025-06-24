@@ -95,7 +95,7 @@ export default function Header({}) {
                   }
                 }}
               >
-                <img src={logo} alt="Logo" className="logo_img img-fluid" />
+                <img src={logo} alt="Codeship Home" className="logo_img img-fluid" />
               </Nav.Link>
             </div>
             <Button
@@ -121,7 +121,7 @@ export default function Header({}) {
             }}
             className="d-none d-lg-flex ms-xl-5 ms-lg-3"
           >
-            <img src={logo} alt="Logo" className="logo_img" />
+            <img src={logo} alt="Codeship Home" className="logo_img" />
           </Nav.Link>
 
           <Navbar.Collapse id="navbarScroll" className="d-none d-lg-flex">
@@ -254,7 +254,7 @@ export default function Header({}) {
                   {/* Center logo and title */}
                   <div className="d-flex flex-column align-items-center mt-5">
                    
-                      <img src={logo} alt="Logo" className="" />
+                      <img src={logo} alt="Codeship Home" className="" />
 
                   </div>
                 </div>
@@ -327,7 +327,7 @@ export default function Header({}) {
                   {/* Center logo and title */}
                   <div className="d-flex flex-column align-items-center mt-5">
                    
-                      <img src={logo} alt="Logo" className="logo_img" />
+                      <img src={logo} alt="Codeship Home" className="logo_img" />
 
                   </div>
                 </div>

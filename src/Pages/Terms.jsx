@@ -1,9 +1,20 @@
+import React from 'react';
 import Footer from "../Components/Footer";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom"
+import { Helmet } from 'react-helmet-async';
+
 function Terms() {
   return (
-    <>
+    <div>
+      <Helmet>
+        <title>Terms of Service - Codeship</title>
+        <meta name="description" content="Read Codeship's terms of service to understand our policies, user agreements, and service conditions." />
+        <meta name="keywords" content="terms of service, user agreement, service conditions, codeship terms" />
+        <meta property="og:title" content="Terms of Service - Codeship" />
+        <meta property="og:description" content="Understand Codeship's terms of service, user agreements, and service conditions." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <header className="background_color_blue text-white py-5 mt-5 mb-0">
         <div className="container mt-3">
           <div className="row align-items-center">
@@ -41,7 +52,7 @@ function Terms() {
                 <p className="font-size-24 font_weight_400 font_color_black mb-4 text-justify">
                   Welcome to Codeship Private Limited! These terms and
                   conditions outline the rules and regulations for the use of
-                  Codeship Private Limited’s services rendered, located at
+                  Codeship Private Limited's services rendered, located at
                   https://codeship.in/.
                 </p>
 
@@ -58,7 +69,7 @@ function Terms() {
                 <p className="font-size-20 font_weight_400 font_color_black mb-4 text-justify">
                   Welcome to Codeship Private Limited! These terms and
                   conditions outline the rules and regulations for the use of
-                  Codeship Private Limited’s services rendered, located at
+                  Codeship Private Limited's services rendered, located at
                   https://codeship.in/.
                 </p>
 
@@ -67,7 +78,7 @@ function Terms() {
                 </h3>
                 <p className="font-size-20 font_weight_400 font_color_black mb-4 text-justify">
                   Client, You, and Your refers to the person accessing this
-                  website and complying with the Company’s terms and conditions.
+                  website and complying with the Company's terms and conditions.
                   Company, Ourselves, We, Our, and Us refers to Codeship Private
                   Limited. Party, Parties, or Us refers to both the Client and
                   ourselves.
@@ -118,7 +129,7 @@ function Terms() {
                   Any third-party services, plugins, APIs, or software
                   integrated into the website (such as payment gateways,
                   analytics, or CRM tools) are subject to the respective
-                  provider’s terms. We do not guarantee lifetime compatibility,
+                  provider's terms. We do not guarantee lifetime compatibility,
                   free updates, or continuous functioning of third-party tools.
                   Additional charges may apply for re-integration or updates due
                   to external service changes.
@@ -144,7 +155,7 @@ function Terms() {
                   resulting from website issues, client errors, third-party
                   services, or hosting failures. The client agrees to indemnify
                   and hold us harmless from any legal claims, liabilities, or
-                  disputes arising from the website’s content, operations, or
+                  disputes arising from the website's content, operations, or
                   usage.
                 </p>
 
@@ -391,7 +402,7 @@ function Terms() {
         </Container>
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 

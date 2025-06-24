@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Helmet } from 'react-helmet-async';
 
 // Icons
 import { ChevronRight } from "lucide-react";
@@ -14,6 +15,7 @@ import { useImageSlideInAnimation } from "../Animation/animation";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import WorkTogther from "../Components/WorkTogther";
+import MetaTags from '../Components/MetaTags';
 
 // Data
 import Banner_Data from "../Data/Banner_Data";
@@ -26,6 +28,25 @@ function Capabilities() {
   const { text, image } = Banner_Data.capable;
   const navigate = useNavigate();
   const containerRef = useRef(null);
+
+  // Prepare meta content with null checks
+  const servicesDescription = Services_Data?.map(service => service?.title).filter(Boolean) || [];
+  const servicePoints = Services_Data?.flatMap(service => 
+    service?.points?.map(point => point?.text)
+  ).filter(Boolean) || [];
+
+  const metaContent = {
+    title: 'Our Capabilities',
+    description: `Explore Codeship's professional services including ${servicesDescription.join(', ')}. Expert solutions tailored for your business needs.`,
+    keywords: [
+      ...servicesDescription,
+      ...servicePoints,
+      'capabilities',
+      'services',
+      'solutions'
+    ],
+    ogImage: image
+  };
 
   // Run GSAP animation hook
   useImageSlideInAnimation(containerRef);
@@ -60,6 +81,7 @@ function Capabilities() {
 
   return (
     <div className="capable_services_container">
+      <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
 

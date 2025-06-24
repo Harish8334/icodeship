@@ -10,44 +10,64 @@ import { Button } from "react-bootstrap";
 import WorkCard_1 from "../Components/WorkCard_1";
 import WorkCard_2 from "../Components/WorkCard_2";
 import "../Pages/Home.css";
+import MetaTags from '../Components/MetaTags';
+import { Workdata_1, Workdata_2 } from "../Data/WorkData";
+import { Helmet } from 'react-helmet-async';
 
 function OurWorks() {
   const { text, image } = Banner_Data.works;
+
+  // Combine work data for meta tags
+  const allWorkData = [...Workdata_1, ...Workdata_2];
+
+  // Prepare meta content with dynamic data
+  const projectTypes = [...new Set(allWorkData.flatMap(work => work.tags))];
+  const metaContent = {
+    title: 'Our Works',
+    description: 'Explore Codeship\'s diverse portfolio of successful digital projects. From web development to mobile apps, discover how we\'ve helped businesses transform their digital presence.',
+    keywords: [
+      ...projectTypes,
+      'portfolio',
+      'case studies',
+      'client projects',
+      'digital solutions',
+      'success stories',
+      'web development projects',
+      'mobile app portfolio'
+    ],
+    ogImage: image
+  };
+
+  // Calculate indices for WorkCard_1 and WorkCard_2
+  const workCard1Indices = Array.from({ length: Math.ceil(Workdata_1.length / 2) * 2 }, (_, i) => i);
+  const workCard2Indices = Array.from({ length: Workdata_2.length }, (_, i) => i);
+
   return (
-    <>
+    <div>
+      <Helmet>
+        <title>Our Works - Codeship</title>
+        <meta name="description" content="Explore the portfolio of Codeship's successful projects and digital solutions delivered to clients." />
+      </Helmet>
+      <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
       {/* works */}
       <section>
         <Container className="my_container">
           <div className="row">
-            <WorkCard_1 index={0} />
-            <WorkCard_1 index={1} />
-            <WorkCard_2 index={0} />
-            <WorkCard_1 index={2} />
-            <WorkCard_1 index={3} />
-            <WorkCard_2 index={1} />
-            <WorkCard_1 index={4} />
-            <WorkCard_1 index={5} />
-            <WorkCard_2 index={2} />
-            <WorkCard_1 index={6} />
-            <WorkCard_1 index={7} />
-            <WorkCard_2 index={3} />
-            <WorkCard_1 index={8} />
-            <WorkCard_1 index={9} />
-            <WorkCard_2 index={4} />
-            <WorkCard_1 index={10} />
-            <WorkCard_1 index={11} />
-            <WorkCard_2 index={5} />
-            <WorkCard_1 index={12} />
-            <WorkCard_1 index={13} />
-            <WorkCard_2 index={6} />
+            {workCard1Indices.map((_, i) => (
+              i % 3 === 2 ? (
+                <WorkCard_2 key={`card2-${Math.floor(i / 3)}`} index={Math.floor(i / 3)} />
+              ) : (
+                <WorkCard_1 key={`card1-${i}`} index={i} />
+              )
+            ))}
           </div>
         </Container>
       </section>
       <WorkTogther />
       <Footer />
-    </>
+    </div>
   );
 }
 

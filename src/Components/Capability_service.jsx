@@ -8,13 +8,14 @@ import Service_with_us from "../assets/images/Capable_service/capable_service_wi
 import "../Pages/Capabilities.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import serviceData from "../Service_Data/Service_Page_Data";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   useVerticalToHorizontalScroll,
   animateZigzagPath,
 } from "../Animation/animation";
 import { Pagination } from "swiper/modules";
+import { Helmet } from 'react-helmet-async';
 
 gsap.registerPlugin(ScrollTrigger);
 import { gsap } from "gsap";
@@ -26,6 +27,9 @@ import "swiper/css/pagination";
 const Capable_service = () => {
   const { href } = useParams();
   const service = serviceData[href];
+  const location = useLocation();
+  const serviceName = location.state?.name || "Our Services";
+  const serviceDescription = service?.description || "Professional digital services tailored to your business needs";
   useVerticalToHorizontalScroll();
   //  Accordion
   const { left, right } = serviceData[href].accordionData;
@@ -51,6 +55,17 @@ const Capable_service = () => {
 
   return (
     <div className="capable_services_container overflow-hidden">
+      <Helmet>
+        <title>{serviceName} - Codeship</title>
+        <meta name="description" content={`Learn more about our ${serviceName} services at Codeship. ${serviceDescription}`} />
+        <meta name="keywords" content={`${serviceName.toLowerCase()}, digital services, professional solutions, codeship services, business solutions`} />
+        <meta property="og:title" content={`${serviceName} - Codeship`} />
+        <meta property="og:description" content={`Discover our professional ${serviceName} services at Codeship. Expert solutions designed for your success.`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${serviceName} - Codeship`} />
+        <meta name="twitter:description" content={`Expert ${serviceName} services at Codeship. Professional solutions for your business needs.`} />
+      </Helmet>
       {/* Banner */}
       <section className=" d-flex justify-content-center mt-5 mb-md-5 ">
         <Container className="my_container mt-5">

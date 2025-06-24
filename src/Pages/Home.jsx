@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
+import { Helmet } from 'react-helmet-async';
 
 // Data
 import Things_Data from "../Data/Things_Data";
@@ -18,6 +19,7 @@ import Testimonial from "../Components/Testimonial.jsx";
 import CustomModal from "../Components/Modal.jsx";
 import "../Components/Contact_page_link";
 import Home_service from "../Components/Home_service";
+import MetaTags from '../Components/MetaTags';
 
 // Animation Hooks & Utils
 import {
@@ -169,368 +171,397 @@ useEffect(() => {
   return () => document.removeEventListener("click", handleClickOutside);
 }, [activeIndex]);
 
-
+  // Prepare meta content with null checks
+  const servicesOffered = Things_Data?.map(item => item?.title).filter(Boolean) || [];
+  const softwareOffered = softwareData?.map(item => item?.title).filter(Boolean) || [];
   
-
+  const metaContent = {
+    title: 'Codeship - Innovative Digital Solutions',
+    description: `Leading digital solutions provider offering ${servicesOffered.join(', ')}. Transform your business with Codeship's innovative technology solutions.`,
+    keywords: [
+      ...servicesOffered,
+      ...softwareOffered,
+      'digital transformation',
+      'technology solutions',
+      'custom software',
+      'web development',
+      'mobile apps'
+    ],
+    ogImage: image, // Using banner image from Banner_Data
+    canonicalUrl: 'https://codeship.in' // Add your actual domain
+  };
 
   return (
-    <div className="overflow-hidden">
+    <>
+      <MetaTags {...metaContent} />
+      <div className="overflow-hidden">
     
-      <Banner text={text} image={image} />
-      <Brands />
-      {/* Map section */}
-      <section className="d-flex justify-content-center align-items-center py-5 my-4 pt-xl-5">
-        <img
-          src={map}
-          alt=""
-          className="img-fluid position-relative pt-0 pt-lg-5"
-        />
-        <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text">
-          <p className="font-size-40 font_weight_400 text-center mx-3 mx-lg-5">
-            Since our founding in 2020, Codeship has rapidly <br className="d-none d-md-block" /> grown into a
-            dynamic and thriving company.
-          </p>
-          <p className="font-size-40 font_weight_400 text-center mx-3">
-            With a shared dedication to innovation and a <br className="d-none d-md-block" /> customer-centric
-            approach, our team brings a <br className="d-none d-md-block"  /> wealth of experience and skills to the
-            table.
-          </p>
-        </div>
-      </section>
+        <Banner text={text} image={image} />
+        <Brands />
+        {/* Map section */}
+        <section className="d-flex justify-content-center align-items-center py-5 my-4 pt-xl-5">
+          <img
+            src={map}
+            alt=""
+            className="img-fluid position-relative pt-0 pt-lg-5"
+          />
+          <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text">
+            <p className="font-size-40 font_weight_400 text-center mx-3 mx-lg-5">
+              Since our founding in 2020, Codeship has rapidly <br className="d-none d-md-block" /> grown into a
+              dynamic and thriving company.
+            </p>
+            <p className="font-size-40 font_weight_400 text-center mx-3">
+              With a shared dedication to innovation and a <br className="d-none d-md-block" /> customer-centric
+              approach, our team brings a <br className="d-none d-md-block"  /> wealth of experience and skills to the
+              table.
+            </p>
+          </div>
+        </section>
 
-      {/* Things can do section */}
-      <section className="py-xl-5 ">
-        <Container className="my_container py-lg-5">
-          <div className="row">
-            <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
-              <p className="font-size-58 font_weight_600 line_height_70 ps-3">
-                Some of the <br className="d-none d-lg-block" /> things we can
-                do <br className="d-none d-lg-block" /> for you
-              </p>
-              <p className="font-size-24   font_weight_400 ps-3">
-                We offer a comprehensive range of{" "}
-                <br className="d-none d-xl-block" /> software development
-                services tailored <br className="d-none d-xl-block" /> to meet
-                the unique needs of your <br className="d-none d-xl-block" />{" "}
-                business.
-              </p>
-            </div>
+        {/* Things can do section */}
+        <section className="py-xl-5 ">
+          <Container className="my_container py-lg-5">
+            <div className="row">
+              <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
+                <p className="font-size-58 font_weight_600 line_height_70 ps-3">
+                  Some of the <br className="d-none d-lg-block" /> things we can
+                  do <br className="d-none d-lg-block" /> for you
+                </p>
+                <p className="font-size-24   font_weight_400 ps-3">
+                  We offer a comprehensive range of{" "}
+                  <br className="d-none d-xl-block" /> software development
+                  services tailored <br className="d-none d-xl-block" /> to meet
+                  the unique needs of your <br className="d-none d-xl-block" />{" "}
+                  business.
+                </p>
+              </div>
 
-            <div className="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-7 mb-5 ">
-              <div className="row">
-                <div className="d-none d-lg-flex flex-column gap-4 col-lg-6 ">
-                  {/* Top two cards */}
-                  {topCards.map((item, index) => (
-                    <div
-                      key={index}
-                      className="card things_card   border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
-                    >
-                      <div className="card-body border-0">
-                        <div className="card-title ms-4">
-                          <div className="d-flex">
-                            <div className="position-relative pe-5 things_icon_container">
-                              <img
-                                src={item.hoverIcon}
-                                alt=""
-                                className="things_head things_hover_icon position-absolute pt-2 pb-3"
-                              />
-                              <img
-                                src={item.icon}
-                                alt=""
-                                className="things_head things_icon position-absolute pt-2 pb-3"
-                              />
+              <div className="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-7 mb-5 ">
+                <div className="row">
+                  <div className="d-none d-lg-flex flex-column gap-4 col-lg-6 ">
+                    {/* Top two cards */}
+                    {topCards.map((item, index) => (
+                      <div
+                        key={index}
+                        className="card things_card   border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
+                      >
+                        <div className="card-body border-0">
+                          <div className="card-title ms-4">
+                            <div className="d-flex">
+                              <div className="position-relative pe-5 things_icon_container">
+                                <img
+                                  src={item.hoverIcon}
+                                  alt=""
+                                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                                />
+                                <img
+                                  src={item.icon}
+                                  alt=""
+                                  className="things_head things_icon position-absolute pt-2 pb-3"
+                                />
+                              </div>
+                              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
+                                {item.title}
+                              </p>
                             </div>
-                            <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
-                              {item.title}
-                            </p>
+                          </div>
+                          <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
+                            {item.description}
                           </div>
                         </div>
-                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
-                          {item.description}
-                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                <div className="d-none d-lg-flex flex-column gap-4 col-lg-6">
-                  {/* Bottom two cards */}
-                  {bottomCards.map((item, index) => (
-                    <div
-                      key={index}
-                      className="card things_card  border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
-                    >
-                      <div className="card-body border-0">
-                        <div className="card-title ms-4">
-                          <div className="d-flex">
-                            <div className="position-relative pe-5 things_icon_container">
-                              <img
-                                src={item.hoverIcon}
-                                alt=""
-                                className="things_head things_hover_icon position-absolute pt-2 pb-3"
-                              />
-                              <img
-                                src={item.icon}
-                                alt=""
-                                className="things_head things_icon position-absolute pt-2 pb-3"
-                              />
+                  <div className="d-none d-lg-flex flex-column gap-4 col-lg-6">
+                    {/* Bottom two cards */}
+                    {bottomCards.map((item, index) => (
+                      <div
+                        key={index}
+                        className="card things_card  border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
+                      >
+                        <div className="card-body border-0">
+                          <div className="card-title ms-4">
+                            <div className="d-flex">
+                              <div className="position-relative pe-5 things_icon_container">
+                                <img
+                                  src={item.hoverIcon}
+                                  alt=""
+                                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                                />
+                                <img
+                                  src={item.icon}
+                                  alt=""
+                                  className="things_head things_icon position-absolute pt-2 pb-3"
+                                />
+                              </div>
+                              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
+                                {item.title}
+                              </p>
                             </div>
-                            <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
-                              {item.title}
-                            </p>
+                          </div>
+                          <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-4">
+                            {item.description}
                           </div>
                         </div>
-                        <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-4">
-                          {item.description}
-                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
-                  <Swiper
-                    modules={[Pagination]}
-                    loop={Things_Data.length > 3}
-                    slidesPerView={1}
-                    spaceBetween={50}
-                    pagination={{
-                      clickable: true,
-                      renderBullet: (index, className) =>
-                        `<span class="${className} custom-pagination-dot"></span>`,
-                    }}
-                    className="custom-swiper p-0"
-                  >
-                    {Things_Data.map((item, index) => (
-                      <SwiperSlide key={index}>
-                        <div className="card things_card  pb-sm-0 rounded-4 border-0 mb-4">
-                          <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
-                            <div className="card-title">
-                              <div className="d-flex">
-                                <div className="position-relative pe-5 things_icon_container">
-                                  <img
-                                    src={item.hoverIcon}
-                                    alt=""
-                                    className="things_head things_hover_icon position-absolute pt-2 pb-3"
-                                  />
-                                  <img
-                                    src={item.icon}
-                                    alt=""
-                                    className="things_head things_icon position-absolute pt-2 pb-3"
-                                  />
+                  <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
+                    <Swiper
+                      modules={[Pagination]}
+                      loop={Things_Data.length > 3}
+                      slidesPerView={1}
+                      spaceBetween={50}
+                      pagination={{
+                        clickable: true,
+                        renderBullet: (index, className) =>
+                          `<span class="${className} custom-pagination-dot"></span>`,
+                      }}
+                      className="custom-swiper p-0"
+                    >
+                      {Things_Data.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <div className="card things_card  pb-sm-0 rounded-4 border-0 mb-4">
+                            <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
+                              <div className="card-title">
+                                <div className="d-flex">
+                                  <div className="position-relative pe-5 things_icon_container">
+                                    <img
+                                      src={item.hoverIcon}
+                                      alt=""
+                                      className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                                    />
+                                    <img
+                                      src={item.icon}
+                                      alt=""
+                                      className="things_head things_icon position-absolute pt-2 pb-3"
+                                    />
+                                  </div>
+                                  <p className="font-size-28 font_weight_500 things_head ps-3 pt-2 pb-3">
+                                    {item.title}
+                                  </p>
                                 </div>
-                                <p className="font-size-28 font_weight_500 things_head ps-3 pt-2 pb-3">
-                                  {item.title}
-                                </p>
+                              </div>
+                              <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_24 pb-2">
+                                {item.description.split("\n").map((line, i) => (
+                                  <React.Fragment key={i}>
+                                    {line}
+                                    <br className="d-none d-xxl-block" />
+                                  </React.Fragment>
+                                ))}
                               </div>
                             </div>
-                            <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_24 pb-2">
-                              {item.description.split("\n").map((line, i) => (
-                                <React.Fragment key={i}>
-                                  {line}
-                                  <br className="d-none d-xxl-block" />
-                                </React.Fragment>
-                              ))}
-                            </div>
                           </div>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </Container>
+        </section>
+        {/* Service section */}
+      <Home_service />
+    <div className="bg-black">
+
+     <div className="stack-container  position-relative overflow-x-hidden">
+           {/* Sofware section */}
+          <div className="section1 position-relative">
+    <section
+      className="software-wrapper overflow-hidden w-100 pb-5 bg-black"
+      ref={sectionRef}
+    >
+      <div className="software-pinned mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
+        <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
+          <div className="row mt-sm-5">
+            {/* LEFT ICONS */}
+            <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white">
+              <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
+                {softwareData.map((item, index) => (
+                  <div key={index} className="d-flex gap-5" id="purchase-form">
+                    <div className="d-flex flex-column justify-content-center align-items-center">
+                      <img
+                        ref={(el) => (iconsRef.current[index] = el)}
+                        className={`icon icon_background background_color_light_blue p-2 p-sm-2 p-md-3 rounded-circle ${
+                          index === currentIndex ? "focus-ring" : ""
+                        }`}
+                        src={item.icon}
+                        alt={item.name}
+                      />
+                      <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
+                    </div>
+                    <p
+                      className={`font-size-18 text-nowrap   mt-3 ${
+                        index === currentIndex
+                          ? "text-focus-ring position-relative  p-0 font_weight_600"
+                          : ""
+                      }`}
+                    >
+                      {item.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA BUTTONS - DESKTOP */}
+              <div className="text-center d-lg-flex d-none d-xl-none flex-column gap-4 justify-content-center mt-lg-3">
+                <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 me-3">
+                  View Live Demo
+                </Button>
+                <Button
+                  className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+                 onClick={handlePurchaseClick}
+                >
+                  Purchase Product
+                </Button>
+              </div>
+            </div>
+
+            {/* RIGHT IMAGE + DESCRIPTION */}
+            <div className="col-lg-9 col-xl-10 col-md-8 text-white">
+              <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center ">
+                <img
+                  ref={imageRef}
+                  src={softwareData[currentIndex].center_image}
+                  className="img-fluid software_img mb-3 mt-md-3 px-md-3"
+                  alt={softwareData[currentIndex].name}
+                />
+                <p className="font-size-28 pt-lg-4 m-0 m-md-2">
+                  {softwareData[currentIndex].description}
+                </p>
+              </div>
+
+              {/* CTA BUTTONS - MOBILE */}
+              <div className="text-center d-lg-none d-xl-flex d-flex gap-4 justify-content-center mt-lg-3">
+                <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18">
+                  View Live Demo
+                </Button>
+                <Button
+                  className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
+                 onClick={handlePurchaseClick}
+                >
+                  Purchase Product
+                </Button>
               </div>
             </div>
           </div>
         </Container>
-      </section>
-      {/* Service section */}
-    <Home_service />
-<div className="bg-black">
-
- <div className="stack-container  position-relative overflow-x-hidden">
-       {/* Sofware section */}
-      <div className="section1 position-relative">
-  <section
-    className="software-wrapper overflow-hidden w-100 pb-5 bg-black"
-    ref={sectionRef}
-  >
-    <div className="software-pinned mb-5 mb-md-0 d-flex justify-content-center align-items-lg-center align-items-xl-baseline w-100 h-100 mt-xl-5 mt-sm-0 mt-md-0">
-      <Container className="my_container pt-lg-5 pb-lg-4 pt-xl-5 d-flex justify-content-center align-items-center">
-        <div className="row mt-sm-5">
-          {/* LEFT ICONS */}
-          <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white">
-            <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
-              {softwareData.map((item, index) => (
-                <div key={index} className="d-flex gap-5" id="purchase-form">
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <img
-                      ref={(el) => (iconsRef.current[index] = el)}
-                      className={`icon icon_background background_color_light_blue p-2 p-sm-2 p-md-3 rounded-circle ${
-                        index === currentIndex ? "focus-ring" : ""
-                      }`}
-                      src={item.icon}
-                      alt={item.name}
-                    />
-                    <span className="icon_background_line background_color_light_blue p-1 m-0 text-nowrap"></span>
-                  </div>
-                  <p
-                    className={`font-size-18 text-nowrap   mt-3 ${
-                      index === currentIndex
-                        ? "text-focus-ring position-relative  p-0 font_weight_600"
-                        : ""
-                    }`}
-                  >
-                    {item.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA BUTTONS - DESKTOP */}
-            <div className="text-center d-lg-flex d-none d-xl-none flex-column gap-4 justify-content-center mt-lg-3">
-              <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18 me-3">
-                View Live Demo
-              </Button>
-              <Button
-                className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
-               onClick={handlePurchaseClick}
-              >
-                Purchase Product
-              </Button>
-            </div>
-          </div>
-
-          {/* RIGHT IMAGE + DESCRIPTION */}
-          <div className="col-lg-9 col-xl-10 col-md-8 text-white">
-            <div className="d-flex justify-content-center ms-lg-5 align-items-center flex-column text-center ">
-              <img
-                ref={imageRef}
-                src={softwareData[currentIndex].center_image}
-                className="img-fluid software_img mb-3 mt-md-3 px-md-3"
-                alt={softwareData[currentIndex].name}
-              />
-              <p className="font-size-28 pt-lg-4 m-0 m-md-2">
-                {softwareData[currentIndex].description}
-              </p>
-            </div>
-
-            {/* CTA BUTTONS - MOBILE */}
-            <div className="text-center d-lg-none d-xl-flex d-flex gap-4 justify-content-center mt-lg-3">
-              <Button className="px-4 py-3 blue_gradient rounded-pill border-0 mt-3 font-size-18">
-                View Live Demo
-              </Button>
-              <Button
-                className="px-4 py-3 bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
-               onClick={handlePurchaseClick}
-              >
-                Purchase Product
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
-  </section>
-</div>
- </div>
-        {/* Techstack section */}
-      <section className="bg-black pt-5 pb-5 px-0 ">
-        <Container className=" pt-5 pb-5  my_container px-1 ">
-          {/* top layer */}
-          <div className="tech_stack_container">
-            <div className="d-flex flex-row justify-content-center gap-3">
-              <Animation
-                imgSrc={AWS}
-                animationDirection="topLeft"
-                altText="Image from Top Left"
-              />
-              <div className="tech_box bg-white  "></div>
-              <div className="tech_box bg-white  "></div>
-              <div className="tech_box bg-white  "></div>
-              <div className="tech_box bg-white  "></div>
-            </div>
-            <div className="d-flex  flex-row justify-content-center mx-5 pt-2 gap-3">
-              <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
-                <div className="tech_box bg-white "></div>
-                <div className="tech_box bg-white "></div>
-                <div className="tech_box bg-white "></div>
-                <div className="tech_box">
-                  {" "}
-                  <Animation
-                    imgSrc={AWS}
-                    animationDirection="topToBottom"
-                    altText="Image from Top Left"
-                  />
-                </div>
-                <div className="tech_box bg-white "></div>
+      </div>
+    </section>
+  </div>
+   </div>
+          {/* Techstack section */}
+        <section className="bg-black pt-5 pb-5 px-0 ">
+          <Container className=" pt-5 pb-5  my_container px-1 ">
+            {/* top layer */}
+            <div className="tech_stack_container">
+              <div className="d-flex flex-row justify-content-center gap-3">
                 <Animation
-                  imgSrc={Nodejs}
-                  animationDirection="topRight"
+                  imgSrc={AWS}
+                  animationDirection="topLeft"
                   altText="Image from Top Left"
                 />
-                <div className="tech_box bg-white "></div>
+                <div className="tech_box bg-white  "></div>
+                <div className="tech_box bg-white  "></div>
+                <div className="tech_box bg-white  "></div>
+                <div className="tech_box bg-white  "></div>
               </div>
-            </div>
-            {/* middle layer */}
-            <div className="d-flex  flex-row justify-content-center  align-items-center pb-lg-3 ">
-              <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
-                <div className="left">
-                  <div className="d-flex py-1   gap-3 ">
-                    <div className="tech_box bg-white "></div>
-                    <Animation
-                      imgSrc={React_img}
-                      animationDirection="topLeft"
-                      altText="Image from Top Left"
-                    />
-                  </div>
-                  <div className="d-flex pt-3  gap-3">
-                    <Animation
-                      imgSrc={Angular_img}
-                      animationDirection="bottomRight"
-                      altText="Image from Top Left"
-                    />
-                    <div className="tech_box bg-white "></div>
-                  </div>
-                </div>
-                {/* middle text */}
-                <div className="d-flex  flex-column justify-content-center align-items-center  gap-3 py-sm-1 pt-0">
-                  <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3   px-md-5 ">
-                    Amazing tech stack in <br className="d-none d-lg-block" /> our pocket
-                  </p>
-                  <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
-                   Codeship turns your vision into scalable, secure software. Our team experts deliver reliable solutions that meet the highest standards in performance and code quality.
-                  </p>
-                </div>
-                <div className="right">
-                  <div className="d-flex   gap-3 ">
+              <div className="d-flex  flex-row justify-content-center mx-5 pt-2 gap-3">
+                <div className="d-flex  flex-row justify-content-center pt-lg-3 gap-3">
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box">
+                    {" "}
                     <Animation
                       imgSrc={AWS}
-                      animationDirection="topRight"
+                      animationDirection="topToBottom"
                       altText="Image from Top Left"
                     />
-                    <div className="tech_box bg-white "></div>
                   </div>
-                  <div className="d-flex pt-3 gap-3">
-                    <div className="tech_box bg-white "></div>
-                    <Animation
-                      imgSrc={Nodejs}
-                      animationDirection="bottomLeft"
-                      altText="Image from Top Left"
-                    />
+                  <div className="tech_box bg-white "></div>
+                  <Animation
+                    imgSrc={Nodejs}
+                    animationDirection="topRight"
+                    altText="Image from Top Left"
+                  />
+                  <div className="tech_box bg-white "></div>
+                </div>
+              </div>
+              {/* middle layer */}
+              <div className="d-flex  flex-row justify-content-center  align-items-center pb-lg-3 ">
+                <div className=" d-flex tech_middle_layer   d-md-flex flex-nowrap   justify-content-evenly pt-3">
+                  <div className="left">
+                    <div className="d-flex py-1   gap-3 ">
+                      <div className="tech_box bg-white "></div>
+                      <Animation
+                        imgSrc={React_img}
+                        animationDirection="topLeft"
+                        altText="Image from Top Left"
+                      />
+                    </div>
+                    <div className="d-flex pt-3  gap-3">
+                      <Animation
+                        imgSrc={Angular_img}
+                        animationDirection="bottomRight"
+                        altText="Image from Top Left"
+                      />
+                      <div className="tech_box bg-white "></div>
+                    </div>
+                  </div>
+                  {/* middle text */}
+                  <div className="d-flex  flex-column justify-content-center align-items-center  gap-3 py-sm-1 pt-0">
+                    <p className="font-size-46 text-white text-center font_weight_600  m-0 px-3   px-md-5 ">
+                      Amazing tech stack in <br className="d-none d-lg-block" /> our pocket
+                    </p>
+                    <p className="tech_text text-white font-size-18 font_weight_400 text-center d-lg-block  d-none px-3 m-0">
+                     Codeship turns your vision into scalable, secure software. Our team experts deliver reliable solutions that meet the highest standards in performance and code quality.
+                    </p>
+                  </div>
+                  <div className="right">
+                    <div className="d-flex   gap-3 ">
+                      <Animation
+                        imgSrc={AWS}
+                        animationDirection="topRight"
+                        altText="Image from Top Left"
+                      />
+                      <div className="tech_box bg-white "></div>
+                    </div>
+                    <div className="d-flex pt-3 gap-3">
+                      <div className="tech_box bg-white "></div>
+                      <Animation
+                        imgSrc={Nodejs}
+                        animationDirection="bottomLeft"
+                        altText="Image from Top Left"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* bottom layer */}
-            <div className="d-flex  flex-row justify-content-center pt-3 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
-              <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
-                <Animation
-                  imgSrc={Angular_img}
-                  animationDirection="bottomLeft"
-                  altText="Image from Top Left"
-                />
-                <div className="tech_box bg-white "></div>
-                <div className="tech_box bg-white "></div>
+              {/* bottom layer */}
+              <div className="d-flex  flex-row justify-content-center pt-3 pt-xl-0 pt-lg-2 pt-md-4 pt-md-0 gap-3">
+                <div className="d-flex  flex-row justify-content-center pb-3   gap-3">
+                  <Animation
+                    imgSrc={Angular_img}
+                    animationDirection="bottomLeft"
+                    altText="Image from Top Left"
+                  />
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box bg-white "></div>
+                  <Animation
+                    imgSrc={React_img}
+                    animationDirection="bottomToTop"
+                    altText="Image from Top Left"
+                  />
+                  <div className="tech_box bg-white "></div>
+                  <div className="tech_box bg-white "></div>
+                </div>
+              </div>
+              <div className="d-flex  flex-row justify-content-center pt-2    gap-3">
                 <div className="tech_box bg-white "></div>
                 <Animation
                   imgSrc={React_img}
@@ -539,143 +570,133 @@ useEffect(() => {
                 />
                 <div className="tech_box bg-white "></div>
                 <div className="tech_box bg-white "></div>
+                <Animation
+                  imgSrc={Angular_img}
+                  animationDirection="bottomRight"
+                  altText="Image from Top Left"
+                  className="tech_sm_img"
+                />
               </div>
             </div>
-            <div className="d-flex  flex-row justify-content-center pt-2    gap-3">
-              <div className="tech_box bg-white "></div>
-              <Animation
-                imgSrc={React_img}
-                animationDirection="bottomToTop"
-                altText="Image from Top Left"
-              />
-              <div className="tech_box bg-white "></div>
-              <div className="tech_box bg-white "></div>
-              <Animation
-                imgSrc={Angular_img}
-                animationDirection="bottomRight"
-                altText="Image from Top Left"
-                className="tech_sm_img"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
 
-      {/* Projects */}
-      <section className="bg-black p-0 pb-2">
-      <div className="container-fluid pt-lg-5 mb-md-5">
-        <div className="d-flex align-items-center justify-content-center mb-md-5">
-          <p className="font-size-65 font_weight_600 font_family text-white">
-            Our Latest Projects
-          </p>
-        </div>
-
-        <Swiper
-          modules={[Autoplay]}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          slidesPerView={1}
-          spaceBetween={20}
-          centeredSlides={true}
-          autoplay={{
-            delay: 1500,
-            disableOnInteraction: false,
-          }}
-          speed={1500}
-          loop={true}
-          grabCursor={true}
-          breakpoints={{
-            576: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
-            992: { slidesPerView: 2 },
-            1200: { slidesPerView: 2 },
-          }}
-          className="project_swiper"
-        >
-         {projects.map((project, index) => {
-  const cardRef = useRef(null);
-  const overlayRef = useRef(null);
-  const titleRef = useRef(null);
-
-  useProjectCardHover(cardRef, overlayRef, titleRef, pauseAutoplay, resumeAutoplay);
-
-  return (
-    <SwiperSlide key={index} className="d-flex justify-content-center align-items-center rectangle-slide">
-      <div
-        className={`project_card position-relative ${activeIndex === index ? "active-mobile" : ""}`}
-        onClick={() => handleCardClick(project, index)}
-        ref={cardRef}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="project_image w-100 h-auto object-fit-cover"
-        />
-        <div
-          className="project_overlay_desktop position-absolute bottom-0 start-0 w-100 d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none"
-          ref={overlayRef}
-        >
-          <div ref={titleRef}>
-            <p className="project_title font-size-62 font_weight_600 text-white mb-2">
-              {project.title}
+        {/* Projects */}
+        <section className="bg-black p-0 pb-2">
+        <div className="container-fluid pt-lg-5 mb-md-5">
+          <div className="d-flex align-items-center justify-content-center mb-md-5">
+            <p className="font-size-65 font_weight_600 font_family text-white">
+              Our Latest Projects
             </p>
-            <div className="d-flex gap-2 flex-wrap justify-content-center">
-              {project.tags.map((tag, i) => (
-                <span key={i} className="badge bg-light text-dark px-3 py-2 rounded-pill">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
-        </div>
 
-        {activeIndex === index && (
-          <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
-            <p className="fs-4 mb-2">{project.title}</p>
-            <div className="d-flex flex-wrap justify-content-center gap-2">
-              {project.tags.map((tag, i) => (
-                <span key={i} className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill" >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </SwiperSlide>
-  );
-})}
-
-        </Swiper>
-
-        <div className="d-flex justify-content-center pt-5 pb-5">
-          <Button
-            className="font-size-22 px-4 py-2 rounded-5 font_weight_500 blue_gradient border-0"
-            onClick={() => navigate("ourworks")}
+          <Swiper
+            modules={[Autoplay]}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            slidesPerView={1}
+            spaceBetween={20}
+            centeredSlides={true}
+            autoplay={{
+              delay: 1500,
+              disableOnInteraction: false,
+            }}
+            speed={1500}
+            loop={true}
+            grabCursor={true}
+            breakpoints={{
+              576: { slidesPerView: 1 },
+              768: { slidesPerView: 1 },
+              992: { slidesPerView: 2 },
+              1200: { slidesPerView: 2 },
+            }}
+            className="project_swiper"
           >
-            View All <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
-          </Button>
+           {projects.map((project, index) => {
+    const cardRef = useRef(null);
+    const overlayRef = useRef(null);
+    const titleRef = useRef(null);
+
+    useProjectCardHover(cardRef, overlayRef, titleRef, pauseAutoplay, resumeAutoplay);
+
+    return (
+      <SwiperSlide key={index} className="d-flex justify-content-center align-items-center rectangle-slide">
+        <div
+          className={`project_card position-relative ${activeIndex === index ? "active-mobile" : ""}`}
+          onClick={() => handleCardClick(project, index)}
+          ref={cardRef}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="project_image w-100 h-auto object-fit-cover"
+          />
+          <div
+            className="project_overlay_desktop position-absolute bottom-0 start-0 w-100 d-flex flex-column justify-content-end align-items-center pb-5 pointer-events-none"
+            ref={overlayRef}
+          >
+            <div ref={titleRef}>
+              <p className="project_title font-size-62 font_weight_600 text-white mb-2">
+                {project.title}
+              </p>
+              <div className="d-flex gap-2 flex-wrap justify-content-center">
+                {project.tags.map((tag, i) => (
+                  <span key={i} className="badge bg-light text-dark px-3 py-2 rounded-pill">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {activeIndex === index && (
+            <div className="mobile-text-pop text-white text-center mt-3 d-md-none">
+              <p className="fs-4 mb-2">{project.title}</p>
+              <div className="d-flex flex-wrap justify-content-center gap-2">
+                {project.tags.map((tag, i) => (
+                  <span key={i} className="badge bg-light text-dark px-3 mb-2 py-2 rounded-pill" >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      </SwiperSlide>
+    );
+  })}
 
-     {showModal && modalData && (
-  <CustomModal onClose={() => setShowModal(false)}>
-    <iframe
-      src={modalData.link}
-      title={modalData.title}
-      className="rounded-5"
-      style={{ width: "100%", height: "100%", border: "none" }}
-      allowFullScreen
-    />
-  </CustomModal>
-)}
+          </Swiper>
 
-    </section>
-</div>
-   
-      <Testimonial />
-      <Contact />
+          <div className="d-flex justify-content-center pt-5 pb-5">
+            <Button
+              className="font-size-22 px-4 py-2 rounded-5 font_weight_500 blue_gradient border-0"
+              onClick={() => navigate("ourworks")}
+            >
+              View All <FontAwesomeIcon icon={faArrowRight} className="ps-3" />
+            </Button>
+          </div>
+        </div>
+
+       {showModal && modalData && (
+    <CustomModal onClose={() => setShowModal(false)}>
+      <iframe
+        src={modalData.link}
+        title={modalData.title}
+        className="rounded-5"
+        style={{ width: "100%", height: "100%", border: "none" }}
+        allowFullScreen
+      />
+    </CustomModal>
+  )}
+
+      </section>
+  </div>
      
-    </div>
+    <Testimonial />
+    <Contact />
+   
+  </div>
+</>
   );
 }
 

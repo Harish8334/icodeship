@@ -1,10 +1,21 @@
+import React from 'react';
 import Footer from "../Components/Footer"
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom"
+import { Helmet } from 'react-helmet-async';
+
 function Refund() {
   return (
-    <>
-    <header className="background_color_blue text-white py-5 mt-5 mb-0">
+    <div>
+      <Helmet>
+        <title>Refund Policy - Codeship</title>
+        <meta name="description" content="Learn about Codeship's refund policy, terms, and conditions for service cancellations and refunds." />
+        <meta name="keywords" content="refund policy, cancellation policy, service refunds, codeship refunds" />
+        <meta property="og:title" content="Refund Policy - Codeship" />
+        <meta property="og:description" content="Understand Codeship's refund and cancellation policies for our services." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <header className="background_color_blue text-white py-5 mt-5 mb-0">
         <div className="container mt-3">
           <div className="row align-items-center">
             <div className="col-lg-8">
@@ -41,10 +52,10 @@ function Refund() {
       <p className="font-size-24 font_weight_600 mt-5">Refund policy</p>
        <h5 className="mb-3">Professional Services</h5>
   <p>Codeship Private Limited warrants that for thirty (30) days after the performance of Professional Services for customers provided under a statement of work, such Professional Services were performed in a proper and professional manner consistent with industry standards.</p>
-  <p>Otherwise, such Professional Services are provided by Codeship Private Limited “as is”.</p>
+  <p>Otherwise, such Professional Services are provided by Codeship Private Limited "as is".</p>
   <p>Once requested by you, Codeship Private Limited will charge your account or credit card the amount agreed upon under the executed contract, or as otherwise agreed upon by the parties.</p>
-  <p>If a project is delayed at the request of the client, due to the client’s internal processes, Codeship Private Limited will not be responsible for any costs incurred by this delay, any fees or damages will stand with the client unless agreed in writing at the time or delay by the client.</p>
-  <p>For more detailed information, please reference the “Warranties and Disclaimers” of your EULA/SLA.</p>
+  <p>If a project is delayed at the request of the client, due to the client's internal processes, Codeship Private Limited will not be responsible for any costs incurred by this delay, any fees or damages will stand with the client unless agreed in writing at the time or delay by the client.</p>
+  <p>For more detailed information, please reference the "Warranties and Disclaimers" of your EULA/SLA.</p>
 
   <h5 className="mt-4 mb-3">Hardware, Software and Software Maintenance & Support Services</h5>
   <p>Codeship Private Limited does not offer any refund for hardware, software, maintenance and support services once agreed by the customer, annual fees which are passed an anniversary date of the EULA, Codeship Private Limited will charge your account or credit card the amount agreed upon under the executed agreement, or as otherwise agreed upon by the parties.</p>
@@ -200,7 +211,7 @@ function Refund() {
             </div>
       </Container>
     <Footer />
-    </>
+    </div>
   )
 }
 
