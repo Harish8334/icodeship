@@ -40,8 +40,8 @@ import "../Pages/Home.css";
 // Custom Animation Utilities
 import {
   animateWorkCard,
-  animateCardsOnScroll,
-  initImageRevealAnimation,
+  useAnimateCardsOnScroll,
+  useImageRevealAnimation,
 } from "../Animation/animation";
 
 
@@ -73,6 +73,7 @@ function Solution() {
     ogImage: image
   };
 
+  useAnimateCardsOnScroll(containerRef);
   useEffect(() => {
     if (imgRef.current) {
       animateWorkCard(imgRef.current);
@@ -80,22 +81,13 @@ function Solution() {
 
     if (!containerRef.current) return;
 
-    animateCardsOnScroll(containerRef.current);
-
     return () => {
       // Clean up all ScrollTriggers when component unmounts
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
-  useEffect(() => {
-    const cleanup = initImageRevealAnimation(
-      greyImgRef,
-      colorImgRef,
-      sectionRef
-    );
-    return () => cleanup && cleanup();
-  }, []);
+  useImageRevealAnimation(greyImgRef, colorImgRef, sectionRef);
     
 
   return (

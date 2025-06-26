@@ -19,8 +19,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // GSAP and ScrollTrigger
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //  Components
 
@@ -45,9 +45,9 @@ import "../Pages/About.css";
 // Custom Hooks and Animation Utilities
 import useLetsTalk from "../Components/Contact_page_link.jsx";
 import {
-  countUpOnScroll,
-  scrollPopup,
+  useScrollPopup,
   useCoreCardAnimations,
+  useCountUpOnScroll,
 } from "../Animation/animation";
 
 import MetaTags from '../Components/MetaTags';
@@ -78,18 +78,12 @@ function About() {
   const letsTalk = useLetsTalk();
   const countRefs = useRef([]);
   const cardRefs = useRef([]);
+  const [isClient, setIsClient] = React.useState(false);
 
+  useCountUpOnScroll(countRefs);
+  useScrollPopup();
   useEffect(() => {
-    countUpOnScroll(countRefs.current);
     ScrollTrigger.refresh();
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      scrollPopup();
-    }, 100); // wait for Swiper to mount and DOM to update
-
-    return () => clearTimeout(timeout);
   }, []);
 
   useCoreCardAnimations(cardRefs);
@@ -97,6 +91,10 @@ function About() {
   const setCardRef = (el, index) => {
     cardRefs.current[index] = el;
   };
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <div className="pb-5">
@@ -127,42 +125,44 @@ function About() {
             </Button>
           </div>
           <div className="col-12 col-md-6 d-lg-none mt-4">
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={1}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-                renderBullet: (index, className) =>
-                  `<span class="${className} custom-pagination-dot"></span>`,
-              }}
-              className="custom-swiper pb-5 mb-5"
-            >
-              {cardData.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div
-                    className="card core_card pb-2 rounded-4 border_shadow mx-3"
-                    ref={(el) => setCardRef(el, index + 4)}
-                  >
-                    <div className="d-flex justify-content-center pt-3">
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        className="img-fluid"
-                      />
-                    </div>
-                    <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
-                      {item.title}
-                    </p>
-                    <div className="d-flex justify-content-center mt-3">
-                      <p className="font-size-20 text-center px-4">
-                        {item.description}
+            {isClient && (
+              <Swiper
+                modules={[Pagination]}
+                slidesPerView={1}
+                spaceBetween={30}
+                pagination={{
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className} custom-pagination-dot"></span>`,
+                }}
+                className="custom-swiper pb-5 mb-5"
+              >
+                {cardData.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div
+                      className="card core_card pb-2 rounded-4 border_shadow mx-3"
+                      ref={(el) => setCardRef(el, index + 4)}
+                    >
+                      <div className="d-flex justify-content-center pt-3">
+                        <img
+                          src={item.icon}
+                          alt={item.title}
+                          className="img-fluid"
+                        />
+                      </div>
+                      <p className="pt-4 font-size-30 text-center font_weight_500 things_head font_color_light_blue">
+                        {item.title}
                       </p>
+                      <div className="d-flex justify-content-center mt-3">
+                        <p className="font-size-20 text-center px-4">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
           </div>
         </div>
       </section>
@@ -233,79 +233,81 @@ function About() {
             </p>
           </div>
 
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={5}
-            spaceBetween={50}
-            loop={true}
-            freeMode={true}
-            className="mySwiper mt-5 mb-3 px-3 px-lg-0"
-            breakpoints={{
-              320: { slidesPerView: 2, spaceBetween: 30 },
-              576: { slidesPerView: 4, spaceBetween: 15 },
-              768: { slidesPerView: 3, spaceBetween: 20 },
-              992: { slidesPerView: 4, spaceBetween: 25 },
-              1200: { slidesPerView: 5, spaceBetween: 30 },
-            }}
-          >
-            {Team_Data.map((member, index) => (
-              <SwiperSlide key={index}>
-                <div className="Team_img d-flex justify-content-center align-items-center rounded-4 member-card overflow-hidden position-relative">
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="position-relative img-fluid w-auto"
-                  />
-                  <div className="position-absolute bottom-0 text-center member_info z-2 rounded-4 w-100 p-2">
-                    <p className="text-white font-size-18 font_weight_700 m-0">
-                      {member.name}
-                    </p>
-                    <p className="text-white font-size-16 font_weight_500 mt-1">
-                      {member.position}
-                    </p>
-                    <div className="d-flex gap-3 justify-content-center mt-1 mb-2">
-                      <a
-                        href={member.instagram}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Instagram profile"
-                      >
-                        <FontAwesomeIcon
-                          icon={faInstagram}
-                          size="lg"
-                          color="white"
-                        />
-                      </a>
-                      <a
-                        href={member.facebook}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Facebook profile"
-                      >
-                        <FontAwesomeIcon
-                          icon={faFacebook}
-                          size="lg"
-                          color="white"
-                        />
-                      </a>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="LinkedIn profile"
-                      >
-                        <FontAwesomeIcon
-                          icon={faLinkedin}
-                          size="lg"
-                          color="white"
-                        />
-                      </a>
+          {isClient && (
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={5}
+              spaceBetween={50}
+              loop={true}
+              freeMode={true}
+              className="mySwiper mt-5 mb-3 px-3 px-lg-0"
+              breakpoints={{
+                320: { slidesPerView: 2, spaceBetween: 30 },
+                576: { slidesPerView: 4, spaceBetween: 15 },
+                768: { slidesPerView: 3, spaceBetween: 20 },
+                992: { slidesPerView: 4, spaceBetween: 25 },
+                1200: { slidesPerView: 5, spaceBetween: 30 },
+              }}
+            >
+              {Team_Data.map((member, index) => (
+                <SwiperSlide key={index}>
+                  <div className="Team_img d-flex justify-content-center align-items-center rounded-4 member-card overflow-hidden position-relative">
+                    <img
+                      src={member.img}
+                      alt={member.name}
+                      className="position-relative img-fluid w-auto"
+                    />
+                    <div className="position-absolute bottom-0 text-center member_info z-2 rounded-4 w-100 p-2">
+                      <p className="text-white font-size-18 font_weight_700 m-0">
+                        {member.name}
+                      </p>
+                      <p className="text-white font-size-16 font_weight_500 mt-1">
+                        {member.position}
+                      </p>
+                      <div className="d-flex gap-3 justify-content-center mt-1 mb-2">
+                        <a
+                          href={member.instagram}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label="Instagram profile"
+                        >
+                          <FontAwesomeIcon
+                            icon={faInstagram}
+                            size="lg"
+                            color="white"
+                          />
+                        </a>
+                        <a
+                          href={member.facebook}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label="Facebook profile"
+                        >
+                          <FontAwesomeIcon
+                            icon={faFacebook}
+                            size="lg"
+                            color="white"
+                          />
+                        </a>
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label="LinkedIn profile"
+                        >
+                          <FontAwesomeIcon
+                            icon={faLinkedin}
+                            size="lg"
+                            color="white"
+                          />
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
 
           {/* Pagination bullets */}
           <div
@@ -347,30 +349,32 @@ function About() {
 
           {/* Mobile View */}
           <div className="d-md-none d-block">
-            <Swiper
-              modules={[Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              loop={true}
-              className="mySwiper office-card animate-from-bottom"
-            >
-              {Office_Data.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div className="office-card animate-from-bottom">
-                    <div className="rounded-4">
-                      <div className="d-flex justify-content-center mt-3 pt-3">
-                        <img
-                          src={item.img}
-                          alt={`img ${index + 1}`}
-                          className="img-fluid pt-lg-5 rounded-5"
-                        />
+            {isClient && (
+              <Swiper
+                modules={[Autoplay]}
+                spaceBetween={30}
+                slidesPerView={1}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                loop={true}
+                className="mySwiper office-card animate-from-bottom"
+              >
+                {Office_Data.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="office-card animate-from-bottom">
+                      <div className="rounded-4">
+                        <div className="d-flex justify-content-center mt-3 pt-3">
+                          <img
+                            src={item.img}
+                            alt={`img ${index + 1}`}
+                            className="img-fluid pt-lg-5 rounded-5"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
           </div>
         </Container>
       </section>

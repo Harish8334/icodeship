@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+* {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+
+
+
+
+/* Loader.css */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #49499d;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.custom-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  left: -250%;
+  width: 100vw;
+  max-width: 1100px;
+  transform: translateY(-10px);
+}
+
+.custom-dropdown.show-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+  .custom-dropdown {
+  max-height: 80vh; /* Ensure there's space to scroll */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* iOS touch scroll support */
+  touch-action: auto; /* Enables scrolling via touch */
+}
+
+
+.focus-ring {
+  border: 3px solid white;
+  box-shadow: 0 0 15px white;
+}
+
+.stack-container {
+  height: 400vh; /* 4 sections * 100vh each */
+}
+.software-wrapper {
+  will-change: transform, opacity;
+  min-height:100vh;
+}
+.active-link {
+ color: #49499d !important;
+  font-weight: bold;
+}
+
+.software-pinned {
+  top: 10%;
+  
+}
+.pin-spacer {
+  width: 100% !important;
+}
+
+
+.text-focus-ring::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: -15%;
+  bottom: 45%;
+  border-radius: 35px;
+  border: 2px solid #504ca0;
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.4);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.contact_input:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* To remove autofill background color in Chrome */
+.contact_input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+/* If there’s a style on valid inputs causing bg color */
+.contact_input:valid {
+  background-color: transparent !important;
+}
+.contact_input::placeholder {
+  padding-bottom: 8px;
+}
+.contact_input {
+  padding: 10px 2px;
+}
+
+.project_card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project_card:hover {
+  transform: scale(1.02);
+
+}
+.project_image {
+  transition: transform 0.3s ease;
+}
+
+/* New desktop overlay */
+.project_overlay_desktop {
+  height: 70%;
+  background: linear-gradient(to top, rgba(0.9, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+
+/* Hide desktop overlay on small screens */
+@media (max-width: 767px) {
+  .project_overlay {
+    display: none !important;
+  }
+  .service-icon{
+    max-width:80px;
+  }
+}
+
+.custom-pagination-dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-pagination-bullet-active.custom-pagination-dot {
+  background-color: #49499d;
+  transform: scale(1.4);
+}
+.custom-toast {
+  background-color: #6c757d; /* Bootstrap's grey (can be replaced with #808080, #999, etc.) */
+  z-index: 9999;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.accordion-button {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem;
+}
+
+.accordion-button p {
+  margin-bottom: 0; 
+}
+
+.accordion-button::after {
+  margin-left: auto; 
+}
+.brand_swiper {
+  opacity: 0.5;
+  filter: grayscale(60%);
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.brand_swiper.active {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.2);
+  z-index: 10;
+}
+.header-nav {
+  visibility: hidden;
+}
+
+.header-nav.hydrated {
+  visibility: visible;
+}
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+

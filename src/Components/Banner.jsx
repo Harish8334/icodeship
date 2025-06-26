@@ -1,5 +1,4 @@
 import { Container } from "react-bootstrap";
-import { Button } from "react-bootstrap";
 import useLetsTalk from "./Contact_page_link";
 
 const Banner = ({ text, image }) => {
@@ -14,12 +13,12 @@ const Banner = ({ text, image }) => {
                 {text}
               </p>
               <div className=" d-flex justify-content-center justify-content-lg-start">
-                <Button
-                  className="px-5 py-2  font-size-25 font_weight_500 blue_gradient rounded-5"
+                <button
+                  className="px-5 py-2 border-0 text-white  font-size-25 font_weight_500 blue_gradient rounded-5"
                   onClick={letsTalk}
                 >
                   Let's Talk
-                </Button>
+                </button>
               </div>
             </div>
           </div>
@@ -27,12 +26,8 @@ const Banner = ({ text, image }) => {
           <div className="col-12 col-lg-5 col-md-12 col-sm-12">
             <div className="d-flex banner_height  ">
               {" "}
-              <img
-                src={image}
-                alt="Banner Visual"
-                className="img-fluid"
-                loading="lazy"
-              />
+              <img src={image} alt="Banner Visual" rel="preload" as="image" height="800" width="800" className="banner_height h-100 w-100 img-fluid"/>
+
             </div>
           </div>
         </div>

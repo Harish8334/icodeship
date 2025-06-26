@@ -3,8 +3,8 @@ import React, { useRef, useEffect } from "react";
 import { Container, Button } from "react-bootstrap";
 import cardData from "../Data/About_Core_Data";
 import useLetsTalk from "../Components/Contact_page_link.jsx";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   useCoreCardAnimations,
 } from "../Animation/animation";

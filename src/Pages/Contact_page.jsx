@@ -206,31 +206,31 @@ function Contact_page() {
                         Follow us on :
                       </p>
                       <div className="d-flex gap-3">
-                        <a href="https://www.facebook.com/icodeship">
+                        <a href="https://www.facebook.com/icodeship" aria-label="Facebook">
                           <img
                             src={Contact_icon1}
-                            alt=""
+                            alt="Facebook"
                             className="img-fluid"
                           />
                         </a>
-                        <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                        <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram">
                           <img
                             src={Contact_icon2}
-                            alt=""
+                            alt="Instagram"
                             className="img-fluid"
                           />
                         </a>
-                        <a href="https://www.linkedin.com/company/icodeship/posts/?feedView=all">
+                        <a href="https://www.linkedin.com/company/icodeship/posts/?feedView=all" aria-label="LinkedIn">
                           <img
                             src={Contact_icon3}
-                            alt=""
+                            alt="LinkedIn"
                             className="img-fluid"
                           />
                         </a>
-                        <a href="#">
+                        <a href="#" aria-label="Other social link">
                           <img
                             src={Contact_icon4}
-                            alt=""
+                            alt="Other social link"
                             className="img-fluid"
                           />
                         </a>
@@ -241,10 +241,11 @@ function Contact_page() {
                     <div className="row">
                       <div className="col-md-6 col-12 mt-2 pe-lg-5 mt-lg-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400">
+                          <label className="font-size-20 font_weight_400" htmlFor="name">
                             Name & Company
                           </label>
                           <Field
+                            id="name"
                             type="text"
                             name="name"
                             className="contact_input border-none mt-4"
@@ -259,10 +260,11 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 mt-2 ps-lg-5 mt-lg-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400 pt-4 pt-md-0">
+                          <label className="font-size-20 font_weight_400 pt-4 pt-md-0" htmlFor="email">
                             Email id
                           </label>
                           <Field
+                            id="email"
                             type="email"
                             name="email"
                             placeholder="Enter your email address"
@@ -277,10 +279,11 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 pe-lg-5 mt-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400">
+                          <label className="font-size-20 font_weight_400" htmlFor="mobile">
                             Mobile Number
                           </label>
                           <Field
+                            id="mobile"
                             type="tel"
                             name="mobile"
                             maxLength="10"
@@ -303,10 +306,11 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 ps-lg-5 mt-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400">
+                          <label className="font-size-20 font_weight_400" htmlFor="subject">
                             Subject
                           </label>
                           <Field
+                            id="subject"
                             type="text"
                             name="subject"
                             className="contact_input mt-4"
@@ -356,11 +360,12 @@ function Contact_page() {
                       className="text-danger px-4 pt-3"
                     />
 
-                    <p className="mt-5 font-size-20 font_weight_400">
+                    <p className="mt-5 font-size-20 font_weight_400" htmlFor="about">
                       Tell us more about your project
                     </p>
                     <div className="">
                       <Field
+                        id="about"
                         type="text"
                         name="about"
                         className="contact_about_more w-100 bg-transparent shadow-none"

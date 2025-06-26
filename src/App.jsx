@@ -116,17 +116,14 @@ const PageWrapper = ({ children }) => {
         smootherRef.current?.scrollTo(0, true);
       }
 
-      ScrollTrigger.refresh();
+      if (typeof window !== 'undefined' && window.ScrollTrigger) {
+        window.ScrollTrigger.refresh();
+      }
       smootherRef.current?.refresh();
     }, 300);
 
     return () => clearTimeout(timeout);
   }, [location, mounted]);
-
-  if (!isBrowser) {
-    // On server: avoid rendering nothing
-    return <div>{children}</div>;
-  }
 
   return (
     <>
@@ -141,6 +138,17 @@ const PageWrapper = ({ children }) => {
 };
 
 function App() {
+  const location = useLocation();
+  const isFirstLoad = useRef(true);
+
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+    } else {
+      window.location.reload();
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <ClientOnlyHeader />

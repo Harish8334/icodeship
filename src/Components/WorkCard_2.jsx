@@ -28,7 +28,7 @@ const WorkCard_2 = ({ index }) => {
 
   return (
     <>
-      <div className="" ref={cardRef}>
+      <div className="col-md-6" ref={cardRef}>
         <img
           ref={imgRef}
           src={data.img}
@@ -39,14 +39,14 @@ const WorkCard_2 = ({ index }) => {
         />
         <div className="ms-4">
           <p
-            className="font-size-40 font_weight_600 d-inline-flex align-items-center gap-2 cursor-pointer"
+            className="font-size-30 font_weight_600 d-inline-flex align-items-center gap-2 cursor-pointer"
             onClick={() => setShowModal(true)}              style={{ cursor: "pointer" }}
           >
             {data.title}
             <ChevronRight size={chevronSize} />
           </p>
-          <p className="font-size-30">{data.description}</p>
-          <div className="d-flex flex-wrap gap-4 font-size-30 font_color_light_grey">
+          <p className="font-size-20 w-75">{data.description}</p>
+          <div className="d-flex flex-wrap gap-4 font-size-18 font_color_light_grey">
             {data.tags.map((tag, i) => (
               <p key={i} className="text-center m-0">
                 {tag}

@@ -4,12 +4,12 @@ import veev from "../assets/images/Home/brands/veev.png";
 import virtual_auditor from "../assets/images/Home/brands/visual_auditor.png";
 import oi_tetra from "../assets/images/Home/brands/oi_tetra.png";
 import firstmed from "../assets/images/Home/brands/firstmed.png";
-import legendary from "../assets/images/Home/brands/legendary.png";
+import legendary from "../assets/images/Home/brands/legendary.webp";
 import fmb from "../assets/images/Home/brands/fmb.png";
 import ymca from "../assets/images/Home/brands/ymca.png";
 import xark from "../assets/images/Home/brands/xark.png";
 import call_back from "../assets/images/Home/brands/call_back.png";
-import xity from "../assets/images/Home/brands/xity.png";
+import xity from "../assets/images/Home/brands/xity.webp";
 import ultimasign from "../assets/images/Home/brands/ultimasign.png";
 import svi from "../assets/images/Home/brands/svi.png";
 import farmbrite from "../assets/images/Home/brands/farmbrite.png";
@@ -18,7 +18,7 @@ import meals_maven from "../assets/images/Home/brands/meals_maven.png";
 import ez_worldship from "../assets/images/Home/brands/ship_ez.png";
 import aayraa from "../assets/images/Home/brands/aayraa.png";
 import edu_home from "../assets/images/Home/brands/edu_home.png";
-import tattoo from "../assets/images/Home/brands/tattoo.png";
+import tattoo from "../assets/images/Home/brands/tattoo.webp";
 
 function Brands() {
   const brandLogos = [

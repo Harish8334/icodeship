@@ -90,3 +90,92 @@
   object-fit: cover;
   will-change: transform, opacity;
 }
+@keyframes waveBounce {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.wave-bounce {
+  animation: waveBounce 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes pulsePop {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.2) rotate(3deg);
+    opacity: 0.9;
+  }
+  60% {
+    transform: scale(0.95) rotate(-3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.pulse-pop {
+  animation: pulsePop 1.8s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes swirlPointOut {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(10deg) scale(1.05) translateX(-2px);
+  }
+  60% {
+    transform: rotate(-10deg) scale(0.98) translateX(2px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1) translateX(0);
+  }
+}
+
+.swirl-point-out {
+  animation: swirlPointOut 2.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (max-width:576px){
+  .contact_underline{
+  width:150px !important;
+}
+}
+@media (max-width:1024px){
+  .contact_underline{
+  width:200px;
+}
+}
+@media (max-width:1200px){
+  .contact_underline{
+  width:250px;
+}
+}
+#smooth-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+#smooth-content {
+  will-change: transform;
+}
+

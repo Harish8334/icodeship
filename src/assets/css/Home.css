@@ -1,0 +1,302 @@
+
+.banner_height {
+  max-height: 600px;
+  max-width: 800px;
+}
+
+
+/* Brands */
+.brand-track {
+  width: max-content;
+  animation: scroll-left 60s linear infinite;
+}
+
+.brand_swiper.active {
+  filter: grayscale(0%);
+  transform: scale(1.2);
+}
+
+.brand_swiper {
+  height: 150px;
+  filter: grayscale(100%);
+  transition: filter 0.1s ease, transform 0.1s ease;
+}
+
+/* Brand Animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.Frequent_ask_height {
+  height: 50px;
+}
+.things_card{
+  min-height: 380px;
+}
+@media (max-width: 1440px) {
+  .things_card {
+    min-height: 410px !important;
+  }
+}
+
+/* Large laptops (1280px - 1440px) */
+@media (max-width: 1280px) {
+  .things_card {
+    min-height: 390px !important;
+  }
+}
+
+/* Medium screens (Laptops/Tablets landscape) */
+@media (max-width: 1024px) {
+  .things_card {
+    min-height: 320px !important;
+  }
+}
+
+/* Tablets portrait / large phones landscape */
+@media (max-width: 768px) {
+  .things_card {
+    min-height: 300px !important;
+  }
+}
+
+
+
+/* @media (max-width: 1124px) {
+  .things_card {
+    height: auto !important;       
+    min-width: 320px !important;
+
+    
+  }
+} */
+
+/* things u can do section */
+.things_card :hover {
+  background-color: #49499d;
+  color: white;
+  border-radius: 5%;
+}
+.things_icon {
+  opacity: 1;
+  z-index: 1;
+}
+.things_hover_icon {
+  opacity: 0;
+  z-index: 2;
+}
+.things_card:hover .things_hover_icon {
+  opacity: 1;
+}
+.card-hover-rotate {
+  transition: transform 0.5s ease;
+}
+
+.card-hover-rotate:hover {
+  transform: rotate(-3deg);
+}
+
+/* Contact */
+.contact_input {
+  border: none;
+  border-bottom: 1px solid black !important;
+}
+.contact_about_more {
+ 
+  border: none;
+  border-bottom: 1px solid black;
+}
+.contact_input,
+.contact_about_more:focus {
+  outline: none;
+}
+.contact_button {
+  width: 210px !important;
+}
+/* service */
+.service_text {
+  width: 662px;
+}
+
+.services_card_text {
+  width: 716px;
+}
+
+.service_gap {
+  gap: 90px;
+}
+
+/* Footer */
+.footer_support {
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+.footer_links {
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 10px;
+}
+
+/* Software section */
+
+.icon_background_line {
+  height: 4vh;
+}
+/* tech stack */
+.tech_box {
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+}
+.tech_text {
+  max-width: 750px;
+}
+.tech_middle_layer {
+  max-width: 1050px;
+}
+
+/* Project */
+
+.project_text {
+  left: -4%;
+  bottom: -4%;
+}
+.services_card{
+  height:550px
+}
+
+@media (max-width: 576px) {
+  .tech_box {
+    max-height: 38px;
+    max-width: 38px;
+    border-radius: 8px;
+  }
+  .service_text {
+    max-width: 370px;
+  }
+  .services_card_text {
+    max-width: 316px;
+  }
+  .icon_background_line {
+    height: 2vh;
+  }
+  .things_card{
+  height:300px;
+}
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .tech_box {
+    max-height: 48px;
+    max-width: 48px;
+    border-radius: 10px;
+  }
+  .tech_middle_layer {
+    width: 100%;
+    max-width: 650px;
+  }
+  .project_text {
+    left: -3%;
+  }
+  .Banner_img {
+    max-width: 500px;
+  }
+  .services_card_text {
+    max-width: 416px;
+  }
+  .icon_background_line {
+    height: 2vh;
+  }
+  .software_img {
+    height: 350px;
+  }
+
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1400px) {
+  .logo_img {
+    max-width: 200px;
+  }
+  .tech_box {
+    height: 80px;
+    width: 80px;
+  }
+  .icon_background_line {
+    height: 2vh;
+  }
+
+  .tech_middle_layer {
+    width: 100%;
+    max-width: 900px;
+  }
+  .project_text {
+    left: 2%;
+    bottom: -5%;
+  }
+  .Banner_img {
+    max-width: 700px;
+  }
+  
+  .services_card_text {
+    max-width: 516px;
+  }
+  .software_img {
+    height: 350px;
+  }
+    .things_card{
+    height:310px
+  }
+
+}
+
+/* Software button selected state */
+.software-button.selected {
+  background-color: #504ca0;
+  color: white;
+  border: 2px solid #fff;
+}
+
+
+
+
+
+.software-button {
+  background-color: #1e1e1e;
+  border: 1px solid #504ca0;
+  transition: 0.3s ease;
+}
+
+.software-button.selected,
+.software-button:hover {
+  background-color: #504ca0;
+  border-color: #6b67d0;
+}
+
+
+
+/* For WebKit browsers (Chrome, Safari) */
+.stack-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.stack-container {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* For Edge and IE (legacy) */
+.stack-container {
+  -ms-overflow-style: none;
+}
+
+
+.section1 {
+  z-index: 1;
+}
+

@@ -84,13 +84,13 @@ const handleChange = (direction) => {
                     {testimonial.title}
                   </p>
                 </div>
-                <div className="col-3 d-flex align-items-center">
+                {/* <div className="col-3 d-flex align-items-center">
                   <img
                     src={testimonial.logo}
                     alt="logo"
                     className="img-fluid"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
              {/* Navigation Buttons */}

@@ -2,7 +2,7 @@ import Member_1 from "../assets/images/About/about_member1.png"
 import Member_2 from "../assets/images/About/about_member1.png"
 import Member_3 from "../assets/images/About/about_member1.png"
 import Member_4 from "../assets/images/About/about_member1.png"
-import Member_5 from "../assets/images/About/about_member1.png"
+import Member_5 from "../assets/images/About/about_member2.png"
 import Member_6 from "../assets/images/About/about_member2.png"
 const team_data = [
   {
@@ -32,7 +32,7 @@ const team_data = [
    {
     name: "Anjali Rao",
     position: "COO",
-    img: Member_6,
+    img: Member_5,
     instagram: "https://www.instagram.com/icodeship/",
     facebook: "",
     linkedin: ""
@@ -48,7 +48,7 @@ const team_data = [
   {
     name: "Naveen Kumar",
     position: "UI/UX Developer",
-    img: Member_5,
+    img: Member_1,
     instagram: "https://www.instagram.com/icodeship/",
     facebook: "https://www.facebook.com/icodeship",
     linkedin: "https://www.linkedin.com/in/naveen-kumar-4u/"

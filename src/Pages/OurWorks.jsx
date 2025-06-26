@@ -40,7 +40,7 @@ function OurWorks() {
 
   // Calculate indices for WorkCard_1 and WorkCard_2
   const workCard1Indices = Array.from({ length: Math.ceil(Workdata_1.length / 2) * 2 }, (_, i) => i);
-  const workCard2Indices = Array.from({ length: Workdata_2.length }, (_, i) => i);
+  // const workCard2Indices = Array.from({ length: Workdata_2.length }, (_, i) => i);
 
   return (
     <div>
@@ -54,13 +54,11 @@ function OurWorks() {
       {/* works */}
       <section>
         <Container className="my_container">
-          <div className="row">
+          <div className="row justify-content-around">
             {workCard1Indices.map((_, i) => (
-              i % 3 === 2 ? (
-                <WorkCard_2 key={`card2-${Math.floor(i / 3)}`} index={Math.floor(i / 3)} />
-              ) : (
+              
                 <WorkCard_1 key={`card1-${i}`} index={i} />
-              )
+              
             ))}
           </div>
         </Container>
