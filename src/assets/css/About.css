@@ -15,7 +15,7 @@
   box-shadow: none !important;
 }
 .core_card{
-  height:350px;
+  min-height:350px;
 }
 
 .accordion-button:not(.collapsed) {
@@ -118,6 +118,41 @@
   }
 }
 
+/* Responsive adjustments for core_card and Swiper pagination */
+@media (max-width: 991.98px) {
+  .core_card {
+    min-height: 250px;
+    margin-bottom: 2rem;
+  }
+  .custom-swiper-pagination {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 24px;
+    z-index: 10;
+    position: relative;
+  }
+  .custom-swiper-pagination .swiper-pagination-bullet {
+    background: #007bff;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+  .custom-swiper-pagination .swiper-pagination-bullet-active {
+    background: #0056b3;
+  }
+}
+
+@media (min-width: 992px) {
+  .core_card {
+    min-height: 350px;
+  }
+}
 
 .services_row > .gsap-pin-spacer {
   width: auto !important; /* Override the global width:100% */

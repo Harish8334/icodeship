@@ -40,7 +40,7 @@ import Office_Data from "../Data/Office_data.jsx";
 import Why_us from "../assets/images/About/about_why_us.png";
 
 // CSS imports
-import "../Pages/About.css";
+import "../assets/css/About.css";
 
 // Custom Hooks and Animation Utilities
 import useLetsTalk from "../Components/Contact_page_link.jsx";
@@ -102,7 +102,7 @@ function About() {
       <Banner text={text} image={image} />
       <Brands />
       {/* Core value section */}
-      <section className="my_container d-lg-none d-block">
+      <section className="my_container d-lg-none d-block pb-5">
         <div className="row">
           <div className="col-12 col-md-6 col-sm-12 col-lg-4 col-xl-6">
             <p className="font-size-54 font_weight_600 mx-3 mx-lg-0 mx-xl-0 mt-5">
@@ -135,7 +135,7 @@ function About() {
                   renderBullet: (index, className) =>
                     `<span class="${className} custom-pagination-dot"></span>`,
                 }}
-                className="custom-swiper pb-5 mb-5"
+                className="custom-swiper"
               >
                 {cardData.map((item, index) => (
                   <SwiperSlide key={index}>
@@ -191,12 +191,12 @@ function About() {
               <div className="row g-2">
                 {Why_Us_Data.map((item, index) => (
                   <div className="col-12 col-sm-6 px-3 py-2" key={item.id}>
-                    <div className="card p-0 border_shadow rounded-4">
-                      <div className="d-flex gap-3  g-lg-5 g-md-5 g-sm-5">
-                        <img src={item.img} alt="" className=" " />
-                        <div className="d-flex flex-column justify-content-center">
+                    <div className="card border_shadow rounded-4 w-100 h-100">
+                      <div className="d-flex gap-3 align-items-center">
+                        <img src={item.img} alt="" className="img-fluid" style={{maxWidth: 60, height: 'auto'}} />
+                        <div className="d-flex flex-column justify-content-center flex-grow-1">
                           <p
-                            className="font-size-46 font_weight_700 pt-2 m-0"
+                            className="font-size-46 font_weight_700 pt-2 m-0 text-break"
                             data-count={item.count}
                             data-symbol={item.symbol || ""}
                             ref={(el) => {
@@ -205,7 +205,7 @@ function About() {
                           >
                             0 {item.symbol}
                           </p>
-                          <p className="font_weight_500 font-size-16 p-0">
+                          <p className="font_weight_500 font-size-16 p-0 text-break">
                             {item.title}
                           </p>
                         </div>
