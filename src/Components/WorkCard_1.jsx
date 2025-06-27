@@ -18,13 +18,13 @@ const WorkCard_1 = ({ index }) => {
   }, []);
 
   // Set a fixed chevron size
-  const chevronSize = 30;
+  // const chevronSize = 30;
 
   if (!data) return null;
 
   return (
     <>
-      <div ref={cardRef} className="col-md-5 mt-lg-5 mt-5">
+      <div ref={cardRef} className="col-md-6 mt-lg-5 mt-5">
         <div className={`rounded-4 ${index % 2 !== 0 ? "Work_Card" : ""}`}>
           <div
             className="d-flex mt-lg-2 pt-lg-3"
@@ -44,7 +44,7 @@ const WorkCard_1 = ({ index }) => {
               style={{ cursor: "pointer" }}
             >
               {data.title}
-              <ChevronRight size={chevronSize} />
+              {/* <ChevronRight size={chevronSize} /> */}
             </p>
             <p className="font-size-20 w-75">{data.description}</p>
             <div className="d-flex gap-4 font-size-18 text-nowrap font_color_light_grey">
