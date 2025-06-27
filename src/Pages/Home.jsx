@@ -452,7 +452,7 @@ function Home() {
         {/* Service section */}
         <Home_service />
         <div className="bg-black">
-          <div className="stack-container  position-relative overflow-x-hidden">
+          <div className="stack-container   position-relative overflow-x-hidden">
             {/* Sofware section */}
             <div className="section1 position-relative">
               <section
@@ -460,7 +460,7 @@ function Home() {
                 ref={sectionRef}
               >
                 <div className="software-pinned d-flex justify-content-center align-items-center w-100 h-100">
-                  <Container className="my_container d-flex justify-content-center align-items-center">
+                  <Container className="my_container mt-5 d-flex justify-content-center align-items-center">
                     <div className="row">
                       <div className="col-lg-3 col-xl-2 col-md-4 d-flex flex-wrap flex-md-column text-white pb-5 pb-md-0">
                         <div className="mt-5 mt-md-0 pt-lg-0 pt-3">
