@@ -20,7 +20,7 @@ import gsap from "gsap";
 import ScrollSmoother from "gsap/ScrollSmoother";
 
 // components
-import Footer from "../Components/Footer.jsx";
+// import Footer from "../Components/Footer.jsx";
 import Brands from "../Components/Brands.jsx";
 import Banner from "../Components/Banner.jsx";
 import Frequent_Ask from "../Components/Frequent_Ask.jsx";
@@ -480,7 +480,7 @@ function Contact_page() {
         </Container>
       </section>
       <Frequent_Ask />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Purchase_button from "../assets/images/purchase_arrow.png";
 import { BallSplash } from "../Animation/animation";
 import { ToastContainer, toast } from "react-toastify";
@@ -247,7 +247,7 @@ const PurchaseContactForm = () => {
         </Container>
       </div>
       <ToastContainer />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

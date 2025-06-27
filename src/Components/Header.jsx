@@ -33,7 +33,7 @@ export default function Header({}) {
   const handleClose = () => setShow(false);
 
   const handleShowCapabilities = () => {
-    setShow(false); // Close main menu
+    // setShow(false); // Close main menu
     setShowCapabilities(true); // Open capabilities menu
   };
 
@@ -74,7 +74,8 @@ export default function Header({}) {
   };
 
   return (
-    <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3">
+    <section>
+    <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3" style={{maxWidth:"100vw",width:"100%"}}>
       <Navbar expand="lg" className="p-0">
         <Container fluid className="bg-white pt-4 pb-3">
           {/* Mobile View Header */}
@@ -85,7 +86,7 @@ export default function Header({}) {
             >
               <HiMenu size={28} color="white" />
             </Button>
-            <div className="d-flex">
+            <div className="d-flex justify-content-center">
               <Nav.Link
                 as={Link}
                 to="/"
@@ -95,7 +96,7 @@ export default function Header({}) {
                   }
                 }}
               >
-                <img src={logo} alt="Codeship Home" className="logo_img img-fluid" />
+                <img src={logo} alt="Codeship Home" className="logo_img img-fluid" style={{maxWidth:"200px",width:"100%"}}/>
               </Nav.Link>
             </div>
             <Button
@@ -261,6 +262,8 @@ export default function Header({}) {
               </Offcanvas.Header>
             </div>
             <Offcanvas.Body>
+            {!showCapabilities&&(
+
               <Nav className="flex-column gap-4 ms-5 pt-5 font-size-50">
                 <Nav.Link as={Link} to="/" onClick={handleClose}>
                   Home
@@ -291,110 +294,76 @@ export default function Header({}) {
                 <Nav.Link as={Link} to="/contact" onClick={handleClose}>
                   Contact
                 </Nav.Link>
-              </Nav>
+              </Nav>)}
               
+              {showCapabilities&&(
+                <>
+                <button
+                type="button"
+                className="btn btn-link pt-5 text-dark d-flex align-items-center gap-2 text-decoration-none"
+                onClick={handleBackToMain}
+              >
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  className="font-size-28"
+                />
+                <span className="font-size-28 text-dec">Back</span>
+              </button>
+                 <div className="px-3 pt-4">
+                 
+                 {uniqueServices.map((service, idx) => (
+                   <div key={idx} className="mb-4 border-bottom pb-4">
+                     <button
+                       className="btn w-100 d-flex justify-content-between align-items-center text-start p-0 border-0 bg-transparent"
+                       onClick={() => toggleServiceDropdown(idx)}
+                     >
+                       <h5 className="mb-0 font-size-28 fw-semibold ">
+                         {service.title}
+                       </h5>
+                       <FontAwesomeIcon
+                         icon={
+                           openServiceIndex === idx ? faChevronUp : faChevronDown
+                         }
+                         className="font-size-24 text-muted"
+                       />
+                     </button>
+ 
+                     {openServiceIndex === idx && (
+                       <div className="mt-3 ps-2">
+                         {service.points.map((point, i) => (
+                           <Nav.Link
+                             key={i}
+                             as={Link}
+                             to={`/capable_service/${point.href}`}
+                             onClick={handleCloseCapabilities}
+                             className="d-block py-2 px-3 mb-2 font-size-24 text-dark bg-light rounded-3 text-decoration-none "
+                             onMouseEnter={(e) => {
+                               e.target.style.borderLeftColor = "#007bff";
+                               e.target.style.backgroundColor = "#f8f9fa";
+                             }}
+                             onMouseLeave={(e) => {
+                               e.target.style.borderLeftColor = "transparent";
+                               e.target.style.backgroundColor = "#f8f9fa";
+                             }}
+                           >
+                             {point.text}
+                           </Nav.Link>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+                 ))}
+                
+               </div>
+               </>)}
             </Offcanvas.Body>
           </Offcanvas>
 
           {/* Capabilities Offcanvas */}
-          <Offcanvas
-            show={showCapabilities}
-            onHide={handleCloseCapabilities}
-            placement="start"
-            className="offcanvas-fullscreen offcanvas-bounce"
-          >
-            <div className="d-flex gap-3">
-              <Offcanvas.Header closeButton={false} className="p-0">
-                <div className="d-flex gap-4 w-100">
-                  {/* Top row with close button */}
-                  <div className="mt-5 pt-3 ms-3">
-                    <button
-                      type="button"
-                      className="btn-close font-size-65 font_weight_700 outline-none "
-                      onClick={handleCloseCapabilities}
-                      aria-label="Close"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2.5l11 11M13.5 2.5l-11 11' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E")`,
-                        opacity: 1,
-                        width: "0.7em",
-                        height: "0.7em",
-                        outline: "none",
-                        boxShadow: "none",
-                      }}
-                    />
-                  </div>
-
-                  {/* Center logo and title */}
-                  <div className="d-flex flex-column align-items-center mt-5">
-                   
-                      <img src={logo} alt="Codeship Home" className="logo_img" />
-
-                  </div>
-                </div>
-              </Offcanvas.Header>
-            </div>
-            <p className="mb-0 font-size-80 ms-4 mt-5">Capabilities Services</p>
-             <button
-                  type="button"
-                  className="btn btn-link pt-5 ms-3 text-dark d-flex align-items-center gap-2 text-decoration-none"
-                  onClick={handleBackToMain}
-                >
-                  <FontAwesomeIcon
-                    icon={faArrowLeft}
-                    className="font-size-28"
-                  />
-                  <span className="font-size-28 text-dec">Back</span>
-                </button>
-            <Offcanvas.Body className="pt-4">
-              <div className="px-3 pt-4">
-                {uniqueServices.map((service, idx) => (
-                  <div key={idx} className="mb-4 border-bottom pb-4">
-                    <button
-                      className="btn w-100 d-flex justify-content-between align-items-center text-start p-0 border-0 bg-transparent"
-                      onClick={() => toggleServiceDropdown(idx)}
-                    >
-                      <h5 className="mb-0 font-size-28 fw-semibold ">
-                        {service.title}
-                      </h5>
-                      <FontAwesomeIcon
-                        icon={
-                          openServiceIndex === idx ? faChevronUp : faChevronDown
-                        }
-                        className="font-size-24 text-muted"
-                      />
-                    </button>
-
-                    {openServiceIndex === idx && (
-                      <div className="mt-3 ps-2">
-                        {service.points.map((point, i) => (
-                          <Nav.Link
-                            key={i}
-                            as={Link}
-                            to={`/capable_service/${point.href}`}
-                            onClick={handleCloseCapabilities}
-                            className="d-block py-2 px-3 mb-2 font-size-24 text-dark bg-light rounded-3 text-decoration-none "
-                            onMouseEnter={(e) => {
-                              e.target.style.borderLeftColor = "#007bff";
-                              e.target.style.backgroundColor = "#f8f9fa";
-                            }}
-                            onMouseLeave={(e) => {
-                              e.target.style.borderLeftColor = "transparent";
-                              e.target.style.backgroundColor = "#f8f9fa";
-                            }}
-                          >
-                            {point.text}
-                          </Nav.Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-               
-              </div>
-            </Offcanvas.Body>
-          </Offcanvas>
+          
         </Container>
       </Navbar>
     </header>
+    </section>
   );
 }

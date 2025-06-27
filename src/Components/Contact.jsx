@@ -9,7 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { submitContactForm } from "../Service_Data/API.jsx";
 import { BallSplash } from "../Animation/animation";
-import Footer from "./Footer.jsx";
+// import Footer from "./Footer.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -289,7 +289,7 @@ function Contact() {
           <ToastContainer />
         </Container>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

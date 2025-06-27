@@ -25,7 +25,7 @@ import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
 import Refund from "./Pages/Refund";
 import ScrollToTopButton from './Components/ScrollToTopButton.jsx';
-
+import Footer from "./Components/Footer.jsx"
 const isBrowser = typeof window !== "undefined";
 
 const ClientOnlyHeader = () => {
@@ -168,6 +168,8 @@ function App() {
           <Route path="/refund" element={<Refund />} />
           <Route path="/terms" element={<Terms />} />
         </Routes>
+        <Footer/>
+
       </PageWrapper>
     </>
   );
