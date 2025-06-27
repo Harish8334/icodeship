@@ -405,7 +405,7 @@ function Home() {
                         renderBullet: (index, className) =>
                           `<span class="${className} custom-pagination-dot"></span>`,
                       }}
-                      className="custom-swiper p-0"
+                      className="custom-swiper pb-md-5"
                     >
                       {Things_Data.map((item, index) => (
                         <SwiperSlide key={index}>

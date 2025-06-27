@@ -220,12 +220,12 @@ function Contact() {
                     <div className="row g-3">
                       {services.map((interest, index) => (
                         <div
-                          key={interest}
-                          className="col-6 col-md-3 mt-md-4 d-flex justify-content-center"
+                          key={index}
+                          className="col-6 col-xl-3 mt-md-4 d-flex justify-content-center"
                         >
                           <button
                             type="button"
-                            className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
+                            className={`btn btn-outline-dark w-100 text-nowrap  py-3 font-size-12 font_weight_400 rounded-pill border-black ${
                               values.interests.includes(interest)
                                 ? "active"
                                 : ""
