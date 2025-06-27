@@ -41,7 +41,7 @@ function Home_service() {
                 key={index}
                 className="d-flex flex-column justify-content-evenly border border_shadow rounded-5 mb-4 me-5 service_card"
               >
-                <div className="d-flex flex-column gap-3 justify-content-between p-4 pt-4 ms-4">
+                <div className="d-flex flex-column gap-3 justify-content-between p-md-4 p-2 pt-4 ms-4">
                   <div className="ms-0">
                     <div className="d-flex flex-column">
                       <div className="icon-container pe-5">
@@ -51,7 +51,7 @@ function Home_service() {
                           className="pt-2 pb-3 service-icon"
                         />
                       </div>
-                      <p className="things_head font-size-58 font_weight_500 ps-0 pt-2 pb-3">
+                      <p className="things_head font-size-58 font_weight_500 ps-0 pt-2 mb-0 pb-2">
                         {service.title}
                       </p>
                     </div>
