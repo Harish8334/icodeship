@@ -1,7 +1,7 @@
 // React and React-related imports
-import  { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 // React Bootstrap components
 import { Container } from "react-bootstrap";
@@ -11,11 +11,11 @@ import { Button } from "react-bootstrap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //  Components
-import Footer from "../Components/Footer";
+// import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import WorkTogther from "../Components/WorkTogther";
 import Brands from "../Components/Brands";
-import MetaTags from '../Components/MetaTags';
+import MetaTags from "../Components/MetaTags";
 
 // Data
 import Banner_Data from "../Data/Banner_Data";
@@ -31,11 +31,11 @@ import Solution_workflow4 from "../assets/images/Solutions/solution_workflow4.pn
 import Solution_workflow5 from "../assets/images/Solutions/solution_workflow5.png";
 import Solution_workflow6 from "../assets/images/Solutions/solution_workflow6.png";
 import Solution_workflow7 from "../assets/images/Solutions/solution_workflow7.png";
-import ScrollStackCards from "../Components/ScrollStackCards"
+import ScrollStackCards from "../Components/ScrollStackCards";
 
 // CSS
-import "../Pages/Solution.css";
-import "../Pages/Home.css";
+import "../assets/css/Solution.css";
+import "../assets/css/Home.css";
 
 // Custom Animation Utilities
 import {
@@ -44,36 +44,36 @@ import {
   useImageRevealAnimation,
 } from "../Animation/animation";
 
-
-
 function Solution() {
   const { text, image } = Banner_Data.solutions;
   const imgRef = useRef(null);
-  const navigate = useNavigate();
   const containerRef = useRef(null);
+  const greyRef = useRef(null);
+  const colorRef = useRef(null);
   const sectionRef = useRef(null);
-  const greyImgRef = useRef(null);
-  const colorImgRef = useRef(null);
 
   // Prepare meta content with dynamic data
-  const solutionKeywords = Solution_Data?.map(item => item?.title).filter(Boolean) || [];
+  const solutionKeywords =
+    Solution_Data?.map((item) => item?.title).filter(Boolean) || [];
   const metaContent = {
-    title: 'Solutions',
-    description: 'Discover Codeship\'s innovative digital solutions designed to transform your business. From custom software development to enterprise solutions, we deliver technology that drives growth and success.',
+    title: "Solutions",
+    description:
+      "Discover Codeship's innovative digital solutions designed to transform your business. From custom software development to enterprise solutions, we deliver technology that drives growth and success.",
     keywords: [
       ...solutionKeywords,
-      'digital solutions',
-      'enterprise solutions',
-      'custom software',
-      'business transformation',
-      'technology solutions',
-      'digital transformation',
-      'IT consulting'
+      "digital solutions",
+      "enterprise solutions",
+      "custom software",
+      "business transformation",
+      "technology solutions",
+      "digital transformation",
+      "IT consulting",
     ],
-    ogImage: image
+    ogImage: image,
   };
 
-  useAnimateCardsOnScroll(containerRef);
+  useImageRevealAnimation(greyRef, colorRef, sectionRef);
+
   useEffect(() => {
     if (imgRef.current) {
       animateWorkCard(imgRef.current);
@@ -82,31 +82,30 @@ function Solution() {
     if (!containerRef.current) return;
 
     return () => {
-      // Clean up all ScrollTriggers when component unmounts
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
-  useImageRevealAnimation(greyImgRef, colorImgRef, sectionRef);
-    
+  useAnimateCardsOnScroll(containerRef);
 
   return (
     <div>
       <MetaTags {...metaContent} />
       <Helmet>
         <title>Solutions - Codeship</title>
-        <meta name="description" content="Discover Codeship's range of digital solutions designed to solve business challenges and drive growth." />
+        <meta
+          name="description"
+          content="Discover Codeship's range of digital solutions designed to solve business challenges and drive growth."
+        />
       </Helmet>
       <Banner text={text} image={image} />
       <Brands />
-         
-     
 
       {/* What we do section with margin-top to prevent visual overlap */}
       <section
         className="d-flex justify-content-center align-items-center w-100 h-auto what_we_do_container rounded-5 mt-5 py-4"
         ref={imgRef}
-       // Reserve viewport height so no overlap
+        // Reserve viewport height so no overlap
       >
         <Container className="my_container">
           <div className="row">
@@ -138,16 +137,24 @@ function Solution() {
             </div>
           </div>
         </Container>
-        
       </section>
-       <section className="d-none d-md-block"
-        style={{ position: "relative" ,marginBottom:"70vh" }}
-      >
- <ScrollStackCards />
-       
+
+      <section className="d-block">
+        <ScrollStackCards />
+
+        {/* Dynamic Spacer for Scroll Unlocking */}
+        <section
+          style={{
+            height:
+              window.innerWidth < 768
+                ? `${Solution_Data.length * 15}vh`
+                : `${Solution_Data.length * 19}vh`,
+          }}
+        ></section>
       </section>
+
       {/* Smart solution */}
-      <div id="smooth-wrapper ">
+      {/* <div id="smooth-wrapper ">
         <div id="smooth-content">
           <section className="d-block d-md-none">
             <Container ref={containerRef} className="my_container mt-5">
@@ -203,7 +210,7 @@ function Solution() {
             </Container>
           </section>
         </div>
-      </div>
+      </div> */}
       {/* Map */}
       <section ref={sectionRef} className="py-lg-5">
         <Container className="my_container py-lg-5 pb-5 pb-md-0">
@@ -216,13 +223,13 @@ function Solution() {
           <div className="map-wrapper">
             <img src={Map} alt="layout placeholder" className="placeholder" />
             <img
-              ref={greyImgRef}
+              ref={greyRef}
               src={Map}
               alt="Map Grey"
               className="map-img grayscale"
             />
             <img
-              ref={colorImgRef}
+              ref={colorRef}
               src={Map}
               alt="Map Color"
               className="map-img colored"
@@ -296,7 +303,7 @@ function Solution() {
         </Container>
       </section>
       <WorkTogther />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

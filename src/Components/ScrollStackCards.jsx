@@ -1,18 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Solution_Data from "../Data/Solution_Data";
-import { Container, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollLockedCardStack = () => {
   const containerRef = useRef(null);
-  const navigate = useNavigate();
+  const [isReady, setIsReady] = useState(false);
 
-  // Your existing useEffect - kept exactly as is
   useEffect(() => {
-    const cards = containerRef.current.querySelectorAll(".solution_desk_radius");
+    const cards = containerRef.current.querySelectorAll(
+      ".solution_desk_radius"
+    );
 
     gsap.set(cards, {
       position: "absolute",
@@ -50,22 +51,20 @@ const ScrollLockedCardStack = () => {
       ).set(card, { zIndex: cards.length + i }, i);
     });
 
+    // Ensure layout is fully painted before showing
+    requestAnimationFrame(() => {
+      setIsReady(true);
+      ScrollTrigger.refresh();
+    });
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
-  // NEW useEffect to refresh ScrollTrigger after a slight delay on mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100); // 100ms delay; tweak if needed
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section
+      className="m-3  "
       style={{
         position: "relative",
         height: `${Solution_Data.length * 100}vh`,
@@ -75,16 +74,23 @@ const ScrollLockedCardStack = () => {
         Smart Solutions For Your Business
         <br className="d-none d-lg-block" /> By Codeship.
       </p>
+
       <Container
         ref={containerRef}
-        className="my_container "
-        style={{ position: "relative", height: "100vh" }}
+        className="my_container"
+        style={{
+          position: "relative",
+          height: "100vh",
+          visibility: isReady ? "visible" : "hidden",
+          opacity: isReady ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }}
       >
         <div>
           {Solution_Data.map((item, index) => (
             <div
               key={index}
-              className="row solution_desk_radius pt-xl-4 pb-xl-5 px-lg-5 px-3 mx-2 mx-lg-0 mt-5"
+              className="row solution_desk_radius rounded-5 p-lg-3 px-2 ms-0  mx-lg-0 mt-5"
               style={{
                 backgroundColor: item.bgColor,
                 position: "absolute",
@@ -94,49 +100,65 @@ const ScrollLockedCardStack = () => {
                 transform: "translateY(-115%)",
               }}
             >
-              <div className="col-lg-7  d-flex flex-column justify-content-around pb-lg-5 pb-5">
-                <div className="d-flex flex-column gap-2 pb-4 mt-3 mt-md-5">
-                  <p className="font-size-24 font_weight_300 pt-4 pt-lg-0">
+              <div className="col-12 col-lg-7 d-flex flex-column justify-content-center  pb-lg-5 ">
+                <div className="d-flex flex-column gap-2 pb-md-4 mt-3 mt-md-5">
+                  <p className="font-size-24 font_weight_300 p-0 m-0 ">
                     {item.heading}
                   </p>
-                  <p className="font-size-30 font_weight_600">{item.title}</p>
+                  <p className="font-size-30 font_weight_600 p-0 m-0">
+                    {item.title}
+                  </p>
                 </div>
                 <div>
-                  <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text">
+                  <p className="font-size-20 font_weight_300 line_height_30 text-justify solution_desk_text p-0 m-0">
                     {item.description}
                   </p>
-                  <div className=" d-none d-xl-flex gap-4   pt-3">
-                    <Button className="px-lg-4 py-2 font-size-18 font_weight_600 blue_gradient rounded-pill">
+                  <div className="d-none d-xl-flex gap-4 pt-3">
+                    <a
+                      href="/live-demo"
+                      className="btn px-lg-4 py-2  text-white border-0 font-size-18 font_weight_600 blue_gradient rounded-pill"
+                    >
                       View Live Demo
-                    </Button>
-                    <Button
-                      variant="outline-dark"
-                      className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
-                      onClick={() => navigate("/purchase-contact")}
+                    </a>
+                    <a
+                      href="/purchaseform"
+                      className="btn btn-outline-dark px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
                     >
                       Purchase Product
-                    </Button>
+                    </a>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-5 pb-5 d-flex flex-column  justify-content-center align-items-center  ">
-                <div className="  ">
+              <div className="col-12 col-lg-5 pb-md-0   d-flex flex-wrap  flex-row flex-md-column   gap-md-4 gap-0 justify-content-center align-items-lg-center">
+                <div className="d-flex justify-content-center d-lg-none">
                   <img
                     src={item.image}
                     alt={item.heading}
-                    className="img-fluid ms-xl-5 mx-md-5 pt-lg-5 solution_lap px-3"
+                    className="img-fluid solution_system_img  "
                   />
-                  <div className="d-flex  d-lg-flex d-xl-none  justify-content-center gap-4 pt-5">
-                    <Button className="px-lg-4 py-2  font-size-18 font_weight_600 blue_gradient rounded-pill">
+                </div>
+                <img
+                  src={item.image}
+                  alt={item.heading}
+                  className="img-fluid solution_system_img  d-none d-lg-block  "
+                />
+
+                <div className="d-flex  flex-column mt-2 flex-md-row justify-content-md-center  align-items-center d-xl-none gap-md-4 gap-2  w-100">
+                  <div className="">
+                    <a
+                      href="/live-demo"
+                      className="btn w-100 solution-button py-2 px-4 text-white border-0 font-size-16 font_weight_600 blue_gradient rounded-pill"
+                    >
                       View Live Demo
-                    </Button>
-                    <Button
-                      variant="outline-dark"
-                      className="px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
-                      onClick={() => navigate("/purchase-contact")}
+                    </a>
+                  </div>
+                  <div className="">
+                    <a
+                      href="/purchaseform"
+                      className="btn w-100 btn-outline-dark px-lg-4 px-3 py-2 font-size-16 font_weight_600 rounded-pill"
                     >
                       Purchase Product
-                    </Button>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -44,6 +44,14 @@
   }
 }
 
+@media (max-width: 575.98px) {
+  .p-sm-30 {
+    margin-top: 100px !important;
+  }
+}
+
+
+
 /* Large laptops (1280px - 1440px) */
 @media (max-width: 1280px) {
   .things_card {
@@ -54,7 +62,7 @@
 /* Medium screens (Laptops/Tablets landscape) */
 @media (max-width: 1024px) {
   .things_card {
-    min-height: 320px !important;
+    min-height: 345px !important;
   }
 }
 
@@ -67,14 +75,7 @@
 
 
 
-/* @media (max-width: 1124px) {
-  .things_card {
-    height: auto !important;       
-    min-width: 320px !important;
 
-    
-  }
-} */
 
 /* things u can do section */
 .things_card :hover {

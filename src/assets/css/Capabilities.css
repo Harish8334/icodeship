@@ -28,9 +28,39 @@
   top: 70%;
 }
 
+/* Tablet and smaller */
+@media (max-width: 1024px) {
+  .capable_service_dev_card_left2 {
+    left: 5%;
+    top: 75%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 640px) {
+  .capable_service_dev_card_left2 {
+    left: 2%;
+    top: 80%;
+  }
+}
+
 .capable_service_dev_card_center {
   top: 99%;
   right:20%;
+}
+@media (max-width: 1024px) {
+  .capable_service_dev_card_center {
+    top: 105%;
+    right: 10%;
+  }
+}
+
+/* For mobile devices (≤640px) */
+@media (max-width: 640px) {
+  .capable_service_dev_card_center {
+    top: 110%;
+    right: 5%;
+  }
 }
 .software_container {
   margin-bottom: 21%;
@@ -39,29 +69,30 @@
   height:320px;
 }
 .work_with_us_card{
-  height:300px;
+  height:320px;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 374px) and (max-width:786px) {
   .Capable_service_icon1 {
-    max-width: 60px;
+    max-width: 80px;
   }
   .capable_service_card .card {
     height: 250px;
     width: 350px;
   }
   .capable_service_card_text {
-    max-width: 320px;
+    max-width: 330px;
   }
     .capable_card{
-  height:250px;
+  height:220px;
+width: auto;
 }
 .work_with_us_card{
-  height:150px;
+  height:200px;
 }
 
 }
-@media (min-width:576px) and (max-width: 768px) {
+@media (min-width:787px) and (max-width: 1024px) {
   .capable_service_card {
     height: 250px;
   }
@@ -76,11 +107,11 @@
   height:190px;
 }
 .work_with_us_card{
-  height:200px;
+  height:240px;
 }
 
 }
-@media (min-width: 768px) and (max-width: 1550px) {
+@media (min-width: 1025px) and (max-width: 1550px) {
   .why_choose_us {
     margin-top: 8%;
   }
@@ -88,7 +119,8 @@
   height:230px;
 }
 .work_with_us_card{
-  height:200px;
+  height:250px;
+  width: 360px;
 }
 }
 .privacy_card{

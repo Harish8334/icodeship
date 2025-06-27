@@ -6,7 +6,7 @@
   border-radius: 70px;
 }
 .solution_desk_text {
-  max-width: 452px;
+  max-width: 682px;
 }
 .btn-transparent {
   background-color: transparent;
@@ -18,9 +18,30 @@
   color: white;
 }
 
-@media (max-width: 576px) {
+@media(max-width:375px){
+   .solution_desk_radius {
+    border-radius: 30px;
+  }
+  .solution_system_img {
+    height: 120px;
+    width: 150px;
+  }
+  .map_section {
+    padding-top: 8%;
+  }
+}
+
+
+@media (min-width: 376px) and (max-width:576px)  {
   .solution_desk_radius {
     border-radius: 30px;
+  }
+  .solution_system_img {
+    height: 200px;
+    width: 240px;
+  }
+  .map_section {
+    padding-top: 8%;
   }
 }
 
@@ -28,17 +49,18 @@
   .solution_desk_text {
     max-width: 652px;
   }
-  .solution_lap{
-    height:300px;
+  .solution_lap {
+    height: 300px;
   }
-  
+  .solution_system_img {
+    height: 300px;
+  }
 }
 
-@media (min-width: 992px) and (max-width:1200px) {
+@media (min-width: 992px) and (max-width: 1200px) {
   .what_we_do_container {
     height: 85vh;
   }
-
 }
 .scrollable-dropdown {
   max-height: 70vh; /* Adjust this value as needed */
@@ -46,12 +68,6 @@
   overflow-x: hidden; /* Disable horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */
 }
-
-
-
-
-
-
 
 /* Animations */
 @keyframes fadeIn {
@@ -107,6 +123,11 @@
   z-index: 2;
   clip-path: circle(0% at 50% 50%);
 }
-.solution_desk_radius{
-  height:80%;
+/* Default: Desktop */
+.solution_desk_radius {
+  height: 80%;
 }
+
+
+
+
