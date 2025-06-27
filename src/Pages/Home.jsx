@@ -214,16 +214,6 @@ function Home() {
   const handlePurchaseClick = () => {
     navigate("/purchase-contact");
   };
-  const getResponsiveOffset = () => {
-    const width = window.innerWidth;
-
-    if (width <= 375) return 620; // mobile
-    if (width <= 768) return 790; // tablets
-    if (width <= 1024) return 800; // laptops
-    return 900; // desktops
-  };
-
-  const startOffset = getResponsiveOffset();
 
   // Handle opening purchase form modal
   useEffect(() => {
@@ -233,7 +223,7 @@ function Home() {
 
     const trigger = ScrollTrigger.create({
       trigger: section,
-      start: ` top+=${startOffset} bottom`,
+      start: "top top",
       end: `+=${window.innerHeight * totalItems}`,
       pin: true,
       scrub: 1,
@@ -419,7 +409,7 @@ function Home() {
                     >
                       {Things_Data.map((item, index) => (
                         <SwiperSlide key={index}>
-                          <div class="card things_card pb-sm-0 rounded-4 border-0 mb-4">
+                          <div className="card things_card pb-sm-0 rounded-4 border-0 mb-4">
                             <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
                               <div className="card-title">
                                 <div className="d-flex">
