@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Removed for SSR compatibility
-import Footer from "../Components/Footer";
+// import Footer from "../Components/Footer";
 import "../Pages/Capabilities.css";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -578,7 +577,7 @@ const Privacy = () => {
       </Container>
 
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

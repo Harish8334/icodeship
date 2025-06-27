@@ -4,7 +4,7 @@ import MetaTags from '../../Components/MetaTags';
 import Banner from "../../Components/Banner";
 import Brands from "../../Components/Brands";
 import WorkTogther from "../../Components/WorkTogther";
-import Footer from "../../Components/Footer";
+// import Footer from "../../Components/Footer";
 import { Service_Page_Data } from "../../Service_Data/Service_Page_Data";
 
 function WordPressService() {
@@ -69,7 +69,7 @@ function WordPressService() {
       </section>
 
       <WorkTogther />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

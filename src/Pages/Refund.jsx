@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from "../Components/Footer"
+// import Footer from "../Components/Footer"
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import { Helmet } from 'react-helmet-async';
@@ -210,7 +210,7 @@ function Refund() {
               </p>
             </div>
       </Container>
-    <Footer />
+    {/* <Footer /> */}
     </div>
   )
 }

@@ -24,7 +24,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //  Components
 
-import Footer from "../Components/Footer";
+// import Footer from "../Components/Footer";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import WorkTogther from "../Components/WorkTogther";
@@ -379,7 +379,7 @@ function About() {
         </Container>
       </section>
       <WorkTogther />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -13,7 +13,6 @@ import ultimasign from "../assets/images/OurWorks/vertical_rectangle/ultimasign.
 import xark from "../assets/images/OurWorks/vertical_rectangle/xark.webp";
 import xity from "../assets/images/OurWorks/vertical_rectangle/xity.webp";
 import gaddzy from "../assets/images/OurWorks/vertical_rectangle/gaddzy.webp";
-
 import veev from "../assets/images/OurWorks/veev.webp";
 import fmb from "../assets/images/OurWorks/fmb.webp";
 import matrimony from "../assets/images/OurWorks/matrimony.webp";
