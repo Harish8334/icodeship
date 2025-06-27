@@ -150,7 +150,7 @@ const Capable_service = () => {
               viewBox="0 0 845 1156"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="img-fluid mt-5"
+              className="img-fluid margin_top_20"
             >
               <path
                 id="zigzag-path"
@@ -162,7 +162,7 @@ const Capable_service = () => {
                 key={index}
                 className={`position-absolute ${item.className}`}
               >
-                <div className="card d-flex flex-column rounded-4">
+                <div className="card d-flex flex-column  rounded-4">
                   <div className="ms-4 pt-4 pb-4 pe-2">
                     <img src={item.icon} alt="" className="img-fluid" />
                     <p className="font-size-30 font_weight_700 font_color_light_blue pt-3">
