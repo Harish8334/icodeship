@@ -21,8 +21,8 @@ const ScrollLockedCardStack = () => {
       top: "50%",
       left: 0,
       yPercent: 100,
-      scale: 0.8,
-      transformOrigin: "center",
+      scale: 0,
+      transformOrigin: "bottom",
       zIndex: (i) => cards.length - i + 1,
     });
 
@@ -64,23 +64,22 @@ const ScrollLockedCardStack = () => {
 
   return (
     <section
-      className="m-3  "
+      className="m-3 bottom_height dynamic_section_height"
       style={{
         position: "relative",
-        height: `${Solution_Data.length * 100}vh`,
+        ['--section-height']: `${Solution_Data.length * 100}vh`,
+        ['--section-height-large']: `${Solution_Data.length * 90}vh`,
       }}
     >
       <p className="text-center font-size-50 font_weight_500 pb-3 mt-5 pt-md-5 px-2">
         Smart Solutions For Your Business
         <br className="d-none d-lg-block" /> By Codeship.
       </p>
-
       <Container
         ref={containerRef}
-        className="my_container"
+        className="my_container custom_height"
         style={{
           position: "relative",
-          height: "100vh",
           visibility: isReady ? "visible" : "hidden",
           opacity: isReady ? 1 : 0,
           transition: "opacity 0.3s ease",
@@ -90,7 +89,7 @@ const ScrollLockedCardStack = () => {
           {Solution_Data.map((item, index) => (
             <div
               key={index}
-              className="row solution_desk_radius rounded-5 p-lg-3 px-2 ms-0  mx-lg-0 mt-5"
+              className="row solution_desk_radius rounded-5 p-lg-3 px-2 ms-0 mb-5  mx-lg-0 mt-5"
               style={{
                 backgroundColor: item.bgColor,
                 position: "absolute",

@@ -128,6 +128,26 @@
   height: 80%;
 }
 
+.custom_height {
+  height: 100vh;
+}
+
+@media (min-height: 1300px) {
+  .custom_height {
+    height: 50vh;
+  }
+}
+
+.dynamic_section_height {
+  height: var(--section-height, 100vh);
+}
+
+@media (min-height: 1300px) {
+  .dynamic_section_height {
+    height: var(--section-height-large, 90vh);
+  }
+}
+
 
 
 
