@@ -235,7 +235,7 @@ const Capable_service = () => {
       <section>
         <Container className="my_container why_choose_us pt-0">
           <div className="row mt-5 mb-5 mt-lg-0">
-            <div className="col-lg-6 col-md-12 col-12">
+            <div className="col-lg-6  col-12">
               <p className="font-size-25 font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
                 Benefits of
               </p>
@@ -247,12 +247,12 @@ const Capable_service = () => {
                 {service.work_with_us}
               </p>
             </div>
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="d-flex justify-content-center mt-md-5 mt-4 mt-xl-0">
+            <div className="col-lg-6  col-12">
+              <div className="d-flex justify-content-center ">
                 <img
                   src={Service_with_us}
                   alt=""
-                  className="Banner_img img-fluid w-100 h-100"
+                  className=" img-fluid"
                 />
               </div>
             </div>
@@ -336,7 +336,7 @@ const Capable_service = () => {
                     onClick={() => handleLeftToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500  Frequent_ask_height pt-0 p-0 m-0 ">
+                      <p className="font-size-21 font_weight_500  Frequent_ask_height pt-0 p-0 m-0 ">
                         {item.title}
                       </p>
                     </Accordion.Header>
@@ -357,7 +357,7 @@ const Capable_service = () => {
                     onClick={() => handleRightToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-20 font_weight_500  Frequent_ask_height  pt-0 p-0 m-0 pb-md-4">
+                      <p className="font-size-21 font_weight_500  Frequent_ask_height  pt-0 p-0 m-0 pb-md-4">
                         {item.title}
                       </p>
                     </Accordion.Header>

@@ -108,7 +108,7 @@
   height: 320px;
 }
 .work_with_us_card {
-  height: 320px;
+  height: 260px;
 }
 
 @media (min-width: 374px) and (max-width: 786px) {
@@ -145,7 +145,7 @@
     height: 190px;
   }
   .work_with_us_card {
-    height: 240px;
+    height: 200px;
   }
 }
 @media (min-width: 1025px) and (max-width: 1550px) {
@@ -157,7 +157,7 @@
   }
   .work_with_us_card {
     height: 250px;
-    width: 360px;
+    width: 260px;
   }
 }
 .privacy_card {

@@ -605,7 +605,7 @@ export const useZigzagPathAnimation = () => {
           trigger: section,
           start: "top bottom",
           end: "bottom top+=1000",
-          scrub: 1,
+          scrub: 3,
           onLeaveBack: () => {
             gsap.set(path, { strokeDashoffset: pathLength });
           },

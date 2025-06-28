@@ -76,10 +76,10 @@ export default function Header({}) {
   return (
     <section>
     <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3" style={{maxWidth:"100vw",width:"100%"}}>
-      <Navbar expand="lg" className="p-0">
+      <Navbar expand="xl" className="p-0">
         <Container fluid className="bg-white pt-4 pb-3">
           {/* Mobile View Header */}
-          <div className="d-flex flex-row d-lg-none gap-4  justify-content-sm-between align-items-center w-100 px-0">
+          <div className="d-flex flex-row d-xl-none gap-4  justify-content-sm-between align-items-center w-100 px-0">
             <Button
               className="rounded-circle background_color_blue text-white p-2"
               onClick={handleShow}
@@ -120,12 +120,12 @@ export default function Header({}) {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="d-none d-lg-flex ms-xl-5 ms-lg-3"
+            className="d-none d-xl-flex ms-xl-5 ms-lg-3"
           >
             <img src={logo} alt="Codeship Home" className="logo_img" />
           </Nav.Link>
 
-          <Navbar.Collapse id="navbarScroll" className="d-none d-lg-flex">
+          <Navbar.Collapse id="navbarScroll" className="d-none d-xl-flex">
             <Nav className="me-auto my-2 my-lg-0" navbarScroll></Nav>
             <Nav className="font-size-24 font_weight_300 gap-xl-4 gap-lg-0 flex-nowrap">
               <Nav.Link

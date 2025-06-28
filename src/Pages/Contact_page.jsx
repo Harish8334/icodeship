@@ -466,7 +466,7 @@ function Contact_page() {
       {/* Map */}
       <section>
         <Container className="my_container">
-          <div className="map-container d-flex justify-content-center w-100 m-auto mt-5 m-0">
+          <div className=" d-flex justify-content-center  m-auto mt-5 m-0">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7773.890565645889!2d80.2255752!3d13.0391549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d3b70a90f51%3A0xb6155325437cc516!2sCodeShip%20Private%20Limited!5e0!3m2!1sen!2sin!4v1745490585479!5m2!1sen!2sin"
               width="1600"

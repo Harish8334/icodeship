@@ -86,7 +86,7 @@ function About_core_card() {
               onClick={letsTalk}
             >
               Let's Talk
-            </Button>
+            </Button> 
           </div>
 
           <div
@@ -95,6 +95,7 @@ function About_core_card() {
           >
             <div className="row d-flex justify-content-end">
               {cardData.slice(0, 2).map((item, index) => (
+                
                 <div
                   key={index}
                   className={`col-md-6 About_core_card_size ${
@@ -103,7 +104,7 @@ function About_core_card() {
                   ref={(el) => (cardRefs.current[index] = el)}
                 >
                   <div className="card pb-5 pb-lg-3 rounded-4 border_shadow">
-                    <div className="d-flex justify-content-center pt-3">
+                    <div className="d-flex justify-content-center pt-3 ">
                       <img
                         src={item.icon}
                         alt={item.title}
@@ -123,7 +124,7 @@ function About_core_card() {
               ))}
             </div>
 
-            <div className="row ms-3 w-100 mb-5 d-flex justify-content-end">
+            <div className="row ms-xl-3 w-100 pb-5 mb-5 d-flex justify-content-end">
               {cardData.slice(2).map((item, index) => (
                 <div
                   key={index + 2}

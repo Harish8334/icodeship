@@ -1,5 +1,5 @@
 .About_core_card_size {
-  max-width: 400px;
+  max-width: 370px;
 }
 .About_core_card {
   padding-top: 100px;
@@ -84,9 +84,9 @@
   .about_core_icon {
     max-width: 54px;
   }
-  .Team_img {
-    max-width: 230px;
-  }
+  /* .Team_img {
+    max-width: 130px;
+  } */
   .Contact_card_container {
     flex-wrap: wrap;
   }
@@ -145,6 +145,7 @@
   }
   .custom-swiper-pagination .swiper-pagination-bullet-active {
     background: #0056b3;
+    margin: 0%;
   }
 }
 

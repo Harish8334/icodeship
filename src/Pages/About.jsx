@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 // FontAwesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,29 +50,32 @@ import {
   useCountUpOnScroll,
 } from "../Animation/animation";
 
-import MetaTags from '../Components/MetaTags';
+import MetaTags from "../Components/MetaTags";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const { text, image } = Banner_Data.about;
-  
+
   // Prepare meta content with null checks
-  const coreValues = cardData?.map(card => card?.title).filter(Boolean) || [];
-  const whyUsPoints = Why_Us_Data?.map(item => item?.title).filter(Boolean) || [];
-  const teamSize = Team_Data?.length || 'experienced';
-  
+  const coreValues = cardData?.map((card) => card?.title).filter(Boolean) || [];
+  const whyUsPoints =
+    Why_Us_Data?.map((item) => item?.title).filter(Boolean) || [];
+  const teamSize = Team_Data?.length || "experienced";
+
   const metaContent = {
-    title: 'About Us',
-    description: `Learn about Codeship's core values: ${coreValues.join(', ')}. A team of ${teamSize} professionals dedicated to delivering exceptional digital solutions.`,
+    title: "About Us",
+    description: `Learn about Codeship's core values: ${coreValues.join(
+      ", "
+    )}. A team of ${teamSize} professionals dedicated to delivering exceptional digital solutions.`,
     keywords: [
       ...coreValues,
       ...whyUsPoints,
-      'about codeship',
-      'our team',
-      'company values'
+      "about codeship",
+      "our team",
+      "company values",
     ],
-    ogImage: image
+    ogImage: image,
   };
 
   const letsTalk = useLetsTalk();
@@ -97,7 +100,7 @@ function About() {
   }, []);
 
   return (
-    <div className="pb-5">
+    <div>
       <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
@@ -193,7 +196,12 @@ function About() {
                   <div className="col-12 col-sm-6 px-3 py-2" key={item.id}>
                     <div className="card border_shadow rounded-4 w-100 h-100">
                       <div className="d-flex gap-3 align-items-center">
-                        <img src={item.img} alt="" className="img-fluid" style={{maxWidth: 60, height: 'auto'}} />
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="img-fluid"
+                          style={{ maxWidth: 130, height: "auto" }}
+                        />
                         <div className="d-flex flex-column justify-content-center flex-grow-1">
                           <p
                             className="font-size-46 font_weight_700 pt-2 m-0 text-break"
@@ -238,15 +246,35 @@ function About() {
               modules={[Pagination]}
               slidesPerView={5}
               spaceBetween={50}
+              centeredSlides={true}
               loop={true}
               freeMode={true}
-              className="mySwiper mt-5 mb-3 px-3 px-lg-0"
+              className="mySwiper mt-5 mb-3 px-lg-0"
               breakpoints={{
-                320: { slidesPerView: 2, spaceBetween: 30 },
-                576: { slidesPerView: 4, spaceBetween: 15 },
-                768: { slidesPerView: 3, spaceBetween: 20 },
-                992: { slidesPerView: 4, spaceBetween: 25 },
-                1200: { slidesPerView: 5, spaceBetween: 30 },
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                576: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+                992: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                },
+                1200: {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+                1400: {
+                  slidesPerView: 5,
+                  spaceBetween: 10,
+                },
               }}
             >
               {Team_Data.map((member, index) => (
@@ -255,7 +283,7 @@ function About() {
                     <img
                       src={member.img}
                       alt={member.name}
-                      className="position-relative img-fluid w-auto"
+                      className="position-relative img-fluid px-5"
                     />
                     <div className="position-absolute bottom-0 text-center member_info z-2 rounded-4 w-100 p-2">
                       <p className="text-white font-size-18 font_weight_700 m-0">
@@ -309,11 +337,7 @@ function About() {
             </Swiper>
           )}
 
-          {/* Pagination bullets */}
-          <div
-            className="custom-swiper-pagination d-flex justify-content-center my-5"
-            id="office-section"
-          />
+        
         </Container>
       </section>
       {/* Office */}

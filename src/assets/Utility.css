@@ -14,6 +14,9 @@
 .font-size-20 {
   font-size: clamp(13px, 1.8vw, 20px);
 }
+.font-size-21 {
+  font-size: clamp(16px, 1.8vw, 21px);
+}
 .font-size-24 {
   font-size: clamp(15px, 1.5vw, 24px);
 }
@@ -349,10 +352,4 @@ input:-webkit-autofill {
   will-change: transform;
 }
 
-.map-container {
-  width: 100%;
-  max-width: 1200px;   /* or your image’s max width */
-  aspect-ratio: 3 / 2; /* example ratio matching 1200x800 */
-  position: relative;
-  overflow: hidden;
-}
+/
