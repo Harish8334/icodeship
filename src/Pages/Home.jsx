@@ -229,7 +229,7 @@ function Home() {
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        const newIndex = Math.floor(progress * totalItems);
+        const newIndex = Math.floor(progress * totalItems +1);
         setCurrentIndex(newIndex >= totalItems ? totalItems - 1 : newIndex);
       },
     });
