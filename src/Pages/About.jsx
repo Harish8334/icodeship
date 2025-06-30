@@ -195,7 +195,7 @@ function About() {
                 {Why_Us_Data.map((item, index) => (
                   <div className="col-12 col-sm-6" key={item.id}>
                     <div className="card border_shadow rounded-4 ">
-                      <div className="d-flex gap-3 justify-content-center align-items-center">
+                      <div className="d-flex gap-3 align-items-center">
                         <img
                           src={item.img}
                           alt=""
@@ -204,7 +204,7 @@ function About() {
                         />
                         <div className="d-flex flex-column justify-content-center flex-grow-1">
                           <p
-                            className="font-size-50 font_weight_700 pt-2 m-0 text-break"
+                            className="font-size-46 font_weight_700 pt-2 m-0 text-break"
                             data-count={item.count}
                             data-symbol={item.symbol || ""}
                             ref={(el) => {
@@ -213,7 +213,7 @@ function About() {
                           >
                             0 {item.symbol}
                           </p>
-                          <p className="font_weight_500 font-size-25 p-0 text-break">
+                          <p className="font_weight_500 font-size-16 p-0 text-break">
                             {item.title}
                           </p>
                         </div>

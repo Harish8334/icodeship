@@ -18,7 +18,7 @@ function Footer() {
   return (
     <section>
       <Container className='my_container '>
-      <p className='font-size-80 font_weight_600 mt-5 pt-md-5'>Let’s Talk</p>
+      <p className='font-size-80 font_weight_600 '>Let’s Talk</p>
       <div className='row'>
         <div className=' col-sm-6 col-12 justify-content-between d-flex flex-column '>
           <div className='row-6'>
