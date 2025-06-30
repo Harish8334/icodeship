@@ -78,7 +78,7 @@ const Capable_service = () => {
         />
       </Helmet>
       {/* Banner */}
-      <section className=" d-flex justify-content-center mt-5 mb-md-5 ">
+      <section className=" d-flex justify-content-center mt-5 mb-md-5 overflow-hidden ">
         <Container className="my_container mt-5">
           <div className="row flex-column-reverse flex-lg-row mt-md-5">
             <div className="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">

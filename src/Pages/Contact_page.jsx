@@ -1,7 +1,7 @@
 // React and React-related imports
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 // React Bootstrap components
 import { Container } from "react-bootstrap";
@@ -24,7 +24,7 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 import Brands from "../Components/Brands.jsx";
 import Banner from "../Components/Banner.jsx";
 import Frequent_Ask from "../Components/Frequent_Ask.jsx";
-import MetaTags from '../Components/MetaTags';
+import MetaTags from "../Components/MetaTags";
 
 // Custom animations and utilities
 import { BallSplash } from "../Animation/animation";
@@ -82,15 +82,17 @@ function Contact_page() {
   const servicesOffered = services.slice(0, -1); // Exclude "Other Services"
   const metaContent = {
     title: "Contact Us",
-    description: `Get in touch with Codeship for ${servicesOffered.join(', ')} and more. Let's discuss your next digital project and create innovative solutions together.`,
+    description: `Get in touch with Codeship for ${servicesOffered.join(
+      ", "
+    )} and more. Let's discuss your next digital project and create innovative solutions together.`,
     keywords: [
       ...services,
-      'contact us',
-      'project inquiry',
-      'consultation',
-      'get in touch'
+      "contact us",
+      "project inquiry",
+      "consultation",
+      "get in touch",
     ],
-    ogImage: Banner_Data.contact.image
+    ogImage: Banner_Data.contact.image,
   };
 
   useEffect(() => {
@@ -206,21 +208,30 @@ function Contact_page() {
                         Follow us on :
                       </p>
                       <div className="d-flex gap-3">
-                        <a href="https://www.facebook.com/icodeship" aria-label="Facebook">
+                        <a
+                          href="https://www.facebook.com/icodeship"
+                          aria-label="Facebook"
+                        >
                           <img
                             src={Contact_icon1}
                             alt="Facebook"
                             className="img-fluid"
                           />
                         </a>
-                        <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram">
+                        <a
+                          href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                          aria-label="Instagram"
+                        >
                           <img
                             src={Contact_icon2}
                             alt="Instagram"
                             className="img-fluid"
                           />
                         </a>
-                        <a href="https://www.linkedin.com/company/icodeship/posts/?feedView=all" aria-label="LinkedIn">
+                        <a
+                          href="https://www.linkedin.com/company/icodeship/posts/?feedView=all"
+                          aria-label="LinkedIn"
+                        >
                           <img
                             src={Contact_icon3}
                             alt="LinkedIn"
@@ -241,7 +252,10 @@ function Contact_page() {
                     <div className="row">
                       <div className="col-md-6 col-12 mt-2 pe-lg-5 mt-lg-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400" htmlFor="name">
+                          <label
+                            className="font-size-20 font_weight_400"
+                            htmlFor="name"
+                          >
                             Name & Company
                           </label>
                           <Field
@@ -260,7 +274,10 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 mt-2 ps-lg-5 mt-lg-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400 pt-4 pt-md-0" htmlFor="email">
+                          <label
+                            className="font-size-20 font_weight_400 pt-4 pt-md-0"
+                            htmlFor="email"
+                          >
                             Email id
                           </label>
                           <Field
@@ -279,7 +296,10 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 pe-lg-5 mt-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400" htmlFor="mobile">
+                          <label
+                            className="font-size-20 font_weight_400"
+                            htmlFor="mobile"
+                          >
                             Mobile Number
                           </label>
                           <Field
@@ -306,7 +326,10 @@ function Contact_page() {
                       </div>
                       <div className="col-md-6 col-12 ps-lg-5 mt-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label className="font-size-20 font_weight_400" htmlFor="subject">
+                          <label
+                            className="font-size-20 font_weight_400"
+                            htmlFor="subject"
+                          >
                             Subject
                           </label>
                           <Field
@@ -327,13 +350,13 @@ function Contact_page() {
                     <p className="mt-5 font-size-20 font_weight_400 px-lg-0">
                       I'm Interested in
                     </p>
-                     <div className="row g-3">
-                    {services.map((interest, index) => (
-                      <div
-                        key={index}
-                        className="col-6 col-xl-3 mt-md-4 d-flex justify-content-center"
-                      >
-                                               <button
+                    <div className="row g-3">
+                      {services.map((interest, index) => (
+                        <div
+                          key={index}
+                          className="col-6 col-xl-3 mt-md-4 d-flex justify-content-center"
+                        >
+                          <button
                             type="button"
                             className={`btn btn-outline-dark w-100 text-nowrap py-3 font-size-12 font_weight_400 rounded-pill border-black ${
                               values.interests.includes(interest)
@@ -351,16 +374,19 @@ function Contact_page() {
                           >
                             {interest}
                           </button>
-                      </div>
-                    ))}
-                  </div>
+                        </div>
+                      ))}
+                    </div>
                     <ErrorMessage
                       name="interests"
                       component="div"
                       className="text-danger px-4 pt-3"
                     />
 
-                    <p className="mt-5 font-size-20 font_weight_400" htmlFor="about">
+                    <p
+                      className="mt-5 font-size-20 font_weight_400"
+                      htmlFor="about"
+                    >
                       Tell us more about your project
                     </p>
                     <div className="">
