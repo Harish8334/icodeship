@@ -193,14 +193,14 @@ function About() {
               </p>
               <div className="row g-2">
                 {Why_Us_Data.map((item, index) => (
-                  <div className="col-12 col-sm-6 px-3 py-2" key={item.id}>
-                    <div className="card border_shadow rounded-4 w-100 h-100">
+                  <div className="col-12 col-sm-6" key={item.id}>
+                    <div className="card border_shadow rounded-4 ">
                       <div className="d-flex gap-3 align-items-center">
                         <img
                           src={item.img}
                           alt=""
                           className="img-fluid"
-                          style={{ maxWidth: 130, height: "auto" }}
+                          style={{ maxWidth: 128, height: "auto" }}
                         />
                         <div className="d-flex flex-column justify-content-center flex-grow-1">
                           <p
@@ -227,7 +227,7 @@ function About() {
         </Container>
       </section>
       {/* Team members */}
-      <section className="my-5">
+      <section className="mt-4">
         <Container fluid>
           <p className="font-size-58 text-center font_weight_600 mt-5">
             Simply, a legendary team
@@ -241,103 +241,102 @@ function About() {
             </p>
           </div>
 
-          {isClient && (
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={5}
-              spaceBetween={50}
-              centeredSlides={true}
-              loop={true}
-              freeMode={true}
-              className="mySwiper mt-5 mb-3 px-lg-0"
-              breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 20,
-                },
-                576: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 24,
-                },
-                992: {
-                  slidesPerView: 3,
-                  spaceBetween: 24,
-                },
-                1200: {
-                  slidesPerView: 4,
-                  spaceBetween: 30,
-                },
-                1400: {
-                  slidesPerView: 5,
-                  spaceBetween: 10,
-                },
-              }}
-            >
-              {Team_Data.map((member, index) => (
-                <SwiperSlide key={index}>
-                  <div className="Team_img d-flex justify-content-center align-items-center rounded-4 member-card overflow-hidden position-relative">
-                    <img
-                      src={member.img}
-                      alt={member.name}
-                      className="position-relative img-fluid px-5"
-                    />
-                    <div className="position-absolute bottom-0 text-center member_info z-2 rounded-4 w-100 p-2">
-                      <p className="text-white font-size-18 font_weight_700 m-0">
-                        {member.name}
-                      </p>
-                      <p className="text-white font-size-16 font_weight_500 mt-1">
-                        {member.position}
-                      </p>
-                      <div className="d-flex gap-3 justify-content-center mt-1 mb-2">
-                        <a
-                          href={member.instagram}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label="Instagram profile"
-                        >
-                          <FontAwesomeIcon
-                            icon={faInstagram}
-                            size="lg"
-                            color="white"
-                          />
-                        </a>
-                        <a
-                          href={member.facebook}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label="Facebook profile"
-                        >
-                          <FontAwesomeIcon
-                            icon={faFacebook}
-                            size="lg"
-                            color="white"
-                          />
-                        </a>
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label="LinkedIn profile"
-                        >
-                          <FontAwesomeIcon
-                            icon={faLinkedin}
-                            size="lg"
-                            color="white"
-                          />
-                        </a>
-                      </div>
+          <Swiper
+            modules={[Pagination]}
+            slidesPerView={5}
+            spaceBetween={50}
+            centeredSlides={true}
+            loop={true}
+            freeMode={true}
+            className="mySwiper mt-5 mb-3 px-lg-0"
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              576: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              992: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+              1200: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+              1400: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+            }}
+          >
+            {Team_Data.map((member, index) => (
+              <SwiperSlide key={index}>
+                <div className=" d-flex justify-content-center align-items-center rounded-4 member-card overflow-hidden position-relative">
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="position-relative img-fluid "
+                  />
+                  <div className="position-absolute bottom-0 text-center member_info z-2 rounded-4 w-100 p-2">
+                    <p className="text-white font-size-18 font_weight_700 m-0">
+                      {member.name}
+                    </p>
+                    <p className="text-white font-size-16 font_weight_500 mt-1">
+                      {member.position}
+                    </p>
+                    <div className="d-flex gap-3 justify-content-center mt-1 mb-2">
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon
+                          icon={faInstagram}
+                          size="lg"
+                          color="white"
+                        />
+                      </a>
+                      <a
+                        href={member.facebook}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon
+                          icon={faFacebook}
+                          size="lg"
+                          color="white"
+                        />
+                      </a>
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FontAwesomeIcon
+                          icon={faLinkedin}
+                          size="lg"
+                          color="white"
+                        />
+                      </a>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-        
+          {/* Pagination bullets */}
+          <div
+            className="custom-swiper-pagination d-flex justify-content-center my-5"
+            id="office-section"
+          />
         </Container>
       </section>
       {/* Office */}

@@ -139,7 +139,7 @@ function Solution() {
         </Container>
       </section>
 
-      <section className="d-block">
+      <section className="d-block overflow-hidden">
         <ScrollStackCards />
 
         {/* Dynamic Spacer for Scroll Unlocking */}
@@ -148,7 +148,7 @@ function Solution() {
             height:
               window.innerWidth < 768
                 ? `${Solution_Data.length * 15}vh`
-                : `${Solution_Data.length * 19}vh`,
+                : `${Solution_Data.length * 16}vh`,
           }}
         ></section>
       </section>
