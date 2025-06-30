@@ -253,9 +253,9 @@ export default function Header({}) {
                   </div>
 
                   {/* Center logo and title */}
-                  <div className="d-flex flex-column align-items-center mt-5">
+                  <div className="d-flex flex-column align-items-center justify-content-center mt-5">
                    
-                      <img src={logo} alt="Codeship Home" className="" />
+                      <img src={logo} alt="Codeship Home" className="" style={{maxWidth: "200px"}} />
 
                   </div>
                 </div>
@@ -264,7 +264,7 @@ export default function Header({}) {
             <Offcanvas.Body>
             {!showCapabilities&&(
 
-              <Nav className="flex-column gap-4 ms-5 pt-5 font-size-50">
+              <Nav className="flex-column gap-4 ms-4 font-size-50">
                 <Nav.Link as={Link} to="/" onClick={handleClose}>
                   Home
                 </Nav.Link>
