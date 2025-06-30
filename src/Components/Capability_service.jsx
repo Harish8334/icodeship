@@ -290,7 +290,7 @@ const Capable_service = () => {
                 slidesPerView: 3,
                 spaceBetween: 40,
               },
-              1400: {
+              1440: {
                 slidesPerView: 3,
                 spaceBetween: 40,
               },

@@ -330,8 +330,8 @@ function Contact_page() {
                      <div className="row g-3">
                     {services.map((interest, index) => (
                       <div
-                        key={interest}
-                        className="col-6 col-md-3 d-flex justify-content-center"
+                        key={index}
+                        className="col-6 col-xl-3 mt-md-4 d-flex justify-content-center"
                       >
                                                <button
                             type="button"
