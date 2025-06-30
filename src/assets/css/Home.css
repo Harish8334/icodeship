@@ -36,7 +36,7 @@
   height: 60px;
 }
 .things_card{
-  min-height: 380px;
+  min-height: 320px;
 }
 @media (max-width: 1440px) {
   .things_card {
@@ -55,21 +55,21 @@
 /* Large laptops (1280px - 1440px) */
 @media (max-width: 1280px) {
   .things_card {
-    min-height: 390px !important;
+    min-height: 320px !important;
   }
 }
 
 /* Medium screens (Laptops/Tablets landscape) */
 @media (max-width: 1024px) {
   .things_card {
-    min-height: 345px !important;
+    min-height: 250px !important;
   }
 }
 
 /* Tablets portrait / large phones landscape */
 @media (max-width: 768px) {
   .things_card {
-    min-height: 300px !important;
+    min-height: 200px !important;
   }
 }
 

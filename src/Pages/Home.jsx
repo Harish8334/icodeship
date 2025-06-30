@@ -137,6 +137,78 @@ function ProjectSwiperSlide({
     </SwiperSlide>
   );
 }
+const ThingsCard = ({ item, index, className = "" }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  return (
+    <div
+      key={index}
+      className={`h-100 ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        padding: "6px",
+        margin: "-6px",
+      }}
+    >
+      <div
+        className="card things_card border_shadow border-0 rounded-4  d-flex flex-column"
+        style={{
+          transition: "all 0.3s ease",
+          transform: isHovered ? "rotate(-3deg)" : "rotate(0deg)",
+          backgroundColor: isHovered ? "#49499d" : "transparent",
+          color: isHovered ? "white" : "#49499d",
+        }}
+      >
+        <div className="card-body d-flex flex-column  border-0 ">
+          <div className="card-title ms-4">
+            <div className="d-flex">
+              <div className="position-relative pe-5 things_icon_container">
+                <img
+                  src={item.hoverIcon}
+                  alt="hover icon"
+                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                  style={{
+                    opacity: isHovered ? 1 : 0,
+                    transition: "opacity 0.3s ease",
+                    zIndex: 2,
+                  }}
+                />
+                <img
+                  src={item.icon}
+                  alt="icon"
+                  className="things_head things_icon position-absolute pt-2 pb-3"
+                  style={{
+                    opacity: isHovered ? 0 : 1,
+                    transition: "opacity 0.3s ease",
+                    zIndex: 1,
+                  }}
+                />
+              </div>
+              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
+                {item.title}
+              </p>
+            </div>
+          </div>
+          <div
+            className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-3"
+            style={{ color: isHovered ? "white" : "black" }}
+          >
+            {item.description}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 function Home() {
   const navigate = useNavigate();
@@ -229,7 +301,7 @@ function Home() {
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        const newIndex = Math.floor(progress * totalItems +1);
+        const newIndex = Math.floor(progress * totalItems + 0.5);
         setCurrentIndex(newIndex >= totalItems ? totalItems - 1 : newIndex);
       },
     });
@@ -305,96 +377,31 @@ function Home() {
         </section>
 
         {/* Things can do section */}
-        <section className="py-xl-5 ">
+        <section className="py-xl-5">
           <Container className="my_container py-lg-5">
             <div className="row">
-              <div className="col-12 col-sm-5 col-md-6 col-lg-4 col-xl-5 ">
+              <div className="col-12 col-xl-5">
                 <p className="font-size-58 font_weight_600 line_height_70 ps-3">
-                  Some of the <br className="d-none d-lg-block" /> things we can
-                  do <br className="d-none d-lg-block" /> for you
+                  Some of the things we can do for you
                 </p>
-                <p className="font-size-24   font_weight_400 ps-3">
-                  We offer a comprehensive range of{" "}
-                  <br className="d-none d-xl-block" /> software development
-                  services tailored <br className="d-none d-xl-block" /> to meet
-                  the unique needs of your <br className="d-none d-xl-block" />{" "}
-                  business.
+                <p className="font-size-24 font_weight_400 ps-3 pb-3">
+                  We offer a comprehensive range of software development
+                  services tailored to meet the unique needs of your business.
                 </p>
               </div>
-
-              <div className="col-12 col-sm-7 col-md-6 col-lg-8 col-xl-7 mb-5 ">
-                <div className="row ">
-                  <div className="d-none d-lg-flex flex-column gap-4 col-lg-6  ">
-                    {/* Top two cards */}
+              <div className="col-12 col-xl-7 mb-5">
+                <div className="row">
+                  <div className="d-none d-sm-flex flex-column gap-5 col-sm-6">
                     {topCards.map((item, index) => (
-                      <div
-                        key={index}
-                        className="card things_card    border_shadow border-0 rounded-4 mb-4 card-hover-rotate me-3"
-                      >
-                        <div className="card-body border-0">
-                          <div className="card-title ms-4">
-                            <div className="d-flex">
-                              <div className="position-relative pe-5 things_icon_container">
-                                <img
-                                  src={item.hoverIcon}
-                                  alt=""
-                                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
-                                />
-                                <img
-                                  src={item.icon}
-                                  alt=""
-                                  className="things_head things_icon position-absolute pt-2 pb-3"
-                                />
-                              </div>
-                              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
-                                {item.title}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-2">
-                            {item.description}
-                          </div>
-                        </div>
-                      </div>
+                      <ThingsCard key={index} item={item} index={index} />
                     ))}
                   </div>
-
-                  <div className="d-none d-lg-flex flex-column gap-4 col-lg-6">
-                    {/* Bottom two cards */}
+                  <div className="d-none d-sm-flex flex-column gap-5 col-sm-6">
                     {bottomCards.map((item, index) => (
-                      <div
-                        key={index}
-                        className="card things_card  border_shadow border-0 rounded-4 mb-4 card-hover-rotate"
-                      >
-                        <div className="card-body border-0">
-                          <div className="card-title ms-4">
-                            <div className="d-flex">
-                              <div className="position-relative pe-5 things_icon_container">
-                                <img
-                                  src={item.hoverIcon}
-                                  alt=""
-                                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
-                                />
-                                <img
-                                  src={item.icon}
-                                  alt=""
-                                  className="things_head things_icon position-absolute pt-2 pb-3"
-                                />
-                              </div>
-                              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
-                                {item.title}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-4">
-                            {item.description}
-                          </div>
-                        </div>
-                      </div>
+                      <ThingsCard key={index} item={item} index={index} />
                     ))}
                   </div>
-
-                  <div className="d-flex d-lg-none  justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
+                  <div className="d-flex d-sm-none justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
                     <Swiper
                       modules={[Pagination]}
                       loop={Things_Data.length > 3}
@@ -405,12 +412,12 @@ function Home() {
                         renderBullet: (index, className) =>
                           `<span class="${className} custom-pagination-dot"></span>`,
                       }}
-                      className="custom-swiper pb-md-5"
+                      className="custom-swiper p-0"
                     >
                       {Things_Data.map((item, index) => (
                         <SwiperSlide key={index}>
-                          <div className="card things_card pb-sm-0 rounded-4 border-0 mb-4">
-                            <div className="card-body border_shadow m-3 border-0 rounded-4 m-2">
+                          <div className="card things_card pb-sm-0 rounded-4 border-0 mb-4 h-100">
+                            <div className="card-body border_shadow m-3 border-0 rounded-4 m-2 d-flex flex-column justify-content-between h-100">
                               <div className="card-title">
                                 <div className="d-flex">
                                   <div className="position-relative pe-5 things_icon_container">
