@@ -63,7 +63,7 @@ function Home_service() {
                 
                 <a
                   href={`/capable#${service.id}`}
-                  className="d-flex gap-0 font_color_light_blue ms-5 text-decoration-none"
+                  className="d-flex gap-0 font_color_light_blue ms-4 ps-2 ms-xl-5 ps-xl-0 text-decoration-none"
                   aria-label={`Learn more about ${service.title}`}
                 >
                   <p className="font-size-24 font_weight_500">Learn more about {service.title}</p>
