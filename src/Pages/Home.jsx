@@ -193,7 +193,7 @@ const ThingsCard = ({ item, index, className = "" }) => {
                   }}
                 />
               </div>
-              <p className="font-size-24 font_weight_500 things_head ps-3 pt-2 pb-3">
+              <p className="font-size-25 font_weight_500 things_head ps-3 pt-2 pb-3">
                 {item.title}
               </p>
             </div>

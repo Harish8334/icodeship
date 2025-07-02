@@ -7,7 +7,7 @@ import Bug_hover_icon from "../assets/images/Home/bug_hover_icon.png";
 import Project_icon from "../assets/images/Home/project_icon.png";
 import Project_hover_icon from "../assets/images/Home/project_hover_icon.png";
 const Things_Data = [
-{
+  {
     title: "Discovery",
     icon: Search_icon,
     hoverIcon: Search_icon_hover,
@@ -29,9 +29,8 @@ const Things_Data = [
     title: "Project Management",
     icon: Project_icon,
     hoverIcon: Project_hover_icon,
-    description: `Oversee the project lifecycle with smart planning, resource coordination, and timely execution. Our expert team ensures clear communication, manages risks, and strives for excellent delivery to keep your project on track and on schedule.`,
+    description: `Oversee the project lifecycle with smart planning, resource coordination, and timely execution. Our expert team ensures clear communication, manages risks, and strives for excellent delivery of your projects. `,
   },
 ];
-
 
 export default Things_Data;
