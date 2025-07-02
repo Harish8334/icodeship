@@ -7,29 +7,29 @@ import Bug_hover_icon from "../assets/images/Home/bug_hover_icon.png";
 import Project_icon from "../assets/images/Home/project_icon.png";
 import Project_hover_icon from "../assets/images/Home/project_hover_icon.png";
 const Things_Data = [
-  {
+{
     title: "Discovery",
     icon: Search_icon,
     hoverIcon: Search_icon_hover,
-    description: `Gain valuable insights and define the scope through comprehensive analysis, research, and feasibility assessments. Our expert team collaborates closely with you to ensure a clear understanding of your project's specific objectives and detailed requirements.`,
+    description: `Gain valuable insights and define the scope through detailed analysis, research, and feasibility assessments. Our expert team works closely with you to ensure a clear understanding of your project's specific goals and requirements.`,
   },
   {
     title: "Testing",
     icon: Bug_icon,
     hoverIcon: Bug_hover_icon,
-    description: `Perform rigorous testing and quality assurance processes to identify bugs and issues early. Our team works closely with you to validate all functionality, enhance performance, and guarantee your product meets every requirement efficiently and effectively.`,
+    description: `Conduct thorough testing and quality checks to find bugs and issues early. Our team collaborates with you to confirm functionality, improve performance, and ensure your product meets all requirements effectively.`,
   },
   {
     title: "Development",
     icon: Rocket_icon,
     hoverIcon: Rocket_hover_icon,
-    description: `Transform ideas into fully functional solutions through robust development practices. We collaborate closely with you to build scalable, maintainable, and secure code that aligns perfectly with your business goals and user experience expectations.`,
+    description: `Turn ideas into fully working solutions through solid development practices. We work closely with you to create scalable, maintainable, and secure code that matches your business goals and user experience expectations.`,
   },
   {
     title: "Project Management",
     icon: Project_icon,
     hoverIcon: Project_hover_icon,
-    description: `Manage the project lifecycle with strategic planning, resource coordination, and timely execution. Our expert team ensures effective communication, risk mitigation, and delivery excellence to keep your project aligned with objectives and within schedule.`,
+    description: `Oversee the project lifecycle with smart planning, resource coordination, and timely execution. Our expert team ensures clear communication, manages risks, and strives for excellent delivery to keep your project on track and on schedule.`,
   },
 ];
 

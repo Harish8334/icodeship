@@ -175,7 +175,7 @@ const ThingsCard = ({ item, index, className = "" }) => {
                 <img
                   src={item.hoverIcon}
                   alt="hover icon"
-                  className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                  className="things_head things_hover_icon position-absolute pt-2 "
                   style={{
                     opacity: isHovered ? 1 : 0,
                     transition: "opacity 0.3s ease",
@@ -185,7 +185,7 @@ const ThingsCard = ({ item, index, className = "" }) => {
                 <img
                   src={item.icon}
                   alt="icon"
-                  className="things_head things_icon position-absolute pt-2 pb-3"
+                  className="things_head things_icon position-absolute pt-2 "
                   style={{
                     opacity: isHovered ? 0 : 1,
                     transition: "opacity 0.3s ease",
@@ -199,7 +199,7 @@ const ThingsCard = ({ item, index, className = "" }) => {
             </div>
           </div>
           <div
-            className="d-flex justify-content-center font-size-18 font_weight_400 line_height_25 pb-2 px-3"
+            className="d-flex justify-content-center font-size-18 font_weight_400  pb-2 px-3"
             style={{ color: isHovered ? "white" : "black" }}
           >
             {item.description}
@@ -391,7 +391,7 @@ function Home() {
               </div>
               <div className="col-12 col-xl-7 mb-5">
                 <div className="row">
-                  <div className="d-none d-sm-flex flex-column gap-5 col-sm-6">
+                  <div className="d-none d-sm-flex flex-column gap-5 col-sm-6 ">
                     {topCards.map((item, index) => (
                       <ThingsCard key={index} item={item} index={index} />
                     ))}
@@ -401,7 +401,7 @@ function Home() {
                       <ThingsCard key={index} item={item} index={index} />
                     ))}
                   </div>
-                  <div className="d-flex d-sm-none justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 px-sp-3">
+                  <div className="d-flex d-sm-none justify-content-center align-items-center d-xl-none px-lg-5 px-pd-3 ">
                     <Swiper
                       modules={[Pagination]}
                       loop={Things_Data.length > 3}
@@ -432,7 +432,7 @@ function Home() {
                                       className="things_head things_icon position-absolute pt-2 pb-3"
                                     />
                                   </div>
-                                  <p className="font-size-28 font_weight_500 things_head ps-3 pt-2 pb-3">
+                                  <p className="font-size-28 font_weight_500 things_head ps-3  pb-3">
                                     {item.title}
                                   </p>
                                 </div>
