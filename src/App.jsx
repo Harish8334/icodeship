@@ -41,7 +41,10 @@ const ClientOnlyHeader = () => {
 const PageWrapper = ({ children }) => {
   const location = useLocation();
   const smootherRef = useRef(null);
-  const [loading, setLoading] = useState(true);
+  // SSR detection
+  const isSSR = typeof window === "undefined";
+  // Only show loader for client-side navigation, never on SSR
+  const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -50,6 +53,30 @@ const PageWrapper = ({ children }) => {
       window.history.scrollRestoration = 'manual';
     }
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    // Only show loader for client-side navigation, not on first mount
+    if (!isSSR) {
+      setLoading(true);
+      const timeout = setTimeout(() => {
+        setLoading(false);
+        const form = document.querySelector("#contactForm");
+
+        if (location.state?.scrollToForm && form) {
+          smootherRef.current?.scrollTo(form, true);
+        } else {
+          smootherRef.current?.scrollTo(0, true);
+        }
+
+        if (typeof window !== 'undefined' && window.ScrollTrigger) {
+          window.ScrollTrigger.refresh();
+        }
+        smootherRef.current?.refresh();
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [location, mounted, isSSR]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -101,29 +128,6 @@ const PageWrapper = ({ children }) => {
       }
     };
   }, [mounted]);
-
-  useEffect(() => {
-    if (!mounted) return;
-
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      const form = document.querySelector("#contactForm");
-
-      if (location.state?.scrollToForm && form) {
-        smootherRef.current?.scrollTo(form, true);
-      } else {
-        smootherRef.current?.scrollTo(0, true);
-      }
-
-      if (typeof window !== 'undefined' && window.ScrollTrigger) {
-        window.ScrollTrigger.refresh();
-      }
-      smootherRef.current?.refresh();
-    }, 300);
-
-    return () => clearTimeout(timeout);
-  }, [location, mounted]);
 
   return (
     <>

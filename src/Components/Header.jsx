@@ -264,7 +264,7 @@ export default function Header({}) {
             <Offcanvas.Body>
             {!showCapabilities&&(
 
-              <Nav className="flex-column gap-4 ms-4 font-size-50">
+              <Nav className="flex-column gap-4 ms-4 font-size-25">
                 <Nav.Link as={Link} to="/" onClick={handleClose}>
                   Home
                 </Nav.Link>
@@ -277,7 +277,7 @@ export default function Header({}) {
                 </Nav.Link>
                 {/* Capabilities - opens new offcanvas */}
                 <button
-                  className="btn w-100 text-decoration-none d-flex font-size-50  border-0 p-0"
+                  className="btn w-100 text-decoration-none d-flex font-size-25  border-0 p-0"
                   onClick={handleShowCapabilities}
                 >
                   Capabilities Service
@@ -317,7 +317,7 @@ export default function Header({}) {
                        className="btn w-100 d-flex justify-content-between align-items-center text-start p-0 border-0 bg-transparent"
                        onClick={() => toggleServiceDropdown(idx)}
                      >
-                       <h5 className="mb-0 font-size-28 fw-semibold ">
+                       <h5 className="mb-0 font-size-25 fw-semibold ">
                          {service.title}
                        </h5>
                        <FontAwesomeIcon
