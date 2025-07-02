@@ -111,7 +111,7 @@
   height: 300px;
 }
 
-@media (min-width: 376px) and (max-width:430px) {
+@media (min-width: 375px) and (max-width:430px) {
   .Capable_service_icon1 {
     max-width: 60px;
   }
@@ -127,7 +127,7 @@
     width: auto;
   }
   .work_with_us_card {
-    height: 235px;
+    height: 250px;
   }
 }
 @media (min-width: 431px) and (max-width: 786px) {
