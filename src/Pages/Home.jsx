@@ -417,7 +417,7 @@ function Home() {
                       {Things_Data.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div className="card things_card pb-sm-0 rounded-4 border-0 mb-4 h-100">
-                            <div className="card-body border_shadow m-3 border-0 rounded-4 m-2 d-flex flex-column justify-content-between h-100">
+                            <div className="card-body border_shadow m-3 border-0 rounded-4  d-flex flex-column ">
                               <div className="card-title">
                                 <div className="d-flex">
                                   <div className="position-relative pe-5 things_icon_container">

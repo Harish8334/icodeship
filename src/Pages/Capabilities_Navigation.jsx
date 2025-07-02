@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 // Icons
 import { ChevronRight } from "lucide-react";
@@ -15,7 +15,7 @@ import { useImageSlideInAnimation } from "../Animation/animation";
 import Banner from "../Components/Banner";
 import Brands from "../Components/Brands";
 import WorkTogther from "../Components/WorkTogther";
-import MetaTags from '../Components/MetaTags';
+import MetaTags from "../Components/MetaTags";
 
 // Data
 import Banner_Data from "../Data/Banner_Data";
@@ -30,22 +30,26 @@ function Capabilities() {
   const containerRef = useRef(null);
 
   // Prepare meta content with null checks
-  const servicesDescription = Services_Data?.map(service => service?.title).filter(Boolean) || [];
-  const servicePoints = Services_Data?.flatMap(service => 
-    service?.points?.map(point => point?.text)
-  ).filter(Boolean) || [];
+  const servicesDescription =
+    Services_Data?.map((service) => service?.title).filter(Boolean) || [];
+  const servicePoints =
+    Services_Data?.flatMap((service) =>
+      service?.points?.map((point) => point?.text)
+    ).filter(Boolean) || [];
 
   const metaContent = {
-    title: 'Our Capabilities',
-    description: `Explore Codeship's professional services including ${servicesDescription.join(', ')}. Expert solutions tailored for your business needs.`,
+    title: "Our Capabilities",
+    description: `Explore Codeship's professional services including ${servicesDescription.join(
+      ", "
+    )}. Expert solutions tailored for your business needs.`,
     keywords: [
       ...servicesDescription,
       ...servicePoints,
-      'capabilities',
-      'services',
-      'solutions'
+      "capabilities",
+      "services",
+      "solutions",
     ],
-    ogImage: image
+    ogImage: image,
   };
 
   // Run GSAP animation hook
@@ -97,25 +101,30 @@ function Capabilities() {
             >
               <div className="col-12 col-lg-6 col-md-6">
                 <div className="position-relative">
-                  <p className="font-size-58 font_weight_600 mt-3">{service.title}</p>
-                  <p className="font-size-24 line_height_30">{service.description}</p>
+                  <p className="font-size-58 font_weight_600 mt-3">
+                    {service.title}
+                  </p>
+                  <p className="font-size-24 line_height_30">
+                    {service.description}
+                  </p>
                   <div className="d-flex flex-column gap-3 mt-5">
                     {service.points.map((point, index) => (
-                    <a
-  key={index}
-  href={`/capable_service/${point.href}`}
-  onClick={(e) => {
-    e.preventDefault();
-    navigate(`/capable_service/${point.href}`, {
-      state: { name: point.text },
-    });
-  }}
-  className="text-black d-flex align-items-center gap-2 text-decoration-none"
->
-  <ChevronRight strokeWidth={1} size={24} />
-  <p className="font-size-30 font_weight_600 m-0">{point.text}</p>
-</a>
-
+                      <a
+                        key={index}
+                        href={`/capable_service/${point.href}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(`/capable_service/${point.href}`, {
+                            state: { name: point.text },
+                          });
+                        }}
+                        className="text-black d-flex align-items-center gap-2 text-decoration-none"
+                      >
+                        <ChevronRight strokeWidth={1} size={24} />
+                        <p className="font-size-30 font_weight_600 m-0">
+                          {point.text}
+                        </p>
+                      </a>
                     ))}
                   </div>
 

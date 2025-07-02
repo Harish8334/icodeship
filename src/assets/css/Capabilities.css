@@ -111,7 +111,26 @@
   height: 260px;
 }
 
-@media (min-width: 374px) and (max-width: 786px) {
+@media (max-width: 376px) {
+  .Capable_service_icon1 {
+    max-width: 60px;
+  }
+  .capable_service_card .card {
+    height: 250px;
+    width: 350px;
+  }
+  .capable_service_card_text {
+    max-width: 330px;
+  }
+  .capable_card {
+    height: 220px;
+    width: auto;
+  }
+  .work_with_us_card {
+    height: 200px;
+  }
+}
+@media (min-width: 429px) and (max-width: 786px) {
   .Capable_service_icon1 {
     max-width: 80px;
   }
@@ -156,8 +175,8 @@
     height: 230px;
   }
   .work_with_us_card {
-    height: 250px;
-    width: 260px;
+    height: 240px;
+    width: 380px;
   }
 }
 .privacy_card {
