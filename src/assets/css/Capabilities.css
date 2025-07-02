@@ -108,10 +108,10 @@
   height: 320px;
 }
 .work_with_us_card {
-  height: 260px;
+  height: 300px;
 }
 
-@media (max-width: 376px) {
+@media (min-width: 376px) and (max-width:430px) {
   .Capable_service_icon1 {
     max-width: 60px;
   }
@@ -127,10 +127,10 @@
     width: auto;
   }
   .work_with_us_card {
-    height: 200px;
+    height: 235px;
   }
 }
-@media (min-width: 429px) and (max-width: 786px) {
+@media (min-width: 431px) and (max-width: 786px) {
   .Capable_service_icon1 {
     max-width: 80px;
   }
@@ -146,7 +146,7 @@
     width: auto;
   }
   .work_with_us_card {
-    height: 200px;
+    height: 250px;
   }
 }
 @media (min-width: 787px) and (max-width: 1024px) {
@@ -175,7 +175,7 @@
     height: 230px;
   }
   .work_with_us_card {
-    height: auto;
+    height: 250px;
     width: 380px;
   }
 }
