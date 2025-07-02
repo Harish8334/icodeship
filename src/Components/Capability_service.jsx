@@ -340,7 +340,7 @@ const Capable_service = () => {
                         {item.title}
                       </p>
                     </Accordion.Header>
-                    <Accordion.Body className="font-size-16 font_weight_500">
+                    <Accordion.Body className="font-size-16 pt-0 font_weight_500">
                       {item.content}
                     </Accordion.Body>
                   </Accordion.Item>
@@ -361,7 +361,7 @@ const Capable_service = () => {
                         {item.title}
                       </p>
                     </Accordion.Header>
-                    <Accordion.Body className="font-size-16 font_weight_500">
+                    <Accordion.Body className="font-size-16 pt-0 font_weight_500">
                       {item.content}
                     </Accordion.Body>
                   </Accordion.Item>
