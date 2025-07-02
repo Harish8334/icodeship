@@ -242,7 +242,8 @@ function About() {
           </div>
 
           <Swiper
-            modules={[Pagination]}
+            modules={[Pagination, Autoplay]}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
             slidesPerView={5}
             spaceBetween={50}
             centeredSlides={true}

@@ -214,7 +214,7 @@ const Capable_service = () => {
                         <img
                           src={item.icon}
                           alt=""
-                          className="m-0 px-2 img-fluid Capable_service_icon1"
+                          className="m-0 p-0 img-fluid Capable_service_icon1"
                         />
                       </div>
                       <p className="m-0 p-0 font-size-40 font_weight_700 font_color_light_blue ">

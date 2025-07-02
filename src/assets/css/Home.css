@@ -72,6 +72,11 @@
     min-height: 200px !important;
   }
 }
+@media (max-width: 376px) {
+  .things_card {
+    height: 330px !important;
+  }
+}
 
 
 
