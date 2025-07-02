@@ -1,31 +1,31 @@
 // src/data/accordionData.js
 const leftAccordionData = [
-    {
-      title: "Why should I consider hiring a software development agency?",
-      content: "iCodeShip’s expert team crafts innovative, tailored software solutions to drive your business forward. We streamline development, reduce risks, and deliver fast, scalable results, letting you focus on growth!"
-    },
-    {
-      title: "How can partnering with a software development agency save us budget?",
-      content: "Partnering with iCodeShip optimizes your budget by leveraging our expert team to deliver efficient, high-quality software solutions. We minimize risks and reduce long-term costs through streamlined development and scalable results!"
-    },
-    {
-      title: "In which industries does Codeship have experience?",
-      content: "iCodeShip excels across diverse industries, delivering tailored software solutions with unmatched expertise. Our comprehensive capabilities in web and mobile development, UI/UX design, and reliable support services empower your business to thrive."
-    }
+  {
+    title: "Why should I consider hiring a software development agency?",
+    content: "iCodeShip’s expert team creates innovative, custom software solutions to help your business grow. We simplify development, lower risks, and provide quick, scalable results, allowing you to focus on growth."
+  },
+  {
+    title: "How can partnering with a software development agency save us budget?",
+    content: "Working with iCodeShip makes the best use of your budget by using our skilled team to deliver efficient, high-quality software solutions. We lower risks and cut long-term costs through simplified development and scalable results."
+  },
+  {
+    title: "In which industries does Codeship have experience?",
+    content: "iCodeShip works well in various industries, providing custom software solutions with great expertise. Our strong skills in web and mobile development, UI/UX design, and dependable support services help your business succeed."
+  }
   ];
   
  const rightAccordionData = [
-    {
-      title: "What sets Outecho apart from other software development agencies?",
-      content: "iCodeShip stands out with our relentless focus on delivering tailored software that drives your business forward. Our agile, client-first approach ensures rapid, high-quality results with seamless collaboration every step of the way!"
-    },
-    {
-      title: "What technologies does Codeship use for development?",
-      content: "iCodeShip employs an enterprise-grade tech stack, including microservices architecture, containerization with Docker & Kubernetes, modern frameworks, and cloud-native solutions on AWS and Azure to deliver scalable, future-ready software"
-    },
-    {
-      title: "Can you provide support for existing websites or apps?",
-      content: "Absolutely, iCodeShip provides expert support for existing websites and apps, ensuring optimal performance and seamless updates. Our dedicated team delivers tailored maintenance and enhancements to keep your digital solutions thriving!"
-    }
+  {
+    title: "What sets Outecho apart from other software development agencies?",
+    content: "iCodeShip stands out because we focus on delivering custom software that helps your business grow. Our client-first approach allows for quick, high-quality results and smooth collaboration at every step."
+  },
+  {
+    title: "What technologies does Codeship use for development?",
+    content: "iCodeShip uses a robust tech stack that includes microservices architecture, containerization with Docker and Kubernetes, modern frameworks, and cloud solutions on AWS and Azure to provide scalable software that’s ready for the future."
+  },
+  {
+    title: "Can you provide support for existing websites or apps?",
+    content: "Absolutely, iCodeShip offers expert support for existing websites and apps. We ensure optimal performance and smooth updates. Our dedicated team provides custom maintenance and improvements to keep your digital solutions successful."
+  }
   ];
   export { leftAccordionData, rightAccordionData };
