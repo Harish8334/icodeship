@@ -246,7 +246,7 @@ function About() {
             autoplay={{ delay: 2000, disableOnInteraction: false }}
             slidesPerView={5}
             spaceBetween={50}
-            centeredSlides={true}
+            // centeredSlides={true}
             loop={true}
             freeMode={true}
             className="mySwiper mt-5 mb-3 px-lg-0"
