@@ -8,25 +8,25 @@ export const softwareData = [
     name: "ERP Software",
     icon: Software1_icon,
     center_image: Software_img,
-    description: "Streamline operations with smart ERP tools",
+    description: "Streamline operations with smart ERP tools."
   },
   {
     name: "CRM Software",
     icon: Software2_icon,
     center_image: Software_img,
-    description: "Boost sales through tailored CRM solutions",
+    description: "Boost sales with tailored CRM solutions."
   },
   {
     name: "HRMS Software",
     icon: Software3_icon,
     center_image: Software_img,
-    description: "Manage workforce with powerful HRMS features",
+    description: "Manage the workforce using powerful HRMS features."
   },
   {
     name: "LMS Software",
     icon: Software4_icon,
     center_image: Software_img,
-    description: "Simplify learning via interactive LMS systems",
-  },
+    description: "Simplify learning with interactive LMS systems."
+  }
 ];
 

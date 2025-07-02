@@ -7,27 +7,27 @@ import ContactImg from '../assets/images/Contact/contact_banner.webp';
 
 const BannerData = {
   home: {
-    text: 'A global development company providing comprehensive solutions for innovative brands.',
+    text: 'A global development company providing solutions for innovative brands.',
     image: HomeImg,
   },
   about: {
-    text: 'Our passion for technology is what drives our business today.',
+    text: 'Our passion for technology drives our business today.',
     image: AboutImg,
   },
   works: {
-    text: 'Transforming bold ideas into engaging digital experiences that elevate your brand.',
+    text: 'We turn bold ideas into engaging digital experiences that elevate your brand.',
     image: WorkImg,
   },
   capable: {
-    text: 'Our passion for technology drives us to deliver creative and impactful solutions.',
+    text: 'Our passion for technology pushes us to deliver effective solutions.',
     image: CapableImg,
   },
   solutions: {
-    text: 'Our adaptation for technology inspires us to provide innovative and effective software solutions.',
+    text: 'Our interest in technology inspires us to provide innovative software solutions.',
     image: SolutionImg,
   },
   contact: {
-    text: 'We are committed to harnessing advanced technology to enhance our business. We’d love to hear from you—reach out to us!',
+    text: 'We are committed to using technology to improve our business. We’d love to hear from you; reach out to us!',
     image: ContactImg,
   },
   // Add more pages here...
