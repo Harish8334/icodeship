@@ -88,6 +88,20 @@ function Solution() {
 
   useAnimateCardsOnScroll(containerRef);
 
+  // --- SSR-safe dynamic spacer height ---
+  const [spacerHeight, setSpacerHeight] = useState('100vh'); // fallback for SSR
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const width = window.innerWidth;
+      setSpacerHeight(
+        width < 768
+          ? `${Solution_Data.length * 15}vh`
+          : `${Solution_Data.length * 16}vh`
+      );
+    }
+  }, []);
+  // --- END SSR-safe dynamic spacer height ---
+
   return (
     <div>
       <MetaTags {...metaContent} />
@@ -145,10 +159,7 @@ function Solution() {
         {/* Dynamic Spacer for Scroll Unlocking */}
         <section
           style={{
-            height:
-              window.innerWidth < 768
-                ? `${Solution_Data.length * 15}vh`
-                : `${Solution_Data.length * 16}vh`,
+            height: spacerHeight,
           }}
         ></section>
       </section>
