@@ -32,7 +32,7 @@ const SmoothScrollWrapper = ({ children }) => {
   }, []);
 
   return (
-    <div id="smooth-wrapper" ref={wrapperRef} style={{ overflow: 'hidden' }}>
+    <div id="smooth-wrapper" ref={wrapperRef} >
       <div id="smooth-content" ref={contentRef}>
         {children}
       </div>
