@@ -214,6 +214,109 @@ const serviceData = {
       ],
     },
   },
+  "react": {
+    banner: {
+      title:
+        "Build high-performance web apps with Codeship’s expert React development tailored to your business goals!",
+      icon: web_main_banner,
+    },
+    sub_banner: {
+      title: "For Your React Development Services.",
+      description:
+        "We use React's powerful component-based architecture to build scalable, responsive, and efficient web apps. Our team delivers modern, secure solutions tailored to your unique goals. Ready to enhance your digital presence? Let's create with React!",
+      icon: web_banner,
+    },
+    software_need: "Your one-stop solution for all your React software development needs.",
+    cardData: [
+      {
+        id: 1,
+        className: "capable_service_dev_card_left",
+        icon: Capable_service_icon1,
+        title: "Project Discovery",
+        desc: "Our React developers engage with you to understand your business requirements. Once the scope is defined, we kickstart the development process using modular and scalable approaches.",
+      },
+      {
+        id: 2,
+        className: "capable_service_dev_card_right",
+        icon: Capable_service_icon2,
+        title: "Component Planning",
+        desc: "We brainstorm ideas and design reusable components and UI mockups. This helps visualize the app’s structure before diving into development.",
+      },
+      {
+        id: 3,
+        className: "capable_service_dev_card_left2",
+        icon: Capable_service_icon3,
+        title: "Interactive Prototypes",
+        desc: "Upon approval of initial designs, we build working prototypes. Feedback is integrated at every stage, ensuring the product aligns with your vision.",
+      },
+      {
+        id: 4,
+        className: "capable_service_dev_card_center",
+        icon: Capable_service_icon4,
+        title: "Final Deployment",
+        desc: "We rigorously test and refine your React app before launch. The result: a robust, high-quality solution delivered on time and tailored to your business needs.",
+      }
+    ],
+    work_with_us:
+      "We specialize in building secure, performant, and maintainable React apps that scale with your business. With strong communication and clear development cycles, we ensure your web solution meets both brand and user expectations.",
+    work_with_us_detail: {
+      first: {
+        title: "Faster Delivery",
+        series: "01",
+        description:
+          "Codeship accelerates your product development using reusable components, hooks, and efficient state management. Save time and reduce cost while ensuring a smooth launch.",
+      },
+      second: {
+        title: "Modern Tech Stack",
+        series: "02",
+        description:
+          "Our React team utilizes modern libraries and tools (Redux, Tailwind, TypeScript, etc.) to deliver secure, optimized applications. From UI fixes to third-party integrations, we’ve got you covered.",
+      },
+      third: {
+        title: "Trusted & Stable",
+        series: "03",
+        description:
+          "With expert knowledge of React’s ecosystem, we ensure smooth performance and long-term maintainability. From performance tuning to code splitting, we handle it all with precision.",
+      },
+    },
+    accordionData: {
+      left: [
+        {
+          title: "What services do you offer under React development?",
+          content:
+            "We offer complete React solutions including UI/UX design, single-page applications, progressive web apps, and component-driven architectures. Contact us to get started.",
+        },
+        {
+          title: "Why should I choose Codeship for React development?",
+          content:
+            "Our developers are experts in the React ecosystem. We prioritize scalable, maintainable code and clear client communication, making us a reliable partner for your next project.",
+        },
+        {
+          title: "Can you migrate my existing app to React?",
+          content:
+            "Absolutely. We follow secure migration practices to transition your legacy app to React, with minimal disruption and modern performance.",
+        }
+      ],
+      right: [
+        {
+          title: "Is React still a good choice for new projects in 2025?",
+          content:
+            "Yes! React remains one of the most popular and well-supported frameworks. It’s ideal for dynamic interfaces, fast rendering, and scalable applications.",
+        },
+        {
+          title: "Do you offer post-launch support and maintenance?",
+          content:
+            "Yes, we provide long-term support including updates, performance checks, feature enhancements, and quick bug fixes after deployment.",
+        },
+        {
+          title: "What makes your React development team unique?",
+          content:
+            "Our team combines years of hands-on experience with modern practices like code reusability, atomic design, and strong testing. We focus on performance, security, and developer-friendly solutions.",
+        }
+      ],
+    },
+  },
+  
  "custom-web-dev": {
     banner: {
         title: "Custom Website Development Tailored to Your Vision",

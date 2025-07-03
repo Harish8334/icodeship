@@ -18,6 +18,7 @@ export const Services_Data = [
     points: [
       { text: "Website Development", href: "web-dev" },
       { text: "Angular Development", href: "angular" },
+      { text: "React Development", href: "react" },
       { text: "Custom Website Development", href: "custom-web-dev" },
       { text: "WordPress Development", href: "wordpress-dev" },
       { text: "Web App Development", href: "web-app-dev" }
