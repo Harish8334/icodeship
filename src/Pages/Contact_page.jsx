@@ -207,7 +207,7 @@ function Contact_page() {
                       <p className="font-size-37 font_weight_600">
                         Follow us on :
                       </p>
-                      <div className="d-flex gap-3">
+                      <div className="d-flex gap-3 w-50">
                         <a
                           href="https://www.facebook.com/icodeship"
                           aria-label="Facebook"

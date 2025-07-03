@@ -36,7 +36,7 @@
   height: 60px;
 }
 .things_card{
-  min-height: 320px;
+  height: 300px;
 }
 @media (max-width: 1440px) {
   .things_card {
@@ -55,26 +55,31 @@
 /* Large laptops (1280px - 1440px) */
 @media (max-width: 1280px) {
   .things_card {
-    min-height: 320px !important;
+    min-height: 230px !important;
   }
 }
 
 /* Medium screens (Laptops/Tablets landscape) */
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .things_card {
-    min-height: 250px !important;
+    height: 200px !important;
   }
 }
 
 /* Tablets portrait / large phones landscape */
 @media (max-width: 768px) {
   .things_card {
-    min-height: 200px !important;
+    min-height: 230px !important;
+  }
+}
+@media (max-width: 431px) {
+  .things_card {
+    min-height: 280px !important;
   }
 }
 @media (max-width: 376px) {
   .things_card {
-    height: 330px !important;
+    height: 300px !important;
   }
 }
 

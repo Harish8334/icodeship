@@ -200,6 +200,9 @@
 .line_height_70 {
   line-height: clamp(38px, 5.5vw, 55px);
 }
+.line_height_80 {
+  line-height: clamp(40px, 5.8vw, 65px);
+}
 
 /* border radius */
 .border_radius_25 {

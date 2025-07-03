@@ -71,7 +71,7 @@ function Contact() {
 
   return (
     <>
-      <section className="position-relative overflow-hidden" ref={containerRef}>
+      <section className="position-relative overflow-hidden pb-3" ref={containerRef}>
         <Container className="my_container pt-5">
           <p className="font-size-62 font_weight_600">
             Have an innovative thought?
@@ -95,16 +95,16 @@ function Contact() {
               <Form>
                 <div className="row d-flex flex-column-reverse flex-lg-row align-items-end">
                   <div className="col-lg-4">
-                    <div className="social-media-links mt-5 mt-lg-0">
+                    <div className=" mt-5 mt-lg-0">
                       <p className="font-size-37 font_weight_600">
                         Follow us on :
                       </p>
-                      <div className="d-flex gap-3">
+                      <div className="d-flex gap-3 w-50">
                         <a href="https://www.facebook.com/icodeship">
                           <img
                             src={Contact_icon1}
                             alt=""
-                            className="img-fluid"
+                            className="img-fluid "
                           />
                         </a>
                         <a href="https://www.instagram.com/icodeship?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
