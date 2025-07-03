@@ -77,7 +77,7 @@ function Home_service() {
             ))}
 
             {/* Placeholder for spacing or future content */}
-            <div className="d-none d-lg-block ps-5"> d </div>
+            <div className="d-none d-lg-block ps-5 text-white"> d </div>
           </div>
         </div>
       </Container>
