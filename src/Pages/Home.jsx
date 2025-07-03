@@ -349,7 +349,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="pb-5">
       <MetaTags {...metaContent} />
       <div className="overflow-hidden">
         <Banner text={text} image={image} />
@@ -819,7 +819,7 @@ function Home() {
         <Testimonial />
         <Contact />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -175,7 +175,7 @@ function Contact_page() {
   };
 
   return (
-    <div>
+    <div className="pb-5" >
       <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
