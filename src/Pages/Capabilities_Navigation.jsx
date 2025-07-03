@@ -132,7 +132,7 @@ function Capabilities() {
                     <img
                       src={service.imageOdd}
                       alt=""
-                      className="img-fluid position-absolute top-25 start-50 capable_shape1"
+                      className="d-none d-xl-block img-fluid position-absolute top-25 start-50 capable_shape1"
                     />
                   )}
                 </div>
