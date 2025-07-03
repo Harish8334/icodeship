@@ -131,7 +131,7 @@ const PageWrapper = ({ children }) => {
 
   return (
     <>
-      <div id="smooth-wrapper" style={{ overflow: "hidden" }}>
+      <div id="smooth-wrapper" >
         <div id="smooth-content">
           {loading ? <Loader /> : children}
         </div>
@@ -145,13 +145,13 @@ function App() {
   const location = useLocation();
   const isFirstLoad = useRef(true);
 
-  useEffect(() => {
-    if (isFirstLoad.current) {
-      isFirstLoad.current = false;
-    } else {
-      window.location.reload();
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (isFirstLoad.current) {
+  //     isFirstLoad.current = false;
+  //   } else {
+  //     window.location.reload();
+  //   }
+  // }, [location.pathname]);
 
   return (
     <>

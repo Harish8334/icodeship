@@ -43,11 +43,11 @@ const ScrollToTopButton = () => {
   return (
     visible && (
       <button
-        onClick={scrollToTop}
+        onClick={scrollToTop} 
         style={{
           position: 'fixed',
-          bottom: '40px',
-          right: '30px',
+          bottom: '60px',
+          right: '60px',
           width: '48px',
           height: '48px',
           backgroundColor: '#49499D',
