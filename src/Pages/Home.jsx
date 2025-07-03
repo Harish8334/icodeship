@@ -419,20 +419,20 @@ function Home() {
                           <div className="card things_card pb-sm-0 rounded-4 border-0 mb-4 h-100">
                             <div className="card-body border_shadow m-3 border-0 rounded-4  d-flex flex-column ">
                               <div className="card-title">
-                                <div className="d-flex">
-                                  <div className="position-relative pe-5 things_icon_container">
+                                <div className="d-flex gap-5 ">
+                                  <div className="position-relative  things_icon_container">
                                     <img
                                       src={item.hoverIcon}
                                       alt=""
-                                      className="things_head things_hover_icon position-absolute pt-2 pb-3"
+                                      className="things_head things_hover_icon position-absolute"
                                     />
                                     <img
                                       src={item.icon}
                                       alt=""
-                                      className="things_head things_icon position-absolute pt-2 pb-3"
+                                      className="things_head things_icon position-absolute "
                                     />
                                   </div>
-                                  <p className="font-size-28 font_weight_500 things_head ps-3  pb-3">
+                                  <p className="font-size-28 font_weight_500 things_head ms-3 mt-2 p-0">
                                     {item.title}
                                   </p>
                                 </div>
