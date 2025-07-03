@@ -15,7 +15,7 @@ const team_data = [
   },
   {
     name: "Anjali Rao",
-    position: "COO",
+    position: "",
     img: Member_5,
     instagram: "https://www.instagram.com/icodeship/",
     facebook: "",

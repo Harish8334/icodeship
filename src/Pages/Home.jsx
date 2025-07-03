@@ -349,7 +349,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="pb-5">
       <MetaTags {...metaContent} />
       <div className="overflow-hidden">
         <Banner text={text} image={image} />
@@ -463,7 +463,7 @@ function Home() {
             {/* Sofware section */}
             <div className="section1 position-relative">
               <section
-                className="software-wrapper overflow-hidden w-100 pb-5 pb-md-0  bg-black"
+                className="software-wrapper pt-5 overflow-hidden w-100 pb-5 pb-md-0  bg-black"
                 ref={sectionRef}
               >
                 <div className="software-pinned d-flex justify-content-center align-items-center w-100 h-100">
@@ -819,7 +819,7 @@ function Home() {
         <Testimonial />
         <Contact />
       </div>
-    </>
+    </div>
   );
 }
 
