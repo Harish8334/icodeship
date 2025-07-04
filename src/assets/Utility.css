@@ -352,7 +352,7 @@ input:-webkit-autofill {
 
 
 #smooth-wrapper {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 #smooth-content {
   will-change: transform;

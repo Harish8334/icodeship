@@ -20,7 +20,7 @@ export const softwareData = [
     name: "HRMS Software",
     icon: Software3_icon,
     center_image: Software_img,
-    description: "Manage the workforce using powerful HRMS features."
+    description: "Manage the workforce using powerful HRMS"
   },
   {
     name: "LMS Software",
