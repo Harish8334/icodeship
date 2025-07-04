@@ -1,6 +1,6 @@
 import { Container, Navbar } from "react-bootstrap";
 import Logo from "../assets/images/Codeship_Ad/logo.png";
-import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 const  Header = () => {
   return (

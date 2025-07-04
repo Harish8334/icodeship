@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
 import { Workdata_2 } from "../Data/WorkData";
 import { animateWorkCard } from "../Animation/animation";
 import "../Pages/Home.css";

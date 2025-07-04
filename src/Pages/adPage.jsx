@@ -1,13 +1,12 @@
 import Banner from "../assets/images/Codeship_Ad/banner.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import { ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Banner_underline from "../assets/images/Codeship_Ad/banner_underline.png";
 import { useState, useRef, useEffect } from "react";
@@ -33,8 +32,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Ad_Footer from "../Components/AdFooter.jsx"
 import  Ad_Header  from "../Components/AdHeader.jsx"
-import Logo from "../assets/images/Home/logo1.png"
-import Twitter  from "../assets/images/Home/twitter_icon.png"
 import MetaTags from "../Components/MetaTags.jsx";
 import "../assets/css/ad_page.css"
 if (typeof window !== 'undefined') {
@@ -671,7 +668,7 @@ const [groupedServices, setGroupedServices] = useState([]);
 
         <div className="d-flex flex-column flex-md-row justify-content-center  text-center gap-3 font-size-50 font_weight_700 tight-line-height mt-5 pb-3 pb-md-0">
           <div className="position-relative d-flex flex-nowrap justify-content-center">
-            <p className="m-0 pb-2 text-white px-xl-4  font-size-46  pb-lg-2">
+            <p className="m-0 pb-2 text-white px-xl-4  font-size-40  pb-lg-2">
               Transforming
             </p>
             <img

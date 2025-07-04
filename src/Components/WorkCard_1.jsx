@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Workdata_1 } from "../Data/WorkData";
 import { animateWorkCard } from "../Animation/animation";
 import "../Pages/Home.css";
-import { ChevronRight } from "lucide-react";
 import Modal from "./Modal";
 
 const WorkCard_1 = ({ index }) => {
