@@ -23,7 +23,7 @@ import PurchaseContactForm from "./Components/Purchase_form";
 import Loader from "./Components/Loader";
 import Header from "./Components/Header";
 import PageNotFound from "./Components/PageNotFound";
-
+import AdPage from "./Pages/adPage.jsx";
 import Privacy from "./Pages/Privacy";
 import Terms from "./Pages/Terms";
 import Refund from "./Pages/Refund";
@@ -147,6 +147,7 @@ const PageWrapper = ({ children }) => {
 function App() {
   const location = useLocation();
   const isFirstLoad = useRef(true);
+  const isLanding = location.pathname === "/landing";
 
   // useEffect(() => {
   //   if (isFirstLoad.current) {
@@ -158,7 +159,7 @@ function App() {
 
   return (
     <>
-      <ClientOnlyHeader />
+      {!isLanding && <ClientOnlyHeader />}
       <PageWrapper>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -174,11 +175,10 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/refund" element={<Refund />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/landing" element={<AdPage />} />
           <Route path="*" element={<PageNotFound />} />
-
         </Routes>
-        <Footer/>
-
+        {!isLanding && <Footer />}
       </PageWrapper>
     </>
   );

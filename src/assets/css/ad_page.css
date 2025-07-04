@@ -7,10 +7,12 @@ html, body {
 *, *::before, *::after {
   box-sizing: inherit;
 }
-
+.font-size-35{
+  font-size: 35px;
+}
 .my_container {
   width: 100%;
- 
+
 
   @media (min-width: 576px) {
     max-width: 540px;
