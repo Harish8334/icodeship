@@ -363,7 +363,7 @@ function Home() {
           />
           <div className="position-absolute d-flex justify-content-center align-items-center flex-column map_text">
             <p className="font-size-40 font_weight_400 text-center mx-3 mx-lg-5">
-              Since our founding in 2020, Codeship has rapidly{" "}
+              Since our founding in 2021, Codeship has rapidly{" "}
               <br className="d-none d-md-block" /> grown into a dynamic and
               thriving company.
             </p>
@@ -516,7 +516,7 @@ function Home() {
                           <button
                             className="px-4 py-3  border-2 border-white  bg-transparent btn-outline-light text-white rounded-pill mt-3 font-size-18"
                             onClick={() =>
-                              (window.location.href = "/purchaseform")
+                              (window.location.href = "/purchase-contact")
                             }
                           >
                             Purchase Product
@@ -544,7 +544,7 @@ function Home() {
                           <button
                             className="px-4 py-3 border-2 border-white bg-transparent btn-outline-light text-white rounded-pill  font-size-18"
                             onClick={() =>
-                              (window.location.href = "/purchaseform")
+                              (window.location.href = "/purchase-contact")
                             }
                           >
                             Purchase Product
