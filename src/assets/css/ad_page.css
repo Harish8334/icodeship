@@ -277,7 +277,16 @@ html, body {
   border: 2px solid #514fa0 !important;
 }
 
-
 .orange-bg{
     background-color:#ED7A16!important ;
+}
+
+.contact-btn-hover:hover{
+  background-color: #514fa0;
+  color: white;
+}
+.explore-btn-hover:hover{
+  background-color: white!important;
+  color: #ED7A16!important;
+  border: 2px solid #ED7A16!important;
 }

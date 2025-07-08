@@ -123,7 +123,7 @@ function Footer() {
           borderTop: "1px solid #ccc",
         }}
       >
-        © Copyright 2021 - 2024 Codeship Pvt Ltd. All Rights Reserved
+        © 25 Codeship Pvt Ltd. All Rights Reserved
       </div>
     </>
   );

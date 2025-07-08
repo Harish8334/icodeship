@@ -419,7 +419,7 @@ const [groupedServices, setGroupedServices] = useState([]);
                   ))}
                 </div>
               </div>
-              <div className="d-flex justify-content-end d-lg-none   pe-3">
+              <div className="d-flex justify-content-end d-none pe-3">
                 <img
                   src={left_arrow}
                   className="pb-5 wave-bounce "
