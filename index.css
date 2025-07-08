@@ -204,11 +204,17 @@
   display: flex;
   flex-direction: column;
 }
-@media(max-width:1440px){
-.header-css{
- max-Width:"99vw";
- width:"100vw"
-}}
-.header-css{
-  max-Width:"100vw";
-  width:"100vw";}
+
+.header-css {
+  max-width: 100vw;
+  width: 100vw;
+}
+
+@media (min-width: 1440px) {
+  .header-css {
+    max-width: 99vw;
+    width: 99vw;
+  }
+}
+
+
