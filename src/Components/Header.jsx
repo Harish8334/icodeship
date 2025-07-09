@@ -180,7 +180,7 @@ export default function Header({}) {
                               as={Link}
                               to={`/capable_service/${point.href}`}
                               className="font-size-18 font_weight_400 text-dark pb-3 pt-2 px-0"
-                              key={i}
+                              key={i} onClick={hideDropdownWithDelay}
                             >
                               {point.text}
                             </Nav.Link>
