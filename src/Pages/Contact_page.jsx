@@ -139,7 +139,6 @@ function Contact_page() {
 
   const containerRef = useRef(null);
   const [showSplash, setShowSplash] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   const { text, image } = Banner_Data.contact;
 
@@ -175,7 +174,7 @@ function Contact_page() {
   };
 
   return (
-    <div className="pb-5" >
+    <div className="pb-5">
       <MetaTags {...metaContent} />
       <Banner text={text} image={image} />
       <Brands />
@@ -302,21 +301,40 @@ function Contact_page() {
                           >
                             Mobile Number
                           </label>
-                          <Field
-                            id="mobile"
-                            type="tel"
-                            name="mobile"
-                            maxLength="10"
-                            inputMode="numeric"
-                            pattern="\d*"
-                            placeholder="Enter mobile number"
-                            onInput={(e) => {
-                              e.target.value = e.target.value
-                                .replace(/\D/g, "")
-                                .slice(0, 10);
-                            }}
-                            className="contact_input mt-4"
-                          />
+                          <div className="d-flex align-items-center mt-4 border-0 border-bottom rounded-0 border-dark ">
+                            <Field
+                              as="select"
+                              name="countryCode"
+                              className="form-select   border-0  rounded-0 "
+                              style={{ maxWidth: "85px" }}
+                            >
+                              <option value="+91">+91</option>
+                              <option value="+1">+1 </option>
+                              <option value="+44">+44 </option>
+                              <option value="+61">+61 </option>
+                              <option value="+81">+81 </option>
+                              <option value="+49">+49</option>
+                              <option value="+33">+33</option>
+                              <option value="+86">+86 </option>
+                              <option value="+971">+971</option>
+                              <option value="+27">+27</option>
+                            </Field>
+                            <Field
+                              id="mobile"
+                              type="tel"
+                              name="mobile"
+                              maxLength="10"
+                              inputMode="numeric"
+                              pattern="\d*"
+                              placeholder="Enter mobile number"
+                              onInput={(e) => {
+                                e.target.value = e.target.value
+                                  .replace(/\D/g, "")
+                                  .slice(0, 10);
+                              }}
+                              className=" w-100 border-0 contact_inputt "
+                            />
+                          </div>
                           <ErrorMessage
                             name="mobile"
                             component="div"
