@@ -44,8 +44,9 @@ import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
 
 // CSS
 import "../Pages/Contact_page.css";
-import PhoneInput from 'react-phone-input-2';
+import AsyncPhoneInput from'../Components/phoneInput.jsx'
 import 'react-phone-input-2/lib/style.css';
+
 // Register GSAP plugin
 gsap.registerPlugin(ScrollSmoother);
 
@@ -238,7 +239,7 @@ function Contact_page() {
                             className="img-fluid"
                           />
                         </a>
-                        <a href="#" aria-label="Other social link">
+                        <a href="/" aria-label="Other social link">
                           <img
                             src={Contact_icon4}
                             alt="Other social link"
@@ -298,16 +299,10 @@ function Contact_page() {
   <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
     <label className="font-size-20 font_weight_400">Mobile Number</label>
     <div className="mt-4">
-      <PhoneInput
-        country={'in'}
-        value={values.mobile}
-        onChange={(phone) => setFieldValue('mobile', phone)}
-        inputProps={{
-          name: 'mobile',
-          required: true,
-          className: 'contact_inputt w-100 px-5 ',
-        }}
-      />
+      <AsyncPhoneInput
+                              value={values.mobile}
+                              onChange={(phone) => setFieldValue('mobile', phone)}
+                            />
     </div>
     <ErrorMessage
       name="mobile"

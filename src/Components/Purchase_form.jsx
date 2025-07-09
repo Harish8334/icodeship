@@ -8,8 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {PurchaseContactForms } from "../Service_Data/API"
-import PhoneInput from 'react-phone-input-2';
+import AsyncPhoneInput from'../Components/phoneInput'
 import 'react-phone-input-2/lib/style.css';
+
 const PurchaseContactForm = () => {
   const [showSplash, setShowSplash] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -137,16 +138,10 @@ const PurchaseContactForm = () => {
                     <label className="font-size-20 font_weight_400">
                       Phone Number
                     </label>
-                    <PhoneInput
-        country={'in'}
-        value={values.mobile}
-        onChange={(phone) => setFieldValue('mobile', phone)}
-        inputProps={{
-          name: 'mobile',
-          required: true,
-          className: 'contact_inputt w-100 px-5 ',
-        }}
-      />
+                     <AsyncPhoneInput
+                              value={values.mobile}
+                              onChange={(phone) => setFieldValue('mobile', phone)}
+                            />
                     <ErrorMessage
                       name="mobile"
                       component="div"

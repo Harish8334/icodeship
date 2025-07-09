@@ -12,9 +12,9 @@ import { BallSplash } from "../Animation/animation";
 // import Footer from "./Footer.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 
+import 'react-phone-input-2/lib/style.css';
+import AsyncPhoneInput from'./phoneInput.jsx'
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Enter a company name"),
   email: Yup.string()
@@ -179,16 +179,10 @@ function Contact() {
   <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
     <label className="font-size-20 font_weight_400">Mobile Number</label>
     <div className="mt-4">
-      <PhoneInput
-        country={'in'}
-        value={values.mobile}
-        onChange={(phone) => setFieldValue('mobile', phone)}
-        inputProps={{
-          name: 'mobile',
-          required: true,
-          className: 'contact_inputt w-100 px-5 ',
-        }}
-      />
+     <AsyncPhoneInput
+                              value={values.mobile}
+                              onChange={(phone) => setFieldValue('mobile', phone)}
+                            />
     </div>
     <ErrorMessage
       name="mobile"

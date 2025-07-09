@@ -34,8 +34,9 @@ import Ad_Footer from "../Components/AdFooter.jsx"
 import  Ad_Header  from "../Components/AdHeader.jsx"
 import MetaTags from "../Components/MetaTags.jsx";
 import "../assets/css/ad_page.css"
-import PhoneInput from 'react-phone-input-2';
+import AsyncPhoneInput from'../Components/phoneInput.jsx'
 import 'react-phone-input-2/lib/style.css';
+
 if (typeof window !== 'undefined') {
   import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
     gsap.registerPlugin(ScrollTrigger);
@@ -309,16 +310,10 @@ const [groupedServices, setGroupedServices] = useState([]);
                     <label className="mb-1 font-size-12 font_weight_500 text-black">
                       Mobile Number
                     </label>
-                    <PhoneInput
-        country={'in'}
-        value={values.mobile}
-        onChange={(phone) => setFieldValue('mobile', phone)}
-        inputProps={{
-          name: 'mobile',
-          required: true,
-          className: 'contact_inputt w-100 px-5 ',
-        }}
-      />
+                    <AsyncPhoneInput
+                              value={values.mobile}
+                              onChange={(phone) => setFieldValue('mobile', phone)}
+                            />
 
                     {formik.touched.mobile && formik.errors.mobile && (
                       <div className="text-danger mb-3 font-size-12">
