@@ -79,14 +79,22 @@
 .contact_input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset !important;
   -webkit-text-fill-color: #000 !important;
+  
 }
 
 /* If there’s a style on valid inputs causing bg color */
 .contact_input:valid {
   background-color: transparent !important;
+  
 }
 .contact_input::placeholder {
   padding-bottom: 8px;
+}
+.contact_inputt::placeholder {
+  padding-bottom: 8px;
+}
+.contact_inputt {
+  padding: 10px 2px;
 }
 .contact_input {
   padding: 10px 2px;
