@@ -178,7 +178,7 @@ export default function Header({}) {
                           {service.points.map((point, i) => (
                             <Nav.Link
                               as={Link}
-                              to={`/capable_service/${point.href}`}
+                              to={`/capable-service/${point.href}`}
                               className="font-size-18 font_weight_400 text-dark pb-3 pt-2 px-0"
                               key={i} onClick={hideDropdownWithDelay}
                             >
@@ -330,7 +330,7 @@ export default function Header({}) {
                            <Nav.Link
                              key={i}
                              as={Link}
-                             to={`/capable_service/${point.href}`}
+                             to={`/capable-service/${point.href}`}
                              onClick={handleCloseCapabilities}
                              className="d-block py-2 px-3 mb-2 font-size-24 text-dark bg-light rounded-3 text-decoration-none "
                              onMouseEnter={(e) => {

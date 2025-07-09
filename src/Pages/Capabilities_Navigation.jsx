@@ -111,10 +111,10 @@ function Capabilities() {
                     {service.points.map((point, index) => (
                       <a
                         key={index}
-                        href={`/capable_service/${point.href}`}
+                        href={`/capable-service/${point.href}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          navigate(`/capable_service/${point.href}`, {
+                          navigate(`/capable-service/${point.href}`, {
                             state: { name: point.text },
                           });
                         }}

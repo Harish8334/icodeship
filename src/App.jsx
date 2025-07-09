@@ -168,7 +168,7 @@ function App() {
           <Route path="/solutions" element={<Solution />} />
           <Route element={<Capable_service_layout />}>
             <Route path="/capable" element={<Capabilities />} />
-            <Route path="/capable_service/:href" element={<Capabilities_service />} />
+            <Route path="/capable-service/:href" element={<Capabilities_service />} />
           </Route>
           <Route path="/contact" element={<Contact_page />} />
           <Route path="/purchase-contact" element={<PurchaseContactForm />} />
