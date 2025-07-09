@@ -10,7 +10,7 @@ const serviceData = {
   "web-dev": {
     banner: {
       title:
-      "Build strong, scalable websites with CodeShip Pvt. Ltd. that grow with your business.",
+      "Build strong, scalable websites with CodeShip Pvt. Ltd that grow with your business.",
       icon: web_main_banner,
     },
     sub_banner: {
@@ -323,8 +323,8 @@ const serviceData = {
         icon: web_main_banner,
     },
     sub_banner: {
-        title: "Why Choose CodeShip Pvt. Ltd.?",
-        description: "At CodeShip Pvt. Ltd., we focus on providing unique website development solutions to meet the specific needs of your business. Our expertise covers various platforms and technologies, ensuring flexibility, scalability, and excellent performance.",
+        title: "Why Choose CodeShip Pvt. Ltd?",
+        description: "At CodeShip Pvt. Ltd, we focus on providing unique website development solutions to meet the specific needs of your business. Our expertise covers various platforms and technologies, ensuring flexibility, scalability, and excellent performance.",
         icon: web_banner,
     },
     software_need: "Your one stop for all your software development needs",
@@ -363,7 +363,7 @@ const serviceData = {
         first: {
             title: "Time-saving",
             series: "01",
-            description: "With extensive experience in various website creation services, CodeShip Pvt. Ltd. is your best choice for saving both time and money. Each moment spent with us is an investment that allows you to focus on growing your business. Our web development team will give you a competitive edge.",
+            description: "With extensive experience in various website creation services, CodeShip Pvt. Ltd is your best choice for saving both time and money. Each moment spent with us is an investment that allows you to focus on growing your business. Our web development team will give you a competitive edge.",
         },
         second: {
             title: "Advanced Technology",
@@ -413,8 +413,8 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
-      description: "At CodeShip Pvt. Ltd., we deliver responsive, customized WordPress solutions for your business. Our services include professional design, theme selection, ongoing maintenance, and custom plugin development to keep your site functional and updated. We offer all of this at affordable prices without sacrificing quality.",
+      title: "Why Choose CodeShip Pvt. Ltd?",
+      description: "At CodeShip Pvt. Ltd, we deliver responsive, customized WordPress solutions for your business. Our services include professional design, theme selection, ongoing maintenance, and custom plugin development to keep your site functional and updated. We offer all of this at affordable prices without sacrificing quality.",
       icon: web_banner,
     },
     software_need: "Your one stop for all your WordPress development needs",
@@ -454,7 +454,7 @@ const serviceData = {
       first: {
         title: "Time Saving",
         series: "01",
-        description: "With extensive experience in WordPress development, CodeShip Pvt. Ltd. is your ideal partner for building high-quality websites while saving both time and money. Every moment you invest in our services helps you focus on growing your business.",
+        description: "With extensive experience in WordPress development, CodeShip Pvt. Ltd is your ideal partner for building high-quality websites while saving both time and money. Every moment you invest in our services helps you focus on growing your business.",
       },
       second: {
         title: "Reliable Technology",
@@ -464,13 +464,13 @@ const serviceData = {
       third: {
         title: "More Reliable",
         series: "03",
-        description: "Partnering with a trusted team like CodeShip Pvt. Ltd. ensures a reliable, high-performing WordPress website. Our experienced developers ensure no important detail is missed, delivering a site that exceeds expectations.",
+        description: "Partnering with a trusted team like CodeShip Pvt. Ltd ensures a reliable, high-performing WordPress website. Our experienced developers ensure no important detail is missed, delivering a site that exceeds expectations.",
       },
     },
     accordionData: {
       left: [
         {
-          title: "Why should I choose CodeShip Pvt. Ltd. for WordPress Development?",
+          title: "Why should I choose CodeShip Pvt. Ltd for WordPress Development?",
           content: "We specialize in building custom, responsive, and SEO-friendly WordPress websites that fit your business goals at competitive prices.",
         },
         {
@@ -504,8 +504,8 @@ const serviceData = {
       icon: web_main_banner, // replace with actual image import
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
-      description: "At CodeShip Pvt. Ltd., our skilled team of web developers, designers, and quality controllers is ready to meet your project deadlines. With years of experience and a strong record of developing many web applications, we focus on delivering high-quality, scalable solutions for your business needs.",
+      title: "Why Choose CodeShip Pvt. Ltd?",
+      description: "At CodeShip Pvt. Ltd, our skilled team of web developers, designers, and quality controllers is ready to meet your project deadlines. With years of experience and a strong record of developing many web applications, we focus on delivering high-quality, scalable solutions for your business needs.",
       icon: web_banner, // replace with actual image import
     },
     software_need: "Scalable, secure, and intuitive web app development for your digital success.",
@@ -539,12 +539,12 @@ const serviceData = {
         desc: "We deliver on time, refine based on your input, and ensure the final product meets your goals.",
       },
     ],
-    work_with_us: "At CodeShip Pvt. Ltd., our dedicated professionals provide custom web app solutions tailored to your unique needs. We ensure timely delivery, ongoing support, and optimize your app for better performance and visibility. With clear communication and regular updates, we offer fresh ideas and practical solutions to enhance your online presence and drive success.",
+    work_with_us: "At CodeShip Pvt. Ltd, our dedicated professionals provide custom web app solutions tailored to your unique needs. We ensure timely delivery, ongoing support, and optimize your app for better performance and visibility. With clear communication and regular updates, we offer fresh ideas and practical solutions to enhance your online presence and drive success.",
     work_with_us_detail: {
       first: {
         title: "Time Saving",
         series: "01",
-        description: "CodeShip Pvt. Ltd. helps you save time and money with efficient, high-quality web development. Our expert team ensures every investment benefits your business growth, delivering solutions that give you a competitive edge in today’s fast-paced digital marketplace.",
+        description: "CodeShip Pvt. Ltd helps you save time and money with efficient, high-quality web development. Our expert team ensures every investment benefits your business growth, delivering solutions that give you a competitive edge in today’s fast-paced digital marketplace.",
       },
       second: {
         title: "Advanced Technology",
@@ -554,7 +554,7 @@ const serviceData = {
       third: {
         title: "More Reliable",
         series: "03",
-        description: "Partner with CodeShip Pvt. Ltd. for a dependable, high-performing website. Our skilled team ensures quality and detail, preventing critical issues. We invest time and effort to deliver outstanding websites that meet your expectations and support your business goals effectively.",
+        description: "Partner with CodeShip Pvt. Ltd for a dependable, high-performing website. Our skilled team ensures quality and detail, preventing critical issues. We invest time and effort to deliver outstanding websites that meet your expectations and support your business goals effectively.",
       },
     },
     accordionData: {
@@ -595,8 +595,8 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
-      description: "At CodeShip Pvt. Ltd., we focus on creating high-quality, scalable, and user-friendly Android apps. Our expert team guarantees performance, security, and usability. We customize each app to meet your unique business needs from concept to deployment. We provide solutions on time and within budget to help your business thrive.",
+      title: "Why Choose CodeShip Pvt. Ltd?",
+      description: "At CodeShip Pvt. Ltd, we focus on creating high-quality, scalable, and user-friendly Android apps. Our expert team guarantees performance, security, and usability. We customize each app to meet your unique business needs from concept to deployment. We provide solutions on time and within budget to help your business thrive.",
       icon: web_banner,
     },
     software_need: "Scalable, secure, and user-friendly Android app development tailored for your business success",
@@ -631,12 +631,12 @@ const serviceData = {
       },
     ],
 
-    work_with_us: "At CodeShip Pvt. Ltd., we provide customized Android app solutions designed for your business. We guarantee timely delivery, ongoing support, and clear communication to improve your app's performance, user experience, and overall success.",
+    work_with_us: "At CodeShip Pvt. Ltd, we provide customized Android app solutions designed for your business. We guarantee timely delivery, ongoing support, and clear communication to improve your app's performance, user experience, and overall success.",
     work_with_us_detail: {
       first: {
         title: "Time Saving",
         series: "01",
-        description: "With extensive experience in Android app development, CodeShip Pvt. Ltd. helps you save time and money by delivering efficient, high-quality solutions that boost your business growth.",
+        description: "With extensive experience in Android app development, CodeShip Pvt. Ltd helps you save time and money by delivering efficient, high-quality solutions that boost your business growth.",
       },
       second: {
         title: "Advanced Technology",
@@ -656,7 +656,7 @@ const serviceData = {
           content: "Android app development involves creating applications for Android devices like smartphones and tablets, designed to run smoothly on various devices.",
         },
         {
-          title: "Why choose CodeShip Pvt. Ltd. for Android app development?",
+          title: "Why choose CodeShip Pvt. Ltd for Android app development?",
           content: "We create customized, high-performance, secure, and user-friendly Android apps tailored to your business needs, ensuring apps that meet your goals and satisfy users.",
         },
         {
@@ -683,11 +683,11 @@ const serviceData = {
   "ios-app": {
     banner: {
       title:
-        "Unlock your business potential with CodeShip Pvt. Ltd.'s expert iOS app development services.",
+        "Unlock your business potential with CodeShip Pvt. Ltd's expert iOS app development services.",
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "Our iOS app development services exceed expectations. We provide unique, custom mobile app solutions designed to meet your business needs. We focus on improving functionality and user engagement on both iPhone and iPad.",
       icon: web_banner,
@@ -731,7 +731,7 @@ const serviceData = {
         title: "Time Saving",
         series: "01",
         description:
-          "With a lot of industry experience, CodeShip Pvt. Ltd. helps you save time and resources. We provide efficient, high-quality iOS app solutions that boost business growth while keeping quality and deadlines intact.",
+          "With a lot of industry experience, CodeShip Pvt. Ltd helps you save time and resources. We provide efficient, high-quality iOS app solutions that boost business growth while keeping quality and deadlines intact.",
       },
       second: {
         title: "Advanced Technology",
@@ -750,7 +750,7 @@ const serviceData = {
       left: [
         {
           title:
-            "What makes CodeShip Pvt. Ltd. a reliable partner for iOS app development?",
+            "What makes CodeShip Pvt. Ltd a reliable partner for iOS app development?",
           content:
             "Our experienced developers focus on quality, user experience, and timely delivery. We aim to meet your business goals while staying within budget.",
         },
@@ -792,9 +792,9 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
-        "At CodeShip Pvt. Ltd., we focus on creating user-friendly, high-performance mobile applications that improve user experiences and support business success. Our team of full-stack mobile app developers has extensive knowledge in both native and cross-platform development. We deliver smooth apps for iOS and Android that are strong, flexible, and visually appealing.",
+        "At CodeShip Pvt. Ltd, we focus on creating user-friendly, high-performance mobile applications that improve user experiences and support business success. Our team of full-stack mobile app developers has extensive knowledge in both native and cross-platform development. We deliver smooth apps for iOS and Android that are strong, flexible, and visually appealing.",
       icon: web_banner,
     },
     software_need:
@@ -830,7 +830,7 @@ const serviceData = {
       },
     ],
     work_with_us:
-      "At CodeShip Pvt. Ltd., we offer complete mobile app development services. We focus on performance, innovation, and ongoing support. Our goal is to help your business grow and succeed in today’s competitive mobile-first world.",
+      "At CodeShip Pvt. Ltd, we offer complete mobile app development services. We focus on performance, innovation, and ongoing support. Our goal is to help your business grow and succeed in today’s competitive mobile-first world.",
     work_with_us_detail: {
       first: {
         title: "Time Saving",
@@ -896,9 +896,9 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
-        "At CodeShip Pvt. Ltd., we take pride in being a dedicated web design company focused on providing top-quality designs tailored to your business needs. Our skilled team blends creativity with technical know-how to create modern, eye-catching websites that not only look great but also work smoothly on all devices.",
+        "At CodeShip Pvt. Ltd, we take pride in being a dedicated web design company focused on providing top-quality designs tailored to your business needs. Our skilled team blends creativity with technical know-how to create modern, eye-catching websites that not only look great but also work smoothly on all devices.",
       icon: web_banner,
     },
     software_need:
@@ -934,13 +934,13 @@ const serviceData = {
       },
     ],
     work_with_us:
-      "At CodeShip Pvt. Ltd., our dedicated team provides customized website design solutions that fit your specific business goals. We guarantee timely delivery, smooth functionality, and continuous support to keep your website optimized, visually appealing, and effective. This helps you stand out in the online world.",
+      "At CodeShip Pvt. Ltd, our dedicated team provides customized website design solutions that fit your specific business goals. We guarantee timely delivery, smooth functionality, and continuous support to keep your website optimized, visually appealing, and effective. This helps you stand out in the online world.",
     work_with_us_detail: {
       first: {
         title: "Time Saving",
         series: "01",
         description:
-          "CodeShip Pvt. Ltd. offers affordable, high-quality web design services. We save you time, allowing you to concentrate on growing your business while we manage your online presence carefully.",
+          "CodeShip Pvt. Ltd offers affordable, high-quality web design services. We save you time, allowing you to concentrate on growing your business while we manage your online presence carefully.",
       },
       second: {
         title: "Advanced Technology",
@@ -995,9 +995,9 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
-        "At CodeShip Pvt. Ltd., we provide full website redesign services. Our skilled team updates and changes your online presence into a platform that works well and fits your business goals.",
+        "At CodeShip Pvt. Ltd, we provide full website redesign services. Our skilled team updates and changes your online presence into a platform that works well and fits your business goals.",
       icon: web_banner,
     },
     software_need:
@@ -1098,9 +1098,9 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
-        "At CodeShip Pvt. Ltd., we focus on creating high-quality UI/UX designs that improve user engagement and strengthen your brand. We understand your audience and work with your vision to deliver meaningful and effective digital experiences.",
+        "At CodeShip Pvt. Ltd, we focus on creating high-quality UI/UX designs that improve user engagement and strengthen your brand. We understand your audience and work with your vision to deliver meaningful and effective digital experiences.",
       icon: web_banner,
     },
     software_need:
@@ -1154,7 +1154,7 @@ const serviceData = {
         title: "More Reliable",
         series: "03",
         description:
-          "With CodeShip Pvt. Ltd., you can count on high-quality, future-ready UI/UX designs supported by strategic insight, testing, and continuous improvement for lasting success.",
+          "With CodeShip Pvt. Ltd, you can count on high-quality, future-ready UI/UX designs supported by strategic insight, testing, and continuous improvement for lasting success.",
       },
     },
     accordionData: {
@@ -1200,7 +1200,7 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "A great website makes a lasting first impression. At CodeShip, we ensure that it counts. Our web designs are carefully crafted to mirror your unique brand identity. This approach builds trust, credibility, and real connections with your target audience. We concentrate on both appearance and planning to help your business stand out in a competitive digital environment.",
       icon: web_banner,
@@ -1238,7 +1238,7 @@ const serviceData = {
       },
     ],
     work_with_us:
-      "At CodeShip Pvt. Ltd., we offer custom web design solutions tailored for performance, usability, and scalability. We mix responsive design with SEO best practices to make sure your website works well on all devices and ranks effectively. This positions your brand for lasting success in the digital space.",
+      "At CodeShip Pvt. Ltd, we offer custom web design solutions tailored for performance, usability, and scalability. We mix responsive design with SEO best practices to make sure your website works well on all devices and ranks effectively. This positions your brand for lasting success in the digital space.",
     work_with_us_detail: {
       first: {
         title: "Time Saving",
@@ -1302,9 +1302,9 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
-        "Speed is important in today’s digital world. At CodeShip Pvt. Ltd., we create AMP websites that load quickly and offer a smooth mobile experience. Our solutions aim to improve site performance and promote measurable business growth for your brand.",
+        "Speed is important in today’s digital world. At CodeShip Pvt. Ltd, we create AMP websites that load quickly and offer a smooth mobile experience. Our solutions aim to improve site performance and promote measurable business growth for your brand.",
       icon: web_banner,
     },
     software_need:
@@ -1405,7 +1405,7 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "Our talented team of developers, designers, and quality controllers works together to deliver projects on time. With strong expertise and careful attention to detail, we turn your ideas into high-quality, efficient, and user-friendly web and mobile applications that go beyond expectations and drive business success.",
       icon: web_banner,
@@ -1506,7 +1506,7 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "Our dedicated team understands the complexities of eCommerce and provides customized solutions to help your business grow. We build scalable, secure, and high-performing online stores that improve user experience and generate sustainable revenue.",
       icon: web_banner,
@@ -1708,7 +1708,7 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "We create strong, adaptable, and eye-catching custom eCommerce websites designed for your specific business needs. We ensure professional, efficient, and high-quality results that increase engagement, improve conversions, support long-term growth, and provide a smooth user experience on all devices and platforms.",
       icon: web_banner,
@@ -1811,7 +1811,7 @@ const serviceData = {
       icon: web_main_banner,
     },
     sub_banner: {
-      title: "Why Choose CodeShip Pvt. Ltd.?",
+      title: "Why Choose CodeShip Pvt. Ltd?",
       description:
         "We provide smooth and tailored integration solutions across APIs, CRMs, ERPs, payment gateways, and more. This improves workflow efficiency without causing disruptions. Our expert team guarantees smooth connectivity, data synchronization, and automation. This helps your business operate well and grow easily in a competitive market.",
       icon: web_banner,
@@ -2425,7 +2425,7 @@ const serviceData = {
     sub_banner: {
       title: "Why Choose Us?",
       description:
-        "At Codeship Pvt. Ltd., we are more than a marketing company. We are your partner. Our team develops strategies to help your brand connect with your audience. Everything we create encourages engagement and produces results. Our services are supported by skilled analysts and marketers who design data-driven strategies that match your goals.",
+        "At Codeship Pvt. Ltd, we are more than a marketing company. We are your partner. Our team develops strategies to help your brand connect with your audience. Everything we create encourages engagement and produces results. Our services are supported by skilled analysts and marketers who design data-driven strategies that match your goals.",
       icon: web_banner,
     },
     software_need:

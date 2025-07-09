@@ -64,7 +64,7 @@ function Footer() {
           </div>
         </div>
         <div className='col-md-6  col-12 d-flex justify-content-start mt-2 mt-md-5'>
-          <p className='font-size-24 font_weight_400 font_color_black mt-5'>© 2025 Codeship pvt Ltd.</p>
+          <p className='font-size-24 font_weight_400 font_color_black mt-5'>© 2025 Codeship pvt Ltd</p>
         </div>
       </div>
     </Container>

@@ -6,7 +6,7 @@ import Test_Banner_3 from "../assets/images/Home/testimonial_3.webp";
 import Test_Banner_4 from "../assets/images/Home/testimonial_4.webp";
 const testimonials = [
  {
-    text: `CodeShip Pvt. Ltd. values the outstanding development services offered for Virtual Auditor. The project was carried out with precision, innovation, and timely communication. The team demonstrated professionalism and strong technical skills. The process was smooth from start to finish. We confidently recommend their expertise for any high-quality digital development project.`,
+    text: `CodeShip Pvt. Ltd values the outstanding development services offered for Virtual Auditor. The project was carried out with precision, innovation, and timely communication. The team demonstrated professionalism and strong technical skills. The process was smooth from start to finish. We confidently recommend their expertise for any high-quality digital development project.`,
     name: "CA Viswanathan",
     title: "Founder, Virtual Auditor",
     img: Testimonial_img_logo,
