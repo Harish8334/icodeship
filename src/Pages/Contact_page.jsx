@@ -44,7 +44,8 @@ import Contact_icon4 from "../assets/images/Home/twitter_icon.png";
 
 // CSS
 import "../Pages/Contact_page.css";
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 // Register GSAP plugin
 gsap.registerPlugin(ScrollSmoother);
 
@@ -57,8 +58,8 @@ const validationSchema = Yup.object().shape({
     )
     .required("Enter an email"),
   mobile: Yup.string()
-    .matches(/^\d{10}$/, "Mobile number must be 10 digits")
-    .required("Enter a mobile number"),
+        .required("Enter a mobile number")
+        .matches(/^\+?[1-9]\d{7,14}$/, "Enter a valid mobile number"),
   subject: Yup.string().required("Required"),
   interests: Yup.array().min(1, "Select at least one interest"),
   about: Yup.string().required("Required"),
@@ -294,54 +295,27 @@ function Contact_page() {
                         </div>
                       </div>
                       <div className="col-md-6 col-12 pe-lg-5 mt-5">
-                        <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
-                          <label
-                            className="font-size-20 font_weight_400"
-                            htmlFor="mobile"
-                          >
-                            Mobile Number
-                          </label>
-                          <div className="d-flex align-items-center mt-4 border-0 border-bottom rounded-0 border-dark ">
-                            <Field
-                              as="select"
-                              name="countryCode"
-                              className="form-select   border-0  rounded-0 "
-                              style={{ maxWidth: "85px" }}
-                            >
-                              <option value="+91">+91</option>
-                              <option value="+1">+1 </option>
-                              <option value="+44">+44 </option>
-                              <option value="+61">+61 </option>
-                              <option value="+81">+81 </option>
-                              <option value="+49">+49</option>
-                              <option value="+33">+33</option>
-                              <option value="+86">+86 </option>
-                              <option value="+971">+971</option>
-                              <option value="+27">+27</option>
-                            </Field>
-                            <Field
-                              id="mobile"
-                              type="tel"
-                              name="mobile"
-                              maxLength="10"
-                              inputMode="numeric"
-                              pattern="\d*"
-                              placeholder="Enter mobile number"
-                              onInput={(e) => {
-                                e.target.value = e.target.value
-                                  .replace(/\D/g, "")
-                                  .slice(0, 10);
-                              }}
-                              className=" w-100 border-0 contact_inputt "
-                            />
-                          </div>
-                          <ErrorMessage
-                            name="mobile"
-                            component="div"
-                            className="text-danger mt-3"
-                          />
-                        </div>
-                      </div>
+  <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
+    <label className="font-size-20 font_weight_400">Mobile Number</label>
+    <div className="mt-4">
+      <PhoneInput
+        country={'in'}
+        value={values.mobile}
+        onChange={(phone) => setFieldValue('mobile', phone)}
+        inputProps={{
+          name: 'mobile',
+          required: true,
+          className: 'contact_inputt w-100 px-5 ',
+        }}
+      />
+    </div>
+    <ErrorMessage
+      name="mobile"
+      component="div"
+      className="text-danger mt-3"
+    />
+  </div>
+</div>
                       <div className="col-md-6 col-12 ps-lg-5 mt-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
                           <label

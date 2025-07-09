@@ -12,7 +12,6 @@
     "serve": "cross-env NODE_ENV=production node server",
     "preview": "vite preview",
     "lint": "eslint ."
-    
   },
   "dependencies": {
     "@fontsource/poppins": "^5.2.5",
@@ -23,6 +22,7 @@
     "@gsap/react": "^2.1.2",
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
+    "classname": "^0.0.0",
     "compression": "^1.8.0",
     "express": "^4.21.2",
     "formik": "^2.4.6",
@@ -36,6 +36,7 @@
     "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
+    "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.22.3",
     "react-toastify": "^11.0.5",
     "swiper": "^11.2.6",

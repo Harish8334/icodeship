@@ -34,6 +34,8 @@ import Ad_Footer from "../Components/AdFooter.jsx"
 import  Ad_Header  from "../Components/AdHeader.jsx"
 import MetaTags from "../Components/MetaTags.jsx";
 import "../assets/css/ad_page.css"
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 if (typeof window !== 'undefined') {
   import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
     gsap.registerPlugin(ScrollTrigger);
@@ -109,9 +111,9 @@ const [groupedServices, setGroupedServices] = useState([]);
         .matches(/^[A-Za-z\s]+$/, "Name should contain only letters")
         .required("Name is required"),
 
-      mobile: Yup.string()
-        .matches(/^[0-9]{10}$/, "Enter a valid 10-digit mobile number")
-        .required("Mobile number is required"),
+     mobile: Yup.string()
+           .required("Enter a mobile number")
+           .matches(/^\+?[1-9]\d{7,14}$/, "Enter a valid mobile number"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log("Form submitted:", values);
@@ -307,25 +309,16 @@ const [groupedServices, setGroupedServices] = useState([]);
                     <label className="mb-1 font-size-12 font_weight_500 text-black">
                       Mobile Number
                     </label>
-                    <input
-                      type="text"
-                      name="mobile"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      className={`form-control rounded-4 mb-1 ${
-                        formik.touched.mobile && formik.errors.mobile
-                          ? "is-invalid"
-                          : ""
-                      }`}
-                      onChange={(e) => {
-                        const onlyNums = e.target.value
-                          .replace(/\D/g, "")
-                          .slice(0, 10); // limit to 10 digits
-                        formik.setFieldValue("mobile", onlyNums);
-                      }}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.mobile}
-                    />
+                    <PhoneInput
+        country={'in'}
+        value={values.mobile}
+        onChange={(phone) => setFieldValue('mobile', phone)}
+        inputProps={{
+          name: 'mobile',
+          required: true,
+          className: 'contact_inputt w-100 px-5 ',
+        }}
+      />
 
                     {formik.touched.mobile && formik.errors.mobile && (
                       <div className="text-danger mb-3 font-size-12">

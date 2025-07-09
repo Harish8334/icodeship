@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {PurchaseContactForms } from "../Service_Data/API"
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 const PurchaseContactForm = () => {
   const [showSplash, setShowSplash] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,8 +23,8 @@ const PurchaseContactForm = () => {
       )
       .required("Enter an email"),
     mobile: Yup.string()
-      .matches(/^\d{10}$/, "Mobile number must be 10 digits")
-      .required("Enter a mobile number"),
+      .required("Enter a mobile number")
+      .matches(/^\+?[1-9]\d{7,14}$/, "Enter a valid mobile number"),
     sector: Yup.string().required("Industry/Sector is required"),
     options: Yup.array()
       .min(1, "Select at least one option")
@@ -135,19 +137,16 @@ const PurchaseContactForm = () => {
                     <label className="font-size-20 font_weight_400">
                       Phone Number
                     </label>
-                    <Field
-                      type="tel"
-                      name="mobile"
-                      maxLength="10"
-                      inputMode="numeric"
-                      className="rounded-5 py-3 ps-4 border-1 no-focus"
-                      placeholder="Enter mobile number"
-                      onInput={(e) => {
-                        e.target.value = e.target.value
-                          .replace(/\D/g, "")
-                          .slice(0, 10);
-                      }}
-                    />
+                    <PhoneInput
+        country={'in'}
+        value={values.mobile}
+        onChange={(phone) => setFieldValue('mobile', phone)}
+        inputProps={{
+          name: 'mobile',
+          required: true,
+          className: 'contact_inputt w-100 px-5 ',
+        }}
+      />
                     <ErrorMessage
                       name="mobile"
                       component="div"
