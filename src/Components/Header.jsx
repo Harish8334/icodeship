@@ -40,11 +40,13 @@ export default function Header({}) {
   const handleCloseCapabilities = () => {
     setShowCapabilities(false);
     setOpenServiceIndex(null); // Reset open dropdowns
+    handleClose()
   };
 
   const handleBackToMain = () => {
     setShowCapabilities(false);
     setShow(true); // Go back to main menu
+    
   };
 
   const showDropdown = () => {

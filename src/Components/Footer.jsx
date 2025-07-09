@@ -22,8 +22,8 @@ function Footer() {
       <div className='row'>
         <div className=' col-sm-6 col-12 justify-content-between d-flex flex-column '>
           <div className='row-6'>
-            <a href="mailto:support@codeship.in" className='footer_support font-size-28 font_weight_400 text-black '>
-              Techsupport@codeship.in
+            <a href="mailto:techsupport@codeship.in" className='footer_support font-size-28 font_weight_400 text-black '>
+              techsupport@codeship.in
             </a>
           </div>
           <div className='row-6 mt-5 '>
@@ -64,7 +64,7 @@ function Footer() {
           </div>
         </div>
         <div className='col-md-6  col-12 d-flex justify-content-start mt-2 mt-md-5'>
-          <p className='font-size-24 font_weight_400 font_color_black mt-5'>@ 2025 Codeship pvt Ltd.</p>
+          <p className='font-size-24 font_weight_400 font_color_black mt-5'>© 2025 Codeship pvt Ltd.</p>
         </div>
       </div>
     </Container>

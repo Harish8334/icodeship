@@ -27,7 +27,7 @@ export const Workdata_1 = [
     title: "Xity",
     description:
       "Xity connects brands with their audience using expert, data-driven marketing and advertising strategies across multiple channels that deliver results.",
-    tags: ["UX/UI", "Angular", "Web Development"],
+    tags: ["UX/UI", "Angular","Mobile App", "Web Development"],
     link: "https://xity.in/",
   },
   {
@@ -36,7 +36,7 @@ export const Workdata_1 = [
     title: "YMCA",
     description:
       "Youth Men’s Christian Association, founded in 1844, is a global youth organization that promotes healthy body, mind, and spirit through various programs.",
-    tags: ["UX/UI", "Angular", "CRM HRMS ERP Website"],
+    tags: ["UX/UI", "Angular","Mobile App", "CRM|HRMS|ERP Website"],
     link: "https://ymcaindia.com/",
   },
   {
@@ -54,7 +54,7 @@ export const Workdata_1 = [
     title: "Policy Nation",
     description:
       "Policynation is a top Insurtech in India with IRDAI licensing. It makes insurance simple by offering expert guidance, a variety of plans, and trusted partnerships. This approach ensures coverage is easy, accessible, and affordable.",
-    tags: ["UX/UI", "Angular", "Mobile App", "CRM"],
+    tags: ["UX/UI", "React","Next Js", "Mobile App", "CRM"],
     link: "https://staging.policynation.com/",
   },
   {
@@ -72,7 +72,7 @@ export const Workdata_1 = [
     title: "FirstMed network",
     description:
       "Firstmed connects you to quality healthcare, doctors, diagnostics, and surgeries, anytime, anywhere.",
-    tags: ["UX/UI", "Angular", "Web Development"],
+    tags: ["UX/UI", "Mobile App","Angular", "Web Development"],
     link: "https://firstmednetwork.com/",
   },
 
@@ -82,7 +82,7 @@ export const Workdata_1 = [
     title: "Tamil Muhurtham Matrimony",
     description:
       "Tamil Muhurtham Matrimony, trusted by millions around the world, helps Tamil brides and grooms find their perfect match with personalized filters and a focus on lasting happiness.",
-    tags: ["UX/UI", "Angular", "Web development ", "CRM"],
+    tags: ["UX/UI","Mobile App", "Angular", "Web development ", "CRM"],
     link: "https://tamilmuhurtham.com/",
   },
   {
@@ -100,7 +100,7 @@ export const Workdata_1 = [
     title: "Xcros",
     description:
       "Xcros achieves results by linking brands to their audience through data-driven marketing across multiple channels.",
-    tags: ["UX/UI", "Angular", "Web Development"],
+    tags: ["UX/UI", "Mobile App","Angular", "Web Development"],
     link: "https://xcros.in/",
   },
   {
@@ -109,7 +109,7 @@ export const Workdata_1 = [
     title: "Gaddzy",
     description:
       "We make it easy to sell used electronics. Our goal is to support sustainability and smart choices through a smooth, eco-friendly platform.",
-    tags: ["UX/UI", "Angular", "Web Development"],
+    tags: ["UX/UI","Mobile App", "Angular", "Web Development"],
     link: "https://gaddzy.in/",
   },
   {
@@ -145,14 +145,14 @@ export const Workdata_1 = [
     title: "Eduhome Connect",
     description:
       "Integrating augmented reality to improve social commerce. Helping commerce students with personalized tests, smart insights, and one-on-one support for success.",
-    tags: ["UX/UI", "Angular", "Web Development"],
+    tags: ["UX/UI", "Angular", "Web Development","LMS|ERP|HRM Website"],
     link: "https://eduhomeconnect.com/",
   },
 
   {
     id: 15,
     img: visual_auditor,
-    title: "Visual Auditor",
+    title: "Virtual Auditor",
     description:
       "Virtual Auditor helps startups with compliance, funding, and tech solutions for the growth of Digital India.",
     tags: ["UX/UI", "Angular", "Web Development"],
@@ -164,7 +164,7 @@ export const Workdata_1 = [
     title: "Oi tetra",
     description:
       "Oitetra provides AI-driven trading solutions and tools to help traders and investors in the financial markets. ",
-    tags: ["UX/UI", "Angular", "AI", "Web Development"],
+    tags: ["UX/UI", "Angular", "AI","Mobile App", "Web Development"],
     link: "https://oitetra.com/ ",
   },
 
@@ -174,7 +174,7 @@ export const Workdata_1 = [
     title: "Farmbrite",
     description:
       "Virtual Auditor helps startups with compliance, funding, and tech solutions for Digital India growth.",
-    tags: ["UX/UI", "Angular", "Custom Software"],
+    tags: ["UX/UI", "Angular","Mobile App", "Custom Software"],
     link: "https://www.farmbrite.com/",
   },
   {
@@ -202,7 +202,7 @@ export const Workdata_1 = [
     title: "Ship EZ",
     description:
       "Shipez offers customized global logistics and supply chain solutions. They take a customer-first approach across industries.",
-    tags: ["UX/UI", "Wordpress", "Custom Software"],
+    tags: ["UX/UI", "Wordpress", "Web Development"],
     link: "https://shipez.in/",
   },
   {
@@ -211,7 +211,7 @@ export const Workdata_1 = [
     title: "Flow my business",
     description:
       "Flowmybusiness helps modern businesses with innovative solutions. They streamline operations, boost productivity, and drive growth.",
-    tags: ["UX/UI", "Wordpress"],
+    tags: ["UX/UI", "Wordpress","Web Development"],
     link: "https://flowmybusiness.com/",
   },
 ];

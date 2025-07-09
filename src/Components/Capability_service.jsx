@@ -299,7 +299,7 @@ const Capable_service = () => {
             {service.work_with_us_detail &&
               Object.values(service.work_with_us_detail).map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="py-3 mb-3 rounded-5 work_with_us_card  border_shadow">
+                  <div className="py-3 mb-3 rounded-5 work_with_us_card d-flex flex-column justify-content-center  border_shadow">
                     <div className="d-flex justify-content-between align-items-center px-4">
                       <p className="font-size-24 font_color_light_blue font_weight_600 p-0 m-0">
                         {item.title}
