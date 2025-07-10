@@ -34,7 +34,7 @@ function WorkTogther() {
               <p className="text-center font-size-40 font_weight_300 m-0 text-white">
                 How We Can Help You ?
               </p>
-              <p className="text-center font-size-65 font_weight_600 m-0 position-relative z-50 text-white">
+              <p className="text-center font-size-65 font_weight_600 m-0 position-relative z-5 text-white">
                 Come Lets Work Together
               </p>
               <div className="d-flex justify-content-center mt-lg-5 my-3 mb-5">

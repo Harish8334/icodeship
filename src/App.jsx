@@ -181,13 +181,17 @@ function App() {
   const isFirstLoad = useRef(true);
   const isLanding = location.pathname === "/landing";
 
-  useEffect(() => {
-    if (isFirstLoad.current) {
-      isFirstLoad.current = false;
-    } else {
+ useEffect(() => {
+  if (isFirstLoad.current) {
+    isFirstLoad.current = false;
+  } else {
+    const reloadPaths = ["/solutions","/"];
+    if (reloadPaths.includes(location.pathname)) {
       window.location.reload();
     }
-  }, [location.pathname]);
+  }
+}, [location.pathname]);
+
 
   return (
     <>
