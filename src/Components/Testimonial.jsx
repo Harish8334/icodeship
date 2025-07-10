@@ -56,9 +56,9 @@ function Testimonial() {
   return (
     <section>
       <Container className="my_container ">
-        <div className="row d-flex flex-column-reverse flex-md-row">
+        <div className="row d-flex flex-column-reverse flex-lg-row">
           {/* left side */}
-          <div className="col-md-7 col-12 ">
+          <div className="col-lg-7 col-12 ">
             <p className="font-size-50 font_weight_600 mt-5">
               Hear What Our <br /> Customers Are Saying!
             </p>
@@ -68,7 +68,7 @@ function Testimonial() {
                   "{testimonial.text}"
                 </p>
                 <div className="row mt-4">
-                  <div className="d-flex gap-4 col-9 col-lg-7" ref={imageRef}>
+                  <div className="d-flex gap-4 col-12" ref={imageRef}>
                     <div className="rounded-circle">
                       <img
                         src={testimonial.img}
@@ -102,12 +102,12 @@ function Testimonial() {
           </div>
 
           {/* Right Image */}
-          <div className="col-md-5  col-12 d-lg-block d-md-block p-0 pe-1">
+          <div className="col-lg-5 d-flex align-items-center col-12 p-0 pe-1">
             <div ref={rightImageRef}>
               <img
                 src={testimonial.Banner}
                 alt="testimonial visual"
-                className="img-fluid mt-md-4 "
+                className="img-fluid mt-md-4 w-100 "
               />
             </div>
           </div>

@@ -173,7 +173,7 @@ function App() {
   return (
     <>
       {!isLanding && <ClientOnlyHeader />}
-      <PageWrapper>
+      {/* <PageWrapper> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -192,7 +192,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         {!isLanding && <Footer />}
-      </PageWrapper>
+      {/* </PageWrapper> */}
     </>
   );
 }

@@ -111,8 +111,8 @@ const Capable_service = () => {
       {/* Why choose us */}
       <section className="mt-5">
         <Container className="my_container ">
-          <div className="row">
-            <div className="col-lg-6 col-md-12 col-12">
+          <div className="row justify-content-between">
+            <div className="col-lg-5 col-md-12 col-12">
               <p className="font-size-25  font_weight_300 mt-lg-5">
                 What Choose Us ?
               </p>
@@ -123,8 +123,8 @@ const Capable_service = () => {
                 {service.sub_banner.description}
               </p>
             </div>
-            <div className="col-lg-6 col-md-12 col-12">
-              <div className="d-flex justify-content-center">
+            <div className="col-lg-6 d-flex justify-content-center align-items-center col-md-12 col-12">
+              <div className="">
                 {" "}
                 <img
                   src={service.sub_banner.icon}
@@ -234,8 +234,8 @@ const Capable_service = () => {
 
       <section>
         <Container className="my_container why_choose_us pt-0">
-          <div className="row mt-5 mb-5 mt-lg-0">
-            <div className="col-lg-6  col-12">
+          <div className="row mt-5 mb-5 mt-lg-0 justify-content-between">
+            <div className="col-lg-5  col-12">
               <p className="font-size-25 font_weight_300 mt-md-5 mt-lg-5 mt-xl-0 m-0">
                 Benefits of
               </p>
@@ -247,7 +247,7 @@ const Capable_service = () => {
                 {service.work_with_us}
               </p>
             </div>
-            <div className="col-lg-6  col-12">
+            <div className="col-lg-6 d-flex justify-content-center align-items-center col-12">
               <div className="d-flex justify-content-center ">
                 <img
                   src={Service_with_us}
