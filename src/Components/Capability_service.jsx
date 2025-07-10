@@ -336,7 +336,7 @@ const Capable_service = () => {
                     onClick={() => handleLeftToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-21 font_weight_500  Frequent_ask_height pt-0 p-0 m-0 ">
+                      <p className="font-size-21 font_weight_500  Frequent_ask_height p-0 m-0 flex">
                         {item.title}
                       </p>
                     </Accordion.Header>
@@ -357,7 +357,7 @@ const Capable_service = () => {
                     onClick={() => handleRightToggle(index.toString())}
                   >
                     <Accordion.Header>
-                      <p className="font-size-21 font_weight_500  Frequent_ask_height  pt-0 p-0 m-0 pb-md-4">
+                      <p className="font-size-21 font_weight_500  Frequent_ask_height p-0 m-0 flex">
                         {item.title}
                       </p>
                     </Accordion.Header>

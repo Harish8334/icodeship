@@ -361,3 +361,9 @@ input:-webkit-autofill {
   will-change: transform;
 }
 
+.flex{
+      display: flex !important;
+    align-items: center !important;
+ 
+
+}

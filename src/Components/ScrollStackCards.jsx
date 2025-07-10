@@ -120,7 +120,7 @@ const ScrollLockedCardStack = () => {
                       View Live Demo
                     </a>
                     <a
-                      href="/purchaseform"
+                      href="/purchase-contact"
                       className="btn btn-outline-dark px-lg-4 py-2 font-size-18 font_weight_600 rounded-pill"
                     >
                       Purchase Product
@@ -153,7 +153,7 @@ const ScrollLockedCardStack = () => {
                   </div>
                   <div className="">
                     <a
-                      href="/purchaseform"
+                      href="/purchase-contact"
                       className="btn w-100 btn-outline-dark px-lg-4 px-3 py-2 font-size-16 font_weight_600 rounded-pill"
                     >
                       Purchase Product

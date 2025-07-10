@@ -59,6 +59,7 @@
 }
 .work_togther_text {
   margin-top: -5%;
+  z-index: 9999;
 }
 .background-color_blue_1 {
   background: linear-gradient(

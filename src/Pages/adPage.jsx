@@ -30,15 +30,15 @@ import { serviceDataCard } from "../Data/ad_DigitalFutureCard.jsx";
 import { Container } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Ad_Footer from "../Components/AdFooter.jsx"
-import  Ad_Header  from "../Components/AdHeader.jsx"
+import Ad_Footer from "../Components/AdFooter.jsx";
+import Ad_Header from "../Components/AdHeader.jsx";
 import MetaTags from "../Components/MetaTags.jsx";
-import "../assets/css/ad_page.css"
-import AsyncPhoneInput from'../Components/phoneInput.jsx'
-import 'react-phone-input-2/lib/style.css';
+import "../assets/css/ad_page.css";
+import AsyncPhoneInput from "../Components/phoneInput.jsx";
+import "react-phone-input-2/lib/style.css";
 
-if (typeof window !== 'undefined') {
-  import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
     gsap.registerPlugin(ScrollTrigger);
   });
 }
@@ -66,13 +66,13 @@ const useRevealOnScroll = (selector) => {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [selector]);
 };
 
- export default function AdPage() {
-const [groupedServices, setGroupedServices] = useState([]);
+export default function AdPage() {
+  const [groupedServices, setGroupedServices] = useState([]);
 
   useEffect(() => {
     const updateGroups = () => {
@@ -112,9 +112,9 @@ const [groupedServices, setGroupedServices] = useState([]);
         .matches(/^[A-Za-z\s]+$/, "Name should contain only letters")
         .required("Name is required"),
 
-     mobile: Yup.string()
-           .required("Enter a mobile number")
-           .matches(/^\+?[1-9]\d{7,14}$/, "Enter a valid mobile number"),
+      mobile: Yup.string()
+        .required("Enter a mobile number")
+        .matches(/^\+?[1-9]\d{7,14}$/, "Enter a valid mobile number"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log("Form submitted:", values);
@@ -182,25 +182,26 @@ const [groupedServices, setGroupedServices] = useState([]);
 
   // Meta tags for AdPage
   const metaContent = {
-    title: 'Transforming Ideas into Digital Solutions | Codeship',
-    description: 'Experience innovative software development services with Codeship. We specialize in web, mobile apps, UI/UX, digital marketing, and more—built to unlock your business potential.',
+    title: "Transforming Ideas into Digital Solutions | Codeship",
+    description:
+      "Experience innovative software development services with Codeship. We specialize in web, mobile apps, UI/UX, digital marketing, and more—built to unlock your business potential.",
     keywords: [
-      'software development company',
-      'web development',
-      'app development',
-      'UI/UX design',
-      'digital marketing',
-      'ecommerce solutions',
-      'CRM',
-      'ERP',
-      'HRMS',
-      'hosting services',
-      'Codeship Chennai'
+      "software development company",
+      "web development",
+      "app development",
+      "UI/UX design",
+      "digital marketing",
+      "ecommerce solutions",
+      "CRM",
+      "ERP",
+      "HRMS",
+      "hosting services",
+      "Codeship Chennai",
     ],
-    ogImage: 'https://codeship.in/assets/og-banner-home.png',
-    ogType: 'website',
-    twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://codeship.in/landing', // Adjust path if needed
+    ogImage: "https://codeship.in/assets/og-banner-home.png",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    canonicalUrl: "https://codeship.in/landing", // Adjust path if needed
   };
 
   return (
@@ -215,7 +216,11 @@ const [groupedServices, setGroupedServices] = useState([]);
               {" "}
               <div className="d-flex justify-content-center order-2 align-items-end ">
                 {" "}
-                <img src={Banner} className="img-fluid banner_img mt-5" alt="" />
+                <img
+                  src={Banner}
+                  className="img-fluid banner_img mt-5"
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-lg-6 col-12 p-0 order-1 order-lg-2">
@@ -311,9 +316,11 @@ const [groupedServices, setGroupedServices] = useState([]);
                       Mobile Number
                     </label>
                     <AsyncPhoneInput
-                              value={values.mobile}
-                              onChange={(phone) => setFieldValue('mobile', phone)}
-                            />
+                      value={formik.values.mobile}
+                      onChange={(phone) =>
+                        formik.setFieldValue("mobile", phone)
+                      }
+                    />
 
                     {formik.touched.mobile && formik.errors.mobile && (
                       <div className="text-danger mb-3 font-size-12">
@@ -329,7 +336,6 @@ const [groupedServices, setGroupedServices] = useState([]);
                     </button>
                   </form>
 
-                 
                   {/* <ToastContainer /> */}
                 </div>
               </div>
@@ -402,7 +408,9 @@ const [groupedServices, setGroupedServices] = useState([]);
                           style={{ transition: "opacity 0.3s ease" }}
                         />
                       </div>
-                      <p className={`text-center pt-3 pt-md-5 m-0`}>{item.title}</p>
+                      <p className={`text-center pt-3 pt-md-5 m-0`}>
+                        {item.title}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -457,8 +465,6 @@ const [groupedServices, setGroupedServices] = useState([]);
                   </SwiperSlide>
                 ))}
               </Swiper>
-
-              
             </div>
           </div>
           <Brands />
@@ -729,7 +735,6 @@ const [groupedServices, setGroupedServices] = useState([]);
               ))}
             </Swiper>
 
-           
             <div className="d-flex justify-content-center ">
               <div className="d-flex justify-content-center gap-3 ps-5 ps-lg-5 ms-lg-5 pt-md-4 ">
                 <button ref={prevRef} className="btn border-0">
@@ -767,16 +772,17 @@ const [groupedServices, setGroupedServices] = useState([]);
             development projects to new <br className="d-none d-lg-block" />
             heights.
           </p>
-         <a href="#contact-section" className="bg-blue-color px-4 mt-5 py-3 rounded-5 text-white border-0 text-decoration-none d-inline-block">
-  Contact
-</a>
-
+          <a
+            href="#contact-section"
+            className="bg-blue-color px-4 mt-5 py-3 rounded-5 text-white border-0 text-decoration-none d-inline-block"
+          >
+            Contact
+          </a>
         </div>
       </section>
       {/* Contact section */}
 
       <section id="contact-section" className="my_container mx-auto my-5 py-5">
-       
         <div className="row px-3 px-lg-0">
           <div className="col-lg-6 col-12">
             <p className="font-size-16 font-weight-600 m-0">Support</p>
@@ -869,8 +875,6 @@ const [groupedServices, setGroupedServices] = useState([]);
                 <img src={left_arrow} className="swirl-point-out" alt="Arrow" />
               </div>
             </form>
-
-           
           </div>
           <div className="col-lg-6 col-12 p-0 d-flex  justify-content-center justify-content-lg-end pt-5 pt-lg-0">
             <div>
@@ -888,7 +892,7 @@ const [groupedServices, setGroupedServices] = useState([]);
           </div>
         </div>
       </section>
-      <Ad_Footer/>
+      <Ad_Footer />
     </div>
   );
 }

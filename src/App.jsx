@@ -108,7 +108,7 @@ const PageWrapper = ({ children }) => {
         return;
       }
 
-      if (!ScrollSmoother.get() && !isMobile) {
+      if (!ScrollSmoother.get()) {
         // Slight delay ensures DOM/layout is ready
         requestAnimationFrame(() => {
           setTimeout(() => {
@@ -181,19 +181,19 @@ function App() {
   const isFirstLoad = useRef(true);
   const isLanding = location.pathname === "/landing";
 
-  // useEffect(() => {
-  //   if (isFirstLoad.current) {
-  //     isFirstLoad.current = false;
-  //   } else {
-  //     window.location.reload();
-  //   }
-  // }, [location.pathname]);
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+    } else {
+      window.location.reload();
+    }
+  }, [location.pathname]);
 
   return (
     <>
       {!isLanding && <ClientOnlyHeader />}
       <PageWrapper>
-        <Routes>
+        <Routes key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ourworks" element={<OurWorks />} />
