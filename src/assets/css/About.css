@@ -119,7 +119,7 @@
 }
 
 /* Responsive adjustments for core_card and Swiper pagination */
-@media (max-width: 991.98px) {
+@media (max-width: 991px) {
   .core_card {
     min-height: 250px;
     margin-bottom: 2rem;
@@ -149,9 +149,14 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 520px) and (max-width:821px) {
   .core_card {
-    min-height: 350px;
+    height: 390px;
+  }
+}
+@media (min-width: 375px) and (max-width: 376px) {
+  .core_card {
+    height: 350px;
   }
 }
 
