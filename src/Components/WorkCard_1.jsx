@@ -46,9 +46,9 @@ const WorkCard_1 = ({ index }) => {
               {/* <ChevronRight size={chevronSize} /> */}
             </p>
             <p className="font-size-20 ">{data.description}</p>
-            <div className="d-flex gap-4 font-size-18 text-nowrap font_color_light_grey">
+            <div className="d-flex gap-lg-4 gap-3  font-size-18 flex-wrap text-nowrap font_color_light_grey">
               {data.tags.map((tag, i) => (
-                <p key={i}>{tag}</p>
+                <p className="m-0" key={i}>{tag}</p>
               ))}
             </div>
           </div>

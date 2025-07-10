@@ -253,7 +253,7 @@ function About() {
             breakpoints={{
               320: {
                 slidesPerView: 1,
-                spaceBetween: 20,
+                spaceBetween: 0,
               },
               576: {
                 slidesPerView: 2,
@@ -292,7 +292,7 @@ function About() {
                     <p className="text-white font-size-16 font_weight_500 mt-1">
                       {member.position}
                     </p>
-                    <div className="d-flex gap-3 justify-content-center mt-1 mb-2">
+                    <div className="d-flex gap-3 justify-content-center mt-1  mb-2">
                       <a
                         href={member.instagram}
                         target="_blank"
@@ -333,16 +333,12 @@ function About() {
             ))}
           </Swiper>
 
-          {/* Pagination bullets */}
-          <div
-            className="custom-swiper-pagination d-flex justify-content-center my-5"
-            id="office-section"
-          />
+       
         </Container>
       </section>
       {/* Office */}
       <section>
-        <Container className="my_container">
+        <Container className="my_container pt-3">
           <p className="font-size-62 font_weight_600 text-center">
             Get a feeling at our office
           </p>
