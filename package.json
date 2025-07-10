@@ -23,6 +23,7 @@
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
     "classname": "^0.0.0",
+    "classnames": "^2.5.1",
     "compression": "^1.8.0",
     "express": "^4.21.2",
     "formik": "^2.4.6",

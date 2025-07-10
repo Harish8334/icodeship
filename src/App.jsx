@@ -80,14 +80,13 @@ const PageWrapper = ({ children }) => {
       return () => clearTimeout(timeout);
     }
   }, [location, mounted, isSSR]);
-
   useEffect(() => {
     if (!mounted) return;
-
+  
     let gsap, ScrollTrigger, ScrollSmoother;
     let killed = false;
-
-    // Dynamically import GSAP and plugins
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  
     import("gsap").then((mod) => {
       gsap = mod.gsap;
       return Promise.all([
@@ -96,14 +95,21 @@ const PageWrapper = ({ children }) => {
       ]);
     }).then(([st, ss]) => {
       if (killed) return;
+  
       ScrollTrigger = st.ScrollTrigger;
       ScrollSmoother = ss.ScrollSmoother;
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
+  
       const wrapper = document.querySelector("#smooth-wrapper");
       const content = document.querySelector("#smooth-content");
-
-      if (!ScrollSmoother.get() && wrapper && content) {
+  
+      if (!wrapper || !content) {
+        console.warn("Smooth scroll wrapper/content not found");
+        return;
+      }
+  
+      // Prevent double init
+      if (!ScrollSmoother.get() && !isMobile) {
         smootherRef.current = ScrollSmoother.create({
           wrapper,
           content,
@@ -112,12 +118,15 @@ const PageWrapper = ({ children }) => {
           normalizeScroll: true,
           ignoreMobileResize: true,
         });
-
+  
+        console.log("ScrollSmoother initialized");
         ScrollTrigger.refresh();
         smootherRef.current.refresh();
+      } else {
+        console.log("ScrollSmoother skipped (mobile or already initialized)");
       }
     });
-
+  
     return () => {
       killed = true;
       if (typeof window !== "undefined") {
@@ -125,13 +134,17 @@ const PageWrapper = ({ children }) => {
           st.ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
         });
         import("gsap/ScrollSmoother").then((ss) => {
-          ss.ScrollSmoother.get()?.kill();
+          const smoother = ss.ScrollSmoother.get();
+          if (smoother) {
+            smoother.kill();
+            console.log("ScrollSmoother killed");
+          }
         });
         smootherRef.current = null;
       }
     };
   }, [mounted]);
-
+  
   return (
     <>
       <div id="smooth-wrapper" >
