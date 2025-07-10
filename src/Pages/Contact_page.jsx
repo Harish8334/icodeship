@@ -182,10 +182,10 @@ function Contact_page() {
       <Brands />
       <section className="position-relative overflow-hidden" ref={containerRef}>
         <Container className="my_container pt-5">
-          <p className="font-size-62 font_weight_600">
+          <p className="font-size-62 m-0 p-0 font_weight_600">
             Have an innovative thought?
           </p>
-          <p className="p-0 font-size-46 font_weight_500" id="contactForm">
+          <p className="p-0 m-0 font-size-46 font_weight_500" id="contactForm">
             Tell us about it.
           </p>
           <Formik
@@ -204,7 +204,7 @@ function Contact_page() {
               <Form>
                 <div className="row d-flex flex-column-reverse flex-lg-row align-items-end">
                   <div className="col-lg-4">
-                    <div className="social-media-links mt-5 mt-lg-0">
+                    <div className="social-media-links  mt-lg-0">
                       <p className="font-size-37 font_weight_600">
                         Follow us on :
                       </p>
@@ -249,7 +249,7 @@ function Contact_page() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
+                  <div className="col-lg-8 col-md-12 col-sm-12 col-12 ">
                     <div className="row">
                       <div className="col-md-6 col-12 mt-2 pe-lg-5 mt-lg-5">
                         <div className="d-flex flex-column px-0 px-sm-4 px-md-0">
