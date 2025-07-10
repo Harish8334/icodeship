@@ -77,7 +77,7 @@ export default function Header({}) {
 
   return (
     <section>
-    <header className="mb-5 pb-3 position-fixed top-0 w-100 z-3 header-css" >
+    <header className=" position-fixed top-0  z-3 header-css" >
       <Navbar expand="xxl" className="p-0">
         <Container fluid className="bg-white pt-4 pb-3">
           {/* Mobile View Header */}

@@ -46,7 +46,7 @@ const AsyncPhoneInput = ({ value, onChange }) => {
       inputProps={{
         name: 'mobile',
         required: true,
-        className: 'contact_inputt w-100 px-5',
+        className: 'contact_inputt w-100 px-5 border-0 border-bottom border-black ',
       }}
     />
   );

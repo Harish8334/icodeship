@@ -35,7 +35,7 @@ const ClientOnlyHeader = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   return mounted ? (
-    <div id="header-root" style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}>
+    <div id="header-root" >
       <Header />
     </div>
   ) : null;
@@ -44,9 +44,7 @@ const ClientOnlyHeader = () => {
 const PageWrapper = ({ children }) => {
   const location = useLocation();
   const smootherRef = useRef(null);
-  // SSR detection
   const isSSR = typeof window === "undefined";
-  // Only show loader for client-side navigation, never on SSR
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -59,7 +57,6 @@ const PageWrapper = ({ children }) => {
 
   useEffect(() => {
     if (!mounted) return;
-    // Only show loader for client-side navigation, not on first mount
     if (!isSSR) {
       setLoading(true);
       const timeout = setTimeout(() => {
@@ -75,18 +72,21 @@ const PageWrapper = ({ children }) => {
         if (typeof window !== 'undefined' && window.ScrollTrigger) {
           window.ScrollTrigger.refresh();
         }
+
         smootherRef.current?.refresh();
       }, 300);
+
       return () => clearTimeout(timeout);
     }
   }, [location, mounted, isSSR]);
+
   useEffect(() => {
     if (!mounted) return;
-  
+
     let gsap, ScrollTrigger, ScrollSmoother;
     let killed = false;
     const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  
+
     import("gsap").then((mod) => {
       gsap = mod.gsap;
       return Promise.all([
@@ -95,44 +95,61 @@ const PageWrapper = ({ children }) => {
       ]);
     }).then(([st, ss]) => {
       if (killed) return;
-  
+
       ScrollTrigger = st.ScrollTrigger;
       ScrollSmoother = ss.ScrollSmoother;
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-  
+
       const wrapper = document.querySelector("#smooth-wrapper");
       const content = document.querySelector("#smooth-content");
-  
+
       if (!wrapper || !content) {
         console.warn("Smooth scroll wrapper/content not found");
         return;
       }
-  
-      // Prevent double init
+
       if (!ScrollSmoother.get() && !isMobile) {
-        smootherRef.current = ScrollSmoother.create({
-          wrapper,
-          content,
-          smooth: 2,
-          effects: true,
-          normalizeScroll: true,
-          ignoreMobileResize: true,
+        // Slight delay ensures DOM/layout is ready
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            smootherRef.current = ScrollSmoother.create({
+              wrapper,
+              content,
+              smooth: 2,
+              effects: true,
+              normalizeScroll: true,
+              ignoreMobileResize: true,
+            });
+
+            console.log("ScrollSmoother initialized");
+            ScrollTrigger.refresh();
+            smootherRef.current.refresh();
+          }, 100); // Adjust if needed
         });
-  
-        console.log("ScrollSmoother initialized");
-        ScrollTrigger.refresh();
-        smootherRef.current.refresh();
       } else {
         console.log("ScrollSmoother skipped (mobile or already initialized)");
       }
     });
-  
+
+    // Refresh smoother on resize/layout shift
+    const resizeObserver = new ResizeObserver(() => {
+      if (smootherRef.current) {
+        smootherRef.current.refresh();
+      }
+    });
+
+    const wrapperEl = document.querySelector("#smooth-wrapper");
+    if (wrapperEl) resizeObserver.observe(wrapperEl);
+
     return () => {
       killed = true;
+      resizeObserver.disconnect();
+
       if (typeof window !== "undefined") {
         import("gsap/ScrollTrigger").then((st) => {
           st.ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
         });
+
         import("gsap/ScrollSmoother").then((ss) => {
           const smoother = ss.ScrollSmoother.get();
           if (smoother) {
@@ -140,14 +157,15 @@ const PageWrapper = ({ children }) => {
             console.log("ScrollSmoother killed");
           }
         });
+
         smootherRef.current = null;
       }
     };
   }, [mounted]);
-  
+
   return (
     <>
-      <div id="smooth-wrapper" >
+      <div id="smooth-wrapper">
         <div id="smooth-content">
           {loading ? <Loader /> : children}
         </div>
@@ -156,6 +174,7 @@ const PageWrapper = ({ children }) => {
     </>
   );
 };
+
 
 function App() {
   const location = useLocation();
@@ -173,7 +192,7 @@ function App() {
   return (
     <>
       {!isLanding && <ClientOnlyHeader />}
-      {/* <PageWrapper> */}
+      <PageWrapper>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -192,7 +211,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         {!isLanding && <Footer />}
-      {/* </PageWrapper> */}
+      </PageWrapper>
     </>
   );
 }
