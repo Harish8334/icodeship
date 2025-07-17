@@ -1,8 +1,8 @@
 import HomeImg from '../assets/images/Home/home_banner.webp';
-import AboutImg from '../assets/images/About/about_banner.webp';
+import AboutImg from '../assets/images/About/about_banner.png';
 import WorkImg from '../assets/images/OurWorks/ourwork_banner.webp';
 import CapableImg from '../assets/images/Capable/capability_banner.webp';
-import SolutionImg from '../assets/images/Solutions/solution_banner.webp';
+import SolutionImg from '../assets/images/Solutions/solution_banner.png';
 import ContactImg from '../assets/images/Contact/contact_banner.webp';
 
 const BannerData = {

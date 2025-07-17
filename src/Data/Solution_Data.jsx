@@ -36,7 +36,7 @@ const Solution_Data = [
     title: "Improve Your Processes with Our LMS Software Solution.",
     description:
       "Codeship delivers customized LMS software solutions designed to meet the unique needs of your organization. Our tailored Learning Management Systems simplify training and development, improve learning efficiency, and support your growth. This ensures your platform is as adaptable and scalable as your changing workforce.",
-    image: Solution_desk,
+    image: Solution_lap,
     bgColor: "#FFFFD8"
   }
 ];

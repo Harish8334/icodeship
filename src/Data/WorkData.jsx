@@ -114,22 +114,24 @@ export const Workdata_1 = [
   },
   {
     id: 11,
-    img: legendary,
-    title: "Legendary",
+    img: itetra,
+    title: "Oi tetra",
     description:
-      "We build inspiring homes with honesty, integrity, and passion. Our team consists of experts committed to making every homebuyer’s dream come true.",
-    tags: ["UX/UI", "Web Development", "React", "Next JS"],
-    link: "https://www.legendary.net.in/",
+      "Oitetra provides AI-driven trading solutions and tools to help traders and investors in the financial markets. ",
+    tags: ["UX/UI", "Angular", "AI","Mobile App", "Web Development"],
+    link: "https://oitetra.com/ ",
   },
+  
   {
     id: 12,
-    img: callback_events,
-    title: "Callback events",
+    img: edu_Home,
+    title: "Eduhome Connect",
     description:
-      "We are an event management company that turns your unique moments into unforgettable memories.",
-    tags: ["UX/UI", "Wordpress", "Event Management"],
-    link: "https://callbackevents.com/",
+      "Integrating augmented reality to improve social commerce. Helping commerce students with personalized tests, smart insights, and one-on-one support for success.",
+    tags: ["UX/UI", "Angular", "Web Development","LMS|ERP|HRM Website"],
+    link: "https://eduhomeconnect.com/",
   },
+  
   {
     id: 13,
     img: svi,
@@ -141,12 +143,12 @@ export const Workdata_1 = [
   },
   {
     id: 14,
-    img: edu_Home,
-    title: "Eduhome Connect",
+    img: callback_events,
+    title: "Callback events",
     description:
-      "Integrating augmented reality to improve social commerce. Helping commerce students with personalized tests, smart insights, and one-on-one support for success.",
-    tags: ["UX/UI", "Angular", "Web Development","LMS|ERP|HRM Website"],
-    link: "https://eduhomeconnect.com/",
+      "We are an event management company that turns your unique moments into unforgettable memories.",
+    tags: ["UX/UI", "Wordpress", "Event Management"],
+    link: "https://callbackevents.com/",
   },
 
   {
@@ -160,12 +162,12 @@ export const Workdata_1 = [
   },
   {
     id: 16,
-    img: itetra,
-    title: "Oi tetra",
+    img: legendary,
+    title: "Legendary",
     description:
-      "Oitetra provides AI-driven trading solutions and tools to help traders and investors in the financial markets. ",
-    tags: ["UX/UI", "Angular", "AI","Mobile App", "Web Development"],
-    link: "https://oitetra.com/ ",
+      "We build inspiring homes with honesty, integrity, and passion. Our team consists of experts committed to making every homebuyer’s dream come true.",
+    tags: ["UX/UI", "Web Development", "React", "Next JS"],
+    link: "https://www.legendary.net.in/",
   },
 
   {

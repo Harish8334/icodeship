@@ -23,12 +23,7 @@ export const projects = [
     tags: ["UX/UI", "Angular", "Web Development"],
     href: "https://virtualauditor.in/"
   },
-  {
-    title: "Eduhome Connect",
-    image: Project4,
-    tags: ["UX/UI", "Angular", "LMS Web Development"],
-    href: "https://eduhomeconnect.com/"
-  },
+  
   {
     title: "Callback events",
     image: Project5,

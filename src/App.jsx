@@ -41,7 +41,7 @@ const ClientOnlyHeader = () => {
   ) : null;
 };
 
-const PageWrapper = ({ children }) => {
+const PageWrapper = ({ children,triggerReload }) => {
   const location = useLocation();
   const smootherRef = useRef(null);
   const isSSR = typeof window === "undefined";
@@ -167,7 +167,7 @@ const PageWrapper = ({ children }) => {
     <>
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          {loading ? <Loader /> : children}
+        {(loading || triggerReload) ? <Loader /> : children}
         </div>
       </div>
       <ScrollToTopButton />
@@ -181,22 +181,28 @@ function App() {
   const isFirstLoad = useRef(true);
   const isLanding = location.pathname === "/landing";
 
- useEffect(() => {
-  if (isFirstLoad.current) {
-    isFirstLoad.current = false;
-  } else {
-    const reloadPaths = ["/solutions","/"];
-    if (reloadPaths.includes(location.pathname)) {
-      window.location.reload();
-    }
-  }
-}, [location.pathname]);
+  const [triggerReload, setTriggerReload] = useState(false);
 
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+    } else {
+      const reloadPaths = ["/solutions", "/"];
+      if (reloadPaths.includes(location.pathname)) {
+        setTriggerReload(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1); // Give loader 300ms to render
+      }
+    }
+  }, [location.pathname]);
+  
+  
 
   return (
     <>
       {!isLanding && <ClientOnlyHeader />}
-      <PageWrapper>
+      <PageWrapper triggerReload={triggerReload}>
         <Routes key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

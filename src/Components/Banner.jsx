@@ -26,7 +26,7 @@ const Banner = ({ text, image }) => {
           <div className="col-12 col-lg-5 col-md-12 col-sm-12">
             <div className="d-flex banner_height  ">
               {" "}
-              <img src={image} alt="Banner Visual" rel="preload" as="image" height="800" width="800" className="banner_height h-100 w-100 img-fluid"/>
+              <img src={image} alt="Banner Visual" rel="preload" as="image"  className="banner_height h-100 w-100 img-fluid"/>
 
             </div>
           </div>
