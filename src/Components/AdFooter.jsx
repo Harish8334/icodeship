@@ -86,7 +86,7 @@ function Footer() {
               Linkdin In
             </a>
             <a
-              href=""
+              href="https://x.com/ship_code20427?t=eCBOb7HeomgEwx2GqcJBoQ&s=09"
               target="_blank"
               className="text-decoration-none text-black font-size-20 "
             >
