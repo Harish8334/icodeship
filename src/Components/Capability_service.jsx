@@ -114,7 +114,7 @@ const Capable_service = () => {
           <div className="row justify-content-between">
             <div className="col-lg-5 col-md-12 col-12">
               <p className="font-size-25  font_weight_300 mt-lg-5">
-                What Choose Us ?
+                Who Choose Us ?
               </p>
               <p className="font-size-58 font_weight_600">
                 {service.sub_banner.title}

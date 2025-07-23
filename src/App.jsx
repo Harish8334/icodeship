@@ -124,7 +124,7 @@ const PageWrapper = ({ children,triggerReload }) => {
             console.log("ScrollSmoother initialized");
             ScrollTrigger.refresh();
             smootherRef.current.refresh();
-          }, 100); // Adjust if needed
+          }, 1000); // Adjust if needed
         });
       } else {
         console.log("ScrollSmoother skipped (mobile or already initialized)");
@@ -191,8 +191,9 @@ function App() {
       if (reloadPaths.includes(location.pathname)) {
         setTriggerReload(true);
         setTimeout(() => {
+          document.body.innerHTML = ""; // optional: wipe DOM
           window.location.reload();
-        }, 1); // Give loader 300ms to render
+        }, 300); // Give loader 300ms to render
       }
     }
   }, [location.pathname]);
