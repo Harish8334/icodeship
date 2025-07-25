@@ -5,6 +5,33 @@ import Capable_service_icon2 from "../assets/images/Capable_service/capable_serv
 import Capable_service_icon3 from "../assets/images/Capable_service/capable_service_icon3.png";
 import Capable_service_icon4 from "../assets/images/Capable_service/capable_service_icon4.png";
 
+import websiteDevelepment from "../assets/codeship/Website_Development.png";
+import angular from "../assets/codeship/Angular_Development.png";
+import react from "../assets/codeship/React_Development.png";
+import customWebDev from "../assets/codeship/Custom_Website_Development.png";
+import webDesign from "../assets/codeship/Website_Design.png";
+import wordpressDev from "../assets/codeship/WordPress_Development.png";
+import webAppDev from "../assets/codeship/Web_App_Development.png";
+import androidApp from "../assets/codeship/Android_App_Development.png";
+import iosApp from "../assets/codeship/iOS_App_Development.png";
+import mobileApp from "../assets/codeship/Mobile_App_Development.png";
+import webredesign from "../assets/codeship/Website_Redesign.png";
+import corpwebDesign from "../assets/codeship/Corporate_Web_Design.png";
+import uiuxDesign from "../assets/codeship/UI_UX_Designing.png";
+import ampWebDev from "../assets/codeship/AMP_Web_Development.png";
+import webUpdate from "../assets/codeship/Website_Update_&_Maintenance.png";
+import ecomWebDev from "../assets/codeship/Ecommerce_Website_Development.png";
+import ecomUpdate from "../assets/codeship/Ecommerce_Update_&_Maintenance.png";
+import customEcomDev from "../assets/codeship/Custom_Ecommerce_Development.png";
+import integrateService from "../assets/codeship/Integration_Services.png";
+import domainRegister from "../assets/codeship/Domain_Registration.png";
+import webHost from "../assets/codeship/Web_Hosting.png";
+import sslCertificate from "../assets/codeship/SSL_Certificates.png";
+import businessEmail from "../assets/codeship/Business_Emails.png";
+import seo from "../assets/codeship/Search_Engine_Optimisation.png";
+import digitalMarketing from "../assets/codeship/Digital_Marketing.png";
+import socialMedia from "../assets/codeship/Social_Media_Marketing.png";
+import socialMediaOptimization from "../assets/codeship/Social_Media_Optimization.png";
 const serviceData = {
   // Web development
   "web-dev": {
@@ -50,6 +77,7 @@ const serviceData = {
         desc: "We test your site on different devices and browsers. We improve it based on feedback. Then, we launch it smoothly.",
       },
     ],
+    Img:websiteDevelepment,
     work_with_us:
       "Our dedicated team provides tailored web solutions that ensure timely delivery and ongoing support. We improve websites for better search visibility and user interaction while keeping costs down. Through clear communication and fresh ideas, we help boost your online presence and promote business growth.",
     work_with_us_detail: {
@@ -101,7 +129,7 @@ const serviceData = {
         {
           title: "What technologies does CodeShip use for development?",
           content:
-            "We use modern frameworks and platforms like React, Next.js, Node.js, Laravel, WordPress, and more. This allows us to create scalable, secure, and high-performance websites.",
+            "We use modern frameworks and platforms like React, Next.js, Node.js, WordPress, and more. This allows us to create scalable, secure, and high-performance websites.",
         },
         {
           title: "Can you provide support for existing websites or apps?",
@@ -117,6 +145,8 @@ const serviceData = {
         "Build dynamic web apps with Codeship’s, expert Angular development tailored to your business needs!",
       icon: web_main_banner,
     },
+    Img:angular,
+
     sub_banner: {
       title: "For Your Angular Development Services.",
       description:
@@ -220,6 +250,7 @@ const serviceData = {
         "Build high-performance web apps with Codeship’s expert React development tailored to your business goals!",
       icon: web_main_banner,
     },
+    Img:react,
     sub_banner: {
       title: "For Your React Development Services.",
       description:
@@ -322,6 +353,7 @@ const serviceData = {
         title: "Custom Website Development Tailored to Your Vision",
         icon: web_main_banner,
     },
+    Img:customWebDev,
     sub_banner: {
         title: "Why Choose CodeShip Pvt. Ltd?",
         description: "At CodeShip Pvt. Ltd, we focus on providing unique website development solutions to meet the specific needs of your business. Our expertise covers various platforms and technologies, ensuring flexibility, scalability, and excellent performance.",
@@ -412,6 +444,7 @@ const serviceData = {
       title: "Get scalable, secure, and SEO-friendly WordPress websites tailored to your brand.",
       icon: web_main_banner,
     },
+    Img:wordpressDev,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description: "At CodeShip Pvt. Ltd, we deliver responsive, customized WordPress solutions for your business. Our services include professional design, theme selection, ongoing maintenance, and custom plugin development to keep your site functional and updated. We offer all of this at affordable prices without sacrificing quality.",
@@ -503,6 +536,7 @@ const serviceData = {
       title: "Unlock the full potential of your business with tailored web app development services.",
       icon: web_main_banner, // replace with actual image import
     },
+    Img:webAppDev,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description: "At CodeShip Pvt. Ltd, our skilled team of web developers, designers, and quality controllers is ready to meet your project deadlines. With years of experience and a strong record of developing many web applications, we focus on delivering high-quality, scalable solutions for your business needs.",
@@ -594,6 +628,7 @@ const serviceData = {
       title: "Unlock your business's potential with CodeShip's expert Android app development services.",
       icon: web_main_banner,
     },
+    Img:androidApp,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description: "At CodeShip Pvt. Ltd, we focus on creating high-quality, scalable, and user-friendly Android apps. Our expert team guarantees performance, security, and usability. We customize each app to meet your unique business needs from concept to deployment. We provide solutions on time and within budget to help your business thrive.",
@@ -686,6 +721,7 @@ const serviceData = {
         "Unlock your business potential with CodeShip Pvt. Ltd's expert iOS app development services.",
       icon: web_main_banner,
     },
+    Img:iosApp,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -791,6 +827,7 @@ const serviceData = {
         "Build strong mobile apps that produce real business results quickly and efficiently. ",
       icon: web_main_banner,
     },
+    Img:mobileApp,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -895,6 +932,7 @@ const serviceData = {
         "Crafting beautiful websites that inspire and convert through smooth design and user experience",
       icon: web_main_banner,
     },
+    Img:webDesign,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -994,6 +1032,7 @@ const serviceData = {
       title: "Revitalize your online presence with a professional website redesign.",
       icon: web_main_banner,
     },
+    Img:webredesign,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1097,6 +1136,7 @@ const serviceData = {
         "Deliver smooth, engaging, and user-focused digital experiences.",
       icon: web_main_banner,
     },
+    Img:uiuxDesign,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1199,6 +1239,7 @@ const serviceData = {
       title: "Professional corporate web design that improves your brand.",
       icon: web_main_banner,
     },
+    Img:corpwebDesign,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1301,6 +1342,7 @@ const serviceData = {
         "Lightning-Fast AMP Web Development Performance and user Engagement",
       icon: web_main_banner,
     },
+    Img:ampWebDev,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1404,6 +1446,7 @@ const serviceData = {
         "CodeShip creates scalable, secure websites and apps tailored for success.",
       icon: web_main_banner,
     },
+    Img:webUpdate,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1505,6 +1548,7 @@ const serviceData = {
         "Launch your ecommerce journey with CodeShip — where innovation meets reliability.",
       icon: web_main_banner,
     },
+    Img:ecomWebDev,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1608,6 +1652,7 @@ const serviceData = {
       title: "Keep Your Online Store Running Smoothly – Always",
       icon: web_main_banner,
     },
+    Img: ecomUpdate,
     sub_banner: {
       title: "Why Choose Codeship Pvt Ltd?",
       description:
@@ -1707,6 +1752,7 @@ const serviceData = {
       title: "Personalized eCommerce Development Crafted for Your Brand",
       icon: web_main_banner,
     },
+    Img:customEcomDev,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1810,6 +1856,7 @@ const serviceData = {
         "Boost efficiency, eliminate silos, and enhance seamless eCommerce connectivity.",
       icon: web_main_banner,
     },
+    Img:integrateService,
     sub_banner: {
       title: "Why Choose CodeShip Pvt. Ltd?",
       description:
@@ -1914,6 +1961,7 @@ const serviceData = {
         "Secure your ideal domain with our affordable, hassle-free registration.",
       icon: web_main_banner,
     },
+    Img: domainRegister,
     sub_banner: {
       title: "Why Choose Codeship Pvt Ltd?",
       description:
@@ -2014,6 +2062,7 @@ const serviceData = {
         "At CodeShip, we provide secure, fast, and reliable web hosting services",
       icon: web_main_banner,
     },
+    Img: webHost,
     sub_banner: {
       title: "Why Choose CodeShip?",
       description:
@@ -2114,6 +2163,7 @@ const serviceData = {
         "Secure your website and build customer trust with Codeship’s reliable SSL certificate solutions.",
       icon: web_main_banner,
     },
+    Img: sslCertificate,
     sub_banner: {
       title: "Why Choose CodeShip?",
       description:
@@ -2217,6 +2267,7 @@ const serviceData = {
         "Elevate your business with a custom email address that matches your domain name.",
       icon: web_main_banner,
     },
+    Img: businessEmail,
     sub_banner: {
       title: "Why Choose Us?",
       description:
@@ -2322,6 +2373,7 @@ const serviceData = {
         "Boost visibility, attract qualified traffic, and accelerate sustainable online growth.",
       icon: web_main_banner,
     },
+    Img: seo,
     sub_banner: {
       title: "Why Choose Us?",
       description:
@@ -2422,6 +2474,7 @@ const serviceData = {
         "Accelerate Your Business Growth with Powerful Digital Marketing Solutions",
       icon: web_main_banner,
     },
+    Img: digitalMarketing,
     sub_banner: {
       title: "Why Choose Us?",
       description:
@@ -2528,6 +2581,7 @@ const serviceData = {
         "Grow your audience across platforms with Codeship Pvt Ltd’s expert SMO services.",
       icon: web_main_banner,
     },
+    Img:socialMedia,
     sub_banner: {
       title: "Why Choose Us?",
       description:
@@ -2627,6 +2681,7 @@ const serviceData = {
     title: "Boost your brand with Codeship’s engaging, targeted social media marketing solutions.",
     icon: web_main_banner,
   },
+  Img:socialMediaOptimization,
   sub_banner: {
     title: "Why Choose Us?",
     description:

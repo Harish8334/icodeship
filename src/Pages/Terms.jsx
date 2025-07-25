@@ -43,7 +43,7 @@ function Terms() {
                 className="mb-4 ps-3"
                 style={{ borderLeft: "5px solid #504CA0" }}
               >
-                <p className="font-size-40 font_weight_700 font_color_blue line_height_40 mb-2">
+                <p className="font-size-30 font_weight_700 font_color_blue line_height_40 mb-2">
                   Terms and Conditions
                 </p>
               </div>

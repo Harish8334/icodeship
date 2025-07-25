@@ -250,7 +250,7 @@ const Capable_service = () => {
             <div className="col-lg-6 d-flex justify-content-center align-items-center col-12">
               <div className="d-flex justify-content-center ">
                 <img
-                  src={Service_with_us}
+                  src={service.Img}
                   alt=""
                   className=" img-fluid"
                 />
