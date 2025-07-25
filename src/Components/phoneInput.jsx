@@ -9,9 +9,9 @@ const AsyncPhoneInput = ({ value, onChange }) => {
     const loadPhoneInput = async () => {
       try {
         const module = await import('react-phone-input-2');
-        console.log('Module loaded:', module); // Log the module to check its structure
+        console.log('Module loaded:', module);
         if (module.default) {
-          setPhoneInput(() => module.default); // Use a function to ensure correct state update
+          setPhoneInput(() => module.default);
         } else {
           setError('PhoneInput component could not be loaded correctly.');
         }
@@ -46,8 +46,9 @@ const AsyncPhoneInput = ({ value, onChange }) => {
       inputProps={{
         name: 'mobile',
         required: true,
-        className: 'contact_inputt w-100 px-5 border-0 border-bottom border-black ',
+        className: 'contact_inputt w-100  px-5 border-0 border-bottom border-black',
       }}
+     
     />
   );
 };

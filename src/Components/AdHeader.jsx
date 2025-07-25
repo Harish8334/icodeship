@@ -17,7 +17,7 @@ const  Header = () => {
           </div>
 
           <a href="/" className="btn orange-bg rounded-5 px-3 py-2 text-white">Explore</a>
-         <a href="#contact-section" className="bg-blue-color border-0 p-2 rounded-circle"> <Phone size={24} stroke="#5552A1" fill="#FFFFFF" /></a>
+         <a href="/contact" className="bg-blue-color border-0 p-2 rounded-circle"> <Phone size={24} stroke="#5552A1" fill="#FFFFFF" /></a>
 
         </div>
 
@@ -28,7 +28,7 @@ const  Header = () => {
           </Navbar.Brand>
 
           <div className="d-flex gap-4 gap-lg-2">
-            <a href="#contact-section" className="btn blue-border contact-btn-hover rounded-5 px-4 py-2">Contact</a>
+            <a href="/contact" className="btn blue-border contact-btn-hover rounded-5 px-4 py-2">Contact</a>
             <a href="/" className="btn orange-bg rounded-5 px-4 py-2 text-white explore-btn-hover">Explore</a>
           </div>
         </div>

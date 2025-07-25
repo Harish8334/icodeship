@@ -127,7 +127,7 @@ function Contact() {
                             className="img-fluid"
                           />
                         </a>
-                        <a href="#">
+                        <a href="https://x.com/ship_code20427?t=eCBOb7HeomgEwx2GqcJBoQ&s=09">
                           <img
                             src={Contact_icon4}
                             alt=""

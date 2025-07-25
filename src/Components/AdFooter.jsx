@@ -36,7 +36,7 @@ function Footer() {
                 {" "}
                 <img src={linkdin_icon} className="img-fluid arrow_icon" alt="" />
               </a>
-              <a href="" target="_blank">
+              <a href="https://x.com/ship_code20427?t=eCBOb7HeomgEwx2GqcJBoQ&s=09" target="_blank">
                 {" "}
                 <img src={X} className="img-fluid arrow_icon" alt="" />
               </a>
@@ -47,14 +47,14 @@ function Footer() {
               Know More
             </p>
             <a
-              href="/#contact-section"
+              href="/contact"
               className="text-decoration-none text-black font-size-20"
             >
               Help & Contact
             </a>
 
             <a
-              href=""
+              href="/about"
               className="text-decoration-none text-black font-size-20 "
             >
               About Us
@@ -83,7 +83,7 @@ function Footer() {
               target="_blank"
               className="text-decoration-none text-black font-size-20 "
             >
-              Linkdin In
+              Linked In
             </a>
             <a
               href="https://x.com/ship_code20427?t=eCBOb7HeomgEwx2GqcJBoQ&s=09"
@@ -123,7 +123,7 @@ function Footer() {
           borderTop: "1px solid #ccc",
         }}
       >
-        © 25 Codeship Pvt Ltd All Rights Reserved
+        © 2025 Codeship Pvt Ltd All Rights Reserved
       </div>
     </>
   );

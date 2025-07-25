@@ -520,7 +520,7 @@ export default function AdPage() {
             <div className="d-flex gap-5 justify-content-end pe-4 justify-content-lg-start">
               {" "}
               <a
-                href="#contact-section"
+                href="/contact"
                 className="bg-blue-color px-4 mt-5 py-3 rounded-5 text-white border-0 text-decoration-none d-inline-block"
               >
                 Contact
@@ -773,7 +773,7 @@ export default function AdPage() {
             heights.
           </p>
           <a
-            href="#contact-section"
+            href="/contact"
             className="bg-blue-color px-4 mt-5 py-3 rounded-5 text-white border-0 text-decoration-none d-inline-block"
           >
             Contact

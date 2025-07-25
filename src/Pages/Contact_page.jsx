@@ -239,7 +239,7 @@ function Contact_page() {
                             className="img-fluid"
                           />
                         </a>
-                        <a href="/" aria-label="Other social link">
+                        <a href="https://x.com/ship_code20427?t=eCBOb7HeomgEwx2GqcJBoQ&s=09" aria-label="Other social link">
                           <img
                             src={Contact_icon4}
                             alt="Other social link"
