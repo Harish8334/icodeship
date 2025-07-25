@@ -12,7 +12,7 @@ import {
   faChevronDown,
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
 import useLetsTalk from "../Components/Contact_page_link";
 import { Services_Data } from "../Data/Capable_Data";
 import { useState, useRef } from "react";
@@ -29,6 +29,8 @@ export default function Header({}) {
   // State for capabilities dropdown in the new offcanvas
   const [openServiceIndex, setOpenServiceIndex] = useState(null);
 
+console.log("params",currentPath.replace("/capable-service/", ""));
+const currentsubpath=currentPath.replace("/capable-service/", "")
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
@@ -177,13 +179,15 @@ export default function Header({}) {
                           </h6>
                           {service.points.map((point, i) => (
                             <Nav.Link
-                              as={Link}
-                              to={`/capable-service/${point.href}`}
-                              className="font-size-18 font_weight_400 text-dark pb-3 pt-2 px-0"
-                              key={i} onClick={hideDropdownWithDelay}
-                            >
-                              {point.text}
-                            </Nav.Link>
+                            as={Link}
+                            to={`/capable-service/${point.href}`}
+                            className={`${currentsubpath === `${point.href}` ? "font_color_light_blue font_weight_600 " : ""}font-size-18 font_weight_400 text-dark pb-3 pt-2 px-0`}
+                            key={i}
+                            onClick={hideDropdownWithDelay}
+                          >
+                            {point.text}
+                          </Nav.Link>
+                          
                           ))}
                         </div>
                       ))}

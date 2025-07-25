@@ -97,7 +97,7 @@
   color: #951800;
 }
 .font_color_light_blue{
-  color: #504CA0;
+  color: #504CA0 !important
 }
 
 .font_color_blue {
